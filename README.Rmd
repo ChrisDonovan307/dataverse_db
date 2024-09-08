@@ -1,15 +1,12 @@
 ---
 title: "Title"
-author: "Author"
+author: "Author\n"
 date: "`r Sys.Date()`"
 output: 
-  html_document: 
-    toc: yes 
-    toc_float: 
-      smooth_scroll: yes 
-    toc_depth: 3 
-    number_sections: 3 
-    theme: readable 
+  github_document:
+    toc: yes
+    toc_depth: 3
+    number_sections: 3
 ---
 
 ```{r setup, include=FALSE}
@@ -17,5 +14,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Introduction
-Wicked README goes here.
+
+Dataverse scraping for CS5040 - Database Systems course.
 
