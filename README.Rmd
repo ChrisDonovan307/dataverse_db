@@ -1,6 +1,6 @@
 ---
-title: "Title"
-author: "Author\n"
+title: "Dataverse Database"
+author: "Chris Donovan, Ben Sevey\n"
 date: "`r Sys.Date()`"
 output: 
   github_document:
@@ -15,5 +15,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Introduction
 
-Dataverse scraping for CS5040 - Database Systems course.
+Dataverse scraping for CS5040 - Database Systems course. To navigate project, open `.Rproj` file, then head to `table_of_conents.R`. Scripts are listed in order. To navigate to a script, put cursor on file path and hit `F2`, or `ctrl + left click` on the file path. The `6_outputs` folder contains csv outputs to work with in RDBMS. They still need some work in terms of creating and linking keys across tables.
+
 
