@@ -19,6 +19,7 @@ suppressPackageStartupMessages(
 pacman::p_load(conflicted)
 pacman::p_load_gh('ChrisDonovan307/projecter')
 
+# Set common conflict preferences
 conflicts_prefer(
   dplyr::select,
   dplyr::filter

@@ -16,6 +16,8 @@
 # Join data, explore, make csvs
 source('4_scripts/wrangle_johns_hopkins.R')
 
+# Explore clean tables
+'4_scripts/explore_clean_tables.R'
 
 
 # Miscellany --------------------------------------------------------------

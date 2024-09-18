@@ -9,7 +9,9 @@
 
 pacman::p_load(
   dplyr,
-  purrr
+  purrr,
+  stringr,
+  tidyr
 )
 
 dat <- readRDS('1_raw/jhu_metadata.RDS')
@@ -43,7 +45,8 @@ files_df <- left_join(
   dat$jhu_downloads,
   by = join_by(file_id == id)
 ) %>%
-  rename(downloads = count)
+  mutate(downloads = ifelse(is.na(count), 0, count),
+         .keep = 'unused')
 
 get_str(files_df)
 
@@ -63,32 +66,216 @@ datasets_df <- dat$jhu_datasets %>%
   select(name:storageIdentifier)
 get_str(datasets_df)
 
+#' To get download counts for datasets, lets add up the file counts, because the
+#' metrics API for directly getting download counts doesn't work.
+get_str(files_df)
+get_str(datasets_df)
+# files_df.dataset_persistent_id == datasets_df.global_id
+
+# Get download counts
+counts <- files_df %>%
+  group_by(dataset_persistent_id) %>%
+  summarize(downloads = sum(downloads)) %>%
+  arrange(desc(downloads))
+counts
+get_str(counts)
+get_table(counts$downloads)
+
+# Join this into the datasets
+datasets_df <- left_join(datasets_df,
+                         counts,
+                         join_by(global_id == dataset_persistent_id))
+get_str(datasets_df)
+get_table(datasets_df$downloads)
+
+# Save it
 results$datasets <- datasets_df
 
 
 
+# Collections -------------------------------------------------------------
+
+
+get_str(dat$jhu_dataverses)
+head(dat$jhu_dataverses)
+# This is easy, just get rid of the type column and leave else as is
+
+results$collections <- dat$jhu_dataverses %>%
+  select(-type)
+
+
+
 # Authors -----------------------------------------------------------------
+#
+#
+# get_str(dat$jhu_datasets, 1)
+# get_str(dat$jhu_datasets$authors)
+#
+# # Pull out authors from lists, keep unique authors only
+# authors <- dat$jhu_datasets$authors %>%
+#   unlist() %>%
+#   unique() %>%
+#   sort()
+# # Need some cleaning with string similarity, but looks okay otherwise
+#
+# # Add author ID
+# authors_df <- data.frame(
+#   author = authors,
+#   author_id = 1:length(authors)
+# )
+# head(authors_df)
+#
+# # Save this to results list
+# results$authors <- authors_df
 
 
-get_str(dat$jhu_datasets, 1)
-get_str(dat$jhu_datasets$authors)
 
-# Pull out authors from lists, keep unique authors only
-authors <- dat$jhu_datasets$authors %>%
-  unlist() %>%
-  unique() %>%
-  sort()
-# Need some cleaning with string similarity, but looks okay otherwise
+# Contacts ----------------------------------------------------------------
 
-# Add author ID
-authors_df <- data.frame(
-  author = authors,
-  author_id = 1:length(authors)
-)
-head(authors_df)
 
-# Save this to results list
-results$authors <- authors_df
+get_str(dat$jhu_datasets, 3)
+get_str(dat$jhu_datasets$contacts)
+
+# Save dataset ids, will have to join them with contacts
+global_ids <- dat$jhu_datasets$global_id
+
+# Pull out just contacts
+contacts <- dat$jhu_datasets$contacts
+
+get_str(contacts)
+contacts[[1]]
+# The second row in each dataframe seems to always be for access, and leads to
+# Johns Hopkinds University Data Services. Probably just get rid of those.
+
+# Combine into a single DF
+contacts_df <- bind_rows(contacts)
+get_str(contacts_df)
+
+# Get rid of anything that includes "access". we just want data contacts
+test <- contacts_df %>%
+  filter()
+# [] FINISH THIS
+
+
+# Explore -----------------------------------------------------------------
+
+
+get_str(dat$jhu_datasets, 3)
+get_str(dat$jhu_datasets_native)
+get_str(dat$jhu_datasets_native[[1]])
+get_str(dat$jhu_datasets_native[[1]]$latestVersion)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks)
+
+### Explore citations
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields)
+
+dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$typeName
+# contact 3 "datasetContact
+# author 2 "author"
+
+# Explore contacts
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value[[3]])
+dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value[[3]]
+
+
+
+
+# Better Authors ----------------------------------------------------------
+
+
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value[[2]])
+# Nice, this has name, affiliation, and an identifier, usually orcid ID
+
+# First get global IDs
+global_ids <- dat$jhu_datasets$global_id
+authors_dfs <- imap(dat$jhu_datasets_native, \(author_chunk, index) {
+  author_chunk <- author_chunk$latestVersion$metadataBlocks$citation$fields$value[[2]]
+  if (is.data.frame(author_chunk)) {
+    out <- author_chunk %>%
+      unnest(cols = everything(), names_sep = '.') %>%
+      mutate(global_id = global_ids[[index]])
+  } else {
+    out <- NA
+  }
+  return(out)
+})
+get_str(authors_dfs)
+
+# Remove logical NAs and bind
+big_author_df <- Filter(Negate(is.logical), authors_dfs) %>%
+  bind_rows()
+get_str(big_author_df)
+
+# This is basically the author/dataset relationship entity
+# we can pull that out, as well as a pure author dataset.
+# and also use this to get institutions!
+
+### First get pure author dataset
+get_str(big_author_df)
+just_authors <- big_author_df %>%
+  select(
+    name = authorName.value,
+    affiliation = authorAffiliation.value,
+    id_type = authorIdentifierScheme.value,
+    author_id = authorIdentifier.value
+  ) %>%
+  mutate(author_id = str_sub(author_id, start = -19))
+
+# How many NAs
+n_na <- sum(is.na(just_authors$author_id))
+
+# Assign the ones missing an ID a 1:n_na id
+just_authors$author_id[is.na(just_authors$author_id)] <- seq(1:n_na)
+just_authors$id_type <- ifelse(is.na(just_authors$id_type), 'dataverse_id', just_authors$id_type)
+
+get_str(just_authors)
+# This is good to go for now
+# eventually get rid of affiliation and replace with institution id
+
+results$authors_df <- just_authors
+
+
+
+# Institutions ------------------------------------------------------------
+
+
+get_str(big_author_df)
+# Could split by commas, pull out the chunk that contains University or Institute
+# get us most of the way there
+# University, Institut, Johns Hopkins, then stragglers...
+
+institution_df <- big_author_df %>%
+  select(full_affiliation = authorAffiliation.value)
+
+# Split by commas to get lists
+splits <- str_split(institution_df$full_affiliation, ', ')
+pattern <- 'University|Johns Hopkins|Institut'
+
+clean_inst <- map_chr(splits, \(x) {
+  out <- x[which(str_detect(x, pattern))]
+  if (length(out) == 0) {
+    return(NA_character_)
+  } else if (length(out) == 1) {
+    return(out)
+  } else {
+    return(out[[1]])
+  }
+})
+
+clean_inst
+
+institution_df$clean_name <- clean_inst
+institution_df <- institution_df %>%
+  mutate(clean_name = case_when(
+    str_detect(clean_name, 'Johns Hopkins') ~ 'Johns Hopkins University',
+    str_detect(clean_name, 'Maryland') ~ 'University of Maryland',
+    .default = clean_name
+  ))
+get_str(institution_df)
+
+results$institutions <- institution_df
 
 
 

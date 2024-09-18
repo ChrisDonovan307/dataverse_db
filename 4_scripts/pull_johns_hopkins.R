@@ -95,7 +95,7 @@ get_str(results$jhu_dataverses)
 
 
 # Now use metrics API to get downloads by file
-results$jhu_downloads <- get(
+results$jhu_file_downloads <- get(
   "https://archive.data.jhu.edu/api/info/metrics/filedownloads"
 ) %>%
   .$data
@@ -103,6 +103,14 @@ results$jhu_downloads <- get(
 get_str(results$jhu_downloads)
 head(results$jhu_downloads)
 # These are download counts by file DOI. Use this to link back to datasets
+
+# And again to get downloads by dataset
+# test <- get("https://archive.data.jhu.edu/api/info/metrics/downloads") %>%
+#   .$data
+#
+# get_str(test)
+# This just shows total downloads, not downloads by file
+# Better off calculating these manually based on file downloads?
 
 
 
