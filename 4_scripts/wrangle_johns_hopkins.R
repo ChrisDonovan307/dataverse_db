@@ -11,10 +11,13 @@ pacman::p_load(
   dplyr,
   purrr,
   stringr,
-  tidyr
+  tidyr,
+  httr,
+  jsonlite
 )
 
 dat <- readRDS('1_raw/jhu_metadata.RDS')
+source('3_functions/wrangling_utilities.R')
 results <- list()
 
 
@@ -47,7 +50,24 @@ files_df <- left_join(
 ) %>%
   mutate(downloads = ifelse(is.na(count), 0, count),
          .keep = 'unused')
+get_str(files_df)
 
+# Clean up names to be consistent with other tables
+# Get rid of native file_id and make the persistent file id the file_id
+files_df <- files_df %>%
+  select(-c(
+    file_id,
+    dataset_id,
+    file_persistent_id,
+    unf,
+    dataset_name,
+    dataset_citation
+  )) %>%
+  select(
+    file_id = pid,
+    dataset_id = dataset_persistent_id,
+    everything()
+  )
 get_str(files_df)
 
 # Files are ready to go now
@@ -74,7 +94,7 @@ get_str(datasets_df)
 
 # Get download counts
 counts <- files_df %>%
-  group_by(dataset_persistent_id) %>%
+  group_by(dataset_id) %>%
   summarize(downloads = sum(downloads)) %>%
   arrange(desc(downloads))
 counts
@@ -84,9 +104,22 @@ get_table(counts$downloads)
 # Join this into the datasets
 datasets_df <- left_join(datasets_df,
                          counts,
-                         join_by(global_id == dataset_persistent_id))
+                         join_by(global_id == dataset_id))
 get_str(datasets_df)
 get_table(datasets_df$downloads)
+
+# Harmonize names
+datasets_df <- datasets_df %>%
+  select(-storageIdentifier, -type, -name_of_dataverse) %>%
+  select(
+    dataset_id = global_id,
+    collection_id = identifier_of_dataverse,
+    name,
+    url,
+    description,
+    citation_html = citationHtml,
+    everything()
+  )
 
 # Save it
 results$datasets <- datasets_df
@@ -99,34 +132,13 @@ results$datasets <- datasets_df
 get_str(dat$jhu_dataverses)
 head(dat$jhu_dataverses)
 # This is easy, just get rid of the type column and leave else as is
+# also add the root dataverse
+collections_df <- dat$jhu_dataverses %>%
+  select(collection_id = identifier, everything(), -type) %>%
+  mutate(root_id = 'jhu')
+get_str(collections_df)
 
-results$collections <- dat$jhu_dataverses %>%
-  select(-type)
-
-
-
-# Authors -----------------------------------------------------------------
-#
-#
-# get_str(dat$jhu_datasets, 1)
-# get_str(dat$jhu_datasets$authors)
-#
-# # Pull out authors from lists, keep unique authors only
-# authors <- dat$jhu_datasets$authors %>%
-#   unlist() %>%
-#   unique() %>%
-#   sort()
-# # Need some cleaning with string similarity, but looks okay otherwise
-#
-# # Add author ID
-# authors_df <- data.frame(
-#   author = authors,
-#   author_id = 1:length(authors)
-# )
-# head(authors_df)
-#
-# # Save this to results list
-# results$authors <- authors_df
+results$collections <- collections_df
 
 
 
@@ -144,17 +156,62 @@ contacts <- dat$jhu_datasets$contacts
 
 get_str(contacts)
 contacts[[1]]
+contacts[[2]]
 # The second row in each dataframe seems to always be for access, and leads to
 # Johns Hopkinds University Data Services. Probably just get rid of those.
 
-# Combine into a single DF
-contacts_df <- bind_rows(contacts)
+# Add the global IDs here before we move on and muck things up
+# Then combine into a single DF
+contacts_df <- map2(contacts, global_ids, \(x, y) {
+  x %>%
+    mutate(global_id = y)
+}) %>%
+  bind_rows()
 get_str(contacts_df)
 
 # Get rid of anything that includes "access". we just want data contacts
-test <- contacts_df %>%
-  filter()
-# [] FINISH THIS
+# Also rename name to message
+contacts_df <- contacts_df %>%
+  filter(!str_detect(affiliation, 'Data Services'),
+         str_length(affiliation) > 0,
+         !str_detect(name, 'dataservices@jhu.edu|datamanagement@jhu.edu')) %>%
+  rename(message = name)
+get_str(contacts_df)
+
+# Split out message into all the contact names
+# First by contact. take last piece
+# If there is an OR, split by OR
+contacts_df$message %>% head(50)
+
+# WE HAVE 241 GOING INTO THIS
+# Split up message into chunks, pull out names and emails
+# Also remove prefixes, dr and prof and such
+contacts_df <- contacts_df %>%
+  mutate(
+    split = str_split_i(contacts_df$message, 'contact ', 2) %>%
+      str_split(' or | or or ') %>%
+      map(~ str_split(.x, ' via | v.ia | vis | at ') %>% extract_pairs)) %>%
+  unnest(split) %>%
+  mutate(email = str_split_i(email, ' ', 1) %>% str_remove('\\.$'),
+         name = str_remove(name, 'Dr\\. |Prof\\. |Mr. |or '))
+
+# Remove any rows where email or name are NA or empty string
+contacts_df <- contacts_df %>%
+  filter(!is.na(name), !is.na(email), length(email) > 0, length(name) > 0)
+
+# now just clean it up so names match properly
+# Saving this to a different object so I can come back here later
+# because we will need to pull out these emails.
+# for now, just keeping the things we only need for this relationship entity
+contacts_table <- contacts_df %>%
+  select(
+    dataset_id = global_id,
+    author_id = name
+  )
+get_str(contacts_table)
+
+results$contacts <- contacts_table
+
 
 
 # Explore -----------------------------------------------------------------
@@ -181,8 +238,7 @@ dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value[
 
 
 
-
-# Better Authors ----------------------------------------------------------
+# Authors -----------------------------------------------------------------
 
 
 get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value[[2]])
@@ -217,24 +273,43 @@ get_str(big_author_df)
 just_authors <- big_author_df %>%
   select(
     name = authorName.value,
-    affiliation = authorAffiliation.value,
-    id_type = authorIdentifierScheme.value,
+    # institution_id = authorAffiliation.value,
+    author_id_type = authorIdentifierScheme.value,
     author_id = authorIdentifier.value
   ) %>%
-  mutate(author_id = str_sub(author_id, start = -19))
+  unique() %>%
+  mutate(author_id = str_sub(author_id, start = -19)) %>%
+  arrange(name)
 
 # How many NAs
 n_na <- sum(is.na(just_authors$author_id))
 
 # Assign the ones missing an ID a 1:n_na id
 just_authors$author_id[is.na(just_authors$author_id)] <- seq(1:n_na)
-just_authors$id_type <- ifelse(is.na(just_authors$id_type), 'dataverse_id', just_authors$id_type)
-
+just_authors$author_id_type <- ifelse(is.na(just_authors$author_id_type),
+                                      'dataverse_id',
+                                      just_authors$author_id_type)
 get_str(just_authors)
-# This is good to go for now
-# eventually get rid of affiliation and replace with institution id
 
-results$authors_df <- just_authors
+# Put their names in order instead of it being last, first
+just_authors <- just_authors %>%
+  mutate(
+    split = str_split(name, ', '),
+    name = map_chr(split, ~ paste(.x[2], .x[1])) %>% str_trim()
+  ) %>%
+  select(-split) %>%
+  arrange(name)
+get_str(just_authors)
+
+# Bind to emails from contacts (maybe not worth doing this)
+# test <- contacts_df %>%
+#   select(name, email) %>%
+#   unique() %>%
+#   right_join(just_authors, by = 'name') %>%
+#   unique()
+# get_str(test)
+
+results$authors <- just_authors
 
 
 
@@ -275,7 +350,25 @@ institution_df <- institution_df %>%
   ))
 get_str(institution_df)
 
-results$institutions <- institution_df
+
+
+## Get Websites ------------------------------------------------------------
+
+
+# NOTE: daily limit of 100 queries, and we have 130 institutions to search.
+
+# List of institutions
+inst_list <- institution_df %>%
+  filter(!is.na(clean_name)) %>%
+  .$clean_name %>%
+  unique
+
+api_key <- Sys.getenv("API_KEY")
+cse_id <- Sys.getenv("CSE_ID")
+
+# # CAREFUL WITH THIS - limit of 100 queries per day
+# test <- map(inst_list[130], ~ get_website(.x, api_key, cse_id))
+# test
 
 
 
@@ -307,12 +400,48 @@ pubs_df <- map(1:nrow(pubs), \(row) {
 }) %>%
   list_rbind() %>%
   mutate(pub_id = as.numeric(factor(citation)))
-
 get_str(pubs_df)
-# looks good
+
+# Clean up names
+pubs_df <- pubs_df %>%
+  select(
+    publication_id = pub_id,
+    dataset_id = dataset_doi,
+    everything()
+  )
+get_str(pubs_df)
 
 # Save it to results list
 results$publications <- pubs_df
+
+
+
+# Produce -----------------------------------------------------------------
+
+
+# Relation entity between authors and publications
+get_str(just_authors)
+get_str(pubs_df)
+
+# Need to pull from big author DF which has dataset_ids
+get_str(big_author_df)
+
+produce_df <- big_author_df %>%
+  select(
+    name = authorName.value,
+    author_id = authorIdentifier.value,
+    dataset_id = global_id
+  ) %>%
+  mutate(
+    split = str_split(name, ', '),
+    name = map_chr(split, ~ paste(.x[2], .x[1]))
+  ) %>%
+  select(-split) %>%
+  unique()
+
+get_str(produce_df)
+
+results$produce <- produce_df
 
 
 
@@ -328,9 +457,10 @@ subjects <- dat$jhu_datasets$subjects %>%
   sort()
 
 subjects_df <- data.frame(
-  subject = subjects,
+  name = subjects,
   subject_id = 1:length(subjects)
 )
+get_str(subjects_df)
 subjects_df
 # Looks good
 
@@ -374,18 +504,13 @@ get_str(licenses)
 licenses <- map(licenses, as.data.frame)
 get_str(licenses)
 
-# Function to check if a data frame is empty or NULL
-is_valid_df <- function(df) {
-  !is.null(df) && nrow(df) > 0
-}
-
 # Filter the list, keeping only valid (non-empty, non-NULL) data frames
 licenses_filter <- Filter(is_valid_df, licenses)
 
 licenses_df <- list_rbind(licenses_filter) %>%
   unique() %>%
-  # arrange(name) %>%
-  mutate(license_id = 1:nrow(.))
+  mutate(license_id = 1:nrow(.)) %>%
+  rename(icon_uri = iconUri)
 get_str(licenses_df)
 
 results$licenses <- licenses_df
@@ -440,84 +565,6 @@ results$grants <- grants_df
 
 
 # Software ----------------------------------------------------------------
-
-
-# get_str(dat$jhu_datasets_native)
-# get_str(dat$jhu_datasets_native[[1]]$latestVersion)
-# get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks)
-# get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$software$fields, 3)
-#
-# # Names here
-# (sw_fields <- dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$software$fields$typeName)
-#
-# # All values
-# get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$software$fields$value)
-#
-# # SW Title and SW License
-# dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$software$fields$value[[1]]
-# dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$software$fields$value[[2]]
-#
-# # SW dependencies
-# get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$software$fields$value[11], 3)
-#
-# # Let's just take top level SW data for now.
-# # that is ...$value, columns 1:9
-# test <- imap(dat$jhu_datasets_native, \(x, i) {
-#   x$latestVersion$metadataBlocks$software$fields$value[1:8]
-# })
-# get_str(test)
-# results$datasets$url
-#
-# test2 <- imap(test, \(x, i) {
-#   if (is.list(x)) {
-#     x %>%
-#       c(results$datasets$url[[i]])
-#   }
-# })
-#
-# get_str(test2)
-# test3 <- Filter(Negate(is.null), test2)
-# as.data.frame(test3[[1]])
-# as.data.frame(test3[[14]])
-# test3[[14]] %>% get_str
-#
-# test4 <- map(test3, ~ as.data.frame(.x))
-#   map(~ as.data.frame(.x))
-#
-# get_str(test3)
-#
-#
-# test3[[1]]
-#
-# process_vector <- function(vec) {
-#   if (is.null(vec)) {
-#     return(NA_character_)
-#   } else if (is.character(vec)) {
-#     return(paste(vec, collapse = ", "))
-#   } else {
-#     return(vec)
-#   }
-# }
-#
-# # Apply the function to each element in the list
-# processed_list <- map(test3, ~ {
-#   .x <- map(.x, process_vector)
-# })
-# get_str(processed_list)
-#
-# df <- map(processed_list, ~ {
-#   as.data.frame(.x) %>%
-#     setNames(c(sw_fields[1:8], 'dataset_url')) %>%
-#     unnest()
-# })
-# get_str(df)
-#
-# dfs <- rbind(df)
-# get_str(dfs)
-
-
-
-# Software Round 2 --------------------------------------------------------
 
 
 # Names
