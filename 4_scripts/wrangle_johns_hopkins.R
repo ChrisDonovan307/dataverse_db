@@ -21,6 +21,45 @@ source('3_functions/wrangling_utilities.R')
 results <- list()
 
 
+# Expand Everything? ------------------------------------------------------
+
+
+#' NOTE: This is not working how I want it to. Might have to wrangle each
+#' entity individually
+
+# get_str(dat$jhu_datasets_native)
+# get_str(dat$jhu_datasets_native[[1]]$latestVersion)
+#
+# df <- dat$jhu_datasets_native %>%
+#   map(list_flatten) %>%
+#   map(list_flatten) %>%
+#   map(list_flatten) %>%
+#   map(list_flatten)
+# get_str(df)
+#
+# # Get all possible variable names
+# var_names <- df %>%
+#   map(names) %>%
+#   unlist() %>%
+#   unique() %>%
+#   sort()
+#
+# #
+# expand_list_element <- function(element) {
+#   df_cols <- element %>% keep(is.data.frame)
+#   other_cols <- element %>% discard(is.data.frame)
+#   unnested <- map_dfc(df_cols, ~ as_tibble(.x))  # Convert all data frames to tibbles
+#   repeated_other_cols <- map_dfc(other_cols, ~ rep(.x, each = nrow(unnested)))
+#   combined_df <- bind_cols(repeated_other_cols, unnested)
+#   return(combined_df)
+# }
+#
+# df_combined <- df %>%
+#   map(expand_list_element)
+#
+# get_str(df_combined)
+
+
 
 # Files -------------------------------------------------------------------
 
@@ -510,7 +549,7 @@ licenses_filter <- Filter(is_valid_df, licenses)
 licenses_df <- list_rbind(licenses_filter) %>%
   unique() %>%
   mutate(license_id = 1:nrow(.)) %>%
-  rename(icon_uri = iconUri)
+  select(license_id, name, uri, icon_uri = iconUri)
 get_str(licenses_df)
 
 results$licenses <- licenses_df
@@ -521,9 +560,9 @@ results$licenses <- licenses_df
 
 
 # Check grant numbers
-# get_str(dat$jhu_datasets_native)
-# get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields)
-# get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value)
+get_str(dat$jhu_datasets_native)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value)
 
 # Pull just grant number and grant agency for all datasets
 out <- imap(dat$jhu_datasets_native, \(dataset, index) {
@@ -555,10 +594,16 @@ out <- imap(dat$jhu_datasets_native, \(dataset, index) {
   }
 })
 
+# Remove missing, combing into DF, fix up names
 grants_df <- Filter(Negate(is.logical), out) %>%
-  list_rbind()
+  list_rbind() %>%
+  mutate(
+    grant_id = 1:nrow(.),
+    dataset_id = str_split_i(dataset_url, '//', 2),
+    .keep = 'unused'
+  ) %>%
+  select(grant_id, dataset_id, number = grant_number, agency = grant_agency)
 get_str(grants_df)
-# This is messy but it's okay - that's what it is.
 
 results$grants <- grants_df
 
@@ -567,9 +612,20 @@ results$grants <- grants_df
 # Software ----------------------------------------------------------------
 
 
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$software$fields$value, 3)
+
 # Names
 dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$software$fields$typeName
 # We want swTitle, swLicense, consider swDependency
+# swCodeRepositoryLink
+
+vars <- c(
+  'swLicense',
+  'swTitle',
+  'swDescription',
+  'swLanguage',
+  'swCodeRepositoryLink'
+)
 
 # This is the worst code. Holy moly. But it works for now.
 out <- imap(dat$jhu_datasets_native, \(dataset, index) {
@@ -593,46 +649,119 @@ out <- imap(dat$jhu_datasets_native, \(dataset, index) {
       return(NA)
 
     } else {
+      # Get indices for pertinent variables
+      indices <- map(vars, ~ {
+        which(software_metadata$fields$typeName == .x)
+      })
 
-      # Pull swTitle and License indices
-      license_index <- which(software_metadata$fields$typeName == 'swLicense')
-      title_index <- which(software_metadata$fields$typeName == 'swTitle')
+      # Pull licenses based on indices
+      var_list <- map2(vars, indices, \(var, index) {
+        if (length(index) == 0) {
+          return(NA)
+        } else if (length(index) == 1) {
+          return(software_metadata$fields$value[[index]])
+        }
+      }) %>%
+        c(dataset$persistentUrl)
+
+      # Deeper?
+      # dependency_index <- which(software_metadata$fields$typeName == 'swDependency')
+      # swDescription <- which(software_metadata$fields$typeName == 'swDescription')
 
       # Pull the actual licenses and titles base don the indices
-      if (length(license_index) > 0) {
-        sw_licenses <- software_metadata$fields$value[[license_index]]
-      } else {
-        sw_licenses <- NA
-      }
-
-      if (length(title_index) > 0) {
-        sw_titles <- software_metadata$fields$value[[title_index]]
-      } else {
-        sw_titles <- NA
-      }
+      # if (length(license_index) > 0) {
+      #   sw_licenses <- software_metadata$fields$value[[license_index]]
+      # } else {
+      #   sw_licenses <- NA
+      # }
+      #
+      # if (length(title_index) > 0) {
+      #   sw_titles <- software_metadata$fields$value[[title_index]]
+      # } else {
+      #   sw_titles <- NA
+      # }
 
       # Make DF with license, title, and dataset url.
       # If no number or agency, just give NA
-      grant_df <- data.frame(
-        software_title = ifelse(is.na(sw_titles), NA, sw_titles),
-        software_license = ifelse(is.na(sw_licenses), NA, sw_licenses),
-        dataset_url = dataset$persistentUrl
-      )
+      # grant_df <- data.frame(
+      #   title = ifelse(is.na(sw_titles), NA, sw_titles),
+      #   license = ifelse(is.na(sw_licenses), NA, sw_licenses),
+      #   dataset_id = dataset$persistentUrl
+      # )
 
-      return(grant_df)
+      return(var_list)
 
     }
   }
 })
 
 get_str(out)
-sw_licenses_df <- Filter(Negate(is.logical), out) %>%
-  list_rbind()
-get_str(sw_licenses_df)
-# This is messy but it's okay - that's what it is.
+get_str(out[[1]])
 
-results$software_licenses <- sw_licenses_df
+# Just one
+test <- as.data.frame(out[[1]])
+get_str(test)
 
+sw_df <- Filter(Negate(is.logical), out) %>%
+  map(~ as.data.frame(.x) %>%
+        setNames(c(
+          'name',
+          'title',
+          'description',
+          'language',
+          'repo_link',
+          'dataset_id'
+        ))) %>%
+  list_rbind() %>%
+  mutate(dataset_id = str_split_i(dataset_id, '//', 2))
+get_str(sw_df)
+
+# Should pull out license into its own table. Not sure what to od about language
+# Maybe multi value attribute?
+
+# Make sw license df
+sw_license_df <- sw_df %>%
+  select(name) %>%
+  unique() %>%
+  mutate(
+    license_url = case_when(
+      str_detect(name, '^MIT') ~ 'https://spdx.org/licenses/X11.html',
+      str_detect(name, 'GPL-3') ~ 'https://www.gnu.org/licenses/gpl-3.0.html',
+      str_detect(name, '^BSD 2') ~ 'https://www.freebsd.org/copyright/freebsd-license/',
+      str_detect(name, '^BSD 3') ~ 'https://spdx.org/licenses/BSD-3-Clause.html',
+      .default = NA_character_
+    ),
+    gpl_compatible = case_when(
+      str_detect(name, '^Other|Not Specified') | is.na(name) ~ FALSE,
+      str_detect(name, '^GNU|^MIT|^BSD') ~ TRUE,
+      .default = NA
+    ),
+    sw_license_id = 1:nrow(.)
+  )
+
+get_str(sw_license_df)
+# Looks good
+
+# Save it
+results$software_licenses <- sw_license_df
+
+# Now we can pull out those fields from software too
+get_str(sw_df)
+
+# Recode licenses in sw_df
+sw_df <- sw_df %>%
+  left_join(
+    select(sw_license_df, name, sw_license_id),
+    by = 'name') %>%
+  select(
+    software_id = language,
+    dataset_id,
+    sw_license_id,
+    everything(),
+    -name)
+get_str(sw_df)
+
+results$software <- sw_df
 
 
 # Save and Clear ----------------------------------------------------------

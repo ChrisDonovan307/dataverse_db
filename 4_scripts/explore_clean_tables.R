@@ -21,6 +21,4 @@ dat <- readRDS('2_clean/jhu_dfs.rds')
 
 
 names(dat)
-get_str(dat$authors)
-get_str(dat$datasets)
-get_str(dat$files)
+get_str(dat)
