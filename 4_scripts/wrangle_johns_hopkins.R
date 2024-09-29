@@ -13,7 +13,8 @@ pacman::p_load(
   stringr,
   tidyr,
   httr,
-  jsonlite
+  jsonlite,
+  lorem
 )
 
 dat <- readRDS('1_raw/jhu_metadata.RDS')
@@ -31,7 +32,6 @@ results <- list()
 # get_str(dat$jhu_datasets_native[[1]]$latestVersion)
 #
 # df <- dat$jhu_datasets_native %>%
-#   map(list_flatten) %>%
 #   map(list_flatten) %>%
 #   map(list_flatten) %>%
 #   map(list_flatten)
@@ -105,8 +105,18 @@ files_df <- files_df %>%
   select(
     file_id = pid,
     dataset_id = dataset_persistent_id,
-    everything()
+    everything(),
+    -type
   )
+get_str(files_df)
+
+# Fill in the file_id if one is ever missing.
+# Just adding row number to the dataset_id
+files_df <- files_df %>%
+  mutate(file_id = case_when(
+    is.na(file_id) ~ paste0(dataset_id, '/', row_number()),
+    .default = file_id
+  ))
 get_str(files_df)
 
 # Files are ready to go now
@@ -338,15 +348,14 @@ just_authors <- just_authors %>%
   ) %>%
   select(-split) %>%
   arrange(name)
-get_str(just_authors)
 
-# Bind to emails from contacts (maybe not worth doing this)
-# test <- contacts_df %>%
-#   select(name, email) %>%
-#   unique() %>%
-#   right_join(just_authors, by = 'name') %>%
-#   unique()
-# get_str(test)
+# Add a registered user id column. Giving half of them an id for now.
+# just_authors <- just_authors %>%
+#   mutate(reg_id = case_when(
+#     row_number() %% 2 == 0 ~ row_number(),
+#     .default = NA_integer_
+#   ))
+# get_str(just_authors)
 
 results$authors <- just_authors
 
@@ -762,6 +771,113 @@ sw_df <- sw_df %>%
 get_str(sw_df)
 
 results$software <- sw_df
+
+
+
+# Create Groups -----------------------------------------------------------
+
+# Making made up data for Users, Registered Users, and Admins
+
+## Start with users.
+# Just do IDs for now, then add attributes later
+users <- data.frame(
+  user_id = 1:250
+  # email = paste0(
+  #   lorem::ipsum_words(100, collapse = FALSE),
+  #   '@madeupemail.com'
+  # )
+)
+get_str(users)
+
+
+## Registered Users
+# This will be a subset of users. Let's say half - 125
+set.seed(42)
+reg <- users %>%
+  slice_sample(n = 125) %>%
+  mutate(
+    reg_id = row_number()
+  )
+get_str(reg)
+
+# Add these reg ids back into users
+users <- users %>%
+  full_join(reg)
+get_str(users)
+
+# Let's make 25 of our authors into registered users.
+# Links will just connect the IDs
+# Just slice and bind
+links <- results$authors %>%
+  slice(1:25) %>%
+  bind_cols(reg[1:25, ]) %>%
+  select(author_id, reg_id)
+get_str(links)
+
+## Now use links to add author IDs to reg users and reg users to author IDs
+# Reg
+reg <- reg %>%
+  left_join(links)
+get_str(reg)
+
+# Authors
+results$authors <- results$authors %>%
+  left_join(links)
+get_str(results$authors)
+
+
+## Admins
+# Of the 125 reg users, 25 are authors. Let's turn 25 of the last 100 into admins
+get_str(reg)
+
+# First add 25 more IDs to reg. Start at 26 to dodge authors
+reg <- reg %>%
+  mutate(admin_id = c(rep(NA, 25), 1:25, rep(NA, 75)))
+get_str(reg)
+
+# Now make admins table, as subset of registered users
+set.seed(42)
+admins <- reg %>%
+  filter(!is.na(admin_id)) %>%
+  select(-user_id, -author_id) %>%
+  mutate(
+    privilege = sample(c('superuser', 'edit', 'read'), nrow(.), replace = TRUE),
+    collection_id = sample(results$collections$collection_id, nrow(.), replace = FALSE),
+    start_date = Sys.Date() - sort(sample(3000:7000, 25))
+  )
+get_str(admins)
+results$admins <- admins
+
+# Add attributes to users and ditch reg id
+get_str(users)
+users <- users %>%
+  mutate(
+    email = paste0(
+      lorem::ipsum_words(250, collapse = FALSE),
+      '@madeupemail.com')
+    ) %>%
+  select(-reg_id)
+get_str(users)
+results$users <- users
+
+# Add attributes to registered users, pulling names from authors, making up rest
+get_str(reg)
+set.seed(42)
+reg_names <- ipsum_words(200, collapse = FALSE)
+set.seed(42)
+reg <- reg %>%
+  left_join(users) %>%
+  left_join(authors) %>%
+  select(-admin_id, -author_id_type) %>%
+  mutate(
+    name = ifelse(is.na(name), reg_names[row_number()], name),
+    pw_hash = ipsum_words(nrow(.), collapse = FALSE),
+    privilege = sample(c('read', 'view', 'download'), nrow(.), replace = TRUE)
+  )
+get_str(reg)
+results$reg <- reg
+
+get_str(authors)
 
 
 # Save and Clear ----------------------------------------------------------

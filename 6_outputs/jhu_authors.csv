@@ -1,1016 +1,1016 @@
-"","name","author_id_type","author_id"
-"1","A.R. Buda","dataverse_id","50"
-"2","Aaron Sampson","ORCID","0000-0001-7973-1647"
-"3","Abdoulaye Maïga","ORCID","0000-0002-0475-1106"
-"4","Abdul Dosso","dataverse_id","95"
-"5","Abel Corver","ORCID","0000-0003-1431-9832"
-"6","Abheera Hazra","dataverse_id","147"
-"7","Abigail Park","dataverse_id","325"
-"8","Achilles Katamba","ORCID","0000-0002-2347-4183"
-"9","Ada Y. Chen","ORCID","0000-0003-3236-3853"
-"10","Adam Kortylewski","ORCID","0000-0002-9146-4403"
-"11","Adama Cisse","dataverse_id","79"
-"12","Adama Tiendrebeogo","dataverse_id","409"
-"13","Adbul M. Mohammed","dataverse_id","282"
-"14","Aditi Sen","dataverse_id","372"
-"15","Adnan Bibic","ORCID","0000-0001-8044-2906"
-"16","Adrian M. Haith","ORCID","0000-0002-5658-8654"
-"17","Agbessi Amouzou","ORCID","0000-0002-6262-3866"
-"18","Aklilu Kidanu","dataverse_id","208"
-"19","Alain B. Labrique","ORCID","0000-0003-2502-7819"
-"20","Alain Koffi","dataverse_id","217"
-"21","Alan C. K. Cheung","dataverse_id","74"
-"22","Alan Chi-keung Cheung","ORCID","0000-0002-9013-1586"
-"23","Alan L. Yuille","ORCID","0000-0001-5207-9249"
-"24","Albert S.B. Edge","ORCID","0000-0001-8641-755X"
-"25","Alberto Vitale Brovarone","ORCID","0000-0001-8892-9567"
-"26","Alex L. Kolodkin","ORCID","0000-0001-7562-5513"
-"27","Alexander J. Yeh","dataverse_id","463"
-"28","Alexander Shaver","ORCID","0000-0002-5478-5291"
-"29","Alexis Bahl","ORCID","0000-0002-8575-2679"
-"30","Ali Afify","ORCID","0000-0002-6954-5776"
-"31","Alican Demir","dataverse_id","90"
-"32","Alina Vulpe","ORCID","0000-0001-5385-3072"
-"33","Alison E. Turnbull","ORCID","0000-0002-1564-6547"
-"34","Alison Witcoff","dataverse_id","448"
-"35","Alla Malinina","dataverse_id","258"
-"36","Allison H. Oakes","dataverse_id","314"
-"37","Aman Luthra","ORCID","0000-0002-8574-7271"
-"38","Amanda Dziedzic","dataverse_id","99"
-"39","Amanda Hinton","dataverse_id","158"
-"40","Amanda J. Neitzel","ORCID","0000-0002-4676-9320"
-"41","Amanda M. Zimmet","dataverse_id","485"
-"42","Amanda M. Zimmet","ORCID","0000-0003-1457-3072"
-"43","Amanda Neitzel","ORCID","0000-0002-4676-9320"
-"44","Amanda W. Ernlund","ORCID","0000-0003-1113-4103"
-"45","Amar R. Wadhawan","dataverse_id","423"
-"46","Amary Fall","dataverse_id","107"
-"47","Amy J. Bastian","ORCID","0000-0001-6079-0997"
-"48","Amy J. Bastian","dataverse_id","32"
-"49","An To","ORCID","0000-0003-3170-2999"
-"50","Ana Damjanovic","ORCID","0000-0001-7635-2705"
-"51","Anabel W. Carter","dataverse_id","54"
-"52","Anahita Rabiee","ORCID","0000-0002-8833-3592"
-"53","Anahita Rabiee","dataverse_id","0000-0002-8833-3592"
-"54","Anand Gnanadesikan","ORCID","0000-0001-5784-1116"
-"55","Anayeli García Villa","dataverse_id","120"
-"56","Andrea L. Cox","dataverse_id","83"
-"57","Andrew Blair-Stanek","dataverse_id","38"
-"58","Andrew Blair-Stanek","ORCID","0000-0001-8547-9417"
-"59","Andrew E. Jaffe","ORCID","0000-0001-6886-1454"
-"60","Andrew Gordus","ORCID","0000-0002-5550-0286"
-"61","Andrew Hammond","ORCID","0000-0002-1757-5009"
-"62","Andrew L. Thorne-Lyman","ORCID","0000-0001-5917-4126"
-"63","Andrew Lamperski","ORCID","0000-0003-0383-1830"
-"64","Andrew Long","dataverse_id","250"
-"65","Andrew Marsh","dataverse_id","262"
-"66","Andrew Mould","dataverse_id","287"
-"67","Andrew Pekosz","ORCID","0000-0003-3248-1761"
-"68","Andrew R. Duckworth","ORCID","0000-0001-5973-0524"
-"69","Andrew Thorne-Lyman","ORCID","0000-0001-5917-4126"
-"70","Andrew Wolfe","ORCID","0000-0003-1120-1679"
-"71","Andrianna I. Ayiotis","dataverse_id","20"
-"72","André D. Taylor","dataverse_id","400"
-"73","Angela KC","dataverse_id","195"
-"74","Anilchandra Attaluri","ORCID","0000-0003-0283-1927"
-"75","Anirudh Rao","dataverse_id","342"
-"76","Anirudh Sharma","ORCID","0000-0001-7942-8998"
-"77","Anna A Scott","dataverse_id","367"
-"78","Anna Weerasinghe","dataverse_id","437"
-"79","Anna Yin","ORCID","0000-0002-1612-5532"
-"80","Anne Jedlicka","dataverse_id","181"
-"81","Anne L. Gao","dataverse_id","118"
-"82","Anne M. Kouadio Ngnanda","dataverse_id","222"
-"83","Anne Marie Kouadio","dataverse_id","223"
-"84","Anne-Sofie C. Ahm","ORCID","0000-0002-5142-0326"
-"85","Annet Nalutaaya","ORCID","0000-0003-3903-303X"
-"86","Anthony S. Hall","dataverse_id","138"
-"87","Anusha Patel","dataverse_id","327"
-"88","Ardie Bolanon Ermac","dataverse_id","105"
-"89","Ariel Green","dataverse_id","131"
-"90","Arlene Chiu","ORCID","0000-0002-7009-4984"
-"91","Arlene Chiu","ORCID","0000-0002-7009-4984"
-"92","Arnold Bakker","ORCID","0000-0003-0417-641X"
-"93","Arthur E. Bragg","ORCID","0000-0002-3376-5494"
-"94","Arun L. Singh","dataverse_id","382"
-"95","Arvind Murugan","dataverse_id","298"
-"96","Asha K. Jordan","ORCID","0000-0001-6703-9899"
-"97","Augusto Getirana","ORCID","0000-0001-9635-7220"
-"98","Aurelien Wyngaard","dataverse_id","456"
-"99","Axel Fenwick","ORCID","0000-0002-8296-537X"
-"100","Balazs P. Vagvolgyi","ORCID","0000-0001-9835-5165"
-"101","Banza Baya","dataverse_id","34"
-"102","Barry Gordon","dataverse_id","129"
-"103","Beatriz Munoz","dataverse_id","294"
-"104","Belay Simane","ORCID","0000-0002-8004-3486"
-"105","Ben Zaitchik","ORCID","0000-0002-0698-0658"
-"106","Benjamin A. McArthur","dataverse_id","269"
-"107","Benjamin Banda","dataverse_id","26"
-"108","Benjamin Escribano","ORCID","0000-0002-1432-5952"
-"109","Benjamin F Zaitchik","ORCID","0000-0002-0698-0658"
-"110","Benjamin F. Hobbs","ORCID","0000-0003-1783-3597"
-"111","Benjamin F. Zaitchik","dataverse_id","469"
-"112","Benjamin F. Zaitchik","ORCID","0000-0002-0698-0658"
-"113","Benjamin F. Zaitchik","ORCID","0000-0002-0698-0658"
-"114","Benjamin H. Passey","ORCID","0000-0002-3483-4148"
-"115","Benjamin Killeen","ORCID","0000-0003-2511-7929"
-"116","Benjamin McArthur","dataverse_id","268"
-"117","Benjamin Van Durme","dataverse_id","418"
-"118","Bernard R. Brooks","dataverse_id","47"
-"119","Bernhard Fuerst","dataverse_id","115"
-"120","Bingquing Cheng","dataverse_id","69"
-"121","Binod Shrestha","dataverse_id","380"
-"122","Bradley R. Hacker","dataverse_id","136"
-"123","Brandon Barrett","dataverse_id","31"
-"124","Brandon Dillow","dataverse_id","93"
-"125","Brandon Feole","dataverse_id","110"
-"126","Brett M. O'Brien","dataverse_id","313"
-"127","Brett M. O’Brien","dataverse_id","319"
-"128","Brian Y. Li","ORCID","0000-0002-3055-4202"
-"129","Bryan Shaw","dataverse_id","376"
-"130","Bryant D. Loomis","ORCID","0000-0002-9370-9160"
-"131","Byunghwa Kang","ORCID","0009-0001-2615-3617"
-"132","C.J. Harman","dataverse_id","143"
-"133","Caelan Barranta","dataverse_id","30"
-"134","Caleb Kamoga","dataverse_id","200"
-"135","Camille Wouters","ORCID","0009-0001-1784-642X"
-"136","Carl R. Shapiro","ORCID","0000-0002-9868-7896"
-"137","Caroline M.  Chessare","dataverse_id","73"
-"138","Caroline M. Chessare","dataverse_id","72"
-"139","Caroline V. Morley","dataverse_id","283"
-"140","Carrie M. Anderson","ORCID","0000-0003-2175-3709"
-"141","Casey Marina Lurtz","ORCID","0000-0003-4244-5844"
-"142","Cassandra L. Cosans","ORCID","0000-0001-9121-532X"
-"143","Cassidy M. Speller","dataverse_id","390"
-"144","Catherine Pilgrim-Grayson","dataverse_id","331"
-"145","Celia Fernandez Brillet","ORCID","0000-0002-1267-8156"
-"146","Cesar G. Victora","ORCID","0000-0002-2465-2180"
-"147","Chao He","dataverse_id","148"
-"148","Chao He","ORCID","0000-0002-6694-0965"
-"149","Chao He","ORCID","0000-0002-6694-0965"
-"150","Charles C. Della Santina","ORCID","0000-0002-0509-5200"
-"151","Charles Meneveau","ORCID","0000-0001-6947-3605"
-"152","Charles Steenbergen","dataverse_id","392"
-"153","Chen Chi","dataverse_id","75"
-"154","Chen Du","ORCID","0000-0001-6161-5525"
-"155","Chen Hu","ORCID","0000-0003-4672-1981"
-"156","Chen Ming","dataverse_id","278"
-"157","Chen Xie","ORCID","0000-0001-6124-1420"
-"158","Chengchangfeng Lu","dataverse_id","253"
-"159","Chia Chi Ho","dataverse_id","159"
-"160","Chia-Jung Chang","dataverse_id","59"
-"161","Chia-Yu Chao","dataverse_id","61"
-"162","Chiadi E. Ndumele","dataverse_id","304"
-"163","Chien-Ming Huang","ORCID","0000-0002-6838-3701"
-"164","Chih-Ting Chen","dataverse_id","62"
-"165","Ching Sing Chai","dataverse_id","58"
-"166","Chris Holder","dataverse_id","164"
-"167","Christa D. Peters-Lidard","ORCID","0000-0003-1255-2876"
-"168","Christa D. Peters-Lidard","ORCID","0000-0003-1255-2876"
-"169","Christian M. Kaiser","dataverse_id","196"
-"170","Christie M. Ballantyne","dataverse_id","24"
-"171","Christina Hoffman","dataverse_id","161"
-"172","Christine Beauchene","ORCID","0000-0003-0787-4520"
-"173","Christopher Book","dataverse_id","40"
-"174","Christopher Holder","ORCID","0000-0003-3321-5959"
-"175","Christopher J. Hoffmann","dataverse_id","163"
-"176","Christopher J. Hoffmann","ORCID","0000-0002-9422-0519"
-"177","Christopher J. Potter","ORCID","0000-0002-5223-8112"
-"178","Christopher Lowetz","ORCID","0009-0008-1599-3419"
-"179","Christopher N. Herndon","ORCID","0000-0001-6004-5655"
-"180","Christopher R. deFilippi","ORCID","0000-0002-0660-4943"
-"181","Christopher S. Kelley","dataverse_id","206"
-"182","Christopher S. Yang","ORCID","0000-0002-7645-3861"
-"183","Chuhong Wang","ORCID","0000-0001-8993-3226"
-"184","Chun-Chieh Lin","ORCID","0000-0001-9679-4287"
-"185","Chun-Ting Yang","ORCID","0000-0002-7667-244X"
-"186","Ciaran J. Harman","ORCID","0000-0002-3185-002X"
-"187","Cindy M. Palinkas","ORCID","0000-0003-2740-8308"
-"188","Clara Hickman","dataverse_id","155"
-"189","Clayton Alexander","dataverse_id","5"
-"190","Clayton P. Alexander","dataverse_id","6"
-"191","Cong Gao","ORCID","0000-0001-6798-8381"
-"192","Cong Gao","dataverse_id","119"
-"193","Connor Ganley","ORCID","0000-0003-3851-3218"
-"194","Connor Ganley","dataverse_id","117"
-"195","Conor J. McMeniman","ORCID","0000-0001-8502-8712"
-"196","Conor McMeniman","ORCID","0000-0001-8502-8712"
-"197","Cordula Grüttner","ORCID","0000-0002-8271-1281"
-"198","Craig Harman","dataverse_id","144"
-"199","Cristina Recalde","dataverse_id","343"
-"200","Cristina Recalde-Coronel","ORCID","0000-0003-3984-895X"
-"201","Cynthia F Moss","ORCID","0000-0001-6916-0000"
-"202","Cynthia Lake","dataverse_id","228"
-"203","Cédric Wolters","ORCID","0000-0002-9710-4740"
-"204","D.C. Wilusz","dataverse_id","446"
-"205","Daisy Kim","dataverse_id","209"
-"206","Dale C. Roberts","ORCID","0000-0003-4328-0199"
-"207","Dale M. Needham","dataverse_id","305"
-"208","Dana Brenner","ORCID","0000-0003-2562-5683"
-"209","Dana C. Brenner","ORCID","0000-0003-2562-5683"
-"210","Daniel Arhinful","dataverse_id","12"
-"211","Daniel C, Wilusz","dataverse_id","447"
-"212","Daniel H. Reich","ORCID","0000-0001-6313-9884"
-"213","Daniel H. Reich","dataverse_id","345"
-"214","Daniel Hanley","dataverse_id","142"
-"215","Daniel J. Beltran-Villegas","ORCID","0000-0003-1667-3181"
-"216","Daniel R. Viete","ORCID","0000-0001-5495-9370"
-"217","Danielle A. Naugle","dataverse_id","303"
-"218","Danielle Naugle","dataverse_id","302"
-"219","Dannielle R. Rand","dataverse_id","341"
-"220","Darryn W. Waugh","ORCID","0000-0001-7692-2798"
-"221","Darryn Waugh","ORCID","0000-0001-7692-2798"
-"222","Darya Task","ORCID","0000-0003-0166-3626"
-"223","David A. Kass","ORCID","0000-0003-1596-2299"
-"224","David D. Ginty","ORCID","0000-0001-9723-8530"
-"225","David Dowdy","dataverse_id","96"
-"226","David H. Gracias","ORCID","0000-0003-2735-4725"
-"227","David Isooba","dataverse_id","176"
-"228","David J. Sullivan","ORCID","0000-0003-0319-0578"
-"229","David Jacobs","dataverse_id","178"
-"230","David Kraemer","dataverse_id","225"
-"231","David Lefer","ORCID","0000-0003-2293-7278"
-"232","David M. Jenkins","ORCID","0000-0003-2683-9157"
-"233","David M. Jenkins","dataverse_id","183"
-"234","David M. Mocko","ORCID","0000-0001-8688-5708"
-"235","David M. Nataf","ORCID","0000-0001-5825-4431"
-"236","David W. Dowdy","ORCID","0000-0003-0481-7475"
-"237","David W. Dowdy","dataverse_id","97"
-"238","Debojyoti Biswas","ORCID","0000-0003-4141-4034"
-"239","Deepa Madan","ORCID","0000-0002-0061-2715"
-"240","Deepti Mathur","dataverse_id","265"
-"241","Denis Joel Sama","dataverse_id","359"
-"242","Dennice F. Gayme","ORCID","0000-0003-0330-415X"
-"243","Derek Yee","dataverse_id","460"
-"244","Dhananjay Vaidya","ORCID","0000-0002-7164-1601"
-"245","Di Cao","dataverse_id","53"
-"246","Di Zhao","dataverse_id","477"
-"247","Di Zhao","ORCID","0000-0002-9978-6773"
-"248","Diarra Kamara","dataverse_id","198"
-"249","Diego Giraldo","ORCID","0000-0002-6552-3297"
-"250","Dihui Ruan","ORCID","0000-0001-8964-730X"
-"251","Dimitri A. Sverjensky","ORCID","0000-0003-3062-8053"
-"252","Dimitri Sverjensky","dataverse_id","395"
-"253","Dino Levy","ORCID","0000-0003-4290-7762"
-"254","Dominic G. Yared","dataverse_id","459"
-"255","Dominic Scalise","ORCID","0000-0001-8218-1797"
-"256","Dongchul Kim","ORCID","0000-0002-5659-1394"
-"257","Donny Hanjaya-Putra","ORCID","0000-0002-3039-9206"
-"258","Donny Hanjaya-Putra","dataverse_id","141"
-"259","Dorian M. Jackson","dataverse_id","177"
-"260","Doug Ceci","dataverse_id","56"
-"261","Dukin Lim","dataverse_id","243"
-"262","Dustin Dikeman","dataverse_id","92"
-"263","Edgar R. Miller III","dataverse_id","275"
-"264","Edgar Simulundu","ORCID","0000-0001-9423-0816"
-"265","Edward J. Bouwer","dataverse_id","44"
-"266","Eili Y. Klein","dataverse_id","214"
-"267","Elaine Vo","dataverse_id","421"
-"268","Elburg W van Boetzelaer","ORCID","0000-0002-1168-8491"
-"269","Eleftheria Koropouli","ORCID","0000-0001-8537-4471"
-"270","Elgin Akin","ORCID","0000-0001-8824-8809"
-"271","Elisabeth Glowatzki","ORCID","0000-0003-3135-658X"
-"272","Elise N. White","ORCID","0000-0002-1299-9646"
-"273","Eliseo Guallar","ORCID","0000-0002-4471-9565"
-"274","Eliza M.-R. Kempton","ORCID","0000-0002-1337-9051"
-"275","Elizabeth C. Mallalieu","ORCID","259"
-"276","Elizabeth C. Mallalieu","ORCID","0000-0003-0724-7826"
-"277","Elizabeth Hazel","ORCID","0000-0002-9176-3278"
-"278","Elmer Zapata-Mercado","ORCID","0000-0002-9766-8124"
-"279","Emily A. Kendall","ORCID","0000-0002-0083-422X"
-"280","Emily F. Smith","dataverse_id","384"
-"281","Emily L. Coderre","dataverse_id","80"
-"282","Emily Ricotta","ORCID","0000-0001-9928-8275"
-"283","Emily Wilson","dataverse_id","444"
-"284","Emma M. Lee","dataverse_id","232"
-"285","Emma Tiernan","dataverse_id","410"
-"286","Enid Neptune","ORCID","0000-0002-9635-1272"
-"287","Eoghan Brady","ORCID","0000-0003-0075-5406"
-"288","Eric D. Young","ORCID","0000-0003-0334-408X"
-"289","Eric Fortune","ORCID","0000-0001-6447-5425"
-"290","Eric G. Sakowski","dataverse_id","357"
-"291","Eric S. Fortune","dataverse_id","114"
-"292","Eric S. Fortune","ORCID","0000-0001-6447-5425"
-"293","Erik Emeric","dataverse_id","104"
-"294","Erika Barth","ORCID","0000-0002-5034-1300"
-"295","Erin A. Chung","ORCID","0000-0003-1058-7370"
-"296","Erin D. Michos","ORCID","0000-0002-5547-5084"
-"297","Erin D. Michos","dataverse_id","274"
-"298","Erin E. Sutton","ORCID","0000-0003-3586-2383"
-"299","Ernst Niebur","dataverse_id","310"
-"300","Ernst Niebur","ORCID","0000-0002-2815-9262"
-"301","Eryn E. Dixon","dataverse_id","94"
-"302","Eugenie Jumai’an","dataverse_id","193"
-"303","Evan C. Plunkett","dataverse_id","333"
-"304","Evan Plunkett","dataverse_id","332"
-"305","Ewelina M. Małecka","ORCID","0000-0001-8482-7897"
-"306","Ewelina Malecka-Grajek","ORCID","0000-0001-8482-7897"
-"307","Fanjun Bu","ORCID","0000-0002-9953-7347"
-"308","Fatimata Sow","dataverse_id","389"
-"309","Feifei Wang","dataverse_id","427"
-"310","Filip K. Knop","ORCID","0000-0002-2495-5034"
-"311","Francesco Savelli","ORCID","0000-0002-8588-0865"
-"312","Francis Ferraro","dataverse_id","112"
-"313","François-Régis Orthous-Daunay","ORCID","0000-0002-1170-0550"
-"314","G. William Wong","ORCID","0000-0002-5286-6506"
-"315","Gabriel Jiménez-Avalos","ORCID","0000-0002-0221-3208"
-"316","Gareth G. E. Seward","dataverse_id","373"
-"317","Gareth Jones","dataverse_id","192"
-"318","Genevieve M. Tauxe","dataverse_id","399"
-"319","Geoffrey Wang","dataverse_id","428"
-"320","Georges Guiella","ORCID","0000-0001-8525-340X"
-"321","Georgia Calhoun","dataverse_id","52"
-"322","Gerald Nestadt","ORCID","0000-0001-9461-5249"
-"323","Gianfelice Cinque","ORCID","0000-0001-6801-8010"
-"324","Goutam Konapala","dataverse_id","219"
-"325","Grace Awantang","dataverse_id","19"
-"326","Grace E. Kim","dataverse_id","210"
-"327","Grace Ringlein","dataverse_id","348"
-"328","Grant Hall","ORCID","0009-0006-5089-717X"
-"329","Grant Shepard","ORCID","0009-0000-3215-8716"
-"330","Gregory S. Cohen","dataverse_id","81"
-"331","Gregory S. X. E. Jefferis","ORCID","0000-0002-0587-9355"
-"332","H. Benjamin Larman","dataverse_id","229"
-"333","Hailemariam Legesse","ORCID","0000-0001-5086-0744"
-"334","Hamada S. Badr","ORCID","0000-0002-9808-2344"
-"335","Hamadou Sangho","dataverse_id","361"
-"336","Hana Golding","dataverse_id","126"
-"337","Hannah Koenker","ORCID","0000-0001-8960-4297"
-"338","Hantian Li","ORCID","0000-0003-1119-2792"
-"339","Hanzhang Lu","ORCID","0000-0003-3871-1564"
-"340","Hao Zhang","dataverse_id","471"
-"341","Harold Hemond","dataverse_id","153"
-"342","Harper L. Kirby","dataverse_id","212"
-"343","Harrison Powell","dataverse_id","335"
-"344","Hasmot Ali","ORCID","0000-0003-0044-1992"
-"345","Hataya Poonyagariyagorn","dataverse_id","334"
-"346","Hayden Carlton","ORCID","0000-0002-2249-3067"
-"347","Heba H. Mostafa","dataverse_id","286"
-"348","Henrique Reggiani","ORCID","0000-0001-6533-6179"
-"349","Heonjoon Lee","ORCID","0000-0001-5129-5740"
-"350","Hongjie Li","ORCID","0000-0002-7332-7122"
-"351","Howard E. Katz","ORCID","0000-0002-3190-2475"
-"352","Howard E. Katz","dataverse_id","202"
-"353","Howard E. Katz","ORCID","0000-0002-0468-6420"
-"354","Howard E. Katz","ORCID","0000-0002-3190-2475"
-"355","Howard E. Katz","ORCID","0000-0001-8739-2542"
-"356","Howard Katz","ORCID","0000-0002-3190-2475"
-"357","Howard Katz","ORCID","0000-0002-3190-2475"
-"358","Hsien-Yen Chang","dataverse_id","60"
-"359","Hsuan Liu","ORCID","0000-0002-0806-7643"
-"360","Hualin Qiao","dataverse_id","339"
-"361","Huang Yang","ORCID","0000-0002-5693-0392"
-"362","Hugh Ellis","dataverse_id","103"
-"363","Hui Li","ORCID","0000-0002-3826-0735"
-"364","Hui Li","dataverse_id","235"
-"365","Huidong Fan","dataverse_id","108"
-"366","Hyun Jun Jung","dataverse_id","194"
-"367","Hyun June Jang","dataverse_id","179"
-"368","Hyun-June Jang","ORCID","0000-0001-8218-2482"
-"369","Ian M. Oppenheim","ORCID","0000-0002-1643-8803"
-"370","Iliana E. Mladenova","dataverse_id","279"
-"371","Irina Burd","dataverse_id","51"
-"372","Isabel Hahn","ORCID","0000-0003-4580-9893"
-"373","Isabel M. Jensen","dataverse_id","184"
-"374","Isabelle Daniel","ORCID","0000-0002-1448-7919"
-"375","Ishan Barman","ORCID","0000-0003-0800-0825"
-"376","Ishan Barman","dataverse_id","29"
-"377","Ismail Uyanik","ORCID","0000-0002-3535-5616"
-"378","Ismail Uyanik","ORCID","0000-0002-3535-5616"
-"379","Jack Samuels","ORCID","0000-0002-6715-7905"
-"380","Jackson O’Brien","ORCID","0000-0002-5221-2107"
-"381","Jacob Elsey","ORCID","0000-0003-0936-0865"
-"382","Jacob H. Hamer","ORCID","0000-0002-7993-4214"
-"383","Jacob Hamer","ORCID","0000-0002-7993-4214"
-"384","Jacob Thompson","dataverse_id","406"
-"385","Jaiprasath Sachithanandham","dataverse_id","356"
-"386","Jaiprasath Sachithanandham","ORCID","0000-0001-7086-2990"
-"387","Jake Doiron","ORCID","0000-0002-4584-4819"
-"388","James A. Agamaite","dataverse_id","3"
-"389","James J. Knierim","ORCID","0000-0002-1796-2930"
-"390","James L. Crowley","dataverse_id","84"
-"391","James M. Tielsch","ORCID","0000-0002-1151-060X"
-"392","James Mukiibi","dataverse_id","293"
-"393","Jamie L. Perin","ORCID","0000-0002-5482-6620"
-"394","Jan J. Hirtz","ORCID","0000-0002-4486-3057"
-"395","Jan Pielage","ORCID","0000-0002-5115-5884"
-"396","Jane Yee","dataverse_id","461"
-"397","Janice Krasnow","dataverse_id","226"
-"398","Jared Evans","dataverse_id","106"
-"399","Jason A. Burdick","ORCID","0000-0002-2006-332X"
-"400","Jason Westerbeck","dataverse_id","442"
-"401","Jeff A. Valenti","ORCID","0000-0003-3305-6281"
-"402","Jeffrey Cornwell","ORCID","0000-0001-7111-2489"
-"403","Jenna Shapiro","ORCID","0000-0003-2369-540X"
-"404","Jennifer Bryce","dataverse_id","48"
-"405","Jennifer Bryce","dataverse_id","49"
-"406","Jennifer C. Stevenson","dataverse_id","393"
-"407","Jennifer Dailey","dataverse_id","85"
-"408","Jennifer Dien Bard","dataverse_id","28"
-"409","Jennifer M. Kavran","dataverse_id","203"
-"410","Jens J. Holst","ORCID","0000-0001-6853-3805"
-"411","Jeremiah Miller","dataverse_id","276"
-"412","Jeremy F. Reiter","dataverse_id","346"
-"413","Jeremy Foote","ORCID","0000-0002-6621-6096"
-"414","Jeremy Sotzen","dataverse_id","388"
-"415","Jeremy Walston","dataverse_id","426"
-"416","Jessica J. Tao","dataverse_id","398"
-"417","Jiadi Xu","ORCID","0000-0001-9698-5622"
-"418","Jiafeng Zhu","dataverse_id","484"
-"419","Jian Song","dataverse_id","385"
-"420","Jiawang Zhou","ORCID","0000-0002-2399-0030"
-"421","Jie Liu","dataverse_id","245"
-"422","Jin Huang","dataverse_id","169"
-"423","Jina Pakpoor","dataverse_id","322"
-"424","Jinfeng Han","dataverse_id","139"
-"425","Jinfeng Han","ORCID","0000-0002-6140-4522"
-"426","Jingyi Huang","ORCID","0000-0002-5274-1068"
-"427","Jinhee Hur","ORCID","0000-0003-0968-208X"
-"428","Jinling Wu","dataverse_id","453"
-"429","Jiteng Mu","dataverse_id","289"
-"430","Jiyuan Huang","dataverse_id","170"
-"431","Jo L. Wilson","ORCID","0000-0002-1729-0863"
-"432","Joanna L. Hart","dataverse_id","145"
-"433","Joanna Tsao","dataverse_id","415"
-"434","Joanne Katz","ORCID","0000-0002-5997-7823"
-"435","Joanne Selinski","ORCID","0000-0003-2831-4389"
-"436","Joao A. Lima","dataverse_id","244"
-"437","Jodi B. Segal","dataverse_id","370"
-"438","Jodi B. Segal","ORCID","0000-0003-3978-9662"
-"439","Joel A. Pally","dataverse_id","323"
-"440","Joel Moore","ORCID","0000-0002-5546-9610"
-"441","Joelle Frechette","ORCID","0000-0001-5680-6554"
-"442","Johan Meyers","ORCID","0000-0002-2828-4397"
-"443","John A. Harris","ORCID","0000-0002-7907-8139"
-"444","John A. Higgins","ORCID","0000-0002-4893-4561"
-"445","John A. Timko","dataverse_id","411"
-"446","John D. Tovar","ORCID","0000-0002-9650-2210"
-"447","John D. Tovar","ORCID","0000-0002-9650-2210"
-"448","John E. Bond","dataverse_id","39"
-"449","John Guckenheimer","ORCID","0000-0001-6655-7862"
-"450","John Muschelli","dataverse_id","299"
-"451","John R. Edison","dataverse_id","100"
-"452","John San Soucie","ORCID","0000-0001-8339-2510"
-"453","John T. Gale","dataverse_id","116"
-"454","Jon P. Camden","ORCID","0000-0002-6179-2692"
-"455","Jonah Bregstone","dataverse_id","45"
-"456","Jonah K. Mittelstadt","ORCID","0000-0001-6738-5556"
-"457","Jonah Mittelstadt","ORCID","0000-0001-6738-5556"
-"458","Jonatan I. Bagger","ORCID","0000-0003-3174-1613"
-"459","Jonathan R. Williford","ORCID","0000-0002-9178-2647"
-"460","Jordan Thomas","dataverse_id","404"
-"461","Jorge A. Gonzalez-Martinez","ORCID","0000-0002-9936-7034"
-"462","Jorjethe Roca","ORCID","0000-0002-9793-0110"
-"463","Joseph A. Hill","ORCID","0000-0002-5379-1614"
-"464","Joseph F. Browning-Hanson","ORCID","0009-0001-3109-0796"
-"465","Joseph Serigano","ORCID","0000-0003-3849-5064"
-"466","Joseph Serigano","ORCID","0000-0003-3849-5064"
-"467","Joshua A. Sebree","ORCID","0000-0001-9612-8532"
-"468","Joshua Cole","ORCID","0000-0002-4859-1298"
-"469","Joshua Fern","dataverse_id","111"
-"470","Joshua Raji","ORCID","0000-0002-6447-6986"
-"471","Julia M. Gohlke","dataverse_id","125"
-"472","Julianne I. Moses","ORCID","0000-0002-8837-0035"
-"473","Julie Gutman","ORCID","0000-0001-6769-7322"
-"474","Julie M. Norton","dataverse_id","312"
-"475","Junhao Liang","dataverse_id","242"
-"476","Junsheng Yu","ORCID","0000-0002-7484-8114"
-"477","Junyao Gu","dataverse_id","132"
-"478","Justine S. Wagner","dataverse_id","425"
-"479","Justine S. Wagner","ORCID","0000-0003-4647-0449"
-"480","Justine Wagner","ORCID","0000-0003-4647-0449"
-"481","Justine Wagner","dataverse_id","424"
-"482","K. Patrick May","dataverse_id","267"
-"483","Kahori Kita","ORCID","0000-0001-5002-2863"
-"484","Kalev G. Hantsoo","ORCID","0000-0002-9334-9839"
-"485","Kalev Hantsoo","ORCID","0000-0002-9334-9839"
-"486","Kalina Hristova","ORCID","0000-0003-4274-4406"
-"487","Kalpana Besar","ORCID","0000-0002-3502-9378"
-"488","Karen A. Robinson","ORCID","0000-0003-1021-7820"
-"489","Karen Fox-Talbot","ORCID","0000-0001-9397-4282"
-"490","Karen Menuz","ORCID","0000-0001-8163-094"
-"491","Karim Bergaoui","dataverse_id","35"
-"492","Katherine Fenstermacher","ORCID","0000-0003-1139-3711"
-"493","Katherine O. Robsky","ORCID","0000-0001-7789-5779"
-"494","Katherine Robsky","ORCID","0000-0001-7789-5779"
-"495","Katherine Robsky","dataverse_id","350"
-"496","Katherine W. Tripp","ORCID","0000-0002-7278-708X"
-"497","Katherine Z. Fenstermacher","ORCID","0000-0003-1139-3711"
-"498","Kathleen E. Cullen","ORCID","0000-0002-9348-0933"
-"499","Kathleen Gabrielson","ORCID","0000-0003-3901-4357"
-"500","Kathleen Hoffman","dataverse_id","162"
-"501","Kathleen J. Stebe","ORCID","0000-0003-0510-0513"
-"502","Kathryn Shaw-Saliba","ORCID","0000-0002-4396-2432"
-"503","Katie O’Meara","dataverse_id","320"
-"504","Kavita Sharma","dataverse_id","374"
-"505","Keith Arora-Williams","dataverse_id","16"
-"506","Keith P. West Jr.","ORCID","0000-0001-9458-362X"
-"507","Kellan E. Baker","ORCID","0000-0002-9716-7936"
-"508","Kelly Wright","dataverse_id","452"
-"509","Kelson Shilling-Scrivo","ORCID","0000-0003-2622-3459"
-"510","Kenneth H. Hill","dataverse_id","157"
-"511","Kenneth Hill","dataverse_id","156"
-"512","Kenneth J.T. Livi","ORCID","0000-0001-7728-5460"
-"513","Kerry J. Schulze","dataverse_id","365"
-"514","Kerry Ledoux","dataverse_id","231"
-"515","Kevin C. Schlaufman","ORCID","0000-0001-5761-6779"
-"516","Kevin Lewis","ORCID","0000-0003-3412-803X"
-"517","Kevin W. Lewis","ORCID","0000-0003-3412-803X"
-"518","Kim A. Locke","ORCID","0000-0001-9891-4801"
-"519","Kim Seifert-Ahanda","dataverse_id","371"
-"520","Kimberly E. Steele","ORCID","0000-0001-5096-6549"
-"521","Kirsten Koehler","ORCID","0000-0002-0516-6945"
-"522","Kristen E. Schratz","dataverse_id","364"
-"523","Kristen McArthur","ORCID","0000-0001-5601-1583"
-"524","Kristi R. Arsenault","dataverse_id","17"
-"525","Kristi R. Arsenault","ORCID","0000-0002-6830-6271"
-"526","Kristi R. Arsenault","ORCID","0000-0002-6830-6271"
-"527","Kristin N. Hageman","dataverse_id","137"
-"528","Kuan-Fu Chen","dataverse_id","63"
-"529","Kuan-Lin Chen","dataverse_id","64"
-"530","Kyle B. LaPenna","ORCID","0000-0003-0470-0138"
-"531","Kyle Delwiche","dataverse_id","89"
-"532","Kyler A. Weingartner","dataverse_id","438"
-"533","Kyoung-A Cho","dataverse_id","77"
-"534","Lara S Ho","dataverse_id","160"
-"535","Laura A. St Clair","ORCID","0000-0001-5913-2073"
-"536","Laura Bosley","dataverse_id","42"
-"537","Laura E. Dickinson","dataverse_id","91"
-"538","Laura Steinhardt","ORCID","0000-0003-0540-9940"
-"539","Lauren M. Sauer","dataverse_id","362"
-"540","Lauren MacDonald","dataverse_id","255"
-"541","Laurène Flandinet","ORCID","0000-0001-7190-7396"
-"542","Lavender E. Hanson","ORCID","0000-0003-2298-8382"
-"543","Lawrence H. Moulton","ORCID","0000-0001-7041-7387"
-"544","Lawrence J. Appel","dataverse_id","9"
-"545","Leah Berhane","dataverse_id","36"
-"546","Lee S.-F. Wu","dataverse_id","455"
-"547","Lee Wu","dataverse_id","454"
-"548","Li Hui","ORCID","0000-0002-3826-0735"
-"549","Li-Eng Yu","dataverse_id","466"
-"550","Liang Wu","ORCID","0000-0003-1696-7809"
-"551","Lidong Chen","dataverse_id","65"
-"552","Lilian C. Ekowo","ORCID","0000-0002-1731-0879"
-"553","Limonty Simubali","dataverse_id","381"
-"554","Lisa M. Wilson","dataverse_id","445"
-"555","Lisa Mwaikambo","dataverse_id","300"
-"556","Lisa Pieterse","dataverse_id","330"
-"557","Lois A. Park","dataverse_id","326"
-"558","Long Zhao","ORCID","0000-0002-8211-118X"
-"559","Lu Jin","dataverse_id","189"
-"560","Luke A. Arend","dataverse_id","10"
-"561","Luke C Mullany","ORCID","0000-0003-4668-9803"
-"562","Luke C. Mullany","ORCID","0000-0003-4668-9803"
-"563","Lulin Li","dataverse_id","236"
-"564","Luwei Pearson","dataverse_id","328"
-"565","Lyle L. Nelson","dataverse_id","306"
-"566","Lynn Van Lith","dataverse_id","419"
-"567","M. Mert Ankarali","dataverse_id","8"
-"568","Macauley S. Breault","ORCID","0000-0003-1327-5372"
-"569","Madeline Noble","dataverse_id","311"
-"570","Madison Turner","ORCID","0000-0001-8061-8115"
-"571","Maeve Secor","dataverse_id","368"
-"572","Mahdi Navari","ORCID","0000-0003-0332-4580"
-"573","Mallory E. DeCoster","ORCID","0000-0002-1139-9235"
-"574","Mallory E. DeCoster","dataverse_id","87"
-"575","Mallory E. Decoster","ORCID","0000-0002-1139-9235"
-"576","Maningbe Keita","dataverse_id","205"
-"577","Manu S. Madhav","ORCID","0000-0001-5317-8492"
-"578","Marc Boulay","dataverse_id","43"
-"579","Margaret L. Rodgers","ORCID","0000-0002-8176-2044"
-"580","Margaret R. Chow","ORCID","0000-0002-4335-0903"
-"581","Maria Brbić","ORCID","0000-0002-1120-1778"
-"582","Marie Aude Pradal","ORCID","0000-0002-5301-9659"
-"583","Marie Aude S Pradal","ORCID","0000-0002-5301-9659"
-"584","Marie-Aude Pradal","ORCID","0000-0002-5301-9659"
-"585","Marie-Aude Pradal","dataverse_id","336"
-"586","Marie-Aude S. Pradal","ORCID","0000-0002-5301-9659"
-"587","Marius Usher","ORCID","0000-0001-8041-9060"
-"588","Mariya Chernenok","dataverse_id","71"
-"589","Mark B. Allen","ORCID","0000-0002-0656-7898"
-"590","Mark J. Tobin","ORCID","0000-0003-1862-0649"
-"591","Mark L. Van Natta","ORCID","0000-0002-3219-9451"
-"592","Mark S. Marley","ORCID","0000-0002-5251-2943"
-"593","Marshall G. Hussain Shuler","ORCID","0000-0002-1927-0970"
-"594","Marshall Shuler","ORCID","0000-0002-1927-0970"
-"595","Marta Pellegrini","ORCID","0000-0002-9806-3231"
-"596","Mary Armanios","dataverse_id","14"
-"597","Mary C. Lonsdale","dataverse_id","251"
-"598","Maryam Salehi","dataverse_id","358"
-"599","Maryam Salehi","ORCID","0000-0002-2977-5040"
-"600","Mason Song","ORCID","0009-0001-1248-9590"
-"601","Mathias Unberath","ORCID","0000-0002-0055-9950"
-"602","Matt Newgren","dataverse_id","307"
-"603","Matthew E. Moura","dataverse_id","288"
-"604","Matthew J. Budoff","ORCID","0000-0002-9616-1946"
-"605","Matthew R. Gormley","dataverse_id","130"
-"606","Matthew Rodell","ORCID","0000-0003-0106-7437"
-"607","Maureen Schickel","dataverse_id","363"
-"608","Max Thomas","dataverse_id","405"
-"609","Maya Gomes","ORCID","0000-0002-9707-350X"
-"610","Maya L. Gomes","ORCID","0000-0002-9707-350X"
-"611","Mehran Armand","ORCID","0000-0003-1028-8303"
-"612","Mehran Armand","dataverse_id","13"
-"613","Melinda J. Marsh","dataverse_id","263"
-"614","Melinda Munos","ORCID","0000-0002-1349-8026"
-"615","Melissa G. Trainer","ORCID","0000-0003-1106-8580"
-"616","Melissa L. Teply","dataverse_id","401"
-"617","Melissa L. Wrzesien","ORCID","0000-0003-4958-9234"
-"618","Melissa Trainer","ORCID","0000-0003-1106-8580"
-"619","Melody Liu","dataverse_id","246"
-"620","Melville J Wohlgemuth","ORCID","0000-0003-4779-4154"
-"621","Menandro Gomes","dataverse_id","127"
-"622","Meng Xia","dataverse_id","457"
-"623","Mengdi Wang","dataverse_id","429"
-"624","Mengistu Tafesse","dataverse_id","396"
-"625","Mengqi Guo","dataverse_id","133"
-"626","Mengxuan Jia","ORCID","0000-0001-9173-1084"
-"627","Mercy Kanyuka","dataverse_id","201"
-"628","Micajah Z. McGarity","ORCID","0000-0001-7323-0526"
-"629","Michael A. Beer","ORCID","0000-0001-9955-3809"
-"630","Michael A. Bevan","ORCID","0000-0002-9368-4899"
-"631","Michael A. Schweitzer","dataverse_id","366"
-"632","Michael D. M. Bader","ORCID","0000-0001-6292-7790"
-"633","Michael Eggen","dataverse_id","102"
-"634","Michael Humes","dataverse_id","172"
-"635","Michael J. Radke","ORCID","0000-0002-4072-181X"
-"636","Michael L. Falk","ORCID","0000-0002-8383-4259"
-"637","Michael Pacella","dataverse_id","321"
-"638","Michael Radke","ORCID","0000-0002-4072-181X"
-"639","Michael Radke","ORCID","0000-0002-4072-181X"
-"640","Michael S. Osmanski","ORCID","0000-0003-3458-9215"
-"641","Michael T. Williams","ORCID","0000-0003-3302-4044"
-"642","Michael Toso","ORCID","0000-0002-7459-4978"
-"643","Michelle M. Lorah","ORCID","0000-0002-9236-587X"
-"644","Michelle Moats","dataverse_id","281"
-"645","Miguel A. Pellitero","ORCID","0000-0001-8739-2542"
-"646","Miguel A. Pellitero","dataverse_id","329"
-"647","Mingxuan Wang","dataverse_id","430"
-"648","Minming Cui","ORCID","0000-0002-8985-0372"
-"649","Mohamed D. Hashem","dataverse_id","146"
-"650","Mohammad Shaear","ORCID","0000-0001-8688-115X"
-"651","Molly B. Richardson","dataverse_id","347"
-"652","Molly E. Menzel","ORCID","0000-0002-9598-2996"
-"653","Monica Tung","dataverse_id","416"
-"654","Monicah M. Mburu","ORCID","0000-0001-8846-0615"
-"655","Moshe Glickman","dataverse_id","124"
-"656","Muntasir Roni","dataverse_id","351"
-"657","Mustafa M. Ankarali","ORCID","0000-0002-1235-5373"
-"658","Mutlu Ozdogan","dataverse_id","318"
-"659","N. Peter Armitage","ORCID","0000-0001-7568-2059"
-"660","NA Baltimore Police Department","dataverse_id","25"
-"661","NA Center for Human Nutrition","dataverse_id","57"
-"662","NA Chintan Environmental Research and Action Group","dataverse_id","76"
-"663","NA Feed the Future Innovation Lab for Nutrition","dataverse_id","109"
-"664","NA Johns Hopkins Center for a Livable Future","dataverse_id","191"
-"665","NA Paulette Clancy","ORCID","0000-0002-0468-6420"
-"666","NA Russell. Thomas P.","dataverse_id","355"
-"667","Nageshwar Arepally","dataverse_id","11"
-"668","Nan Chen","dataverse_id","66"
-"669","Nan Jiang","dataverse_id","187"
-"670","Nan L. Chen","dataverse_id","67"
-"671","Nan Lewicky","dataverse_id","234"
-"672","Naomi A. Becker","ORCID","0000-0003-0102-9713"
-"673","Nassir Navab","ORCID","0000-0002-6032-5611"
-"674","Natalie J. Tibbels","ORCID","0000-0001-6848-1881"
-"675","Natalie Tibbels","ORCID","408"
-"676","Natalie Tibbels","ORCID","0000-0001-6848-1881"
-"677","Natalie Ullman","dataverse_id","417"
-"678","Nathan P. Miller","dataverse_id","277"
-"679","Nathaniel L. Dominique","ORCID","0000-0002-0439-9982"
-"680","Neal D. Durant","dataverse_id","98"
-"681","Netzahualcóyotl Arroyo Currás","ORCID","0000-0001-8739-2542"
-"682","Netzahualcóyotl Arroyo-Currás","ORCID","0000-0002-2740-6276"
-"683","Nguyen Nam Thang","dataverse_id","403"
-"684","Nicholas Adams","dataverse_id","2"
-"685","Nicholas J. Swanson","ORCID","0000-0002-5696-9967"
-"686","Nicholas Wilkerson","dataverse_id","443"
-"687","Nikesh Koirala","dataverse_id","218"
-"688","Nikole K. Lewis","ORCID","0000-0002-8507-1304"
-"689","Nils Holzenberger","dataverse_id","165"
-"690","Ninad B Kothari","ORCID","0000-0001-5543-6459"
-"691","Nneoma Nonyelum Anieto","dataverse_id","7"
-"692","Noah J. Cowan","ORCID","0000-0003-2502-3770"
-"693","Noah J. Cowan","ORCID","0000-0003-2502-3770"
-"694","Noah J. Cowan","ORCID","0000-0003-2502-3770"
-"695","Noam R. Izenberg","ORCID","0000-0003-1629-6478"
-"696","Noor Al-Saloum","dataverse_id","4"
-"697","Norman P. Armitage","dataverse_id","15"
-"698","Olga Joos","ORCID","0000-0003-0335-4982"
-"699","Olga Nakasolya","dataverse_id","301"
-"700","Omar A. Hafez","ORCID","0000-0002-7846-9226"
-"701","Omar Abdullah","dataverse_id","1"
-"702","Oriol Regué Sendrós","dataverse_id","344"
-"703","Oumarou Habi","dataverse_id","135"
-"704","Owen M. Woodward","dataverse_id","451"
-"705","Pamela Ouyang","ORCID","0000-0003-4925-9059"
-"706","Pang-Wei Liu","ORCID","0000-0002-3789-594X"
-"707","Pascal Ngoy","dataverse_id","308"
-"708","Patricia Dailly-Ajavon","dataverse_id","86"
-"709","Patricia McGuiggan","dataverse_id","270"
-"710","Patricia Outeda","dataverse_id","317"
-"711","Patrick Beaudry","ORCID","0000-0001-8587-2729"
-"712","Patrick E. Hopkins","ORCID","0000-0002-3403-743X"
-"713","Patrick E. Hopkins","dataverse_id","166"
-"714","Patrick Goodwill","dataverse_id","128"
-"715","Patrick Kanold","ORCID","0000-0002-7529-5435"
-"716","Patrick O. Kanold","ORCID","0000-0002-7529-5435"
-"717","Patrick O. Kanold","ORCID","0000-0002-7529-5435"
-"718","Patty McGuiggan","dataverse_id","271"
-"719","Paul A. Welling","dataverse_id","439"
-"720","Paul Gensbigler","dataverse_id","121"
-"721","Paul Morris","dataverse_id","284"
-"722","Paul Nestadt","ORCID","0000-0002-2479-703X"
-"723","Paula Marinho","dataverse_id","260"
-"724","Paulette Clancy","ORCID","0000-0002-0468-6420"
-"725","Paulette Clancy","ORCID","0000-0002-0468-6420"
-"726","Pedro P. Irazoqui","ORCID","0000-0002-4791-4593"
-"727","Peter J. Kitonsa","ORCID","0000-0003-2971-216X"
-"728","Peter Jendrichovsky","dataverse_id","182"
-"729","Peter Thielen","ORCID","0000-0003-1807-2785"
-"730","Philip E. Thuma","dataverse_id","407"
-"731","Philipp Schlegel","ORCID","0000-0002-5633-1314"
-"732","Philippe F.Y. Vincent","ORCID","0000-0001-7712-7198"
-"733","Pierre Sacré","ORCID","0000-0002-7228-1628"
-"734","Piyush Raj","ORCID","0000-0002-1488-9475"
-"735","Pragyashree S. Basyal","dataverse_id","33"
-"736","Preethi Korangath","ORCID","0000-0002-6623-493X"
-"737","Qi Huang","dataverse_id","171"
-"738","Qian Zhang","dataverse_id","472"
-"739","Qian Zhang","ORCID","0000-0003-0500-5655"
-"740","Qiang Wang","dataverse_id","431"
-"741","Qifeng Jiang","ORCID","0000-0002-5590-4889"
-"742","Qihao Liu","dataverse_id","247"
-"743","Qin Hu","dataverse_id","167"
-"744","Qing Liu","dataverse_id","248"
-"745","Qingyang Zhang","dataverse_id","473"
-"746","Qu Chongyu","dataverse_id","78"
-"747","R. M. Ireland","dataverse_id","174"
-"748","R.M. Maxwell","dataverse_id","266"
-"749","Rachael McDonnell","ORCID","0000-0002-0525-4582"
-"750","Rachel A. Hegeman","ORCID","0000-0003-2869-8773"
-"751","Rachel Coffin","ORCID","0000-0002-5194-3055"
-"752","Rachel Hegeman","ORCID","0000-0003-2869-8773"
-"753","Rachel Truitt","dataverse_id","413"
-"754","Raghda E. Eldesouki","ORCID","0000-0002-8860-3484"
-"755","Rajat Bindlish","ORCID","0000-0002-1913-0353"
-"756","Rajiv C McCoy","ORCID","0000-0003-0615-146X"
-"757","Randal Hand","dataverse_id","140"
-"758","Ravi Varadhan","ORCID","0000-0002-8434-1034"
-"759","Ravikrishnan P. Jayakumar","dataverse_id","180"
-"760","Ravikrishnan P. Jayakumar","ORCID","0000-0003-4321-6816"
-"761","Razi M. Haque","ORCID","0000-0003-0453-0300"
-"762","Rebeca Mejías","ORCID","0000-0003-1936-7219"
-"763","Rebecca A. Heidkamp","dataverse_id","152"
-"764","Rebecca B. Schulman","ORCID","0000-0003-4555-3162"
-"765","Rebecca Schulman","ORCID","0000-0003-4555-3162"
-"766","Rebecca Yee","dataverse_id","462"
-"767","Rebekka S. Klausen","dataverse_id","213"
-"768","Renée Marlin-Bennett","ORCID","0000-0002-4341-0064"
-"769","Reyhan Westbrook","dataverse_id","441"
-"770","Reza Ghotbi","dataverse_id","122"
-"771","Richard Coleman","dataverse_id","82"
-"772","Richard E. Rothman","dataverse_id","353"
-"773","Richard K. Scott","ORCID","0000-0002-9113-2978"
-"774","Richard Rothman","dataverse_id","352"
-"775","Risa M. Wolf","dataverse_id","449"
-"776","Ritu Sharma","dataverse_id","375"
-"777","Robert B. Grupp","ORCID","0000-0003-3386-5839"
-"778","Robert Clarke","ORCID","0000-0002-9278-0854"
-"779","Robert E. Black","ORCID","0000-0001-9926-7984"
-"780","Robert E. Slavin","ORCID","0000-0003-3117-7477"
-"781","Robert Gilman","ORCID","0000-0002-3704-9217"
-"782","Robert Grupp","ORCID","0000-0003-3386-5839"
-"783","Robert Ivkov","ORCID","0000-0002-2930-5276"
-"784","Robert M. Holder","ORCID","0000-0002-1119-6905"
-"785","Robert M. Ireland","dataverse_id","175"
-"786","Robert Slavin","dataverse_id","383"
-"787","Roger V. Yelle","ORCID","0000-0002-2587-9539"
-"788","Roger Yelle","dataverse_id","464"
-"789","Rolf Klemm","dataverse_id","216"
-"790","Ron C. Hoogeveen","ORCID","0000-0003-2399-4653"
-"791","Ronald Sanchez","dataverse_id","360"
-"792","Rui Jin","dataverse_id","190"
-"793","Ruifeng Zhou","dataverse_id","481"
-"794","Ruohong Shi","ORCID","0000-0001-9163-5607"
-"795","Russell H. Taylor","ORCID","0000-0001-6272-1100"
-"796","Russell Taylor","ORCID","0000-0001-6272-1100"
-"797","Ruwaida Salem","ORCID","0000-0003-3639-7831"
-"798","Ryan A. Zamora","dataverse_id","470"
-"799","Ryan B. Budde","ORCID","0000-0003-4381-8673"
-"800","Ryan J. Murphy","ORCID","0000-0003-3065-7700"
-"801","Ryan Murphy","dataverse_id","296"
-"802","Rüdiger von der Heydt","ORCID","0000-0002-8741-813X"
-"803","Sabra L. Klein","dataverse_id","215"
-"804","Sahana Jayaraman","ORCID","0000-0003-3413-2530"
-"805","Saijuddin Shaikh","ORCID","0000-0001-5095-1478"
-"806","Sairah Malkin","ORCID","0000-0002-7523-1589"
-"807","Sairah Y. Malkin","ORCID","0000-0002-7523-1589"
-"808","Sam Droege","ORCID","0000-0003-4393-0403"
-"809","Samantha H. Sarni","ORCID","0000-0002-3002-819X"
-"810","Samuel W. Schaffter","ORCID","0000-0002-7259-7374"
-"811","Sandra E. Zaeh","ORCID","0000-0002-5091-1975"
-"812","Sanjiv J. Shah","ORCID","0000-0002-5655-8201"
-"813","Santosh Dhakal","ORCID","0000-0002-4494-8608"
-"814","Saori Ohkubo","dataverse_id","316"
-"815","Sarah A. Stamper","dataverse_id","391"
-"816","Sarah A. Woodson","ORCID","0000-0003-0170-1987"
-"817","Sarah Brittingham","dataverse_id","46"
-"818","Sarah E. Moran","ORCID","0000-0002-6721-3284"
-"819","Sarah Gidner","dataverse_id","123"
-"820","Sarah M Hörst","ORCID","0000-0003-4596-0702"
-"821","Sarah M. Hörst","ORCID","0000-0003-4596-0702"
-"822","Sarah P. Preheim","ORCID","0000-0001-7365-2382"
-"823","Sarah Preheim","dataverse_id","337"
-"824","Sarah Preheim","ORCID","0000-0001-7365-2382"
-"825","Sarah Ptashnik","dataverse_id","338"
-"826","Sarah Ragen","ORCID","0000-0003-0987-6060"
-"827","Sarah Woodson","ORCID","0000-0003-0170-1987"
-"828","Sarith P. Mahanama","dataverse_id","257"
-"829","Sasikumar Mayarambakam","ORCID","0000-0001-8745-4272"
-"830","Sayak Panda","ORCID","0000-0001-9724-6725"
-"831","Sayak Subhra Panda","ORCID","0000-0001-9724-6725"
-"832","Scott M. Krummey","ORCID","0000-0002-7504-9162"
-"833","Scott T. Vasher","ORCID","0000-0002-6554-7803"
-"834","Sean Healy","dataverse_id","150"
-"835","Sean Oh","ORCID","0000-0003-1681-516X"
-"836","Sean Sun","ORCID","0000-0002-9077-7088"
-"837","Seongshik Oh","dataverse_id","315"
-"838","Sereen Thaddeus","dataverse_id","402"
-"839","Shahin G. Lashkari","dataverse_id","230"
-"840","Shahin Sefati","dataverse_id","369"
-"841","Shahryar K. Ahmad","ORCID","0000-0002-9789-3137"
-"842","Shaina Morris","dataverse_id","285"
-"843","Sharon Gerecht","ORCID","0000-0002-8542-4835"
-"844","Sheila West","dataverse_id","440"
-"845","Shugong Wang","dataverse_id","432"
-"846","Siddhant Vyas","dataverse_id","422"
-"847","Siew Cheng Phua","ORCID","0000-0002-6786-8117"
-"848","Silu Men","dataverse_id","273"
-"849","Siming Deng","ORCID","0000-0003-3111-8629"
-"850","Simon Allard","ORCID","0000-0003-0519-7036"
-"851","Sisi Jia","ORCID","0000-0002-5877-5138"
-"852","Sodnomdargia (Anu) Avirmed","dataverse_id","18"
-"853","Sophia J. Melvin","ORCID","0009-0001-8395-8278"
-"854","Sophie Stoerkel","dataverse_id","394"
-"855","Spy Munthali","dataverse_id","295"
-"856","Sravanti Kusuma","dataverse_id","227"
-"857","Sridevi V. Sarma","ORCID","0000-0002-4817-6625"
-"858","Stella Babalola","dataverse_id","21"
-"859","Stephanie Rankin-Turner","ORCID","0000-0001-5210-1709"
-"860","Stephen L. Morgan","ORCID","0000-0003-2198-1381"
-"861","Steven A Harvey","ORCID","0000-0001-6936-0213"
-"862","Steven J. Chow","ORCID","0000-0001-5135-4747"
-"863","Steven Marra","dataverse_id","261"
-"864","Subarna K. Khatry","dataverse_id","207"
-"865","Sudhir Khetan","ORCID","0000-0001-5854-8886"
-"866","Sudipta Mukherjee","dataverse_id","291"
-"867","Sujay V. Kumar","ORCID","0000-0001-8797-9482"
-"868","Sujay V. Kumar","ORCID","0000-0001-8797-9482"
-"869","Sumita Mishra","ORCID","0000-0002-6455-4075"
-"870","Suqi Ke","dataverse_id","204"
-"871","Susan Hutfless","dataverse_id","173"
-"872","Susan J. Bersoff-Matcha","dataverse_id","37"
-"873","Susan M. Courtney","ORCID","0000-0003-1469-8879"
-"874","Susan R. Heckbert","dataverse_id","151"
-"875","Susan T. Jackson","ORCID","0000-0003-4266-7973"
-"876","Susanna M. Thon","ORCID","0000-0002-1003-2650"
-"877","Susanna M. Thon","ORCID","0000-0002-1003-2650"
-"878","Susanna Thon","ORCID","0000-0002-1003-2650"
-"879","Suwei Wang","dataverse_id","433"
-"880","Swati Tanwar","ORCID","0000-0002-0430-1922"
-"881","Swetha Manohar","ORCID","0000-0003-4042-8952"
-"882","Sydney Ballou","ORCID","0000-0002-3053-1115"
-"883","Sylvain Patinet","ORCID","0000-0002-1585-8275"
-"884","Taein D. Lee","ORCID","0000-0001-8176-9759"
-"885","Taein D. Lee","ORCID","0000-0001-8176-9759"
-"886","Taein Lee","ORCID","0000-0001-8176-9759"
-"887","Takanari Inoue","ORCID","0000-0002-7957-7624"
-"888","Tamas Budavari","ORCID","0000-0002-7034-4621"
-"889","Tanya Marton","dataverse_id","264"
-"890","Tao Wang","dataverse_id","434"
-"891","Tara D. Edwards","dataverse_id","101"
-"892","Tedbabe Degefie","dataverse_id","88"
-"893","Tejaswini Kale","ORCID","0000-0001-7246-745X"
-"894","Tejaswini S. Kale","dataverse_id","197"
-"895","Tengteng Zhuang","ORCID","0000-0003-3940-4216"
-"896","Terence M. Murphy","dataverse_id","297"
-"897","Terry Watnick","dataverse_id","436"
-"898","Thao T. Truong","dataverse_id","414"
-"899","Thao Tran","dataverse_id","412"
-"900","Thomas Gautier","ORCID","0000-0002-9794-5056"
-"901","Thomas Gautier","ORCID","0000-0002-9794-5056"
-"902","Thomas Gillette","ORCID","0000-0002-7617-3544"
-"903","Thomas Hinault","ORCID","0000-0001-9939-0640"
-"904","Thomas M. Magnuson","dataverse_id","256"
-"905","Thomas Mehoke","dataverse_id","272"
-"906","Thomas P. Russell","dataverse_id","354"
-"907","Thomas R. Holmes","ORCID","0000-0002-4651-0079"
-"908","Thomas Sharp","ORCID","0000-0001-8706-9825"
-"909","Tian Xie","dataverse_id","458"
-"910","Tiezheng Zhang","dataverse_id","474"
-"911","Timothy M. Merlis","ORCID","0000-0002-5593-8210"
-"912","Timothy Mueller","dataverse_id","290"
-"913","Timothy Roberton","dataverse_id","349"
-"914","Tina Villsbøll","dataverse_id","420"
-"915","Tiope Mleme","dataverse_id","280"
-"916","Tommi Koskinen","dataverse_id","220"
-"917","Tommi T. Koskinen","dataverse_id","221"
-"918","Traci Goodchild","ORCID","0000-0001-9234-2806"
-"919","Travis Wolfe","ORCID","0000-0002-6045-9302"
-"920","Tsering P. Lama","ORCID","0000-0001-6054-4075"
-"921","Tushita Mukhopadhyay","ORCID","0000-0002-8053-9668"
-"922","Tushita Mukhopadhyaya","dataverse_id","292"
-"923","Tushita Mukhopadhyaya","ORCID","0000-0002-8053-9668"
-"924","Vadim Dukhanin","ORCID","0000-0002-8685-0027"
-"925","Valeriu Cebotaru","dataverse_id","55"
-"926","Veit Stuphorn","ORCID","0000-0003-1117-9993"
-"927","Vicki H. Wysocki","ORCID","0000-0003-0495-2538"
-"928","Vidulata Kamath","dataverse_id","199"
-"929","Vijaya Subramanian","ORCID","0000-0001-8292-1759"
-"930","Vikram S. Chib","ORCID","0000-0001-8810-5699"
-"931","Vinayak Harihar","ORCID","0000-0002-0205-7161"
-"932","Vincent Clark","ORCID","0000-0001-9707-8004"
-"933","Vinita Subramanya","ORCID","0000-0002-1059-0847"
-"934","Vivek Bose","dataverse_id","41"
-"935","Vivek P. Jani","ORCID","0000-0002-3811-4973"
-"936","Véronique Vuitton","ORCID","0000-0001-7273-1898"
-"937","W.B. Ball","dataverse_id","22"
-"938","Walter Kra","dataverse_id","224"
-"939","Wanshu Nie","dataverse_id","309"
-"940","Wanshu Nie","ORCID","0000-0003-3639-9570"
-"941","Wanshu Nie","ORCID","0000-0003-3639-9570"
-"942","Wei Shi","dataverse_id","378"
-"943","Weichao Qiu","dataverse_id","340"
-"944","Wendy R. Nelson","ORCID","0000-0002-3047-0172"
-"945","Wendy S. Post","ORCID","0000-0002-8655-5204"
-"946","Wendy Ying","dataverse_id","465"
-"947","Wenxuan Li","dataverse_id","237"
-"948","Wenzhen Duan","ORCID","0000-0001-5933-6308"
-"949","William F. Kenney","ORCID","0000-0002-2273-8263"
-"950","William J. M. Seviour","ORCID","0000-0003-1622-0545"
-"951","William K. Pan","dataverse_id","324"
-"952","William L. Wilson","ORCID","0000-0003-2755-7610"
-"953","William P. Ball","dataverse_id","23"
-"954","William P. Ball","ORCID","0000-0001-5217-8108"
-"955","Wolfgang Eberle","ORCID","0000-0002-6115-9811"
-"956","Wu Liang","ORCID","0000-0003-1696-7809"
-"957","Wudyalew Wondmagegn","dataverse_id","450"
-"958","Xiaoding Yuan","dataverse_id","468"
-"959","Xiaoming Jia","dataverse_id","186"
-"960","Xiaoqin Wang","ORCID","0000-0002-3999-0772"
-"961","Xin Guo","dataverse_id","134"
-"962","Xingang Zhao","ORCID","0000-0001-5852-9757"
-"963","Xingang Zhao","dataverse_id","478"
-"964","Xinhao Fan","ORCID","0000-0002-0773-7473"
-"965","Xinjie Yu","dataverse_id","467"
-"966","Xinting Yu","ORCID","0000-0002-7479-1437"
-"967","Xintong Li","dataverse_id","238"
-"968","Xuejuan Ning","ORCID","0000-0002-8523-0483"
-"969","Y.K. Shin","dataverse_id","379"
-"970","Yan Cheng","dataverse_id","70"
-"971","Yan He","dataverse_id","149"
-"972","Yang-Sook Kim","dataverse_id","211"
-"973","Yanling Chen","dataverse_id","68"
-"974","Yao Wu","ORCID","0000-0003-1296-6569"
-"975","Yared Mekonnen","ORCID","0000-0003-0227-2272"
-"976","Yeonsoo Baik","ORCID","0000-0001-7016-0438"
-"977","Yi Li","ORCID","0000-0001-7916-0741"
-"978","Yicheng Hu","dataverse_id","168"
-"979","Yifan Zheng","dataverse_id","479"
-"980","Yifan Zhou","dataverse_id","482"
-"981","Ying Wang","dataverse_id","435"
-"982","Yixin Liu","dataverse_id","249"
-"983","Yizeng Li","dataverse_id","239"
-"984","Yolanda Barbera-Lainez","dataverse_id","27"
-"985","Yoon Kyong Lee","dataverse_id","233"
-"986","Yoshito Otake","ORCID","0000-0003-1291-9316"
-"987","You-Ping Yang","ORCID","0000-0003-3913-8982"
-"988","Yu Yang","ORCID","0009-0002-9512-5377"
-"989","Yu-I Shen","dataverse_id","377"
-"990","Yu-Nong Gong","ORCID","0000-0002-6799-1561"
-"991","Yuan Lou","dataverse_id","252"
-"992","Yuanting Zha","ORCID","0000-0001-7077-1167"
-"993","Yucheng Tang","dataverse_id","397"
-"994","Yue Luo","ORCID","0000-0002-2757-5395"
-"995","Yue Zhang","ORCID","0000-0002-3313-6030"
-"996","Yue Zhang","dataverse_id","475"
-"997","Yufeng Jiang","dataverse_id","188"
-"998","Yuguo Li","dataverse_id","240"
-"999","Yunjia Song","dataverse_id","386"
-"1000","Yunjia Song","ORCID","0000-0002-1216-0285"
-"1001","Yuqi Song","dataverse_id","387"
-"1002","Yuta Nihongaki","ORCID","0000-0002-9818-9344"
-"1003","Yuyang Ji","dataverse_id","185"
-"1004","Yvonne Tam","ORCID","0000-0003-4849-5084"
-"1005","Zachary B. Fitzgerald","dataverse_id","113"
-"1006","Zachary D. Lamberty","ORCID","0000-0003-2948-9818"
-"1007","Zexu Ma","dataverse_id","254"
-"1008","Zhiliang Wei","ORCID","0000-0002-8477-2440"
-"1009","Zhishuai Zhang","dataverse_id","476"
-"1010","Zhizhi Zhong","dataverse_id","480"
-"1011","Ziegler L. Rouven","ORCID","0000-0002-3050-7692"
-"1012","Zizhang Li","dataverse_id","241"
-"1013","Zongwei Zhou","dataverse_id","483"
-"1014","Zoé Hendrickson","ORCID","154"
-"1015","Zoé M. Hendrickson","ORCID","0000-0003-2057-2463"
+"","name","author_id_type","author_id","reg_id"
+"1","A.R. Buda","dataverse_id","50",1
+"2","Aaron Sampson","ORCID","0000-0001-7973-1647",2
+"3","Abdoulaye Maïga","ORCID","0000-0002-0475-1106",3
+"4","Abdul Dosso","dataverse_id","95",4
+"5","Abel Corver","ORCID","0000-0003-1431-9832",5
+"6","Abheera Hazra","dataverse_id","147",6
+"7","Abigail Park","dataverse_id","325",7
+"8","Achilles Katamba","ORCID","0000-0002-2347-4183",8
+"9","Ada Y. Chen","ORCID","0000-0003-3236-3853",9
+"10","Adam Kortylewski","ORCID","0000-0002-9146-4403",10
+"11","Adama Cisse","dataverse_id","79",11
+"12","Adama Tiendrebeogo","dataverse_id","409",12
+"13","Adbul M. Mohammed","dataverse_id","282",13
+"14","Aditi Sen","dataverse_id","372",14
+"15","Adnan Bibic","ORCID","0000-0001-8044-2906",15
+"16","Adrian M. Haith","ORCID","0000-0002-5658-8654",16
+"17","Agbessi Amouzou","ORCID","0000-0002-6262-3866",17
+"18","Aklilu Kidanu","dataverse_id","208",18
+"19","Alain B. Labrique","ORCID","0000-0003-2502-7819",19
+"20","Alain Koffi","dataverse_id","217",20
+"21","Alan C. K. Cheung","dataverse_id","74",21
+"22","Alan Chi-keung Cheung","ORCID","0000-0002-9013-1586",22
+"23","Alan L. Yuille","ORCID","0000-0001-5207-9249",23
+"24","Albert S.B. Edge","ORCID","0000-0001-8641-755X",24
+"25","Alberto Vitale Brovarone","ORCID","0000-0001-8892-9567",25
+"26","Alex L. Kolodkin","ORCID","0000-0001-7562-5513",NA
+"27","Alexander J. Yeh","dataverse_id","463",NA
+"28","Alexander Shaver","ORCID","0000-0002-5478-5291",NA
+"29","Alexis Bahl","ORCID","0000-0002-8575-2679",NA
+"30","Ali Afify","ORCID","0000-0002-6954-5776",NA
+"31","Alican Demir","dataverse_id","90",NA
+"32","Alina Vulpe","ORCID","0000-0001-5385-3072",NA
+"33","Alison E. Turnbull","ORCID","0000-0002-1564-6547",NA
+"34","Alison Witcoff","dataverse_id","448",NA
+"35","Alla Malinina","dataverse_id","258",NA
+"36","Allison H. Oakes","dataverse_id","314",NA
+"37","Aman Luthra","ORCID","0000-0002-8574-7271",NA
+"38","Amanda Dziedzic","dataverse_id","99",NA
+"39","Amanda Hinton","dataverse_id","158",NA
+"40","Amanda J. Neitzel","ORCID","0000-0002-4676-9320",NA
+"41","Amanda M. Zimmet","dataverse_id","485",NA
+"42","Amanda M. Zimmet","ORCID","0000-0003-1457-3072",NA
+"43","Amanda Neitzel","ORCID","0000-0002-4676-9320",NA
+"44","Amanda W. Ernlund","ORCID","0000-0003-1113-4103",NA
+"45","Amar R. Wadhawan","dataverse_id","423",NA
+"46","Amary Fall","dataverse_id","107",NA
+"47","Amy J. Bastian","ORCID","0000-0001-6079-0997",NA
+"48","Amy J. Bastian","dataverse_id","32",NA
+"49","An To","ORCID","0000-0003-3170-2999",NA
+"50","Ana Damjanovic","ORCID","0000-0001-7635-2705",NA
+"51","Anabel W. Carter","dataverse_id","54",NA
+"52","Anahita Rabiee","ORCID","0000-0002-8833-3592",NA
+"53","Anahita Rabiee","dataverse_id","0000-0002-8833-3592",NA
+"54","Anand Gnanadesikan","ORCID","0000-0001-5784-1116",NA
+"55","Anayeli García Villa","dataverse_id","120",NA
+"56","Andrea L. Cox","dataverse_id","83",NA
+"57","Andrew Blair-Stanek","dataverse_id","38",NA
+"58","Andrew Blair-Stanek","ORCID","0000-0001-8547-9417",NA
+"59","Andrew E. Jaffe","ORCID","0000-0001-6886-1454",NA
+"60","Andrew Gordus","ORCID","0000-0002-5550-0286",NA
+"61","Andrew Hammond","ORCID","0000-0002-1757-5009",NA
+"62","Andrew L. Thorne-Lyman","ORCID","0000-0001-5917-4126",NA
+"63","Andrew Lamperski","ORCID","0000-0003-0383-1830",NA
+"64","Andrew Long","dataverse_id","250",NA
+"65","Andrew Marsh","dataverse_id","262",NA
+"66","Andrew Mould","dataverse_id","287",NA
+"67","Andrew Pekosz","ORCID","0000-0003-3248-1761",NA
+"68","Andrew R. Duckworth","ORCID","0000-0001-5973-0524",NA
+"69","Andrew Thorne-Lyman","ORCID","0000-0001-5917-4126",NA
+"70","Andrew Wolfe","ORCID","0000-0003-1120-1679",NA
+"71","Andrianna I. Ayiotis","dataverse_id","20",NA
+"72","André D. Taylor","dataverse_id","400",NA
+"73","Angela KC","dataverse_id","195",NA
+"74","Anilchandra Attaluri","ORCID","0000-0003-0283-1927",NA
+"75","Anirudh Rao","dataverse_id","342",NA
+"76","Anirudh Sharma","ORCID","0000-0001-7942-8998",NA
+"77","Anna A Scott","dataverse_id","367",NA
+"78","Anna Weerasinghe","dataverse_id","437",NA
+"79","Anna Yin","ORCID","0000-0002-1612-5532",NA
+"80","Anne Jedlicka","dataverse_id","181",NA
+"81","Anne L. Gao","dataverse_id","118",NA
+"82","Anne M. Kouadio Ngnanda","dataverse_id","222",NA
+"83","Anne Marie Kouadio","dataverse_id","223",NA
+"84","Anne-Sofie C. Ahm","ORCID","0000-0002-5142-0326",NA
+"85","Annet Nalutaaya","ORCID","0000-0003-3903-303X",NA
+"86","Anthony S. Hall","dataverse_id","138",NA
+"87","Anusha Patel","dataverse_id","327",NA
+"88","Ardie Bolanon Ermac","dataverse_id","105",NA
+"89","Ariel Green","dataverse_id","131",NA
+"90","Arlene Chiu","ORCID","0000-0002-7009-4984",NA
+"91","Arlene Chiu","ORCID","0000-0002-7009-4984",NA
+"92","Arnold Bakker","ORCID","0000-0003-0417-641X",NA
+"93","Arthur E. Bragg","ORCID","0000-0002-3376-5494",NA
+"94","Arun L. Singh","dataverse_id","382",NA
+"95","Arvind Murugan","dataverse_id","298",NA
+"96","Asha K. Jordan","ORCID","0000-0001-6703-9899",NA
+"97","Augusto Getirana","ORCID","0000-0001-9635-7220",NA
+"98","Aurelien Wyngaard","dataverse_id","456",NA
+"99","Axel Fenwick","ORCID","0000-0002-8296-537X",NA
+"100","Balazs P. Vagvolgyi","ORCID","0000-0001-9835-5165",NA
+"101","Banza Baya","dataverse_id","34",NA
+"102","Barry Gordon","dataverse_id","129",NA
+"103","Beatriz Munoz","dataverse_id","294",NA
+"104","Belay Simane","ORCID","0000-0002-8004-3486",NA
+"105","Ben Zaitchik","ORCID","0000-0002-0698-0658",NA
+"106","Benjamin A. McArthur","dataverse_id","269",NA
+"107","Benjamin Banda","dataverse_id","26",NA
+"108","Benjamin Escribano","ORCID","0000-0002-1432-5952",NA
+"109","Benjamin F Zaitchik","ORCID","0000-0002-0698-0658",NA
+"110","Benjamin F. Hobbs","ORCID","0000-0003-1783-3597",NA
+"111","Benjamin F. Zaitchik","dataverse_id","469",NA
+"112","Benjamin F. Zaitchik","ORCID","0000-0002-0698-0658",NA
+"113","Benjamin F. Zaitchik","ORCID","0000-0002-0698-0658",NA
+"114","Benjamin H. Passey","ORCID","0000-0002-3483-4148",NA
+"115","Benjamin Killeen","ORCID","0000-0003-2511-7929",NA
+"116","Benjamin McArthur","dataverse_id","268",NA
+"117","Benjamin Van Durme","dataverse_id","418",NA
+"118","Bernard R. Brooks","dataverse_id","47",NA
+"119","Bernhard Fuerst","dataverse_id","115",NA
+"120","Bingquing Cheng","dataverse_id","69",NA
+"121","Binod Shrestha","dataverse_id","380",NA
+"122","Bradley R. Hacker","dataverse_id","136",NA
+"123","Brandon Barrett","dataverse_id","31",NA
+"124","Brandon Dillow","dataverse_id","93",NA
+"125","Brandon Feole","dataverse_id","110",NA
+"126","Brett M. O'Brien","dataverse_id","313",NA
+"127","Brett M. O’Brien","dataverse_id","319",NA
+"128","Brian Y. Li","ORCID","0000-0002-3055-4202",NA
+"129","Bryan Shaw","dataverse_id","376",NA
+"130","Bryant D. Loomis","ORCID","0000-0002-9370-9160",NA
+"131","Byunghwa Kang","ORCID","0009-0001-2615-3617",NA
+"132","C.J. Harman","dataverse_id","143",NA
+"133","Caelan Barranta","dataverse_id","30",NA
+"134","Caleb Kamoga","dataverse_id","200",NA
+"135","Camille Wouters","ORCID","0009-0001-1784-642X",NA
+"136","Carl R. Shapiro","ORCID","0000-0002-9868-7896",NA
+"137","Caroline M.  Chessare","dataverse_id","73",NA
+"138","Caroline M. Chessare","dataverse_id","72",NA
+"139","Caroline V. Morley","dataverse_id","283",NA
+"140","Carrie M. Anderson","ORCID","0000-0003-2175-3709",NA
+"141","Casey Marina Lurtz","ORCID","0000-0003-4244-5844",NA
+"142","Cassandra L. Cosans","ORCID","0000-0001-9121-532X",NA
+"143","Cassidy M. Speller","dataverse_id","390",NA
+"144","Catherine Pilgrim-Grayson","dataverse_id","331",NA
+"145","Celia Fernandez Brillet","ORCID","0000-0002-1267-8156",NA
+"146","Cesar G. Victora","ORCID","0000-0002-2465-2180",NA
+"147","Chao He","dataverse_id","148",NA
+"148","Chao He","ORCID","0000-0002-6694-0965",NA
+"149","Chao He","ORCID","0000-0002-6694-0965",NA
+"150","Charles C. Della Santina","ORCID","0000-0002-0509-5200",NA
+"151","Charles Meneveau","ORCID","0000-0001-6947-3605",NA
+"152","Charles Steenbergen","dataverse_id","392",NA
+"153","Chen Chi","dataverse_id","75",NA
+"154","Chen Du","ORCID","0000-0001-6161-5525",NA
+"155","Chen Hu","ORCID","0000-0003-4672-1981",NA
+"156","Chen Ming","dataverse_id","278",NA
+"157","Chen Xie","ORCID","0000-0001-6124-1420",NA
+"158","Chengchangfeng Lu","dataverse_id","253",NA
+"159","Chia Chi Ho","dataverse_id","159",NA
+"160","Chia-Jung Chang","dataverse_id","59",NA
+"161","Chia-Yu Chao","dataverse_id","61",NA
+"162","Chiadi E. Ndumele","dataverse_id","304",NA
+"163","Chien-Ming Huang","ORCID","0000-0002-6838-3701",NA
+"164","Chih-Ting Chen","dataverse_id","62",NA
+"165","Ching Sing Chai","dataverse_id","58",NA
+"166","Chris Holder","dataverse_id","164",NA
+"167","Christa D. Peters-Lidard","ORCID","0000-0003-1255-2876",NA
+"168","Christa D. Peters-Lidard","ORCID","0000-0003-1255-2876",NA
+"169","Christian M. Kaiser","dataverse_id","196",NA
+"170","Christie M. Ballantyne","dataverse_id","24",NA
+"171","Christina Hoffman","dataverse_id","161",NA
+"172","Christine Beauchene","ORCID","0000-0003-0787-4520",NA
+"173","Christopher Book","dataverse_id","40",NA
+"174","Christopher Holder","ORCID","0000-0003-3321-5959",NA
+"175","Christopher J. Hoffmann","dataverse_id","163",NA
+"176","Christopher J. Hoffmann","ORCID","0000-0002-9422-0519",NA
+"177","Christopher J. Potter","ORCID","0000-0002-5223-8112",NA
+"178","Christopher Lowetz","ORCID","0009-0008-1599-3419",NA
+"179","Christopher N. Herndon","ORCID","0000-0001-6004-5655",NA
+"180","Christopher R. deFilippi","ORCID","0000-0002-0660-4943",NA
+"181","Christopher S. Kelley","dataverse_id","206",NA
+"182","Christopher S. Yang","ORCID","0000-0002-7645-3861",NA
+"183","Chuhong Wang","ORCID","0000-0001-8993-3226",NA
+"184","Chun-Chieh Lin","ORCID","0000-0001-9679-4287",NA
+"185","Chun-Ting Yang","ORCID","0000-0002-7667-244X",NA
+"186","Ciaran J. Harman","ORCID","0000-0002-3185-002X",NA
+"187","Cindy M. Palinkas","ORCID","0000-0003-2740-8308",NA
+"188","Clara Hickman","dataverse_id","155",NA
+"189","Clayton Alexander","dataverse_id","5",NA
+"190","Clayton P. Alexander","dataverse_id","6",NA
+"191","Cong Gao","ORCID","0000-0001-6798-8381",NA
+"192","Cong Gao","dataverse_id","119",NA
+"193","Connor Ganley","ORCID","0000-0003-3851-3218",NA
+"194","Connor Ganley","dataverse_id","117",NA
+"195","Conor J. McMeniman","ORCID","0000-0001-8502-8712",NA
+"196","Conor McMeniman","ORCID","0000-0001-8502-8712",NA
+"197","Cordula Grüttner","ORCID","0000-0002-8271-1281",NA
+"198","Craig Harman","dataverse_id","144",NA
+"199","Cristina Recalde","dataverse_id","343",NA
+"200","Cristina Recalde-Coronel","ORCID","0000-0003-3984-895X",NA
+"201","Cynthia F Moss","ORCID","0000-0001-6916-0000",NA
+"202","Cynthia Lake","dataverse_id","228",NA
+"203","Cédric Wolters","ORCID","0000-0002-9710-4740",NA
+"204","D.C. Wilusz","dataverse_id","446",NA
+"205","Daisy Kim","dataverse_id","209",NA
+"206","Dale C. Roberts","ORCID","0000-0003-4328-0199",NA
+"207","Dale M. Needham","dataverse_id","305",NA
+"208","Dana Brenner","ORCID","0000-0003-2562-5683",NA
+"209","Dana C. Brenner","ORCID","0000-0003-2562-5683",NA
+"210","Daniel Arhinful","dataverse_id","12",NA
+"211","Daniel C, Wilusz","dataverse_id","447",NA
+"212","Daniel H. Reich","ORCID","0000-0001-6313-9884",NA
+"213","Daniel H. Reich","dataverse_id","345",NA
+"214","Daniel Hanley","dataverse_id","142",NA
+"215","Daniel J. Beltran-Villegas","ORCID","0000-0003-1667-3181",NA
+"216","Daniel R. Viete","ORCID","0000-0001-5495-9370",NA
+"217","Danielle A. Naugle","dataverse_id","303",NA
+"218","Danielle Naugle","dataverse_id","302",NA
+"219","Dannielle R. Rand","dataverse_id","341",NA
+"220","Darryn W. Waugh","ORCID","0000-0001-7692-2798",NA
+"221","Darryn Waugh","ORCID","0000-0001-7692-2798",NA
+"222","Darya Task","ORCID","0000-0003-0166-3626",NA
+"223","David A. Kass","ORCID","0000-0003-1596-2299",NA
+"224","David D. Ginty","ORCID","0000-0001-9723-8530",NA
+"225","David Dowdy","dataverse_id","96",NA
+"226","David H. Gracias","ORCID","0000-0003-2735-4725",NA
+"227","David Isooba","dataverse_id","176",NA
+"228","David J. Sullivan","ORCID","0000-0003-0319-0578",NA
+"229","David Jacobs","dataverse_id","178",NA
+"230","David Kraemer","dataverse_id","225",NA
+"231","David Lefer","ORCID","0000-0003-2293-7278",NA
+"232","David M. Jenkins","ORCID","0000-0003-2683-9157",NA
+"233","David M. Jenkins","dataverse_id","183",NA
+"234","David M. Mocko","ORCID","0000-0001-8688-5708",NA
+"235","David M. Nataf","ORCID","0000-0001-5825-4431",NA
+"236","David W. Dowdy","ORCID","0000-0003-0481-7475",NA
+"237","David W. Dowdy","dataverse_id","97",NA
+"238","Debojyoti Biswas","ORCID","0000-0003-4141-4034",NA
+"239","Deepa Madan","ORCID","0000-0002-0061-2715",NA
+"240","Deepti Mathur","dataverse_id","265",NA
+"241","Denis Joel Sama","dataverse_id","359",NA
+"242","Dennice F. Gayme","ORCID","0000-0003-0330-415X",NA
+"243","Derek Yee","dataverse_id","460",NA
+"244","Dhananjay Vaidya","ORCID","0000-0002-7164-1601",NA
+"245","Di Cao","dataverse_id","53",NA
+"246","Di Zhao","dataverse_id","477",NA
+"247","Di Zhao","ORCID","0000-0002-9978-6773",NA
+"248","Diarra Kamara","dataverse_id","198",NA
+"249","Diego Giraldo","ORCID","0000-0002-6552-3297",NA
+"250","Dihui Ruan","ORCID","0000-0001-8964-730X",NA
+"251","Dimitri A. Sverjensky","ORCID","0000-0003-3062-8053",NA
+"252","Dimitri Sverjensky","dataverse_id","395",NA
+"253","Dino Levy","ORCID","0000-0003-4290-7762",NA
+"254","Dominic G. Yared","dataverse_id","459",NA
+"255","Dominic Scalise","ORCID","0000-0001-8218-1797",NA
+"256","Dongchul Kim","ORCID","0000-0002-5659-1394",NA
+"257","Donny Hanjaya-Putra","ORCID","0000-0002-3039-9206",NA
+"258","Donny Hanjaya-Putra","dataverse_id","141",NA
+"259","Dorian M. Jackson","dataverse_id","177",NA
+"260","Doug Ceci","dataverse_id","56",NA
+"261","Dukin Lim","dataverse_id","243",NA
+"262","Dustin Dikeman","dataverse_id","92",NA
+"263","Edgar R. Miller III","dataverse_id","275",NA
+"264","Edgar Simulundu","ORCID","0000-0001-9423-0816",NA
+"265","Edward J. Bouwer","dataverse_id","44",NA
+"266","Eili Y. Klein","dataverse_id","214",NA
+"267","Elaine Vo","dataverse_id","421",NA
+"268","Elburg W van Boetzelaer","ORCID","0000-0002-1168-8491",NA
+"269","Eleftheria Koropouli","ORCID","0000-0001-8537-4471",NA
+"270","Elgin Akin","ORCID","0000-0001-8824-8809",NA
+"271","Elisabeth Glowatzki","ORCID","0000-0003-3135-658X",NA
+"272","Elise N. White","ORCID","0000-0002-1299-9646",NA
+"273","Eliseo Guallar","ORCID","0000-0002-4471-9565",NA
+"274","Eliza M.-R. Kempton","ORCID","0000-0002-1337-9051",NA
+"275","Elizabeth C. Mallalieu","ORCID","259",NA
+"276","Elizabeth C. Mallalieu","ORCID","0000-0003-0724-7826",NA
+"277","Elizabeth Hazel","ORCID","0000-0002-9176-3278",NA
+"278","Elmer Zapata-Mercado","ORCID","0000-0002-9766-8124",NA
+"279","Emily A. Kendall","ORCID","0000-0002-0083-422X",NA
+"280","Emily F. Smith","dataverse_id","384",NA
+"281","Emily L. Coderre","dataverse_id","80",NA
+"282","Emily Ricotta","ORCID","0000-0001-9928-8275",NA
+"283","Emily Wilson","dataverse_id","444",NA
+"284","Emma M. Lee","dataverse_id","232",NA
+"285","Emma Tiernan","dataverse_id","410",NA
+"286","Enid Neptune","ORCID","0000-0002-9635-1272",NA
+"287","Eoghan Brady","ORCID","0000-0003-0075-5406",NA
+"288","Eric D. Young","ORCID","0000-0003-0334-408X",NA
+"289","Eric Fortune","ORCID","0000-0001-6447-5425",NA
+"290","Eric G. Sakowski","dataverse_id","357",NA
+"291","Eric S. Fortune","dataverse_id","114",NA
+"292","Eric S. Fortune","ORCID","0000-0001-6447-5425",NA
+"293","Erik Emeric","dataverse_id","104",NA
+"294","Erika Barth","ORCID","0000-0002-5034-1300",NA
+"295","Erin A. Chung","ORCID","0000-0003-1058-7370",NA
+"296","Erin D. Michos","ORCID","0000-0002-5547-5084",NA
+"297","Erin D. Michos","dataverse_id","274",NA
+"298","Erin E. Sutton","ORCID","0000-0003-3586-2383",NA
+"299","Ernst Niebur","dataverse_id","310",NA
+"300","Ernst Niebur","ORCID","0000-0002-2815-9262",NA
+"301","Eryn E. Dixon","dataverse_id","94",NA
+"302","Eugenie Jumai’an","dataverse_id","193",NA
+"303","Evan C. Plunkett","dataverse_id","333",NA
+"304","Evan Plunkett","dataverse_id","332",NA
+"305","Ewelina M. Małecka","ORCID","0000-0001-8482-7897",NA
+"306","Ewelina Malecka-Grajek","ORCID","0000-0001-8482-7897",NA
+"307","Fanjun Bu","ORCID","0000-0002-9953-7347",NA
+"308","Fatimata Sow","dataverse_id","389",NA
+"309","Feifei Wang","dataverse_id","427",NA
+"310","Filip K. Knop","ORCID","0000-0002-2495-5034",NA
+"311","Francesco Savelli","ORCID","0000-0002-8588-0865",NA
+"312","Francis Ferraro","dataverse_id","112",NA
+"313","François-Régis Orthous-Daunay","ORCID","0000-0002-1170-0550",NA
+"314","G. William Wong","ORCID","0000-0002-5286-6506",NA
+"315","Gabriel Jiménez-Avalos","ORCID","0000-0002-0221-3208",NA
+"316","Gareth G. E. Seward","dataverse_id","373",NA
+"317","Gareth Jones","dataverse_id","192",NA
+"318","Genevieve M. Tauxe","dataverse_id","399",NA
+"319","Geoffrey Wang","dataverse_id","428",NA
+"320","Georges Guiella","ORCID","0000-0001-8525-340X",NA
+"321","Georgia Calhoun","dataverse_id","52",NA
+"322","Gerald Nestadt","ORCID","0000-0001-9461-5249",NA
+"323","Gianfelice Cinque","ORCID","0000-0001-6801-8010",NA
+"324","Goutam Konapala","dataverse_id","219",NA
+"325","Grace Awantang","dataverse_id","19",NA
+"326","Grace E. Kim","dataverse_id","210",NA
+"327","Grace Ringlein","dataverse_id","348",NA
+"328","Grant Hall","ORCID","0009-0006-5089-717X",NA
+"329","Grant Shepard","ORCID","0009-0000-3215-8716",NA
+"330","Gregory S. Cohen","dataverse_id","81",NA
+"331","Gregory S. X. E. Jefferis","ORCID","0000-0002-0587-9355",NA
+"332","H. Benjamin Larman","dataverse_id","229",NA
+"333","Hailemariam Legesse","ORCID","0000-0001-5086-0744",NA
+"334","Hamada S. Badr","ORCID","0000-0002-9808-2344",NA
+"335","Hamadou Sangho","dataverse_id","361",NA
+"336","Hana Golding","dataverse_id","126",NA
+"337","Hannah Koenker","ORCID","0000-0001-8960-4297",NA
+"338","Hantian Li","ORCID","0000-0003-1119-2792",NA
+"339","Hanzhang Lu","ORCID","0000-0003-3871-1564",NA
+"340","Hao Zhang","dataverse_id","471",NA
+"341","Harold Hemond","dataverse_id","153",NA
+"342","Harper L. Kirby","dataverse_id","212",NA
+"343","Harrison Powell","dataverse_id","335",NA
+"344","Hasmot Ali","ORCID","0000-0003-0044-1992",NA
+"345","Hataya Poonyagariyagorn","dataverse_id","334",NA
+"346","Hayden Carlton","ORCID","0000-0002-2249-3067",NA
+"347","Heba H. Mostafa","dataverse_id","286",NA
+"348","Henrique Reggiani","ORCID","0000-0001-6533-6179",NA
+"349","Heonjoon Lee","ORCID","0000-0001-5129-5740",NA
+"350","Hongjie Li","ORCID","0000-0002-7332-7122",NA
+"351","Howard E. Katz","ORCID","0000-0002-3190-2475",NA
+"352","Howard E. Katz","dataverse_id","202",NA
+"353","Howard E. Katz","ORCID","0000-0002-0468-6420",NA
+"354","Howard E. Katz","ORCID","0000-0002-3190-2475",NA
+"355","Howard E. Katz","ORCID","0000-0001-8739-2542",NA
+"356","Howard Katz","ORCID","0000-0002-3190-2475",NA
+"357","Howard Katz","ORCID","0000-0002-3190-2475",NA
+"358","Hsien-Yen Chang","dataverse_id","60",NA
+"359","Hsuan Liu","ORCID","0000-0002-0806-7643",NA
+"360","Hualin Qiao","dataverse_id","339",NA
+"361","Huang Yang","ORCID","0000-0002-5693-0392",NA
+"362","Hugh Ellis","dataverse_id","103",NA
+"363","Hui Li","ORCID","0000-0002-3826-0735",NA
+"364","Hui Li","dataverse_id","235",NA
+"365","Huidong Fan","dataverse_id","108",NA
+"366","Hyun Jun Jung","dataverse_id","194",NA
+"367","Hyun June Jang","dataverse_id","179",NA
+"368","Hyun-June Jang","ORCID","0000-0001-8218-2482",NA
+"369","Ian M. Oppenheim","ORCID","0000-0002-1643-8803",NA
+"370","Iliana E. Mladenova","dataverse_id","279",NA
+"371","Irina Burd","dataverse_id","51",NA
+"372","Isabel Hahn","ORCID","0000-0003-4580-9893",NA
+"373","Isabel M. Jensen","dataverse_id","184",NA
+"374","Isabelle Daniel","ORCID","0000-0002-1448-7919",NA
+"375","Ishan Barman","ORCID","0000-0003-0800-0825",NA
+"376","Ishan Barman","dataverse_id","29",NA
+"377","Ismail Uyanik","ORCID","0000-0002-3535-5616",NA
+"378","Ismail Uyanik","ORCID","0000-0002-3535-5616",NA
+"379","Jack Samuels","ORCID","0000-0002-6715-7905",NA
+"380","Jackson O’Brien","ORCID","0000-0002-5221-2107",NA
+"381","Jacob Elsey","ORCID","0000-0003-0936-0865",NA
+"382","Jacob H. Hamer","ORCID","0000-0002-7993-4214",NA
+"383","Jacob Hamer","ORCID","0000-0002-7993-4214",NA
+"384","Jacob Thompson","dataverse_id","406",NA
+"385","Jaiprasath Sachithanandham","dataverse_id","356",NA
+"386","Jaiprasath Sachithanandham","ORCID","0000-0001-7086-2990",NA
+"387","Jake Doiron","ORCID","0000-0002-4584-4819",NA
+"388","James A. Agamaite","dataverse_id","3",NA
+"389","James J. Knierim","ORCID","0000-0002-1796-2930",NA
+"390","James L. Crowley","dataverse_id","84",NA
+"391","James M. Tielsch","ORCID","0000-0002-1151-060X",NA
+"392","James Mukiibi","dataverse_id","293",NA
+"393","Jamie L. Perin","ORCID","0000-0002-5482-6620",NA
+"394","Jan J. Hirtz","ORCID","0000-0002-4486-3057",NA
+"395","Jan Pielage","ORCID","0000-0002-5115-5884",NA
+"396","Jane Yee","dataverse_id","461",NA
+"397","Janice Krasnow","dataverse_id","226",NA
+"398","Jared Evans","dataverse_id","106",NA
+"399","Jason A. Burdick","ORCID","0000-0002-2006-332X",NA
+"400","Jason Westerbeck","dataverse_id","442",NA
+"401","Jeff A. Valenti","ORCID","0000-0003-3305-6281",NA
+"402","Jeffrey Cornwell","ORCID","0000-0001-7111-2489",NA
+"403","Jenna Shapiro","ORCID","0000-0003-2369-540X",NA
+"404","Jennifer Bryce","dataverse_id","48",NA
+"405","Jennifer Bryce","dataverse_id","49",NA
+"406","Jennifer C. Stevenson","dataverse_id","393",NA
+"407","Jennifer Dailey","dataverse_id","85",NA
+"408","Jennifer Dien Bard","dataverse_id","28",NA
+"409","Jennifer M. Kavran","dataverse_id","203",NA
+"410","Jens J. Holst","ORCID","0000-0001-6853-3805",NA
+"411","Jeremiah Miller","dataverse_id","276",NA
+"412","Jeremy F. Reiter","dataverse_id","346",NA
+"413","Jeremy Foote","ORCID","0000-0002-6621-6096",NA
+"414","Jeremy Sotzen","dataverse_id","388",NA
+"415","Jeremy Walston","dataverse_id","426",NA
+"416","Jessica J. Tao","dataverse_id","398",NA
+"417","Jiadi Xu","ORCID","0000-0001-9698-5622",NA
+"418","Jiafeng Zhu","dataverse_id","484",NA
+"419","Jian Song","dataverse_id","385",NA
+"420","Jiawang Zhou","ORCID","0000-0002-2399-0030",NA
+"421","Jie Liu","dataverse_id","245",NA
+"422","Jin Huang","dataverse_id","169",NA
+"423","Jina Pakpoor","dataverse_id","322",NA
+"424","Jinfeng Han","dataverse_id","139",NA
+"425","Jinfeng Han","ORCID","0000-0002-6140-4522",NA
+"426","Jingyi Huang","ORCID","0000-0002-5274-1068",NA
+"427","Jinhee Hur","ORCID","0000-0003-0968-208X",NA
+"428","Jinling Wu","dataverse_id","453",NA
+"429","Jiteng Mu","dataverse_id","289",NA
+"430","Jiyuan Huang","dataverse_id","170",NA
+"431","Jo L. Wilson","ORCID","0000-0002-1729-0863",NA
+"432","Joanna L. Hart","dataverse_id","145",NA
+"433","Joanna Tsao","dataverse_id","415",NA
+"434","Joanne Katz","ORCID","0000-0002-5997-7823",NA
+"435","Joanne Selinski","ORCID","0000-0003-2831-4389",NA
+"436","Joao A. Lima","dataverse_id","244",NA
+"437","Jodi B. Segal","dataverse_id","370",NA
+"438","Jodi B. Segal","ORCID","0000-0003-3978-9662",NA
+"439","Joel A. Pally","dataverse_id","323",NA
+"440","Joel Moore","ORCID","0000-0002-5546-9610",NA
+"441","Joelle Frechette","ORCID","0000-0001-5680-6554",NA
+"442","Johan Meyers","ORCID","0000-0002-2828-4397",NA
+"443","John A. Harris","ORCID","0000-0002-7907-8139",NA
+"444","John A. Higgins","ORCID","0000-0002-4893-4561",NA
+"445","John A. Timko","dataverse_id","411",NA
+"446","John D. Tovar","ORCID","0000-0002-9650-2210",NA
+"447","John D. Tovar","ORCID","0000-0002-9650-2210",NA
+"448","John E. Bond","dataverse_id","39",NA
+"449","John Guckenheimer","ORCID","0000-0001-6655-7862",NA
+"450","John Muschelli","dataverse_id","299",NA
+"451","John R. Edison","dataverse_id","100",NA
+"452","John San Soucie","ORCID","0000-0001-8339-2510",NA
+"453","John T. Gale","dataverse_id","116",NA
+"454","Jon P. Camden","ORCID","0000-0002-6179-2692",NA
+"455","Jonah Bregstone","dataverse_id","45",NA
+"456","Jonah K. Mittelstadt","ORCID","0000-0001-6738-5556",NA
+"457","Jonah Mittelstadt","ORCID","0000-0001-6738-5556",NA
+"458","Jonatan I. Bagger","ORCID","0000-0003-3174-1613",NA
+"459","Jonathan R. Williford","ORCID","0000-0002-9178-2647",NA
+"460","Jordan Thomas","dataverse_id","404",NA
+"461","Jorge A. Gonzalez-Martinez","ORCID","0000-0002-9936-7034",NA
+"462","Jorjethe Roca","ORCID","0000-0002-9793-0110",NA
+"463","Joseph A. Hill","ORCID","0000-0002-5379-1614",NA
+"464","Joseph F. Browning-Hanson","ORCID","0009-0001-3109-0796",NA
+"465","Joseph Serigano","ORCID","0000-0003-3849-5064",NA
+"466","Joseph Serigano","ORCID","0000-0003-3849-5064",NA
+"467","Joshua A. Sebree","ORCID","0000-0001-9612-8532",NA
+"468","Joshua Cole","ORCID","0000-0002-4859-1298",NA
+"469","Joshua Fern","dataverse_id","111",NA
+"470","Joshua Raji","ORCID","0000-0002-6447-6986",NA
+"471","Julia M. Gohlke","dataverse_id","125",NA
+"472","Julianne I. Moses","ORCID","0000-0002-8837-0035",NA
+"473","Julie Gutman","ORCID","0000-0001-6769-7322",NA
+"474","Julie M. Norton","dataverse_id","312",NA
+"475","Junhao Liang","dataverse_id","242",NA
+"476","Junsheng Yu","ORCID","0000-0002-7484-8114",NA
+"477","Junyao Gu","dataverse_id","132",NA
+"478","Justine S. Wagner","dataverse_id","425",NA
+"479","Justine S. Wagner","ORCID","0000-0003-4647-0449",NA
+"480","Justine Wagner","ORCID","0000-0003-4647-0449",NA
+"481","Justine Wagner","dataverse_id","424",NA
+"482","K. Patrick May","dataverse_id","267",NA
+"483","Kahori Kita","ORCID","0000-0001-5002-2863",NA
+"484","Kalev G. Hantsoo","ORCID","0000-0002-9334-9839",NA
+"485","Kalev Hantsoo","ORCID","0000-0002-9334-9839",NA
+"486","Kalina Hristova","ORCID","0000-0003-4274-4406",NA
+"487","Kalpana Besar","ORCID","0000-0002-3502-9378",NA
+"488","Karen A. Robinson","ORCID","0000-0003-1021-7820",NA
+"489","Karen Fox-Talbot","ORCID","0000-0001-9397-4282",NA
+"490","Karen Menuz","ORCID","0000-0001-8163-094",NA
+"491","Karim Bergaoui","dataverse_id","35",NA
+"492","Katherine Fenstermacher","ORCID","0000-0003-1139-3711",NA
+"493","Katherine O. Robsky","ORCID","0000-0001-7789-5779",NA
+"494","Katherine Robsky","ORCID","0000-0001-7789-5779",NA
+"495","Katherine Robsky","dataverse_id","350",NA
+"496","Katherine W. Tripp","ORCID","0000-0002-7278-708X",NA
+"497","Katherine Z. Fenstermacher","ORCID","0000-0003-1139-3711",NA
+"498","Kathleen E. Cullen","ORCID","0000-0002-9348-0933",NA
+"499","Kathleen Gabrielson","ORCID","0000-0003-3901-4357",NA
+"500","Kathleen Hoffman","dataverse_id","162",NA
+"501","Kathleen J. Stebe","ORCID","0000-0003-0510-0513",NA
+"502","Kathryn Shaw-Saliba","ORCID","0000-0002-4396-2432",NA
+"503","Katie O’Meara","dataverse_id","320",NA
+"504","Kavita Sharma","dataverse_id","374",NA
+"505","Keith Arora-Williams","dataverse_id","16",NA
+"506","Keith P. West Jr.","ORCID","0000-0001-9458-362X",NA
+"507","Kellan E. Baker","ORCID","0000-0002-9716-7936",NA
+"508","Kelly Wright","dataverse_id","452",NA
+"509","Kelson Shilling-Scrivo","ORCID","0000-0003-2622-3459",NA
+"510","Kenneth H. Hill","dataverse_id","157",NA
+"511","Kenneth Hill","dataverse_id","156",NA
+"512","Kenneth J.T. Livi","ORCID","0000-0001-7728-5460",NA
+"513","Kerry J. Schulze","dataverse_id","365",NA
+"514","Kerry Ledoux","dataverse_id","231",NA
+"515","Kevin C. Schlaufman","ORCID","0000-0001-5761-6779",NA
+"516","Kevin Lewis","ORCID","0000-0003-3412-803X",NA
+"517","Kevin W. Lewis","ORCID","0000-0003-3412-803X",NA
+"518","Kim A. Locke","ORCID","0000-0001-9891-4801",NA
+"519","Kim Seifert-Ahanda","dataverse_id","371",NA
+"520","Kimberly E. Steele","ORCID","0000-0001-5096-6549",NA
+"521","Kirsten Koehler","ORCID","0000-0002-0516-6945",NA
+"522","Kristen E. Schratz","dataverse_id","364",NA
+"523","Kristen McArthur","ORCID","0000-0001-5601-1583",NA
+"524","Kristi R. Arsenault","dataverse_id","17",NA
+"525","Kristi R. Arsenault","ORCID","0000-0002-6830-6271",NA
+"526","Kristi R. Arsenault","ORCID","0000-0002-6830-6271",NA
+"527","Kristin N. Hageman","dataverse_id","137",NA
+"528","Kuan-Fu Chen","dataverse_id","63",NA
+"529","Kuan-Lin Chen","dataverse_id","64",NA
+"530","Kyle B. LaPenna","ORCID","0000-0003-0470-0138",NA
+"531","Kyle Delwiche","dataverse_id","89",NA
+"532","Kyler A. Weingartner","dataverse_id","438",NA
+"533","Kyoung-A Cho","dataverse_id","77",NA
+"534","Lara S Ho","dataverse_id","160",NA
+"535","Laura A. St Clair","ORCID","0000-0001-5913-2073",NA
+"536","Laura Bosley","dataverse_id","42",NA
+"537","Laura E. Dickinson","dataverse_id","91",NA
+"538","Laura Steinhardt","ORCID","0000-0003-0540-9940",NA
+"539","Lauren M. Sauer","dataverse_id","362",NA
+"540","Lauren MacDonald","dataverse_id","255",NA
+"541","Laurène Flandinet","ORCID","0000-0001-7190-7396",NA
+"542","Lavender E. Hanson","ORCID","0000-0003-2298-8382",NA
+"543","Lawrence H. Moulton","ORCID","0000-0001-7041-7387",NA
+"544","Lawrence J. Appel","dataverse_id","9",NA
+"545","Leah Berhane","dataverse_id","36",NA
+"546","Lee S.-F. Wu","dataverse_id","455",NA
+"547","Lee Wu","dataverse_id","454",NA
+"548","Li Hui","ORCID","0000-0002-3826-0735",NA
+"549","Li-Eng Yu","dataverse_id","466",NA
+"550","Liang Wu","ORCID","0000-0003-1696-7809",NA
+"551","Lidong Chen","dataverse_id","65",NA
+"552","Lilian C. Ekowo","ORCID","0000-0002-1731-0879",NA
+"553","Limonty Simubali","dataverse_id","381",NA
+"554","Lisa M. Wilson","dataverse_id","445",NA
+"555","Lisa Mwaikambo","dataverse_id","300",NA
+"556","Lisa Pieterse","dataverse_id","330",NA
+"557","Lois A. Park","dataverse_id","326",NA
+"558","Long Zhao","ORCID","0000-0002-8211-118X",NA
+"559","Lu Jin","dataverse_id","189",NA
+"560","Luke A. Arend","dataverse_id","10",NA
+"561","Luke C Mullany","ORCID","0000-0003-4668-9803",NA
+"562","Luke C. Mullany","ORCID","0000-0003-4668-9803",NA
+"563","Lulin Li","dataverse_id","236",NA
+"564","Luwei Pearson","dataverse_id","328",NA
+"565","Lyle L. Nelson","dataverse_id","306",NA
+"566","Lynn Van Lith","dataverse_id","419",NA
+"567","M. Mert Ankarali","dataverse_id","8",NA
+"568","Macauley S. Breault","ORCID","0000-0003-1327-5372",NA
+"569","Madeline Noble","dataverse_id","311",NA
+"570","Madison Turner","ORCID","0000-0001-8061-8115",NA
+"571","Maeve Secor","dataverse_id","368",NA
+"572","Mahdi Navari","ORCID","0000-0003-0332-4580",NA
+"573","Mallory E. DeCoster","ORCID","0000-0002-1139-9235",NA
+"574","Mallory E. DeCoster","dataverse_id","87",NA
+"575","Mallory E. Decoster","ORCID","0000-0002-1139-9235",NA
+"576","Maningbe Keita","dataverse_id","205",NA
+"577","Manu S. Madhav","ORCID","0000-0001-5317-8492",NA
+"578","Marc Boulay","dataverse_id","43",NA
+"579","Margaret L. Rodgers","ORCID","0000-0002-8176-2044",NA
+"580","Margaret R. Chow","ORCID","0000-0002-4335-0903",NA
+"581","Maria Brbić","ORCID","0000-0002-1120-1778",NA
+"582","Marie Aude Pradal","ORCID","0000-0002-5301-9659",NA
+"583","Marie Aude S Pradal","ORCID","0000-0002-5301-9659",NA
+"584","Marie-Aude Pradal","ORCID","0000-0002-5301-9659",NA
+"585","Marie-Aude Pradal","dataverse_id","336",NA
+"586","Marie-Aude S. Pradal","ORCID","0000-0002-5301-9659",NA
+"587","Marius Usher","ORCID","0000-0001-8041-9060",NA
+"588","Mariya Chernenok","dataverse_id","71",NA
+"589","Mark B. Allen","ORCID","0000-0002-0656-7898",NA
+"590","Mark J. Tobin","ORCID","0000-0003-1862-0649",NA
+"591","Mark L. Van Natta","ORCID","0000-0002-3219-9451",NA
+"592","Mark S. Marley","ORCID","0000-0002-5251-2943",NA
+"593","Marshall G. Hussain Shuler","ORCID","0000-0002-1927-0970",NA
+"594","Marshall Shuler","ORCID","0000-0002-1927-0970",NA
+"595","Marta Pellegrini","ORCID","0000-0002-9806-3231",NA
+"596","Mary Armanios","dataverse_id","14",NA
+"597","Mary C. Lonsdale","dataverse_id","251",NA
+"598","Maryam Salehi","dataverse_id","358",NA
+"599","Maryam Salehi","ORCID","0000-0002-2977-5040",NA
+"600","Mason Song","ORCID","0009-0001-1248-9590",NA
+"601","Mathias Unberath","ORCID","0000-0002-0055-9950",NA
+"602","Matt Newgren","dataverse_id","307",NA
+"603","Matthew E. Moura","dataverse_id","288",NA
+"604","Matthew J. Budoff","ORCID","0000-0002-9616-1946",NA
+"605","Matthew R. Gormley","dataverse_id","130",NA
+"606","Matthew Rodell","ORCID","0000-0003-0106-7437",NA
+"607","Maureen Schickel","dataverse_id","363",NA
+"608","Max Thomas","dataverse_id","405",NA
+"609","Maya Gomes","ORCID","0000-0002-9707-350X",NA
+"610","Maya L. Gomes","ORCID","0000-0002-9707-350X",NA
+"611","Mehran Armand","ORCID","0000-0003-1028-8303",NA
+"612","Mehran Armand","dataverse_id","13",NA
+"613","Melinda J. Marsh","dataverse_id","263",NA
+"614","Melinda Munos","ORCID","0000-0002-1349-8026",NA
+"615","Melissa G. Trainer","ORCID","0000-0003-1106-8580",NA
+"616","Melissa L. Teply","dataverse_id","401",NA
+"617","Melissa L. Wrzesien","ORCID","0000-0003-4958-9234",NA
+"618","Melissa Trainer","ORCID","0000-0003-1106-8580",NA
+"619","Melody Liu","dataverse_id","246",NA
+"620","Melville J Wohlgemuth","ORCID","0000-0003-4779-4154",NA
+"621","Menandro Gomes","dataverse_id","127",NA
+"622","Meng Xia","dataverse_id","457",NA
+"623","Mengdi Wang","dataverse_id","429",NA
+"624","Mengistu Tafesse","dataverse_id","396",NA
+"625","Mengqi Guo","dataverse_id","133",NA
+"626","Mengxuan Jia","ORCID","0000-0001-9173-1084",NA
+"627","Mercy Kanyuka","dataverse_id","201",NA
+"628","Micajah Z. McGarity","ORCID","0000-0001-7323-0526",NA
+"629","Michael A. Beer","ORCID","0000-0001-9955-3809",NA
+"630","Michael A. Bevan","ORCID","0000-0002-9368-4899",NA
+"631","Michael A. Schweitzer","dataverse_id","366",NA
+"632","Michael D. M. Bader","ORCID","0000-0001-6292-7790",NA
+"633","Michael Eggen","dataverse_id","102",NA
+"634","Michael Humes","dataverse_id","172",NA
+"635","Michael J. Radke","ORCID","0000-0002-4072-181X",NA
+"636","Michael L. Falk","ORCID","0000-0002-8383-4259",NA
+"637","Michael Pacella","dataverse_id","321",NA
+"638","Michael Radke","ORCID","0000-0002-4072-181X",NA
+"639","Michael Radke","ORCID","0000-0002-4072-181X",NA
+"640","Michael S. Osmanski","ORCID","0000-0003-3458-9215",NA
+"641","Michael T. Williams","ORCID","0000-0003-3302-4044",NA
+"642","Michael Toso","ORCID","0000-0002-7459-4978",NA
+"643","Michelle M. Lorah","ORCID","0000-0002-9236-587X",NA
+"644","Michelle Moats","dataverse_id","281",NA
+"645","Miguel A. Pellitero","ORCID","0000-0001-8739-2542",NA
+"646","Miguel A. Pellitero","dataverse_id","329",NA
+"647","Mingxuan Wang","dataverse_id","430",NA
+"648","Minming Cui","ORCID","0000-0002-8985-0372",NA
+"649","Mohamed D. Hashem","dataverse_id","146",NA
+"650","Mohammad Shaear","ORCID","0000-0001-8688-115X",NA
+"651","Molly B. Richardson","dataverse_id","347",NA
+"652","Molly E. Menzel","ORCID","0000-0002-9598-2996",NA
+"653","Monica Tung","dataverse_id","416",NA
+"654","Monicah M. Mburu","ORCID","0000-0001-8846-0615",NA
+"655","Moshe Glickman","dataverse_id","124",NA
+"656","Muntasir Roni","dataverse_id","351",NA
+"657","Mustafa M. Ankarali","ORCID","0000-0002-1235-5373",NA
+"658","Mutlu Ozdogan","dataverse_id","318",NA
+"659","N. Peter Armitage","ORCID","0000-0001-7568-2059",NA
+"660","NA Baltimore Police Department","dataverse_id","25",NA
+"661","NA Center for Human Nutrition","dataverse_id","57",NA
+"662","NA Chintan Environmental Research and Action Group","dataverse_id","76",NA
+"663","NA Feed the Future Innovation Lab for Nutrition","dataverse_id","109",NA
+"664","NA Johns Hopkins Center for a Livable Future","dataverse_id","191",NA
+"665","NA Paulette Clancy","ORCID","0000-0002-0468-6420",NA
+"666","NA Russell. Thomas P.","dataverse_id","355",NA
+"667","Nageshwar Arepally","dataverse_id","11",NA
+"668","Nan Chen","dataverse_id","66",NA
+"669","Nan Jiang","dataverse_id","187",NA
+"670","Nan L. Chen","dataverse_id","67",NA
+"671","Nan Lewicky","dataverse_id","234",NA
+"672","Naomi A. Becker","ORCID","0000-0003-0102-9713",NA
+"673","Nassir Navab","ORCID","0000-0002-6032-5611",NA
+"674","Natalie J. Tibbels","ORCID","0000-0001-6848-1881",NA
+"675","Natalie Tibbels","ORCID","408",NA
+"676","Natalie Tibbels","ORCID","0000-0001-6848-1881",NA
+"677","Natalie Ullman","dataverse_id","417",NA
+"678","Nathan P. Miller","dataverse_id","277",NA
+"679","Nathaniel L. Dominique","ORCID","0000-0002-0439-9982",NA
+"680","Neal D. Durant","dataverse_id","98",NA
+"681","Netzahualcóyotl Arroyo Currás","ORCID","0000-0001-8739-2542",NA
+"682","Netzahualcóyotl Arroyo-Currás","ORCID","0000-0002-2740-6276",NA
+"683","Nguyen Nam Thang","dataverse_id","403",NA
+"684","Nicholas Adams","dataverse_id","2",NA
+"685","Nicholas J. Swanson","ORCID","0000-0002-5696-9967",NA
+"686","Nicholas Wilkerson","dataverse_id","443",NA
+"687","Nikesh Koirala","dataverse_id","218",NA
+"688","Nikole K. Lewis","ORCID","0000-0002-8507-1304",NA
+"689","Nils Holzenberger","dataverse_id","165",NA
+"690","Ninad B Kothari","ORCID","0000-0001-5543-6459",NA
+"691","Nneoma Nonyelum Anieto","dataverse_id","7",NA
+"692","Noah J. Cowan","ORCID","0000-0003-2502-3770",NA
+"693","Noah J. Cowan","ORCID","0000-0003-2502-3770",NA
+"694","Noah J. Cowan","ORCID","0000-0003-2502-3770",NA
+"695","Noam R. Izenberg","ORCID","0000-0003-1629-6478",NA
+"696","Noor Al-Saloum","dataverse_id","4",NA
+"697","Norman P. Armitage","dataverse_id","15",NA
+"698","Olga Joos","ORCID","0000-0003-0335-4982",NA
+"699","Olga Nakasolya","dataverse_id","301",NA
+"700","Omar A. Hafez","ORCID","0000-0002-7846-9226",NA
+"701","Omar Abdullah","dataverse_id","1",NA
+"702","Oriol Regué Sendrós","dataverse_id","344",NA
+"703","Oumarou Habi","dataverse_id","135",NA
+"704","Owen M. Woodward","dataverse_id","451",NA
+"705","Pamela Ouyang","ORCID","0000-0003-4925-9059",NA
+"706","Pang-Wei Liu","ORCID","0000-0002-3789-594X",NA
+"707","Pascal Ngoy","dataverse_id","308",NA
+"708","Patricia Dailly-Ajavon","dataverse_id","86",NA
+"709","Patricia McGuiggan","dataverse_id","270",NA
+"710","Patricia Outeda","dataverse_id","317",NA
+"711","Patrick Beaudry","ORCID","0000-0001-8587-2729",NA
+"712","Patrick E. Hopkins","ORCID","0000-0002-3403-743X",NA
+"713","Patrick E. Hopkins","dataverse_id","166",NA
+"714","Patrick Goodwill","dataverse_id","128",NA
+"715","Patrick Kanold","ORCID","0000-0002-7529-5435",NA
+"716","Patrick O. Kanold","ORCID","0000-0002-7529-5435",NA
+"717","Patrick O. Kanold","ORCID","0000-0002-7529-5435",NA
+"718","Patty McGuiggan","dataverse_id","271",NA
+"719","Paul A. Welling","dataverse_id","439",NA
+"720","Paul Gensbigler","dataverse_id","121",NA
+"721","Paul Morris","dataverse_id","284",NA
+"722","Paul Nestadt","ORCID","0000-0002-2479-703X",NA
+"723","Paula Marinho","dataverse_id","260",NA
+"724","Paulette Clancy","ORCID","0000-0002-0468-6420",NA
+"725","Paulette Clancy","ORCID","0000-0002-0468-6420",NA
+"726","Pedro P. Irazoqui","ORCID","0000-0002-4791-4593",NA
+"727","Peter J. Kitonsa","ORCID","0000-0003-2971-216X",NA
+"728","Peter Jendrichovsky","dataverse_id","182",NA
+"729","Peter Thielen","ORCID","0000-0003-1807-2785",NA
+"730","Philip E. Thuma","dataverse_id","407",NA
+"731","Philipp Schlegel","ORCID","0000-0002-5633-1314",NA
+"732","Philippe F.Y. Vincent","ORCID","0000-0001-7712-7198",NA
+"733","Pierre Sacré","ORCID","0000-0002-7228-1628",NA
+"734","Piyush Raj","ORCID","0000-0002-1488-9475",NA
+"735","Pragyashree S. Basyal","dataverse_id","33",NA
+"736","Preethi Korangath","ORCID","0000-0002-6623-493X",NA
+"737","Qi Huang","dataverse_id","171",NA
+"738","Qian Zhang","dataverse_id","472",NA
+"739","Qian Zhang","ORCID","0000-0003-0500-5655",NA
+"740","Qiang Wang","dataverse_id","431",NA
+"741","Qifeng Jiang","ORCID","0000-0002-5590-4889",NA
+"742","Qihao Liu","dataverse_id","247",NA
+"743","Qin Hu","dataverse_id","167",NA
+"744","Qing Liu","dataverse_id","248",NA
+"745","Qingyang Zhang","dataverse_id","473",NA
+"746","Qu Chongyu","dataverse_id","78",NA
+"747","R. M. Ireland","dataverse_id","174",NA
+"748","R.M. Maxwell","dataverse_id","266",NA
+"749","Rachael McDonnell","ORCID","0000-0002-0525-4582",NA
+"750","Rachel A. Hegeman","ORCID","0000-0003-2869-8773",NA
+"751","Rachel Coffin","ORCID","0000-0002-5194-3055",NA
+"752","Rachel Hegeman","ORCID","0000-0003-2869-8773",NA
+"753","Rachel Truitt","dataverse_id","413",NA
+"754","Raghda E. Eldesouki","ORCID","0000-0002-8860-3484",NA
+"755","Rajat Bindlish","ORCID","0000-0002-1913-0353",NA
+"756","Rajiv C McCoy","ORCID","0000-0003-0615-146X",NA
+"757","Randal Hand","dataverse_id","140",NA
+"758","Ravi Varadhan","ORCID","0000-0002-8434-1034",NA
+"759","Ravikrishnan P. Jayakumar","dataverse_id","180",NA
+"760","Ravikrishnan P. Jayakumar","ORCID","0000-0003-4321-6816",NA
+"761","Razi M. Haque","ORCID","0000-0003-0453-0300",NA
+"762","Rebeca Mejías","ORCID","0000-0003-1936-7219",NA
+"763","Rebecca A. Heidkamp","dataverse_id","152",NA
+"764","Rebecca B. Schulman","ORCID","0000-0003-4555-3162",NA
+"765","Rebecca Schulman","ORCID","0000-0003-4555-3162",NA
+"766","Rebecca Yee","dataverse_id","462",NA
+"767","Rebekka S. Klausen","dataverse_id","213",NA
+"768","Renée Marlin-Bennett","ORCID","0000-0002-4341-0064",NA
+"769","Reyhan Westbrook","dataverse_id","441",NA
+"770","Reza Ghotbi","dataverse_id","122",NA
+"771","Richard Coleman","dataverse_id","82",NA
+"772","Richard E. Rothman","dataverse_id","353",NA
+"773","Richard K. Scott","ORCID","0000-0002-9113-2978",NA
+"774","Richard Rothman","dataverse_id","352",NA
+"775","Risa M. Wolf","dataverse_id","449",NA
+"776","Ritu Sharma","dataverse_id","375",NA
+"777","Robert B. Grupp","ORCID","0000-0003-3386-5839",NA
+"778","Robert Clarke","ORCID","0000-0002-9278-0854",NA
+"779","Robert E. Black","ORCID","0000-0001-9926-7984",NA
+"780","Robert E. Slavin","ORCID","0000-0003-3117-7477",NA
+"781","Robert Gilman","ORCID","0000-0002-3704-9217",NA
+"782","Robert Grupp","ORCID","0000-0003-3386-5839",NA
+"783","Robert Ivkov","ORCID","0000-0002-2930-5276",NA
+"784","Robert M. Holder","ORCID","0000-0002-1119-6905",NA
+"785","Robert M. Ireland","dataverse_id","175",NA
+"786","Robert Slavin","dataverse_id","383",NA
+"787","Roger V. Yelle","ORCID","0000-0002-2587-9539",NA
+"788","Roger Yelle","dataverse_id","464",NA
+"789","Rolf Klemm","dataverse_id","216",NA
+"790","Ron C. Hoogeveen","ORCID","0000-0003-2399-4653",NA
+"791","Ronald Sanchez","dataverse_id","360",NA
+"792","Rui Jin","dataverse_id","190",NA
+"793","Ruifeng Zhou","dataverse_id","481",NA
+"794","Ruohong Shi","ORCID","0000-0001-9163-5607",NA
+"795","Russell H. Taylor","ORCID","0000-0001-6272-1100",NA
+"796","Russell Taylor","ORCID","0000-0001-6272-1100",NA
+"797","Ruwaida Salem","ORCID","0000-0003-3639-7831",NA
+"798","Ryan A. Zamora","dataverse_id","470",NA
+"799","Ryan B. Budde","ORCID","0000-0003-4381-8673",NA
+"800","Ryan J. Murphy","ORCID","0000-0003-3065-7700",NA
+"801","Ryan Murphy","dataverse_id","296",NA
+"802","Rüdiger von der Heydt","ORCID","0000-0002-8741-813X",NA
+"803","Sabra L. Klein","dataverse_id","215",NA
+"804","Sahana Jayaraman","ORCID","0000-0003-3413-2530",NA
+"805","Saijuddin Shaikh","ORCID","0000-0001-5095-1478",NA
+"806","Sairah Malkin","ORCID","0000-0002-7523-1589",NA
+"807","Sairah Y. Malkin","ORCID","0000-0002-7523-1589",NA
+"808","Sam Droege","ORCID","0000-0003-4393-0403",NA
+"809","Samantha H. Sarni","ORCID","0000-0002-3002-819X",NA
+"810","Samuel W. Schaffter","ORCID","0000-0002-7259-7374",NA
+"811","Sandra E. Zaeh","ORCID","0000-0002-5091-1975",NA
+"812","Sanjiv J. Shah","ORCID","0000-0002-5655-8201",NA
+"813","Santosh Dhakal","ORCID","0000-0002-4494-8608",NA
+"814","Saori Ohkubo","dataverse_id","316",NA
+"815","Sarah A. Stamper","dataverse_id","391",NA
+"816","Sarah A. Woodson","ORCID","0000-0003-0170-1987",NA
+"817","Sarah Brittingham","dataverse_id","46",NA
+"818","Sarah E. Moran","ORCID","0000-0002-6721-3284",NA
+"819","Sarah Gidner","dataverse_id","123",NA
+"820","Sarah M Hörst","ORCID","0000-0003-4596-0702",NA
+"821","Sarah M. Hörst","ORCID","0000-0003-4596-0702",NA
+"822","Sarah P. Preheim","ORCID","0000-0001-7365-2382",NA
+"823","Sarah Preheim","dataverse_id","337",NA
+"824","Sarah Preheim","ORCID","0000-0001-7365-2382",NA
+"825","Sarah Ptashnik","dataverse_id","338",NA
+"826","Sarah Ragen","ORCID","0000-0003-0987-6060",NA
+"827","Sarah Woodson","ORCID","0000-0003-0170-1987",NA
+"828","Sarith P. Mahanama","dataverse_id","257",NA
+"829","Sasikumar Mayarambakam","ORCID","0000-0001-8745-4272",NA
+"830","Sayak Panda","ORCID","0000-0001-9724-6725",NA
+"831","Sayak Subhra Panda","ORCID","0000-0001-9724-6725",NA
+"832","Scott M. Krummey","ORCID","0000-0002-7504-9162",NA
+"833","Scott T. Vasher","ORCID","0000-0002-6554-7803",NA
+"834","Sean Healy","dataverse_id","150",NA
+"835","Sean Oh","ORCID","0000-0003-1681-516X",NA
+"836","Sean Sun","ORCID","0000-0002-9077-7088",NA
+"837","Seongshik Oh","dataverse_id","315",NA
+"838","Sereen Thaddeus","dataverse_id","402",NA
+"839","Shahin G. Lashkari","dataverse_id","230",NA
+"840","Shahin Sefati","dataverse_id","369",NA
+"841","Shahryar K. Ahmad","ORCID","0000-0002-9789-3137",NA
+"842","Shaina Morris","dataverse_id","285",NA
+"843","Sharon Gerecht","ORCID","0000-0002-8542-4835",NA
+"844","Sheila West","dataverse_id","440",NA
+"845","Shugong Wang","dataverse_id","432",NA
+"846","Siddhant Vyas","dataverse_id","422",NA
+"847","Siew Cheng Phua","ORCID","0000-0002-6786-8117",NA
+"848","Silu Men","dataverse_id","273",NA
+"849","Siming Deng","ORCID","0000-0003-3111-8629",NA
+"850","Simon Allard","ORCID","0000-0003-0519-7036",NA
+"851","Sisi Jia","ORCID","0000-0002-5877-5138",NA
+"852","Sodnomdargia (Anu) Avirmed","dataverse_id","18",NA
+"853","Sophia J. Melvin","ORCID","0009-0001-8395-8278",NA
+"854","Sophie Stoerkel","dataverse_id","394",NA
+"855","Spy Munthali","dataverse_id","295",NA
+"856","Sravanti Kusuma","dataverse_id","227",NA
+"857","Sridevi V. Sarma","ORCID","0000-0002-4817-6625",NA
+"858","Stella Babalola","dataverse_id","21",NA
+"859","Stephanie Rankin-Turner","ORCID","0000-0001-5210-1709",NA
+"860","Stephen L. Morgan","ORCID","0000-0003-2198-1381",NA
+"861","Steven A Harvey","ORCID","0000-0001-6936-0213",NA
+"862","Steven J. Chow","ORCID","0000-0001-5135-4747",NA
+"863","Steven Marra","dataverse_id","261",NA
+"864","Subarna K. Khatry","dataverse_id","207",NA
+"865","Sudhir Khetan","ORCID","0000-0001-5854-8886",NA
+"866","Sudipta Mukherjee","dataverse_id","291",NA
+"867","Sujay V. Kumar","ORCID","0000-0001-8797-9482",NA
+"868","Sujay V. Kumar","ORCID","0000-0001-8797-9482",NA
+"869","Sumita Mishra","ORCID","0000-0002-6455-4075",NA
+"870","Suqi Ke","dataverse_id","204",NA
+"871","Susan Hutfless","dataverse_id","173",NA
+"872","Susan J. Bersoff-Matcha","dataverse_id","37",NA
+"873","Susan M. Courtney","ORCID","0000-0003-1469-8879",NA
+"874","Susan R. Heckbert","dataverse_id","151",NA
+"875","Susan T. Jackson","ORCID","0000-0003-4266-7973",NA
+"876","Susanna M. Thon","ORCID","0000-0002-1003-2650",NA
+"877","Susanna M. Thon","ORCID","0000-0002-1003-2650",NA
+"878","Susanna Thon","ORCID","0000-0002-1003-2650",NA
+"879","Suwei Wang","dataverse_id","433",NA
+"880","Swati Tanwar","ORCID","0000-0002-0430-1922",NA
+"881","Swetha Manohar","ORCID","0000-0003-4042-8952",NA
+"882","Sydney Ballou","ORCID","0000-0002-3053-1115",NA
+"883","Sylvain Patinet","ORCID","0000-0002-1585-8275",NA
+"884","Taein D. Lee","ORCID","0000-0001-8176-9759",NA
+"885","Taein D. Lee","ORCID","0000-0001-8176-9759",NA
+"886","Taein Lee","ORCID","0000-0001-8176-9759",NA
+"887","Takanari Inoue","ORCID","0000-0002-7957-7624",NA
+"888","Tamas Budavari","ORCID","0000-0002-7034-4621",NA
+"889","Tanya Marton","dataverse_id","264",NA
+"890","Tao Wang","dataverse_id","434",NA
+"891","Tara D. Edwards","dataverse_id","101",NA
+"892","Tedbabe Degefie","dataverse_id","88",NA
+"893","Tejaswini Kale","ORCID","0000-0001-7246-745X",NA
+"894","Tejaswini S. Kale","dataverse_id","197",NA
+"895","Tengteng Zhuang","ORCID","0000-0003-3940-4216",NA
+"896","Terence M. Murphy","dataverse_id","297",NA
+"897","Terry Watnick","dataverse_id","436",NA
+"898","Thao T. Truong","dataverse_id","414",NA
+"899","Thao Tran","dataverse_id","412",NA
+"900","Thomas Gautier","ORCID","0000-0002-9794-5056",NA
+"901","Thomas Gautier","ORCID","0000-0002-9794-5056",NA
+"902","Thomas Gillette","ORCID","0000-0002-7617-3544",NA
+"903","Thomas Hinault","ORCID","0000-0001-9939-0640",NA
+"904","Thomas M. Magnuson","dataverse_id","256",NA
+"905","Thomas Mehoke","dataverse_id","272",NA
+"906","Thomas P. Russell","dataverse_id","354",NA
+"907","Thomas R. Holmes","ORCID","0000-0002-4651-0079",NA
+"908","Thomas Sharp","ORCID","0000-0001-8706-9825",NA
+"909","Tian Xie","dataverse_id","458",NA
+"910","Tiezheng Zhang","dataverse_id","474",NA
+"911","Timothy M. Merlis","ORCID","0000-0002-5593-8210",NA
+"912","Timothy Mueller","dataverse_id","290",NA
+"913","Timothy Roberton","dataverse_id","349",NA
+"914","Tina Villsbøll","dataverse_id","420",NA
+"915","Tiope Mleme","dataverse_id","280",NA
+"916","Tommi Koskinen","dataverse_id","220",NA
+"917","Tommi T. Koskinen","dataverse_id","221",NA
+"918","Traci Goodchild","ORCID","0000-0001-9234-2806",NA
+"919","Travis Wolfe","ORCID","0000-0002-6045-9302",NA
+"920","Tsering P. Lama","ORCID","0000-0001-6054-4075",NA
+"921","Tushita Mukhopadhyay","ORCID","0000-0002-8053-9668",NA
+"922","Tushita Mukhopadhyaya","dataverse_id","292",NA
+"923","Tushita Mukhopadhyaya","ORCID","0000-0002-8053-9668",NA
+"924","Vadim Dukhanin","ORCID","0000-0002-8685-0027",NA
+"925","Valeriu Cebotaru","dataverse_id","55",NA
+"926","Veit Stuphorn","ORCID","0000-0003-1117-9993",NA
+"927","Vicki H. Wysocki","ORCID","0000-0003-0495-2538",NA
+"928","Vidulata Kamath","dataverse_id","199",NA
+"929","Vijaya Subramanian","ORCID","0000-0001-8292-1759",NA
+"930","Vikram S. Chib","ORCID","0000-0001-8810-5699",NA
+"931","Vinayak Harihar","ORCID","0000-0002-0205-7161",NA
+"932","Vincent Clark","ORCID","0000-0001-9707-8004",NA
+"933","Vinita Subramanya","ORCID","0000-0002-1059-0847",NA
+"934","Vivek Bose","dataverse_id","41",NA
+"935","Vivek P. Jani","ORCID","0000-0002-3811-4973",NA
+"936","Véronique Vuitton","ORCID","0000-0001-7273-1898",NA
+"937","W.B. Ball","dataverse_id","22",NA
+"938","Walter Kra","dataverse_id","224",NA
+"939","Wanshu Nie","dataverse_id","309",NA
+"940","Wanshu Nie","ORCID","0000-0003-3639-9570",NA
+"941","Wanshu Nie","ORCID","0000-0003-3639-9570",NA
+"942","Wei Shi","dataverse_id","378",NA
+"943","Weichao Qiu","dataverse_id","340",NA
+"944","Wendy R. Nelson","ORCID","0000-0002-3047-0172",NA
+"945","Wendy S. Post","ORCID","0000-0002-8655-5204",NA
+"946","Wendy Ying","dataverse_id","465",NA
+"947","Wenxuan Li","dataverse_id","237",NA
+"948","Wenzhen Duan","ORCID","0000-0001-5933-6308",NA
+"949","William F. Kenney","ORCID","0000-0002-2273-8263",NA
+"950","William J. M. Seviour","ORCID","0000-0003-1622-0545",NA
+"951","William K. Pan","dataverse_id","324",NA
+"952","William L. Wilson","ORCID","0000-0003-2755-7610",NA
+"953","William P. Ball","dataverse_id","23",NA
+"954","William P. Ball","ORCID","0000-0001-5217-8108",NA
+"955","Wolfgang Eberle","ORCID","0000-0002-6115-9811",NA
+"956","Wu Liang","ORCID","0000-0003-1696-7809",NA
+"957","Wudyalew Wondmagegn","dataverse_id","450",NA
+"958","Xiaoding Yuan","dataverse_id","468",NA
+"959","Xiaoming Jia","dataverse_id","186",NA
+"960","Xiaoqin Wang","ORCID","0000-0002-3999-0772",NA
+"961","Xin Guo","dataverse_id","134",NA
+"962","Xingang Zhao","ORCID","0000-0001-5852-9757",NA
+"963","Xingang Zhao","dataverse_id","478",NA
+"964","Xinhao Fan","ORCID","0000-0002-0773-7473",NA
+"965","Xinjie Yu","dataverse_id","467",NA
+"966","Xinting Yu","ORCID","0000-0002-7479-1437",NA
+"967","Xintong Li","dataverse_id","238",NA
+"968","Xuejuan Ning","ORCID","0000-0002-8523-0483",NA
+"969","Y.K. Shin","dataverse_id","379",NA
+"970","Yan Cheng","dataverse_id","70",NA
+"971","Yan He","dataverse_id","149",NA
+"972","Yang-Sook Kim","dataverse_id","211",NA
+"973","Yanling Chen","dataverse_id","68",NA
+"974","Yao Wu","ORCID","0000-0003-1296-6569",NA
+"975","Yared Mekonnen","ORCID","0000-0003-0227-2272",NA
+"976","Yeonsoo Baik","ORCID","0000-0001-7016-0438",NA
+"977","Yi Li","ORCID","0000-0001-7916-0741",NA
+"978","Yicheng Hu","dataverse_id","168",NA
+"979","Yifan Zheng","dataverse_id","479",NA
+"980","Yifan Zhou","dataverse_id","482",NA
+"981","Ying Wang","dataverse_id","435",NA
+"982","Yixin Liu","dataverse_id","249",NA
+"983","Yizeng Li","dataverse_id","239",NA
+"984","Yolanda Barbera-Lainez","dataverse_id","27",NA
+"985","Yoon Kyong Lee","dataverse_id","233",NA
+"986","Yoshito Otake","ORCID","0000-0003-1291-9316",NA
+"987","You-Ping Yang","ORCID","0000-0003-3913-8982",NA
+"988","Yu Yang","ORCID","0009-0002-9512-5377",NA
+"989","Yu-I Shen","dataverse_id","377",NA
+"990","Yu-Nong Gong","ORCID","0000-0002-6799-1561",NA
+"991","Yuan Lou","dataverse_id","252",NA
+"992","Yuanting Zha","ORCID","0000-0001-7077-1167",NA
+"993","Yucheng Tang","dataverse_id","397",NA
+"994","Yue Luo","ORCID","0000-0002-2757-5395",NA
+"995","Yue Zhang","ORCID","0000-0002-3313-6030",NA
+"996","Yue Zhang","dataverse_id","475",NA
+"997","Yufeng Jiang","dataverse_id","188",NA
+"998","Yuguo Li","dataverse_id","240",NA
+"999","Yunjia Song","dataverse_id","386",NA
+"1000","Yunjia Song","ORCID","0000-0002-1216-0285",NA
+"1001","Yuqi Song","dataverse_id","387",NA
+"1002","Yuta Nihongaki","ORCID","0000-0002-9818-9344",NA
+"1003","Yuyang Ji","dataverse_id","185",NA
+"1004","Yvonne Tam","ORCID","0000-0003-4849-5084",NA
+"1005","Zachary B. Fitzgerald","dataverse_id","113",NA
+"1006","Zachary D. Lamberty","ORCID","0000-0003-2948-9818",NA
+"1007","Zexu Ma","dataverse_id","254",NA
+"1008","Zhiliang Wei","ORCID","0000-0002-8477-2440",NA
+"1009","Zhishuai Zhang","dataverse_id","476",NA
+"1010","Zhizhi Zhong","dataverse_id","480",NA
+"1011","Ziegler L. Rouven","ORCID","0000-0002-3050-7692",NA
+"1012","Zizhang Li","dataverse_id","241",NA
+"1013","Zongwei Zhou","dataverse_id","483",NA
+"1014","Zoé Hendrickson","ORCID","154",NA
+"1015","Zoé M. Hendrickson","ORCID","0000-0003-2057-2463",NA
