@@ -1,3 +1,4 @@
+source("renv/activate.R")
 # Load utils so we can use install.packages()
 library(utils)
 

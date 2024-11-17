@@ -14,50 +14,38 @@ pacman::p_load(
   tidyr,
   httr,
   jsonlite,
-  lorem
+  lorem,
+  lubridate
 )
 
 dat <- readRDS('1_raw/jhu_metadata.RDS')
 source('3_functions/wrangling_utilities.R')
+source('3_functions/get_str.R')
 results <- list()
 
 
-# Expand Everything? ------------------------------------------------------
+
+# Explore -----------------------------------------------------------------
 
 
-#' NOTE: This is not working how I want it to. Might have to wrangle each
-#' entity individually
+get_str(dat$jhu_datasets, 3)
+get_str(dat$jhu_datasets_native)
+get_str(dat$jhu_datasets_native[[1]])
+get_str(dat$jhu_datasets_native[[1]]$latestVersion)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks)
 
-# get_str(dat$jhu_datasets_native)
-# get_str(dat$jhu_datasets_native[[1]]$latestVersion)
-#
-# df <- dat$jhu_datasets_native %>%
-#   map(list_flatten) %>%
-#   map(list_flatten) %>%
-#   map(list_flatten)
-# get_str(df)
-#
-# # Get all possible variable names
-# var_names <- df %>%
-#   map(names) %>%
-#   unlist() %>%
-#   unique() %>%
-#   sort()
-#
-# #
-# expand_list_element <- function(element) {
-#   df_cols <- element %>% keep(is.data.frame)
-#   other_cols <- element %>% discard(is.data.frame)
-#   unnested <- map_dfc(df_cols, ~ as_tibble(.x))  # Convert all data frames to tibbles
-#   repeated_other_cols <- map_dfc(other_cols, ~ rep(.x, each = nrow(unnested)))
-#   combined_df <- bind_cols(repeated_other_cols, unnested)
-#   return(combined_df)
-# }
-#
-# df_combined <- df %>%
-#   map(expand_list_element)
-#
-# get_str(df_combined)
+### Explore citations
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields)
+
+dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$typeName
+# contact 3 "datasetContact
+# author 2 "author"
+
+# Explore contacts
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value[[3]])
+dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value[[3]]
 
 
 
@@ -125,6 +113,7 @@ results$files <- files_df
 
 
 # Datasets ----------------------------------------------------------------
+## Main API ----------------------------------------------------------------
 
 
 get_str(dat$jhu_datasets, 1)
@@ -132,7 +121,7 @@ get_str(dat$jhu_datasets_native[[1]])
 # url links to persistentUrl
 
 datasets_df <- dat$jhu_datasets %>%
-  select(name:storageIdentifier)
+  select(name:storageIdentifier, subjects)
 get_str(datasets_df)
 
 #' To get download counts for datasets, lets add up the file counts, because the
@@ -148,30 +137,88 @@ counts <- files_df %>%
   arrange(desc(downloads))
 counts
 get_str(counts)
-get_table(counts$downloads)
+table(counts$downloads)
 
 # Join this into the datasets
 datasets_df <- left_join(datasets_df,
                          counts,
                          join_by(global_id == dataset_id))
 get_str(datasets_df)
-get_table(datasets_df$downloads)
+table(datasets_df$downloads)
 
 # Harmonize names
-datasets_df <- datasets_df %>%
+datasets_df_clean <- datasets_df %>%
   select(-storageIdentifier, -type, -name_of_dataverse) %>%
   select(
-    dataset_id = global_id,
-    collection_id = identifier_of_dataverse,
-    name,
+    ds_id = global_id,
+    col_id = identifier_of_dataverse,
+    title = name,
     url,
     description,
-    citation_html = citationHtml,
-    everything()
-  )
+    pub_date = published_at,
+    subjects,
+    downloads
+  ) %>%
+  mutate(pub_date = as_date(pub_date))
+get_str(datasets_df_clean)
 
-# Save it
-results$datasets <- datasets_df
+
+
+## Subjects ----------------------------------------------------------------
+
+
+# Pulling out subject info here - multi value attribute
+# Datasets can have more than one subject
+get_str(datasets_df_clean)
+
+subjects <- datasets_df_clean %>%
+  select(ds_id, subjects) %>%
+  unnest(cols = c(subjects))
+get_str(subjects)
+
+# That's it, just dataset IDs and the subject names
+results$subjects <- subjects
+
+# Now we can remove subjects from the datasetes
+datasets_df_clean <- datasets_df_clean %>%
+  select(-subjects)
+
+
+
+## Add Native Info --------------------------------------------------------
+
+
+## Get license information from native API and join it
+get_str(dat$jhu_datasets_native[[1]])
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$license)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion)
+
+# For a single file, get persistent id (ds_id) and license
+dat$jhu_datasets_native[[1]]$latestVersion$datasetPersistentId
+dat$jhu_datasets_native[[1]]$latestVersion$license[[1]]
+nrow(dat$jhu_datasets_native[[1]]$latestVersion$files)
+
+# Now pull them all
+ids_licenses <- map(dat$jhu_datasets_native, ~ {
+  lic_id <- ifelse(is.null(.x$latestVersion$license[[1]]), NA, .x$latestVersion$license[[1]])
+  ds_id <- .x$latestVersion$datasetPersistentId
+  n_files <- nrow(.x$latestVersion$files)
+  data.frame(ds_id, lic_id, n_files)
+}) %>%
+  bind_rows()
+
+# Join to datasets
+datasets_df_clean <- datasets_df_clean %>%
+  left_join(ids_licenses)
+get_str(datasets_df_clean)
+
+
+
+## Save it -----------------------------------------------------------------
+
+
+results$datasets <- datasets_df_clean
 
 
 
@@ -183,113 +230,56 @@ head(dat$jhu_dataverses)
 # This is easy, just get rid of the type column and leave else as is
 # also add the root dataverse
 collections_df <- dat$jhu_dataverses %>%
-  select(collection_id = identifier, everything(), -type) %>%
-  mutate(root_id = 'jhu')
+  select(
+    col_id = identifier,
+    title = name,
+    pub_date = published_at,
+    everything(),
+    -type,
+    -url
+  ) %>%
+  mutate(
+    root_id = 'jhu',
+    pub_date = as_date(pub_date)
+  ) %>%
+  add_row( # Adding an entry for root
+    col_id = 'jhu',
+    title = 'JHU Root Dataverse',
+    pub_date = as_date('2013-12-17'),
+    description = 'This is the root dataverse for the JHU Installation',
+    root_id = 'jhu'
+  )
 get_str(collections_df)
 
-results$collections <- collections_df
 
-
-
-# Contacts ----------------------------------------------------------------
-
-
-get_str(dat$jhu_datasets, 3)
-get_str(dat$jhu_datasets$contacts)
-
-# Save dataset ids, will have to join them with contacts
-global_ids <- dat$jhu_datasets$global_id
-
-# Pull out just contacts
-contacts <- dat$jhu_datasets$contacts
-
-get_str(contacts)
-contacts[[1]]
-contacts[[2]]
-# The second row in each dataframe seems to always be for access, and leads to
-# Johns Hopkinds University Data Services. Probably just get rid of those.
-
-# Add the global IDs here before we move on and muck things up
-# Then combine into a single DF
-contacts_df <- map2(contacts, global_ids, \(x, y) {
-  x %>%
-    mutate(global_id = y)
-}) %>%
-  bind_rows()
-get_str(contacts_df)
-
-# Get rid of anything that includes "access". we just want data contacts
-# Also rename name to message
-contacts_df <- contacts_df %>%
-  filter(!str_detect(affiliation, 'Data Services'),
-         str_length(affiliation) > 0,
-         !str_detect(name, 'dataservices@jhu.edu|datamanagement@jhu.edu')) %>%
-  rename(message = name)
-get_str(contacts_df)
-
-# Split out message into all the contact names
-# First by contact. take last piece
-# If there is an OR, split by OR
-contacts_df$message %>% head(50)
-
-# WE HAVE 241 GOING INTO THIS
-# Split up message into chunks, pull out names and emails
-# Also remove prefixes, dr and prof and such
-contacts_df <- contacts_df %>%
-  mutate(
-    split = str_split_i(contacts_df$message, 'contact ', 2) %>%
-      str_split(' or | or or ') %>%
-      map(~ str_split(.x, ' via | v.ia | vis | at ') %>% extract_pairs)) %>%
-  unnest(split) %>%
-  mutate(email = str_split_i(email, ' ', 1) %>% str_remove('\\.$'),
-         name = str_remove(name, 'Dr\\. |Prof\\. |Mr. |or '))
-
-# Remove any rows where email or name are NA or empty string
-contacts_df <- contacts_df %>%
-  filter(!is.na(name), !is.na(email), length(email) > 0, length(name) > 0)
-
-# now just clean it up so names match properly
-# Saving this to a different object so I can come back here later
-# because we will need to pull out these emails.
-# for now, just keeping the things we only need for this relationship entity
-contacts_table <- contacts_df %>%
-  select(
-    dataset_id = global_id,
-    author_id = name
+## Add n_files and downloads
+# Get DF of n_files and downloads from datasets
+get_str(results$datasets)
+ds_summary <- results$datasets %>%
+  group_by(ds_id) %>%
+  summarize(
+    col_id = col_id,
+    n_files = sum(n_files, na.rm = TRUE),
+    downloads = sum(downloads, na.rm = TRUE)
   )
-get_str(contacts_table)
+ds_summary
 
-results$contacts <- contacts_table
+# Join it to collections
+collections_df <- left_join(collections_df, ds_summary)
+get_str(collections_df)
 
-
-
-# Explore -----------------------------------------------------------------
-
-
-get_str(dat$jhu_datasets, 3)
-get_str(dat$jhu_datasets_native)
-get_str(dat$jhu_datasets_native[[1]])
-get_str(dat$jhu_datasets_native[[1]]$latestVersion)
-get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks)
-
-### Explore citations
-get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation)
-get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields)
-
-dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$typeName
-# contact 3 "datasetContact
-# author 2 "author"
-
-# Explore contacts
-get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value)
-get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value[[3]])
-dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value[[3]]
+# Save it
+results$collections <- collections_df
 
 
 
 # Authors -----------------------------------------------------------------
 
 
+get_str(dat$jhu_datasets_native[[1]]$latestVersion)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value, 3)
 get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value[[2]])
 # Nice, this has name, affiliation, and an identifier, usually orcid ID
 
@@ -315,7 +305,7 @@ get_str(big_author_df)
 
 # This is basically the author/dataset relationship entity
 # we can pull that out, as well as a pure author dataset.
-# and also use this to get institutions!
+# and also use this to get institutions
 
 ### First get pure author dataset
 get_str(big_author_df)
@@ -323,100 +313,27 @@ just_authors <- big_author_df %>%
   select(
     name = authorName.value,
     # institution_id = authorAffiliation.value,
-    author_id_type = authorIdentifierScheme.value,
-    author_id = authorIdentifier.value
+    auth_id_type = authorIdentifierScheme.value,
+    auth_id = authorIdentifier.value,
+    ds_id = global_id
   ) %>%
   unique() %>%
-  mutate(author_id = str_sub(author_id, start = -19)) %>%
+  mutate(auth_id = str_sub(auth_id, start = -19)) %>%
   arrange(name)
 
 # How many NAs
-n_na <- sum(is.na(just_authors$author_id))
+n_na <- sum(is.na(just_authors$auth_id))
 
 # Assign the ones missing an ID a 1:n_na id
-just_authors$author_id[is.na(just_authors$author_id)] <- seq(1:n_na)
-just_authors$author_id_type <- ifelse(is.na(just_authors$author_id_type),
+just_authors$auth_id[is.na(just_authors$auth_id)] <- seq(1:n_na)
+just_authors$auth_id_type <- ifelse(is.na(just_authors$auth_id_type),
                                       'dataverse_id',
-                                      just_authors$author_id_type)
+                                      just_authors$auth_id_type)
 get_str(just_authors)
 
-# Put their names in order instead of it being last, first
-just_authors <- just_authors %>%
-  mutate(
-    split = str_split(name, ', '),
-    name = map_chr(split, ~ paste(.x[2], .x[1])) %>% str_trim()
-  ) %>%
-  select(-split) %>%
-  arrange(name)
-
-# Add a registered user id column. Giving half of them an id for now.
-# just_authors <- just_authors %>%
-#   mutate(reg_id = case_when(
-#     row_number() %% 2 == 0 ~ row_number(),
-#     .default = NA_integer_
-#   ))
-# get_str(just_authors)
-
 results$authors <- just_authors
-
-
-
-# Institutions ------------------------------------------------------------
-
-
-get_str(big_author_df)
-# Could split by commas, pull out the chunk that contains University or Institute
-# get us most of the way there
-# University, Institut, Johns Hopkins, then stragglers...
-
-institution_df <- big_author_df %>%
-  select(full_affiliation = authorAffiliation.value)
-
-# Split by commas to get lists
-splits <- str_split(institution_df$full_affiliation, ', ')
-pattern <- 'University|Johns Hopkins|Institut'
-
-clean_inst <- map_chr(splits, \(x) {
-  out <- x[which(str_detect(x, pattern))]
-  if (length(out) == 0) {
-    return(NA_character_)
-  } else if (length(out) == 1) {
-    return(out)
-  } else {
-    return(out[[1]])
-  }
-})
-
-clean_inst
-
-institution_df$clean_name <- clean_inst
-institution_df <- institution_df %>%
-  mutate(clean_name = case_when(
-    str_detect(clean_name, 'Johns Hopkins') ~ 'Johns Hopkins University',
-    str_detect(clean_name, 'Maryland') ~ 'University of Maryland',
-    .default = clean_name
-  ))
-get_str(institution_df)
-
-
-
-## Get Websites ------------------------------------------------------------
-
-
-# NOTE: daily limit of 100 queries, and we have 130 institutions to search.
-
-# List of institutions
-inst_list <- institution_df %>%
-  filter(!is.na(clean_name)) %>%
-  .$clean_name %>%
-  unique
-
-api_key <- Sys.getenv("API_KEY")
-cse_id <- Sys.getenv("CSE_ID")
-
-# # CAREFUL WITH THIS - limit of 100 queries per day
-# test <- map(inst_list[130], ~ get_website(.x, api_key, cse_id))
-# test
+# Will add reg user ids below
+# Leaving in ds_id for now just in case?
 
 
 
@@ -443,7 +360,7 @@ pubs_df <- map(1:nrow(pubs), \(row) {
       NA_character_,
       pubs$publications[[row]]$url
     ),
-    dataset_doi = pubs$global_id[[row]]
+    ds_id = pubs$global_id[[row]]
   )
 }) %>%
   list_rbind() %>%
@@ -453,8 +370,8 @@ get_str(pubs_df)
 # Clean up names
 pubs_df <- pubs_df %>%
   select(
-    publication_id = pub_id,
-    dataset_id = dataset_doi,
+    pub_id,
+    ds_id,
     everything()
   )
 get_str(pubs_df)
@@ -470,49 +387,59 @@ results$publications <- pubs_df
 # Relation entity between authors and publications
 get_str(just_authors)
 get_str(pubs_df)
+get_str(authors)
 
-# Need to pull from big author DF which has dataset_ids
+# Need to pull from big author DF which has the linking info
 get_str(big_author_df)
+
+# Check to make sure they line up
+test <- big_author_df %>%
+  inner_join(
+    results$authors,
+    by = join_by(authorName.value == name),
+    relationship = 'many-to-many'
+  ) %>%
+  select(authorName.value, global_id, auth_id)
+test
+# Looks good
 
 produce_df <- big_author_df %>%
   select(
     name = authorName.value,
-    author_id = authorIdentifier.value,
-    dataset_id = global_id
-  ) %>%
-  mutate(
-    split = str_split(name, ', '),
-    name = map_chr(split, ~ paste(.x[2], .x[1]))
-  ) %>%
-  select(-split) %>%
-  unique()
+    auth_id = authorIdentifier.value
+  )
 
 get_str(produce_df)
-
 results$produce <- produce_df
 
+# Check that it joins with authors
+inner_join(results$produce, results$authors, by = join_by(name == name))
+# Looks reasonable - not everyone links up, but that's okay. Not every dataset
+# would have citations associated with it.
 
 
-# Subjects ----------------------------------------------------------------
+
+# Dataset Upload ----------------------------------------------------------
 
 
-get_str(dat$jhu_datasets)
-get_str(dat$jhu_datasets$subjects)
+# This is linking authors to datasets. Many to many.
+get_str(big_author_df)
+get_str(results$authors)
 
-subjects <- dat$jhu_datasets$subjects %>%
-  unlist() %>%
-  unique() %>%
-  sort()
+ds_up <- big_author_df %>%
+  select(
+    name = authorName.value,
+    auth_id = authorIdentifier.value,
+    ds_id = global_id
+  ) %>%
+  group_by(ds_id) %>%
+  mutate(
+    timestamp = ymd('2014-01-01') + days(sample(0:(ymd('2014-01-01') - ymd('2024-01-01')), 1))
+  )
+get_str(ds_up)
 
-subjects_df <- data.frame(
-  name = subjects,
-  subject_id = 1:length(subjects)
-)
-get_str(subjects_df)
-subjects_df
-# Looks good
-
-results$subjects <- subjects_df
+# Using random date for now, come back to this later []
+results$ds_uploads <- ds_up
 
 
 
@@ -558,7 +485,7 @@ licenses_filter <- Filter(is_valid_df, licenses)
 licenses_df <- list_rbind(licenses_filter) %>%
   unique() %>%
   mutate(license_id = 1:nrow(.)) %>%
-  select(license_id, name, uri, icon_uri = iconUri)
+  select(license_id, name, url = uri)
 get_str(licenses_df)
 
 results$licenses <- licenses_df
@@ -707,9 +634,6 @@ out <- imap(dat$jhu_datasets_native, \(dataset, index) {
 get_str(out)
 get_str(out[[1]])
 
-# Just one
-test <- as.data.frame(out[[1]])
-get_str(test)
 
 sw_df <- Filter(Negate(is.logical), out) %>%
   map(~ as.data.frame(.x) %>%
@@ -725,7 +649,7 @@ sw_df <- Filter(Negate(is.logical), out) %>%
   mutate(dataset_id = str_split_i(dataset_id, '//', 2))
 get_str(sw_df)
 
-# Should pull out license into its own table. Not sure what to od about language
+# Should pull out license into its own table. Not sure what to do about language
 # Maybe multi value attribute?
 
 # Make sw license df
@@ -842,7 +766,7 @@ admins <- reg %>%
   select(-user_id, -author_id) %>%
   mutate(
     privilege = sample(c('superuser', 'edit', 'read'), nrow(.), replace = TRUE),
-    collection_id = sample(results$collections$collection_id, nrow(.), replace = FALSE),
+    collection_id = sample(results$collections$col_id, nrow(.), replace = FALSE),
     start_date = Sys.Date() - sort(sample(3000:7000, 25))
   )
 get_str(admins)
