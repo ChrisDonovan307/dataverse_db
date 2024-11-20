@@ -19,8 +19,8 @@ pacman::p_load(
 )
 
 dat <- readRDS('1_raw/jhu_metadata.RDS')
-source('3_functions/wrangling_utilities.R')
-source('3_functions/get_str.R')
+source('r/3_functions/wrangling_utilities.R')
+source('r/3_functions/get_str.R')
 results <- list()
 
 
@@ -808,11 +808,11 @@ get_str(authors)
 
 
 # Save as list of DFs
-saveRDS(results, '2_clean/jhu_dfs.Rds')
+saveRDS(results, 'r/2_clean/jhu_dfs.Rds')
 
 # Also save as separate CSVs
 iwalk(results, \(df, name) {
-  write.csv(df, paste0('6_outputs/jhu_', name, '.csv'))
+  write.csv(df, paste0('r/6_outputs/jhu_', name, '.csv'))
 })
 
 # Clear

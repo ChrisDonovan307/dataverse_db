@@ -28,7 +28,7 @@ base_url <- 'https://archive.data.jhu.edu/'
 results <- list()
 
 # Load helper functions
-paths <- list.files('3_functions/', full.names = TRUE)
+paths <- list.files('r/3_functions/', full.names = TRUE)
 lapply(paths, source)
 rm(paths)
 
@@ -145,5 +145,5 @@ results$jhu_datasets_native <- ds_dat
 # Save and Clear ----------------------------------------------------------
 
 
-saveRDS(results, '1_raw/jhu_metadata.RDS')
+saveRDS(results, 'r/1_raw/jhu_metadata.RDS')
 clear_data()

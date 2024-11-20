@@ -1,0 +1,213 @@
+SQL> 
+SQL> -- Execute the script file. --
+SQL> start &&1
+SQL> -- 2. Select statements --------------------------------------------------
+SQL> 
+SQL> -- a
+SQL> select e.Fname, e.Lname
+  2  from EMPLOYEE e
+  3  join EMPLOYEE s on e.Super_ssn = s.Ssn
+  4  where s.Fname = 'Franklin'
+  5  	   and s.Lname = 'Wong';
+
+FNAME                                                                           
+--------------------------------------------------                              
+LNAME                                                                           
+--------------------------------------------------                              
+John                                                                            
+Smith                                                                           
+                                                                                
+Ramesh                                                                          
+Narayan                                                                         
+                                                                                
+Joyce                                                                           
+English                                                                         
+                                                                                
+
+SQL> 
+SQL> -- b
+SQL> select p.Pname, sum(w.Hours) as total_hours
+  2  from PROJECT p
+  3  join WORKS_ON w on p.Pnumber = w.Pno
+  4  group by p.Pname;
+
+PNAME                     TOTAL_HOURS                                           
+------------------------- -----------                                           
+Newbenefits                        55                                           
+ProductX                         52.5                                           
+ProductY                         37.5                                           
+Computerization                    55                                           
+Reorganization                     25                                           
+ProductZ                           50                                           
+
+6 rows selected.
+
+SQL> 
+SQL> -- c
+SQL> insert into WORKS_ON values (333445555, 1, NULL);
+
+1 row created.
+
+SQL> insert into WORKS_ON values (333445555, 30, NULL);
+
+1 row created.
+
+SQL> 
+SQL> select e.Fname, e.Lname, p.Pname
+  2  from EMPLOYEE e
+  3  join WORKS_ON w on e.Ssn = w.Essn
+  4  join PROJECT p on w.Pno = p.Pnumber
+  5  order by p.Pname;
+
+FNAME                                                                           
+--------------------------------------------------                              
+LNAME                                              PNAME                        
+-------------------------------------------------- -------------------------    
+Ahmad                                                                           
+Jabbar                                             Computerization              
+                                                                                
+Alicia                                                                          
+Zelaya                                             Computerization              
+                                                                                
+Franklin                                                                        
+Wong                                               Computerization              
+                                                                                
+
+FNAME                                                                           
+--------------------------------------------------                              
+LNAME                                              PNAME                        
+-------------------------------------------------- -------------------------    
+Ahmad                                                                           
+Jabbar                                             Newbenefits                  
+                                                                                
+Jennifer                                                                        
+Wallace                                            Newbenefits                  
+                                                                                
+Alicia                                                                          
+Zelaya                                             Newbenefits                  
+                                                                                
+
+FNAME                                                                           
+--------------------------------------------------                              
+LNAME                                              PNAME                        
+-------------------------------------------------- -------------------------    
+Franklin                                                                        
+Wong                                               Newbenefits                  
+                                                                                
+John                                                                            
+Smith                                              ProductX                     
+                                                                                
+Franklin                                                                        
+Wong                                               ProductX                     
+                                                                                
+
+FNAME                                                                           
+--------------------------------------------------                              
+LNAME                                              PNAME                        
+-------------------------------------------------- -------------------------    
+Joyce                                                                           
+English                                            ProductX                     
+                                                                                
+Joyce                                                                           
+English                                            ProductY                     
+                                                                                
+John                                                                            
+Smith                                              ProductY                     
+                                                                                
+
+FNAME                                                                           
+--------------------------------------------------                              
+LNAME                                              PNAME                        
+-------------------------------------------------- -------------------------    
+Franklin                                                                        
+Wong                                               ProductY                     
+                                                                                
+Ramesh                                                                          
+Narayan                                            ProductZ                     
+                                                                                
+Franklin                                                                        
+Wong                                               ProductZ                     
+                                                                                
+
+FNAME                                                                           
+--------------------------------------------------                              
+LNAME                                              PNAME                        
+-------------------------------------------------- -------------------------    
+Jennifer                                                                        
+Wallace                                            Reorganization               
+                                                                                
+Franklin                                                                        
+Wong                                               Reorganization               
+                                                                                
+James                                                                           
+Borg                                               Reorganization               
+                                                                                
+
+18 rows selected.
+
+SQL> 
+SQL> rollback;
+
+Rollback complete.
+
+SQL> 
+SQL> -- d
+SQL> delete from WORKS_ON
+  2  where Essn = 888665555
+  3  	   and pNo = 20;
+
+1 row deleted.
+
+SQL> 
+SQL> select e.Fname, e.Lname
+  2  from EMPLOYEE e
+  3  left join WORKS_ON w on e.Ssn = w.Essn
+  4  where w.Essn is null;
+
+FNAME                                                                           
+--------------------------------------------------                              
+LNAME                                                                           
+--------------------------------------------------                              
+James                                                                           
+Borg                                                                            
+                                                                                
+
+SQL> 
+SQL> rollback;
+
+Rollback complete.
+
+SQL> 
+SQL> -- e
+SQL> select d.Dname, avg(e.Salary) as Avg_Salary
+  2  from EMPLOYEE e
+  3  join DEPARTMENT d on e.Dno = d.Dnumber
+  4  group by d.Dname;
+
+DNAME                     AVG_SALARY                                            
+------------------------- ----------                                            
+Headquarters                   55000                                            
+Research                       33250                                            
+Administration                 31000                                            
+
+SQL> 
+SQL> -- f
+SQL> select e.Fname, e.Lname, e.Address, l.Dnumber
+  2  from EMPLOYEE e
+  3  join WORKS_ON w on e.Ssn = w.Essn
+  4  join PROJECT p on w.Pno = p.Pnumber
+  5  join DEPT_LOCATIONS l on p.Dnum = l.Dnumber
+  6  join DEPARTMENT d on e.Dno = d.Dnumber
+  7  where p.Plocation = 'Houston'
+  8  	   and l.Dnumber not in (
+  9  	       select dep.Dnumber
+ 10  	       from DEPARTMENT dep
+ 11  	       join DEPT_LOCATIONS loc on dep.Dnumber = loc.Dnumber
+ 12  	       where loc.Dlocation = 'Houston'
+ 13  	   );
+
+no rows selected
+
+SQL> SQL> 
+SQL> -- Restore the options to their default values. --
+SQL> spool off

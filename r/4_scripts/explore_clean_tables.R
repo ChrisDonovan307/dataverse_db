@@ -13,7 +13,7 @@ pacman::p_load(
   stringr
 )
 
-source('3_functions/get_str.R')
+source('r/3_functions/get_str.R')
 
 # Load clean tables
 names <- list.files('6_outputs/') %>%
