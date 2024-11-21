@@ -1,1046 +1,1347 @@
-"","keyword","keyword_id"
-"1","16s rrna gene sequences",1
-"2","1900",2
-"3","2d/3d registration",3
-"4","3d spatial orientation",4
-"5","abiotic hydrocarbons",5
-"6","access to care",6
-"7","acetylcholine",7
-"8","activation energy",8
-"9","active case finding",9
-"10","active learning",10
-"11","active sensing",11
-"12","acyl-biotin exchange",12
-"13","adaptation",13
-"14","adduct",14
-"15","adipokines",15
-"16","administrative geography",16
-"17","adolescent",17
-"18","adpkd",18
-"19","advance care planning",19
-"20","advocacy",20
-"21","africa",21
-"22","agriculture",22
-"23","agro-ecological zones",23
-"24","aids",24
-"25","air stability",25
-"26","alkylphosphonic acids",26
-"27","all-polymer thermoelectric",27
-"28","allograft rejection",28
-"29","alternative energy",29
-"30","alveolar epithelial cells",30
-"31","alzheimer’s disease",31
-"32","amazon",32
-"33","ambipolar",33
-"34","ammonia",34
-"35","amorphous solids",35
-"36","amyloidosis",36
-"37","anesthesia",37
-"38","angiogenesis",38
-"39","animal locomotion",39
-"40","animal models",40
-"41","annotated wikipedia",41
-"42","annotation",42
-"43","anopheles",43
-"44","antarctic circumpolar current",44
-"45","antenatal care",45
-"46","anthropogenic impacts",46
-"47","anthropometry",47
-"48","anti-forensics techniques",48
-"49","antigenic drift",49
-"50","applied meteorology",50
-"51","aptamer",51
-"52","aqueous speciation",52
-"53","arctic atmospheric composition",53
-"54","arrests",54
-"55","arsenic",55
-"56","art",56
-"57","artificial intelligence",57
-"58","artificial intelligence and law",58
-"59","assessment",59
-"60","astronomy data analysis",60
-"61","ataxia",61
-"62","atmosphere",62
-"63","atmospheres",63
-"64","atmospheric modeling",64
-"65","atmospheric science",65
-"66","atmospheric transport",66
-"67","atomic force microscopy",67
-"68","attention",68
-"69","attention and memory-guided promethee (amp)",69
-"70","auditory cortex",70
-"71","automated training",71
-"72","ayurveda",72
-"73","bacterial small rna",73
-"74","baltimore",74
-"75","bangladesh",75
-"76","bangladesh residents in japan",76
-"77","bar1",77
-"78","bariatric surgery",78
-"79","barrier measures",79
-"80","beggiatoa",80
-"81","behavior",81
-"82","behavioral monitoring",82
-"83","behavioral neuroscience",83
-"84","behavioral preference",84
-"85","bias stress",85
-"86","bioaugmentation",86
-"87","biofilm",87
-"88","biofluids",88
-"89","biogeochemical model",89
-"90","bioinspired materials",90
-"91","biomarkers",91
-"92","biomedical engineering",92
-"93","bionized nanoferrite nanoparticles",93
-"94","biophysics",94
-"95","bioremediation",95
-"96","biosensor",96
-"97","biosensors",97
-"98","bioturbation",98
-"99","bismuth telluride",99
-"100","blend",100
-"101","blood vessels",101
-"102","blueschist eclogite",102
-"103","body weight",103
-"104","borane",104
-"105","brain",105
-"106","brain extraction",106
-"107","breast cancer metastasis",107
-"108","breast development",108
-"109","broad-shouldered distribution",109
-"110","brownian dynamics",110
-"111","burmese in korea",111
-"112","business",112
-"113","cable bacteria",113
-"114","cag repeats",114
-"115","calcium-imaging",115
-"116","caledonides",116
-"117","calibration",117
-"118","call type",118
-"119","cancer",119
-"120","capacitors",120
-"121","carbene",121
-"122","carbene salts",122
-"123","carbonate",123
-"124","carbonate geochemistry",124
-"125","carbonate u–pb geochronology",125
-"126","cardiac",126
-"127","cardiomyocyte",127
-"128","cardiomyopathy",128
-"129","cardiovascular disease",129
-"130","cassini",130
-"131","categorical",131
-"132","catheter",132
-"133","cd8+ t cells",133
-"134","cell adhesion",134
-"135","cell surface engineering",135
-"136","cell tropism",136
-"137","cellular broadcast range",137
-"138","cerebellar ataxia",138
-"139","cerebellum",139
-"140","cerebral blood flow",140
-"141","chagas disease",141
-"142","charge density",142
-"143","charge retention",143
-"144","charge storage",144
-"145","charge trapping",145
-"146","charge traps",146
-"147","chatbots",147
-"148","chatgpt",148
-"149","chemical engineering",149
-"150","chemostasis",150
-"151","chesapeake bay",151
-"152","child health",152
-"153","chinchilla",153
-"154","chinese residents in japan",154
-"155","chinese workers in korea",155
-"156","chlamydia",156
-"157","chlorobenzene",157
-"158","chromium",158
-"159","chronic chagas",159
-"160","chronic widefield imaging",160
-"161","circular dichroism",161
-"162","circulation model",162
-"163","cisplatin",163
-"164","citizenship",164
-"165","climate",165
-"166","climate change",166
-"167","climate feedbacks",167
-"168","climate model",168
-"169","climate science",169
-"170","climate sensitivities",170
-"171","clinic",171
-"172","clinical risk score",172
-"173","closed-loop control",173
-"174","closed-loop neural control",174
-"175","cloud computing",175
-"176","cloud forensics",176
-"177","clouds",177
-"178","clumped-isotope geothermometry",178
-"179","cluster",179
-"180","cm2mc",180
-"181","cmv",181
-"182","co-transcriptional rna folding",182
-"183","cognitive neurology",183
-"184","cohort studies",184
-"185","cohort study",185
-"186","colloidal filtration",186
-"187","colloids",187
-"188","colonial medicine",188
-"189","column breakthrough curves",189
-"190","communication",190
-"191","community-based",191
-"192","community based",192
-"193","community health workers",193
-"194","community structure",194
-"195","complex dopant",195
-"196","computational biology",196
-"197","computational models",197
-"198","computed tomography",198
-"199","computer-assisted intervention",199
-"200","computer integrated surgery",200
-"201","computer science education",201
-"202","computer vision",202
-"203","computing education",203
-"204","conducting polymer",204
-"205","conducting polymers",205
-"206","conductive nanowires",206
-"207","conductive polymers",207
-"208","conductivity",208
-"209","conjugated cores",209
-"210","conjugated polymer",210
-"211","conjugated polymers",211
-"212","connectivity",212
-"213","conowingo dam",213
-"214","consent",214
-"215","consumer attitudes towards healthcare",215
-"216","contact metamorphism",216
-"217","contrast sensitivity",217
-"218","control theory",218
-"219","conus",219
-"220","convolutional neural networks",220
-"221","cortical neurons",221
-"222","cortical plasticity",222
-"223","côte d’ivoire",223
-"224","counterions",224
-"225","county",225
-"226","coupled climate variability",226
-"227","covid-19",227
-"228","cpr",228
-"229","crime",229
-"230","criticacare",230
-"231","critical care",231
-"232","cross-validation",232
-"233","crystal growth",233
-"234","crystallization",234
-"235","cuff electrode stimulation",235
-"236","curiosity",236
-"237","curriculum",237
-"238","curvature",238
-"239","cyanobacteria",239
-"240","cytokine",240
-"241","cytomegalovirus retinitis",241
-"242","data assimilation",242
-"243","data forensics",243
-"244","de novo learning",244
-"245","decision-making",245
-"246","decision by sampling",246
-"247","decision field theory",247
-"248","decision making",248
-"249","deep fluids",249
-"250","defects",250
-"251","democratic republic of congo",251
-"252","dendritic cell activation",252
-"253","dendritic signal processing",253
-"254","devices",254
-"255","dew model",255
-"256","diagnostic evaluation",256
-"257","dichlorinated dithienylethene",257
-"258","dielectric",258
-"259","dielectric charge trapping",259
-"260","dielectric materials",260
-"261","dielectrics",261
-"262","dielectrophoresis",262
-"263","diet",263
-"264","differentiation",264
-"265","diffusion",265
-"266","diffusion maps",266
-"267","digital forensics",267
-"268","digital materials",268
-"269","dilution",269
-"270","dipole-dipole interactions",270
-"271","dipole-field interactions",271
-"272","direct doping",272
-"273","discrimination",273
-"274","diversity",274
-"275","dna computing",275
-"276","dna crosslinkers",276
-"277","dna nanotechnology",277
-"278","dna nanotubes",278
-"279","dntt",279
-"280","domain adaptation",280
-"281","domain generalization",281
-"282","domain randomization",282
-"283","dopants",283
-"284","doping",284
-"285","doping mechanism",285
-"286","doubt",286
-"287","drift compensation",287
-"288","drosophila",288
-"289","drought",289
-"290","dual gate circuit",290
-"291","dust",291
-"292","early modern medicine",292
-"293","early paleozoic",293
-"294","earth system model",294
-"295","earth system modeling",295
-"296","earthquakes",296
-"297","east asia",297
-"298","ebullition",298
-"299","echolocation",299
-"300","economic history",300
-"301","eeg",301
-"302","electric field mediated colloidal self-assembly",302
-"303","electrical conductivity",303
-"304","electrical properties and parameter",304
-"305","electroanalytical chemistry",305
-"306","electrochemical sensor",306
-"307","electrochemical sensors",307
-"308","electrochemical stability",308
-"309","electrochemical transistors",309
-"310","electrochemistry",310
-"311","electrode tracking",311
-"312","electrokinetic transport",312
-"313","electron mobility",313
-"314","electron transfer",314
-"315","electron transport",315
-"316","electronic struture",316
-"317","electroosmosis",317
-"318","electrophoresis",318
-"319","electrophysiology",319
-"320","electrosensation",320
-"321","emphysema",321
-"322","empiric treatment",322
-"323","encoding",323
-"324","endothelial cells",324
-"325","endothelial progenitor cells",325
-"326","endovascular sensing",326
-"327","energy conversion",327
-"328","engineering education",328
-"329","environmental contamination",329
-"330","environmental history",330
-"331","epidemiology",331
-"332","erp",332
-"333","esm2mc",333
-"334","estado da índia",334
-"335","estuary",335
-"336","ethiopia",336
-"337","ethiopians in japan",337
-"338","ethnic koreans from china",338
-"339","eulerian mean circulation",339
-"340","event semantics",340
-"341","evidence-based education",341
-"342","evidence-based interventions",342
-"343","exoplanet atmospheres",343
-"344","exoplanet dynamics",344
-"345","exoplanet evolution",345
-"346","exoplanet systems",346
-"347","exoplanet tides",347
-"348","exoplanets",348
-"349","explore-exploit tradeoff",349
-"350","extracellular matrix",350
-"351","eye",351
-"352","eye-tracking",352
-"353","facilitated diffusion",353
-"354","fall risk",354
-"355","family caregivers",355
-"356","family planning",356
-"357","feedback control",357
-"358","ferguson effect",358
-"359","fertility",359
-"360","fever",360
-"361","field-effect transistor",361
-"362","field-effect transistors",362
-"363","field data analysis",363
-"364","field effect transistor",364
-"365","figure-ground",365
-"366","filipinos in japan",366
-"367","filipinos in korea",367
-"368","finite element analysis",368
-"369","fluid dynamics",369
-"370","fluoride salt",370
-"371","fluoroscopy",371
-"372","food systems",372
-"373","foreign residents",373
-"374","foreign workers",374
-"375","forested watershed",375
-"376","frailty",376
-"377","franciscan",377
-"378","free energy",378
-"379","frequency regulation",379
-"380","functional connectivity",380
-"381","fundamental parameters of stars",381
-"382","garnet zoning",382
-"383","gate dielectric",383
-"384","gate functionalization",384
-"385","gender affirmation",385
-"386","gender norms",386
-"387","genes",387
-"388","genome instability",388
-"389","gentamicin",389
-"390","geochemistry",390
-"391","geochronology",391
-"392","geographic information systems",392
-"393","geographic information systems (gis)",393
-"394","geography",394
-"395","gis",395
-"396","global health",396
-"397","global warming",397
-"398","global water cycle",398
-"399","glucagon secretion",399
-"400","glucagon suppression",400
-"401","guanine",401
-"402","h1n1",402
-"403","h3n2 influenza",403
-"404","habit",404
-"405","hair cells",405
-"406","hard sphere",406
-"407","head and neck cancer",407
-"408","head ct",408
-"409","health communication",409
-"410","health services",410
-"411","health system strengthening",411
-"412","health systems",412
-"413","healthcare",413
-"414","hearing",414
-"415","heart failure with preserved ejection fraction",415
-"416","heat stress",416
-"417","hfq",417
-"418","high-poverty schools",418
-"419","high plains aquifer",419
-"420","high power factor",420
-"421","high seebeck coefficient",421
-"422","higher-order auditory cortex",422
-"423","highly branched phenylenediamine",423
-"424","hip surgery",424
-"425","hippo pathway",425
-"426","hippocampus",426
-"427","historical geography",427
-"428","historical gis",428
-"429","hiv",429
-"430","hiv treatment continuum",430
-"431","hole conductivity",431
-"432","homicide",432
-"433","hormone therapy",433
-"434","hostility",434
-"435","households",435
-"436","human anatomy",436
-"437","human brain",437
-"438","human embryonic stem cells",438
-"439","human igg",439
-"440","human nasal epithelial cells",440
-"441","human surveillance",441
-"442","humans",442
-"443","huntington’s disease",443
-"444","hwagyo",444
-"445","hyaluronic acid",445
-"446","hydrological forecast",446
-"447","hydrology",447
-"448","hypoxia",448
-"449","iapetus",449
-"450","ideation",450
-"451","identification",451
-"452","identity",452
-"453","il10 (interleukin 10)",453
-"454","image-guided surgery",454
-"455","image guidance",455
-"456","imaging",456
-"457","imaging informatics",457
-"458","immigrant incorporation",458
-"459","immigration",459
-"460","immune aging",460
-"461","immunocompromised",461
-"462","immunology",462
-"463","impurities",463
-"464","in vitro adpkd model",464
-"465","in vitro transcription",465
-"466","incretin effect",466
-"467","indian medicine",467
-"468","infertility",468
-"469","influenza",469
-"470","influenza b virus",470
-"471","informal economy",471
-"472","infrared spectroscopy",472
-"473","infrastructure privatization",473
-"474","insect camera trap",474
-"475","insulin secretion",475
-"476","insulin sensitivity",476
-"477","integrated community case management",477
-"478","intensive care",478
-"479","interface properties",479
-"480","interfacial potential",480
-"481","internal cognitive state",481
-"482","internal states",482
-"483","international health",483
-"484","intracerebral hemorrhage",484
-"485","intrinsically disordered protein",485
-"486","ion mobility mass spectrometry",486
-"487","ionic conductivity",487
-"488","ionomer",488
-"489","iron oxide nanoparticles",489
-"490","irrigation",490
-"491","isoflurane",491
-"492","isopycnal mixing",492
-"493","ito",493
-"494","iui",494
-"495","ivf",495
-"496","japan",496
-"497","joseonjok",497
-"498","jwst spectra",498
-"499","kinetics",499
-"500","kongwa",500
-"501","korea",501
-"502","korean chinese",502
-"503","koreans in japan",503
-"504","labor history",504
-"505","laboratory experiments",505
-"506","land cover",506
-"507","land surface model",507
-"508","landmark detection",508
-"509","language learning",509
-"510","large-scale brain networks",510
-"511","large eddy simulation",511
-"512","lateral mixing",512
-"513","lead",513
-"514","learning",514
-"515","learning from synthetic",515
-"516","lewis acid dopants",516
-"517","liberia",517
-"518","limnology",518
-"519","linear competing accumulators",519
-"520","linear discriminant analysis",520
-"521","linkage to care",521
-"522","literacy",522
-"523","literacy instruction",523
-"524","local government",524
-"525","local ownership",525
-"526","local yield stress",526
-"527","locomotion",527
-"528","long-evans rodent",528
-"529","long-term seasonal trends",529
-"530","long-term trends",530
-"531","long-term watershed monitoring",531
-"532","long term memory formation",532
-"533","low-value care",533
-"534","lymphoid aggregates",534
-"535","macaque",535
-"536","machine learning",536
-"537","macrophages",537
-"538","magnetic hyperthermia",538
-"539","magnetic nanoparticles",539
-"540","magnetic particle imaging",540
-"541","malaria",541
-"542","map",542
-"543","maps",543
-"544","marine diagenesis",544
-"545","marmoset",545
-"546","marriage migrants",546
-"547","marriage migration",547
-"548","mars",548
-"549","maryland",549
-"550","masculinity",550
-"551","mass balances",551
-"552","mass spectrometry",552
-"553","materials science",553
-"554","maternal and child health",554
-"555","maternal health services",555
-"556","mechanical test",556
-"557","medical image analysis",557
-"558","medical licensing",558
-"559","medical simulation",559
-"560","meisenheimer complex",560
-"561","memes",561
-"562","menarche",562
-"563","mental health",563
-"564","meta-analysis",564
-"565","metagenomics",565
-"566","metal cycling",566
-"567","meteorological station data",567
-"568","meteorology",568
-"569","mexico",569
-"570","micro global politics",570
-"571","microbiology",571
-"572","microclimate",572
-"573","microfabrication",573
-"574","micropatterning",574
-"575","microplastic remediation",575
-"576","migrant workers",576
-"577","migration",577
-"578","mineralization",578
-"579","mixed dopant",579
-"580","mmp12 (matrix metalloprotease 12)",580
-"581","mobility",581
-"582","mobilization",582
-"583","mode switching",583
-"584","model system",584
-"585","modeling",585
-"586","molecular doping",586
-"587","molecular dynamics",587
-"588","molecular dynamics simulations",588
-"589","molecular electronic properties",589
-"590","mongolians in korea",590
-"591","monolayer",591
-"592","monolayer reorganization",592
-"593","monolayer self-assembly",593
-"594","monolayer stability",594
-"595","morocco",595
-"596","morphology",596
-"597","mortality monitoring",597
-"598","mosquito",598
-"599","motor control",599
-"600","motor learning",600
-"601","mouse",601
-"602","mouse model ",602
-"603","movement variability",603
-"604","mst kinase",604
-"605","mucosal antibody",605
-"606","multi-attribute decision making",606
-"607","multicellular circuits",607
-"608","multicultural coexistence",608
-"609","multicultural families",609
-"610","multiculturalism",610
-"611","multilayer dielectric",611
-"612","multilayer thin films",612
-"613","multiracial neighborhood",613
-"614","multisensory integration system",614
-"615","municipality",615
-"616","mushroom body output neuron",616
-"617","myelin basic protein",617
-"618","n-dmbi",618
-"619","n-doping",619
-"620","n-heterocyclic carbenes",620
-"621","n-type",621
-"622","n-type conductive polymer",622
-"623","n-type polymer dopant",623
-"624","n-type polymer thermoelectrics",624
-"625","nasal epithelial cells",625
-"626","national surveys",626
-"627","natural language processing",627
-"628","natural language processing and law",628
-"629","natural scene",629
-"630","naturalization",630
-"631","navigation",631
-"632","neighborhood change",632
-"633","neighborhood satisfaction",633
-"634","neonatal health",634
-"635","nepal",635
-"636","nerve stimulation",636
-"637","net use",637
-"638","neural representation",638
-"639","neuroanatomy",639
-"640","neuroimaging",640
-"641","neuronal output tuning",641
-"642","neuropilin 2",642
-"643","neuropilins",643
-"644","neuroplasticity",644
-"645","neuropsychology",645
-"646","neuroscience",646
-"647","neutron reflectivity",647
-"648","nikkei brazilians",648
-"649","nikkei peruvians",649
-"650","nineteenth century",650
-"651","nitrogen dioxide",651
-"652","nlp",652
-"653","no2",653
-"654","noah-mp",654
-"655","non-human primates",655
-"656","non-inferiority trial",656
-"657","non-parametric cluster statistic",657
-"658","non-point-source pollution",658
-"659","nonstationarity",659
-"660","nonvolatile transistor",660
-"661","north africa",661
-"662","norway",662
-"663","nt-probnp",663
-"664","nucleic acid based sensor",664
-"665","nucleic acids",665
-"666","nutrient and sediment loadings",666
-"667","nutrition",667
-"668","obesity",668
-"669","obesity and metabolism",669
-"670","object parsing",670
-"671","object part segmentation",671
-"672","object permanence",672
-"673","observational study",673
-"674","obsessive-compulsive disorder (ocd)",674
-"675","ocean age",675
-"676","ocean biogeochemistry",676
-"677","ocean color",677
-"678","ocean convection",678
-"679","ocean deoxygenization",679
-"680","oceanography",680
-"681","ocular",681
-"682","oect",682
-"683","older adults",683
-"684","olfaction",684
-"685","oligopeptides",685
-"686","on/off ratio",686
-"687","open circuit potential",687
-"688","ophiolite",688
-"689","optic flow",689
-"690","optical constants",690
-"691","optical trap force spectroscopy",691
-"692","optogenetics",692
-"693","oral health",693
-"694","orbitofrontal cortex",694
-"695","organ segmentation",695
-"696","organic electrochemical transistors",696
-"697","organic electronics",697
-"698","organic field-effect transistors",698
-"699","organic field effect transistor",699
-"700","organic semiconductor",700
-"701","organic semiconductors",701
-"702","organic thermoelectricity",702
-"703","organic transistor",703
-"704","organic transistors",704
-"705","orthopaedics",705
-"706","otolith-ocular reflex",706
-"707","ototoxic",707
-"708","overuse",708
-"709","overuse index",709
-"710","oxidation",710
-"711","oxidation state",711
-"712","oxygen",712
-"713","oxygenated side chains",713
-"714","p3ht",714
-"715","palliative care",715
-"716","palmitoyl acyltransferases",716
-"717","palmitoylation",717
-"718","parameterization",718
-"719","particulate matter",719
-"720","path integration",720
-"721","pathogen",721
-"722","patient readmission",722
-"723","pedagogy",723
-"724","pentacene",724
-"725","peptide oligomer",725
-"726","perception",726
-"727","perceptual magnet",727
-"728","periacetabular osteotomy",728
-"729","periodontal health",729
-"730","permeabilized",730
-"731","persistent infection",731
-"732","perturbation theory",732
-"733","ph sensitivity",733
-"734","phase behavior",734
-"735","phenylenediamine side chain",735
-"736","photochemical hazes",736
-"737","physical polymer chemistry",737
-"738","physical therapy modalities",738
-"739","pka values",739
-"740","place cells",740
-"741","planetary",741
-"742","planetary atmospheres",742
-"743","planetary science",743
-"744","plasticity",744
-"745","plastics",745
-"746","platinum(ii)",746
-"747","pointwise mutual information",747
-"748","polar",748
-"749","police",749
-"750","political empowerment",750
-"751","pollinator monitoring",751
-"752","pollinators",752
-"753","polyammonium salt",753
-"754","polycarboxylic acids",754
-"755","polycystin-2",755
-"756","polymer adducts",756
-"757","polymer blends",757
-"758","polymer dielectrics",758
-"759","polymer science",759
-"760","polymer transistors",760
-"761","polymers",761
-"762","polystyrene",762
-"763","polystyrenes",763
-"764","polythiophenes",764
-"765","porfiriato",765
-"766","porous media",766
-"767","portuguese empire",767
-"768","portuguese goa",768
-"769","portuguese india",769
-"770","pose estimation",770
-"771","potassium chloride",771
-"772","power factor",772
-"773","pqt12",773
-"774","precambrian-cambrian boundary",774
-"775","prediction",775
-"776","prediction rule",776
-"777","pregnancy",777
-"778","pregnancy health",778
-"779","pregnancy outcomes",779
-"780","preterm",780
-"781","prevention",781
-"782","primate",782
-"783","program evaluation",783
-"784","promethee",784
-"785","prospect theory",785
-"786","protein immunoassay",786
-"787","protein induced fluorescence enhancement",787
-"788","protein kinases",788
-"789","proxy",789
-"790","psychological outcomes",790
-"791","psychometrics",791
-"792","psychopathology",792
-"793","puberty",793
-"794","pubic hair growth",794
-"795","public health",795
-"796","pulmonary fibrosis",796
-"797","pupillometry",797
-"798","pyrite",798
-"799","qualitative",799
-"800","quality assurance",800
-"801","quality of care",801
-"802","quality of life",802
-"803","racial integration",803
-"804","radiology",804
-"805","randomized control trials",805
-"806","range-limited communication",806
-"807","reaching",807
-"808","reaction time",808
-"809","reading",809
-"810","reafferent feedback",810
-"811","receding horizon control",811
-"812","receptor binding",812
-"813","refugees",813
-"814","regeneration",814
-"815","reinforcement signaling",815
-"816","remote gate sensing",816
-"817","remote gate transistors",817
-"818","renal physiology",818
-"819","repeat expansion disease",819
-"820","resource allocation",820
-"821","response",821
-"822","response time",822
-"823","resuscitation",823
-"824","retrospective cohort",824
-"825","rhythmic dynamics",825
-"826","ribbon synapses",826
-"827","riboswitch",827
-"828","ribozyme",828
-"829","rings",829
-"830","risk factors",830
-"831","rna chaperone",831
-"832","rna fitness landscape",832
-"833","rna folding",833
-"834","rna nanotechnology",834
-"835","rna sequencing",835
-"836","robot autonomy",836
-"837","robotics",837
-"838","routine data",838
-"839","rural",839
-"840","saccule",840
-"841","sahel",841
-"842","sars-cov-2",842
-"843","satellite clinics",843
-"844","saturn",844
-"845","scale-up",845
-"846","sciatic nerve stimulation",846
-"847","sea surface temperature",847
-"848","seasonal forecast",848
-"849","seasonal trends",849
-"850","seasonality",850
-"851","sediment",851
-"852","seebeck coefficient",852
-"853","seeg",853
-"854","selectivity",854
-"855","self-assembly",855
-"856","self-diffusion",856
-"857","semantic segmentation",857
-"858","semantics",858
-"859","semi-field",859
-"860","semiconductors",860
-"861","senescence",861
-"862","sensor stability",862
-"863","sensorimotor adaptation",863
-"864","sensorimotor control",864
-"865","sensorimotor system",865
-"866","sensors",866
-"867","sensory conflict",867
-"868","sensory cue",868
-"869","sensory feedback",869
-"870","sensory slip",870
-"871","serum 25-hydroxyvitamin d",871
-"872","service delivery",872
-"873","severe autism",873
-"874","sex differences",874
-"875","sex hormones",875
-"876","shear transformation zone",876
-"877","shootings",877
-"878","signal-to-noise ratio",878
-"879","sim2real",879
-"880","single-molecule fluorescence",880
-"881","single molecule rna folding",881
-"882","single unit",882
-"883","skill",883
-"884","sky surveys",884
-"885","small rna",885
-"886","smfret",886
-"887","smooth muscle cells",887
-"888","smooth pursuit",888
-"889","sodium channel",889
-"890","soft robotics",890
-"891","soil moisture",891
-"892","solar and stellar astrophysics",892
-"893","solar neighborhood",893
-"894","solar radiation",894
-"895","sonar adaptations",895
-"896","south america",896
-"897","south asia",897
-"898","southern great basin",898
-"899","southern ocean",899
-"900","spatial analysis",900
-"901","spider",901
-"902","srna regulation",902
-"903","stability",903
-"904","stacking",904
-"905","state",905
-"906","state-space models",906
-"907","static charge storage",907
-"908","static charging",908
-"909","static gate",909
-"910","stationarity",910
-"911","stellar abundances",911
-"912","stellar ages",912
-"913","stellar kinematics",913
-"914","stellar properties",914
-"915","stigma",915
-"916","stillbirth",916
-"917","stormwater biofilters",917
-"918","stormwater management",918
-"919","stream discharge",919
-"920","stroke",920
-"921","structure-function",921
-"922","struggling learners",922
-"923","struggling readers",923
-"924","study design",924
-"925","subcellular localization",925
-"926","subduction",926
-"927","subduction seismicity",927
-"928","subduction zone",928
-"929","subduction zone fluid",929
-"930","subtropical gyres",930
-"931","suburban land use",931
-"932","suburban watershed",932
-"933","success for all",933
-"934","sulfate oxygen isotopes",934
-"935","sulfates sulfur isotopes",935
-"936","sulfur",936
-"937","sulfur cycling",937
-"938","sulfur isotopes",938
-"939","surface-induced ion dissociation",939
-"940","surrogate decision maker",940
-"941","survival analysis",941
-"942","susquehanna river basin",942
-"943","symmetry",943
-"944","synaptic currents",944
-"945","syntax",945
-"946","synthetic biology",946
-"947","synthetic cellular networks",947
-"948","system identification",948
-"949","systematic review",949
-"950","systems chemistry",950
-"951","t cell aging",951
-"952","t cell signaling",952
-"953","tanzania",953
-"954","tax law",954
-"955","tectonics",955
-"956","telomerase aging",956
-"957","temperature",957
-"958","temporal interference",958
-"959","tetracyanoquinodimethanes",959
-"960","thermodynamic modeling",960
-"961","thermoelectric",961
-"962","thermoelectrics",962
-"963","thiols",963
-"964","thiophene polymers",964
-"965","tholin",965
-"966","threshold voltage",966
-"967","threshold voltage shift",967
-"968","tidal interaction",968
-"969","time-to-event analysis",969
-"970","tissue engineering",970
-"971","titan",971
-"972","toll-like receptors",972
-"973","toll/interleukin-1 receptor-domain-containing adaptor-inducing interferon-β (trif)",973
-"974","top-down",974
-"975","topological defects",975
-"976","topological materials",976
-"977","trachoma",977
-"978","training",978
-"979","trajectory prediction",979
-"980","transconductance",980
-"981","transcription",981
-"982","transcriptomics",982
-"983","transgender health",983
-"984","transit time distributions",984
-"985","transplantation",985
-"986","transport",986
-"987","transport processes",987
-"988","treatment continuum",988
-"989","triarylamine",989
-"990","triton",990
-"991","tuberculosis",991
-"992","tubulogenesis",992
-"993","tutoring",993
-"994","type-i spiral ganglion neurons",994
-"995","uganda",995
-"996","ultraviolet-visible spectroscopy",996
-"997","under-five mortality rate",997
-"998","underweight",998
-"999","urban",999
-"1000","urban heat island",1000
-"1001","urban india",1001
-"1002","utricle",1002
-"1003","value-driven attention capture",1003
-"1004","vapor sensing",1004
-"1005","vapor sensor",1005
-"1006","variability",1006
-"1007","vascular endothelial grwoth factor",1007
-"1008","vegetation",1008
-"1009","vestibular",1009
-"1010","vestibular implant",1010
-"1011","vietnamese workers in korea",1011
-"1012","viral fitness",1012
-"1013","viral transcriptomics",1013
-"1014","virus load",1014
-"1015","virus reassortment",1015
-"1016","visual acuity",1016
-"1017","visual area v2",1017
-"1018","visual cortex",1018
-"1019","visual fields",1019
-"1020","visual perception",1020
-"1021","vitamin d supplements",1021
-"1022","vocabulary",1022
-"1023","vocalization",1023
-"1024","volatilomics",1024
-"1025","voltammetry",1025
-"1026","washington, dc",1026
-"1027","waste management",1027
-"1028","water isotopes",1028
-"1029","watershed modeling",1029
-"1030","weakly electric fish",1030
-"1031","web",1031
-"1032","weddell sea",1032
-"1033","wet bulb global temperature",1033
-"1034","wheland complexes",1034
-"1035","wind energy",1035
-"1036","women",1036
-"1037","working memory",1037
-"1038","wrtds",1038
-"1039","x-ray image analysis",1039
-"1040","x-ray navigation",1040
-"1041","zainichi koreans",1041
-"1042","zeta potential",1042
-"1043","zipcode",1043
-"1044","α-factor",1044
-"1045","π-conjugation",1045
+"","ds_id","keywords"
+"1","doi:10.7281/T10Z715B","urban heat island"
+"2","doi:10.7281/T10Z715B","temperature"
+"3","doi:10.7281/T10Z715B","Baltimore"
+"4","doi:10.7281/T10Z715B","urban"
+"5","doi:10.7281/T10Z715B","meteorology"
+"6","doi:10.7281/T10Z715B","applied meteorology"
+"7","doi:10.7281/T10Z715B","atmospheric science"
+"8","doi:10.7281/T15Q4T12","symmetry"
+"9","doi:10.7281/T15Q4T12","locomotion"
+"10","doi:10.7281/T15Q4T12","rhythmic dynamics"
+"11","doi:10.7281/T15Q4T12","cross-validation"
+"12","doi:10.7281/T1J10120","Baltimore"
+"13","doi:10.7281/T1J10120","police"
+"14","doi:10.7281/T1J10120","crime"
+"15","doi:10.7281/T1J10120","arrests"
+"16","doi:10.7281/T1J10120","Ferguson effect"
+"17","doi:10.7281/T1J10120","homicide"
+"18","doi:10.7281/T1J10120","shootings"
+"19","doi:10.7281/T19G5JRC","international health"
+"20","doi:10.7281/T19G5JRC","public health"
+"21","doi:10.7281/T19G5JRC","maternal and child health"
+"22","doi:10.7281/T19G5JRC","nutrition"
+"23","doi:10.7281/T19G5JRC","community health workers"
+"24","doi:10.7281/T19G5JRC","under-five mortality rate"
+"25","doi:10.7281/T1/WBR06U","polythiophenes"
+"26","doi:10.7281/T1/WBR06U","nitrogen dioxide"
+"27","doi:10.7281/T1/WBR06U","field effect transistor"
+"28","doi:10.7281/T1/WBR06U","vapor sensor"
+"29","doi:10.7281/T1/WBR06U","organic electronics"
+"30","doi:10.7281/T1/SP6KO3","subduction seismicity"
+"31","doi:10.7281/T1/SP6KO3","earthquakes"
+"32","doi:10.7281/T1/SP6KO3","Franciscan"
+"33","doi:10.7281/T1/SP6KO3","garnet zoning"
+"34","doi:10.7281/T1/SP6KO3","blueschist eclogite"
+"35","doi:10.7281/T1/CZZDLJ","N-doping"
+"36","doi:10.7281/T1/CZZDLJ","conjugated polymer"
+"37","doi:10.7281/T1/CZZDLJ","fluoride salt"
+"38","doi:10.7281/T1/CZZDLJ","thermoelectrics"
+"39","doi:10.7281/T1/CZZDLJ","electron transfer"
+"40","doi:10.7281/T1/YXVVML","polythiophenes"
+"41","doi:10.7281/T1/YXVVML","doping"
+"42","doi:10.7281/T1/YXVVML","field effect transistor"
+"43","doi:10.7281/T1/YXVVML","conductivity"
+"44","doi:10.7281/T1/YXVVML","thermoelectrics"
+"45","doi:10.7281/T1/YXVVML","organic electronics"
+"46","doi:10.7281/T1/YXVVML","alternative energy"
+"47","doi:10.7281/T1/YI383C","Pentacene"
+"48","doi:10.7281/T1/YI383C","Guanine"
+"49","doi:10.7281/T1/YI383C","field-effect transistor"
+"50","doi:10.7281/T1/YI383C","mobility"
+"51","doi:10.7281/T1/YI383C","on/off ratio"
+"52","doi:10.7281/T1/YI383C","charge traps"
+"53","doi:10.7281/T1/YI383C","organic electronics"
+"54","doi:10.7281/T1/7VKY8K","conductivity"
+"55","doi:10.7281/T1/7VKY8K","defects"
+"56","doi:10.7281/T1/7VKY8K","electronic struture"
+"57","doi:10.7281/T1/7VKY8K","semiconductors"
+"58","doi:10.7281/T1/7VKY8K","conducting polymers"
+"59","doi:10.7281/T1/7VKY8K","devices"
+"60","doi:10.7281/T1/7VKY8K","multilayer thin films"
+"61","doi:10.7281/T1/7VKY8K","topological materials"
+"62","doi:10.7281/T1/TP9B4Y","mechanical test"
+"63","doi:10.7281/T1/TP9B4Y","Titan"
+"64","doi:10.7281/T1/TP9B4Y","tholin"
+"65","doi:10.7281/T1/OSQSMY","Sex hormones"
+"66","doi:10.7281/T1/OSQSMY","NT-proBNP"
+"67","doi:10.7281/T1/OSQSMY","sex differences"
+"68","doi:10.7281/T1/OSQSMY","biomarkers"
+"69","doi:10.7281/T1/OSQSMY","women"
+"70","doi:10.7281/T1/OSQSMY","risk factors"
+"71","doi:10.7281/T1/6Y08LS","computing education"
+"72","doi:10.7281/T1/6Y08LS","computer science education"
+"73","doi:10.7281/T1/6Y08LS","pedagogy"
+"74","doi:10.7281/T1/6Y08LS","curriculum"
+"75","doi:10.7281/T1/6Y08LS","resource allocation"
+"76","doi:10.7281/T1/6Y08LS","engineering education"
+"77","doi:10.7281/T1/K3ONN5","polystyrene"
+"78","doi:10.7281/T1/K3ONN5","pentacene"
+"79","doi:10.7281/T1/K3ONN5","triarylamine"
+"80","doi:10.7281/T1/K3ONN5","dielectric"
+"81","doi:10.7281/T1/K3ONN5","nonvolatile transistor"
+"82","doi:10.7281/T1/K3ONN5","neutron reflectivity"
+"83","doi:10.7281/T1/EAFMCT","HIV"
+"84","doi:10.7281/T1/EAFMCT","Africa"
+"85","doi:10.7281/T1/EAFMCT","treatment continuum"
+"86","doi:10.7281/T1/EAFMCT","linkage to care"
+"87","doi:10.7281/T1/EAFMCT","service delivery"
+"88","doi:10.7281/T1/EAFMCT","qualitative"
+"89","doi:10.7281/T1/ONZHUS","HIV"
+"90","doi:10.7281/T1/ONZHUS","Africa"
+"91","doi:10.7281/T1/ONZHUS","HIV treatment continuum"
+"92","doi:10.7281/T1/ONZHUS","gender norms"
+"93","doi:10.7281/T1/ONZHUS","masculinity"
+"94","doi:10.7281/T1/ONZHUS","qualitative"
+"95","doi:10.7281/T1/V3Z6DD","interface properties"
+"96","doi:10.7281/T1/V3Z6DD","molecular electronic properties"
+"97","doi:10.7281/T1/V3Z6DD","organic semiconductors"
+"98","doi:10.7281/T1/V3Z6DD","polymers"
+"99","doi:10.7281/T1/V3Z6DD","dielectric materials"
+"100","doi:10.7281/T1/V3Z6DD","electrical properties and parameter"
+"101","doi:10.7281/T1/V3Z6DD","field effect transistor"
+"102","doi:10.7281/T1/BIJWVL","thiophene polymers"
+"103","doi:10.7281/T1/BIJWVL","thermoelectrics"
+"104","doi:10.7281/T1/BIJWVL","blend"
+"105","doi:10.7281/T1/BIJWVL","doping"
+"106","doi:10.7281/T1/BIJWVL","transport"
+"107","doi:10.7281/T1/BIJWVL","polymer science"
+"108","doi:10.7281/T1/BIJWVL","organic electronics"
+"109","doi:10.7281/T1/BIJWVL","energy conversion"
+"110","doi:10.7281/T1/3XLWZX","thiophene polymers"
+"111","doi:10.7281/T1/3XLWZX","tetracyanoquinodimethanes"
+"112","doi:10.7281/T1/3XLWZX","doping"
+"113","doi:10.7281/T1/3XLWZX","interfacial potential"
+"114","doi:10.7281/T1/3XLWZX","diffusion"
+"115","doi:10.7281/T1/3XLWZX","charge density"
+"116","doi:10.7281/T1/3XLWZX","organic electronics"
+"117","doi:10.7281/T1/3XLWZX","conductive polymers"
+"118","doi:10.7281/T1/3XLWZX","electroanalytical chemistry"
+"119","doi:10.7281/T1/BIJBI6","chlamydia"
+"120","doi:10.7281/T1/BIJBI6","environmental contamination"
+"121","doi:10.7281/T1/BIJBI6","households"
+"122","doi:10.7281/T1/BIJBI6","Kongwa"
+"123","doi:10.7281/T1/BIJBI6","Tanzania"
+"124","doi:10.7281/T1/BIJBI6","trachoma"
+"125","doi:10.7281/T1/6BHBC4","Quality assurance"
+"126","doi:10.7281/T1/6BHBC4","medical simulation"
+"127","doi:10.7281/T1/6BHBC4","study design"
+"128","doi:10.7281/T1/AZE8LU","Irrigation"
+"129","doi:10.7281/T1/AZE8LU","CONUS"
+"130","doi:10.7281/T1/AZE8LU","Climate Sensitivities"
+"131","doi:10.7281/T1/AZE8LU","Land Surface Model"
+"132","doi:10.7281/T1/NH6EGH","cardiovascular disease"
+"133","doi:10.7281/T1/7WS8AD","tuberculosis"
+"134","doi:10.7281/T1/7WS8AD","body weight"
+"135","doi:10.7281/T1/7WS8AD","underweight"
+"136","doi:10.7281/T1/7WS8AD","diagnostic evaluation"
+"137","doi:10.7281/T1/7WS8AD","prediction rule"
+"138","doi:10.7281/T1/7WS8AD","empiric treatment"
+"139","doi:10.7281/T1/7WS8AD","Uganda"
+"140","doi:10.7281/T1/E70MXR","transgender health"
+"141","doi:10.7281/T1/E70MXR","sex hormones"
+"142","doi:10.7281/T1/E70MXR","gender affirmation"
+"143","doi:10.7281/T1/E70MXR","hormone therapy"
+"144","doi:10.7281/T1/E70MXR","mental health"
+"145","doi:10.7281/T1/E70MXR","quality of life"
+"146","doi:10.7281/T1/E70MXR","psychological outcomes"
+"147","doi:10.7281/T1/E70MXR","systematic review"
+"148","doi:10.7281/T1/ZOW11X","polythiophenes"
+"149","doi:10.7281/T1/ZOW11X","pH sensitivity"
+"150","doi:10.7281/T1/ZOW11X","molecular doping"
+"151","doi:10.7281/T1/ZOW11X","electrochemical transistors"
+"152","doi:10.7281/T1/ZOW11X","conducting polymers"
+"153","doi:10.7281/T1/GH4EF2","dichlorinated dithienylethene"
+"154","doi:10.7281/T1/GH4EF2","air stability"
+"155","doi:10.7281/T1/GH4EF2","n-type"
+"156","doi:10.7281/T1/GH4EF2","organic thermoelectricity"
+"157","doi:10.7281/T1/GH4EF2","conducting polymers"
+"158","doi:10.7281/T1/GH4EF2","thermoelectrics"
+"159","doi:10.7281/T1/KCIPSB","polystyrenes"
+"160","doi:10.7281/T1/KCIPSB","physical polymer chemistry"
+"161","doi:10.7281/T1/KCIPSB","polythiophenes"
+"162","doi:10.7281/T1/KCIPSB","polycarboxylic acids"
+"163","doi:10.7281/T1/KCIPSB","electrochemical stability"
+"164","doi:10.7281/T1/KCIPSB","remote gate transistors"
+"165","doi:10.7281/T1/CCC69H","puberty"
+"166","doi:10.7281/T1/CCC69H","menarche"
+"167","doi:10.7281/T1/CCC69H","breast development"
+"168","doi:10.7281/T1/CCC69H","pubic hair growth"
+"169","doi:10.7281/T1/CCC69H","adolescent"
+"170","doi:10.7281/T1/CCC69H","rural"
+"171","doi:10.7281/T1/CCC69H","Bangladesh"
+"172","doi:10.7281/T1/CCC69H","South Asia"
+"173","doi:10.7281/T1/4WX5QC","sensors"
+"174","doi:10.7281/T1/4WX5QC","oxidation"
+"175","doi:10.7281/T1/4WX5QC","conjugated polymers"
+"176","doi:10.7281/T1/4WX5QC","stability"
+"177","doi:10.7281/T1/4WX5QC","polymers"
+"178","doi:10.7281/T1/4WX5QC","Materials Science"
+"179","doi:10.7281/T1/SWNGEP","family planning"
+"180","doi:10.7281/T1/SWNGEP","local government"
+"181","doi:10.7281/T1/SWNGEP","local ownership"
+"182","doi:10.7281/T1/SWNGEP","health system strengthening"
+"183","doi:10.7281/T1/SWNGEP","evidence-based interventions"
+"184","doi:10.7281/T1/SWNGEP","scale-up"
+"185","doi:10.7281/T1/EWN8ZN","π-conjugation"
+"186","doi:10.7281/T1/EWN8ZN","peptide oligomer"
+"187","doi:10.7281/T1/EWN8ZN","self-assembly"
+"188","doi:10.7281/T1/EWN8ZN","mineralization"
+"189","doi:10.7281/T1/EWN8ZN","conductive nanowires"
+"190","doi:10.7281/T1/BXJT0B","Triton"
+"191","doi:10.7281/T1/BXJT0B","atmospheres"
+"192","doi:10.7281/T1/BXJT0B","planetary science"
+"193","doi:10.7281/T1/BXJT0B","laboratory experiments"
+"194","doi:10.7281/T1/BXJT0B","mass spectrometry"
+"195","doi:10.7281/T1/BXJT0B","infrared spectroscopy"
+"196","doi:10.7281/T1/ENWXRU","vapor sensing"
+"197","doi:10.7281/T1/ENWXRU","polymer transistors"
+"198","doi:10.7281/T1/ENWXRU","bias stress"
+"199","doi:10.7281/T1/ENWXRU","sensor stability"
+"200","doi:10.7281/T1/ENWXRU","nitrogen dioxide"
+"201","doi:10.7281/T1/ENWXRU","ammonia"
+"202","doi:10.7281/T1/8OFLMF","Wheland complexes"
+"203","doi:10.7281/T1/8OFLMF","polymer adducts"
+"204","doi:10.7281/T1/8OFLMF","direct doping"
+"205","doi:10.7281/T1/8OFLMF","Lewis acid dopants"
+"206","doi:10.7281/T1/8OFLMF","doping mechanism"
+"207","doi:10.7281/T1/8OFLMF","remote gate sensing"
+"208","doi:10.7281/T1/IM9BZI","Precambrian-Cambrian boundary"
+"209","doi:10.7281/T1/IM9BZI","carbonate geochemistry"
+"210","doi:10.7281/T1/IM9BZI","marine diagenesis"
+"211","doi:10.7281/T1/IM9BZI","southern Great Basin"
+"212","doi:10.7281/T1/IRMGH8","COVID-19"
+"213","doi:10.7281/T1/IRMGH8","SARS-CoV-2"
+"214","doi:10.7281/T1/IRMGH8","pregnancy"
+"215","doi:10.7281/T1/IRMGH8","virus load"
+"216","doi:10.7281/T1/IRMGH8","mucosal antibody"
+"217","doi:10.7281/T14Q7RW8","Malaria"
+"218","doi:10.7281/T14Q7RW8","net use"
+"219","doi:10.7281/T14Q7RW8","ideation"
+"220","doi:10.7281/T14Q7RW8","Liberia"
+"221","doi:10.7281/T14Q7RW8","health communication"
+"222","doi:10.7281/T1/FN9EH6","criticacare"
+"223","doi:10.7281/T1/FN9EH6","surrogate decision maker"
+"224","doi:10.7281/T1/FN9EH6","proxy"
+"225","doi:10.7281/T1/FN9EH6","consent"
+"226","doi:10.7281/T1/FN9EH6","family caregivers"
+"227","doi:10.7281/T1SF2T31","AIDS"
+"228","doi:10.7281/T1SF2T31","visual acuity"
+"229","doi:10.7281/T1SF2T31","cohort study"
+"230","doi:10.7281/T1SF2T31","HIV"
+"231","doi:10.7281/T1SF2T31","visual fields"
+"232","doi:10.7281/T1SF2T31","cytomegalovirus retinitis"
+"233","doi:10.7281/T1SF2T31","contrast sensitivity"
+"234","doi:10.7281/T1SF2T31","CMV"
+"235","doi:10.7281/T1SF2T31","ocular"
+"236","doi:10.7281/T1SF2T31","eye"
+"237","doi:10.7281/T1/ZHG9BB","critical care"
+"238","doi:10.7281/T1/ZHG9BB","surrogate decision maker"
+"239","doi:10.7281/T1/ZHG9BB","proxy"
+"240","doi:10.7281/T1/ZHG9BB","consent"
+"241","doi:10.7281/T1/ZHG9BB","family caregivers"
+"242","doi:10.7281/T1/4AJ8Y1","Critical Care"
+"243","doi:10.7281/T1/4AJ8Y1","Surrogate Decision Maker"
+"244","doi:10.7281/T1/4AJ8Y1","Proxy"
+"245","doi:10.7281/T1/4AJ8Y1","Consent"
+"246","doi:10.7281/T1/4AJ8Y1","Family Caregivers"
+"247","doi:10.7281/T1/4AJ8Y1","Resuscitation"
+"248","doi:10.7281/T1/SQ6FO9","land cover"
+"249","doi:10.7281/T1/SQ6FO9","Ethiopia"
+"250","doi:10.7281/T1/KV9KNX","thiophene polymers"
+"251","doi:10.7281/T1/KV9KNX","bismuth telluride"
+"252","doi:10.7281/T1/KV9KNX","dopants"
+"253","doi:10.7281/T1/KV9KNX","P3HT"
+"254","doi:10.7281/T1/KV9KNX","PQT12"
+"255","doi:10.7281/T1/KV9KNX","thermoelectric"
+"256","doi:10.7281/T1/KV9KNX","conductivity"
+"257","doi:10.7281/T1/KV9KNX","Seebeck coefficient"
+"258","doi:10.7281/T1/KV9KNX","power factor"
+"259","doi:10.7281/T1/TNHLOJ","adipokines"
+"260","doi:10.7281/T1/TNHLOJ","cytokine"
+"261","doi:10.7281/T1/TNHLOJ","obesity"
+"262","doi:10.7281/T1/TNHLOJ","bariatric surgery"
+"263","doi:10.7281/T1/TNHLOJ","obesity and metabolism"
+"264","doi:10.7281/T1/AWJUGZ","atmospheric transport"
+"265","doi:10.7281/T1/AWJUGZ","Eulerian mean circulation"
+"266","doi:10.7281/T1/AWJUGZ","Arctic atmospheric composition"
+"267","doi:10.7281/T1/YOFR1E","overuse index"
+"268","doi:10.7281/T1/YOFR1E","consumer attitudes towards healthcare"
+"269","doi:10.7281/T1/YOFR1E","older adults"
+"270","doi:10.7281/T1/EOPWE4","overuse index"
+"271","doi:10.7281/T1/EOPWE4","consumer attitudes towards healthcare"
+"272","doi:10.7281/T1/EOPWE4","older adults"
+"273","doi:10.7281/T1/IJO1FU","Antarctic Circumpolar Current"
+"274","doi:10.7281/T1/IJO1FU","oceanography"
+"275","doi:10.7281/T1/IJO1FU","climate model"
+"276","doi:10.7281/T1/IJO1FU","isopycnal mixing"
+"277","doi:10.7281/T1/IJO1FU","parameterization"
+"278","doi:10.7281/T1/VWQ4J3","communication"
+"279","doi:10.7281/T1/VWQ4J3","intensive care"
+"280","doi:10.7281/T1/VWQ4J3","critical care"
+"281","doi:10.7281/T1/I3ILXO","chlorobenzene"
+"282","doi:10.7281/T1/I3ILXO","bioremediation"
+"283","doi:10.7281/T1/QGOMA0","Saturn"
+"284","doi:10.7281/T1/QGOMA0","mass spectrometry"
+"285","doi:10.7281/T1/QGOMA0","atmosphere"
+"286","doi:10.7281/T1/QGOMA0","rings"
+"287","doi:10.7281/T1/QGOMA0","Cassini"
+"288","doi:10.7281/T1/MYJBMQ","Impurities"
+"289","doi:10.7281/T1/MYJBMQ","plastics"
+"290","doi:10.7281/T1/MYJBMQ","electrical conductivity"
+"291","doi:10.7281/T1/MYJBMQ","doping"
+"292","doi:10.7281/T1/MYJBMQ","polymers"
+"293","doi:10.7281/T1/AWWAKP","response time"
+"294","doi:10.7281/T1/AWWAKP","ocean age"
+"295","doi:10.7281/T1/AWWAKP","subtropical gyres"
+"296","doi:10.7281/T1/CRHEAH","static gate"
+"297","doi:10.7281/T1/CRHEAH","Seebeck coefficient"
+"298","doi:10.7281/T1/CRHEAH","organic semiconductor"
+"299","doi:10.7281/T1/CRHEAH","conductivity"
+"300","doi:10.7281/T1/CRHEAH","DNTT"
+"301","doi:10.7281/T1/CRHEAH","organic field effect transistor"
+"302","doi:10.7281/T1/CRHEAH","doping"
+"303","doi:10.7281/T1/CRHEAH","activation energy"
+"304","doi:10.7281/T1/W2AG3A","clinical risk score"
+"305","doi:10.7281/T1/BNSVVD","global warming"
+"306","doi:10.7281/T1/BNSVVD","ocean biogeochemistry"
+"307","doi:10.7281/T1/BNSVVD","metal cycling"
+"308","doi:10.7281/T1/BNSVVD","circulation model"
+"309","doi:10.7281/T1/BT02SS","polymer blends"
+"310","doi:10.7281/T1/BT02SS","threshold voltage shift"
+"311","doi:10.7281/T1/BT02SS","field-effect transistors"
+"312","doi:10.7281/T1/BT02SS","dielectric charge trapping"
+"313","doi:10.7281/T1/I9NL60","memes"
+"314","doi:10.7281/T1/I9NL60","hostility"
+"315","doi:10.7281/T1/I9NL60","micro global politics"
+"316","doi:10.7281/T1/VCPZIK","phenylenediamine side chain"
+"317","doi:10.7281/T1/VCPZIK","highly branched phenylenediamine"
+"318","doi:10.7281/T1/VCPZIK","organic transistor"
+"319","doi:10.7281/T1/VCPZIK","gate dielectric"
+"320","doi:10.7281/T1/VCPZIK","multilayer dielectric"
+"321","doi:10.7281/T1/VCPZIK","static charge storage"
+"322","doi:10.7281/T1/VCPZIK","threshold voltage shift"
+"323","doi:10.7281/T1/PG105Y","conjugated polymers"
+"324","doi:10.7281/T1/PG105Y","field-effect transistors"
+"325","doi:10.7281/T1/PG105Y","polythiophenes"
+"326","doi:10.7281/T1/PG105Y","vapor sensing"
+"327","doi:10.7281/T1/PG105Y","oxygenated side chains"
+"328","doi:10.7281/T1/PG105Y","linear discriminant analysis"
+"329","doi:10.7281/T1/NT8FQN","N-DMBI"
+"330","doi:10.7281/T1/NT8FQN","n-type conductive polymer"
+"331","doi:10.7281/T1/NT8FQN","mixed dopant"
+"332","doi:10.7281/T1/0JWMF0","complex dopant"
+"333","doi:10.7281/T1/0JWMF0","n-type polymer thermoelectrics"
+"334","doi:10.7281/T1/0JWMF0","high Seebeck coefficient"
+"335","doi:10.7281/T1/0JWMF0","high power factor"
+"336","doi:10.7281/T1/0JWMF0","Meisenheimer Complex"
+"337","doi:10.7281/T1/D3EV75","n-type polymer dopant"
+"338","doi:10.7281/T1/D3EV75","electrical conductivity"
+"339","doi:10.7281/T1/D3EV75","Seebeck coefficient"
+"340","doi:10.7281/T1/D3EV75","all-polymer thermoelectric"
+"341","doi:10.7281/T1/D3EV75","electron mobility"
+"342","doi:10.7281/T1/B660D2","internal cognitive state"
+"343","doi:10.7281/T1/B660D2","state-space models"
+"344","doi:10.7281/T1/B660D2","working memory"
+"345","doi:10.7281/T1/B660D2","EEG"
+"346","doi:10.7281/T1/B660D2","functional connectivity"
+"347","doi:10.7281/T1/5UEIRG","conducting polymer"
+"348","doi:10.7281/T1/5UEIRG","Seebeck coefficient"
+"349","doi:10.7281/T1/5UEIRG","n-type"
+"350","doi:10.7281/T1/5UEIRG","ambipolar"
+"351","doi:10.7281/T1/5UEIRG","doping"
+"352","doi:10.7281/T1/7IXSOP","decision making"
+"353","doi:10.7281/T1/7IXSOP","attention"
+"354","doi:10.7281/T1/7IXSOP","multi-attribute decision making"
+"355","doi:10.7281/T1/7IXSOP","computational models"
+"356","doi:10.7281/T1/7IXSOP","prospect theory"
+"357","doi:10.7281/T1/7IXSOP","decision field theory"
+"358","doi:10.7281/T1/7IXSOP","linear competing accumulators"
+"359","doi:10.7281/T1/7IXSOP","decision by sampling"
+"360","doi:10.7281/T1/7IXSOP","PROMETHEE"
+"361","doi:10.7281/T1/7IXSOP","Attention and Memory-guided PROMETHEE (AMP)"
+"362","doi:10.7281/T1/YUHUYN","conducting polymers"
+"363","doi:10.7281/T1/YUHUYN","thermoelectrics"
+"364","doi:10.7281/T1/YUHUYN","Seebeck coefficient"
+"365","doi:10.7281/T1/YUHUYN","power factor"
+"366","doi:10.7281/T1/YUHUYN","doping"
+"367","doi:10.7281/T1/YUHUYN","borane"
+"368","doi:10.7281/T1/YUHUYN","adduct"
+"369","doi:10.7281/T1/1MQMFC","oligopeptides"
+"370","doi:10.7281/T1/1MQMFC","conjugated cores"
+"371","doi:10.7281/T1/1MQMFC","potassium chloride"
+"372","doi:10.7281/T1/1MQMFC","mineralization"
+"373","doi:10.7281/T1/1MQMFC","stacking"
+"374","doi:10.7281/T1/1MQMFC","conductivity"
+"375","doi:10.7281/T1/1MQMFC","morphology"
+"376","doi:10.7281/T1/1MQMFC","ultraviolet-visible spectroscopy"
+"377","doi:10.7281/T1/F1GCSB","Transplantation"
+"378","doi:10.7281/T1/F1GCSB","CD8+ T cells"
+"379","doi:10.7281/T1/F1GCSB","allograft rejection"
+"380","doi:10.7281/T1/F1GCSB","immunology"
+"381","doi:10.7281/T1/YC5BS6","vocalization"
+"382","doi:10.7281/T1/YC5BS6","marmoset"
+"383","doi:10.7281/T1/YC5BS6","call type"
+"384","doi:10.7281/T1/YC5BS6","non-human primates"
+"385","doi:10.7281/T1/AGLFQ2","heart failure with preserved ejection fraction"
+"386","doi:10.7281/T1/AGLFQ2","animal models"
+"387","doi:10.7281/T1/AGLFQ2","permeabilized"
+"388","doi:10.7281/T1/AGLFQ2","cardiomyocyte"
+"389","doi:10.7281/T1C8276W","visual cortex"
+"390","doi:10.7281/T1C8276W","figure-ground"
+"391","doi:10.7281/T1C8276W","natural scene"
+"392","doi:10.7281/T1C8276W","electrophysiology"
+"393","doi:10.7281/T1C8276W","Visual Area V2"
+"394","doi:10.7281/T1C8276W","macaque"
+"395","doi:10.7281/T1C8276W","visual perception"
+"396","doi:10.7281/T1C8276W","single unit"
+"397","doi:10.7281/T1/ZPGBJW","pregnancy health"
+"398","doi:10.7281/T1/ZPGBJW","oral health"
+"399","doi:10.7281/T1/ZPGBJW","periodontal health"
+"400","doi:10.7281/T1/ZPGBJW","pregnancy outcomes"
+"401","doi:10.7281/T1/ZPGBJW","preterm"
+"402","doi:10.7281/T1/ZPGBJW","stillbirth"
+"403","doi:10.7281/T1/ZPGBJW","Nepal"
+"404","doi:10.7281/T1/ZPGBJW","global health"
+"405","doi:10.7281/T1/ZPGBJW","community-based"
+"406","doi:10.7281/T1/ZPGBJW","oral health"
+"407","doi:10.7281/T1/CLTDND","overuse index"
+"408","doi:10.7281/T1/CLTDND","consumer attitudes towards healthcare"
+"409","doi:10.7281/T1/CLTDND","older adults"
+"410","doi:10.7281/T1/LW2H2F","tuberculosis"
+"411","doi:10.7281/T1/LW2H2F","retrospective cohort"
+"412","doi:10.7281/T1/LW2H2F","routine data"
+"413","doi:10.7281/T1/LW2H2F","health systems"
+"414","doi:10.7281/T1/2K70CX","Nepal"
+"415","doi:10.7281/T1/2K70CX","antenatal care"
+"416","doi:10.7281/T1/2K70CX","neonatal health"
+"417","doi:10.7281/T1/2K70CX","maternal health services"
+"418","doi:10.7281/T1/2K70CX","quality of care"
+"419","doi:10.7281/T1/QA0SFN","Reading"
+"420","doi:10.7281/T1/QA0SFN","Literacy"
+"421","doi:10.7281/T1/QA0SFN","Program Evaluation"
+"422","doi:10.7281/T1/QA0SFN","Struggling Learners"
+"423","doi:10.7281/T1/QA0SFN","Tutoring"
+"424","doi:10.7281/T1/QA0SFN","Meta-Analysis"
+"425","doi:10.7281/T1/QA0SFN","Systematic Review"
+"426","doi:10.7281/T1/QA0SFN","Evidence-Based Education"
+"427","doi:10.7281/T1/T3SA2Z","Heat stress"
+"428","doi:10.7281/T1/T3SA2Z","Wet Bulb Global Temperature"
+"429","doi:10.7281/T1/T3SA2Z","microclimate"
+"430","doi:10.7281/T1/T3SA2Z","meteorology"
+"431","doi:10.7281/T1/VZZOJB","clumped-isotope geothermometry"
+"432","doi:10.7281/T1/VZZOJB","carbonate U–Pb geochronology"
+"433","doi:10.7281/T1/VZZOJB","contact metamorphism"
+"434","doi:10.7281/T1/VZZOJB","carbonate"
+"435","doi:10.7281/T1/VZZOJB","kinetics"
+"436","doi:10.7281/T1/LR1FMH","frailty"
+"437","doi:10.7281/T1/LR1FMH","zipcode"
+"438","doi:10.7281/T1/LR1FMH","county"
+"439","doi:10.7281/T1/LR1FMH","map"
+"440","doi:10.7281/T1/DTCK4M","health services"
+"441","doi:10.7281/T1/DTCK4M","overuse"
+"442","doi:10.7281/T1/DTCK4M","healthcare"
+"443","doi:10.7281/T1/DTCK4M","low-value care"
+"444","doi:10.7281/T1/PXEROL","Vitamin D supplements"
+"445","doi:10.7281/T1/PXEROL","fall risk"
+"446","doi:10.7281/T1/PXEROL","serum 25-hydroxyvitamin D"
+"447","doi:10.7281/T1/2PGJQU","computer-assisted intervention"
+"448","doi:10.7281/T1/2PGJQU","X-ray image analysis"
+"449","doi:10.7281/T1/2PGJQU","machine learning"
+"450","doi:10.7281/T1/2PGJQU","sim2real"
+"451","doi:10.7281/T1/2PGJQU","landmark detection"
+"452","doi:10.7281/T1/2PGJQU","domain randomization"
+"453","doi:10.7281/T1/2PGJQU","domain generalization"
+"454","doi:10.7281/T1/V5DLIW","conducting polymers"
+"455","doi:10.7281/T1/V5DLIW","thermoelectrics"
+"456","doi:10.7281/T1/V5DLIW","Seebeck coefficient"
+"457","doi:10.7281/T1/V5DLIW","NO2"
+"458","doi:10.7281/T1/V5DLIW","vapor sensing"
+"459","doi:10.7281/T1/FFU0LR","cloud forensics"
+"460","doi:10.7281/T1/FFU0LR","cloud computing"
+"461","doi:10.7281/T1/FFU0LR","digital forensics"
+"462","doi:10.7281/T1/FFU0LR","data forensics"
+"463","doi:10.7281/T1/FFU0LR","anti-forensics techniques"
+"464","doi:10.7281/T18G8HM0","WRTDS"
+"465","doi:10.7281/T18G8HM0","chemostasis"
+"466","doi:10.7281/T18G8HM0","mobilization"
+"467","doi:10.7281/T18G8HM0","dilution"
+"468","doi:10.7281/T18G8HM0","sediment"
+"469","doi:10.7281/T18G8HM0","seasonality"
+"470","doi:10.7281/T18G8HM0","stationarity"
+"471","doi:10.7281/T1D798BQ","multisensory integration system"
+"472","doi:10.7281/T1D798BQ","locomotion"
+"473","doi:10.7281/T1D798BQ","weakly electric fish"
+"474","doi:10.7281/T1D798BQ","sensory conflict"
+"475","doi:10.7281/T1D798BQ","identification"
+"476","doi:10.7281/T1D798BQ","feedback control"
+"477","doi:10.7281/T1/L8UP2G","child health"
+"478","doi:10.7281/T1/L8UP2G","fever"
+"479","doi:10.7281/T1/L8UP2G","integrated community case management"
+"480","doi:10.7281/T1/L8UP2G","Democratic Republic of Congo"
+"481","doi:10.7281/T1/L8UP2G","global health"
+"482","doi:10.7281/T1/L8UP2G","epidemiology"
+"483","doi:10.7281/T1/L8UP2G","randomized control trials"
+"484","doi:10.7281/T1/L8UP2G","non-inferiority trial"
+"485","doi:10.7281/T1/L8UP2G","community based"
+"486","doi:10.7281/T1/KOSYGQ","severe autism"
+"487","doi:10.7281/T1/KOSYGQ","vocabulary"
+"488","doi:10.7281/T1/KOSYGQ","eye-tracking"
+"489","doi:10.7281/T1/KOSYGQ","pupillometry"
+"490","doi:10.7281/T1/KOSYGQ","ERP"
+"491","doi:10.7281/T1/KOSYGQ","cognitive neurology"
+"492","doi:10.7281/T1/VAQP5N","Nepal"
+"493","doi:10.7281/T1/VAQP5N","national surveys"
+"494","doi:10.7281/T1/VAQP5N","agro-ecological zones"
+"495","doi:10.7281/T1/VAQP5N","nutrition"
+"496","doi:10.7281/T1/VAQP5N","agriculture"
+"497","doi:10.7281/T1/VAQP5N","anthropometry"
+"498","doi:10.7281/T1/VAQP5N","diet"
+"499","doi:10.7281/T1/VAQP5N","global health"
+"500","doi:10.7281/T1/VAQP5N","observational study"
+"501","doi:10.7281/T1/LJZQPI","advance care planning"
+"502","doi:10.7281/T1/LJZQPI","patient readmission"
+"503","doi:10.7281/T1/LJZQPI","palliative care"
+"504","doi:10.7281/T1/LJZQPI","CPR"
+"505","doi:10.7281/T1/LJZQPI","cohort studies"
+"506","doi:10.7281/T1/7WXPIN","ebullition"
+"507","doi:10.7281/T1/7WXPIN","cyanobacteria"
+"508","doi:10.7281/T1/7WXPIN","arsenic"
+"509","doi:10.7281/T1/7WXPIN","lead"
+"510","doi:10.7281/T1/7WXPIN","chromium"
+"511","doi:10.7281/T1/7WXPIN","sediment"
+"512","doi:10.7281/T1/7WXPIN","Limnology"
+"513","doi:10.7281/T1/7WXPIN","Microbiology"
+"514","doi:10.7281/T1/4F90KQ","catheter"
+"515","doi:10.7281/T1/4F90KQ","endovascular sensing"
+"516","doi:10.7281/T1/4F90KQ","navigation"
+"517","doi:10.7281/T1/87PH8T","Motor learning"
+"518","doi:10.7281/T1/87PH8T","adaptation"
+"519","doi:10.7281/T1/87PH8T","de novo learning"
+"520","doi:10.7281/T1/87PH8T","system identification"
+"521","doi:10.7281/T1/N1X6I4","Tax law"
+"522","doi:10.7281/T1/N1X6I4","NLP"
+"523","doi:10.7281/T1/N1X6I4","semantics"
+"524","doi:10.7281/T1/VDZAZY","Success for All"
+"525","doi:10.7281/T1/VDZAZY","meta-analysis"
+"526","doi:10.7281/T1/VDZAZY","literacy instruction"
+"527","doi:10.7281/T1/VDZAZY","high-poverty schools"
+"528","doi:10.7281/T1/VDZAZY","struggling readers"
+"529","doi:10.7281/T1/EP0W7Y","object permanence"
+"530","doi:10.7281/T1/EP0W7Y","trajectory prediction"
+"531","doi:10.7281/T1/EP0W7Y","robot autonomy"
+"532","doi:10.7281/T1/JYAHTN","hydrological forecast"
+"533","doi:10.7281/T1/JYAHTN","drought"
+"534","doi:10.7281/T1/JYAHTN","South Asia"
+"535","doi:10.7281/T1/JYAHTN","soil moisture"
+"536","doi:10.7281/T1/JYAHTN","land surface model"
+"537","doi:10.7281/T1/QISGRU","astronomy data analysis"
+"538","doi:10.7281/T1/QISGRU","stellar abundances"
+"539","doi:10.7281/T1/QISGRU","fundamental parameters of stars"
+"540","doi:10.7281/T1/QISGRU","stellar properties"
+"541","doi:10.7281/T1/QISGRU","sky surveys"
+"542","doi:10.7281/T1/QISGRU","solar and stellar astrophysics"
+"543","doi:10.7281/T1/ZPJZJC","pathogen"
+"544","doi:10.7281/T1/ZPJZJC","porous media"
+"545","doi:10.7281/T1/ZPJZJC","stormwater biofilters"
+"546","doi:10.7281/T1/ZPJZJC","biofilm"
+"547","doi:10.7281/T1/ZPJZJC","community structure"
+"548","doi:10.7281/T1/ZPJZJC","prediction"
+"549","doi:10.7281/T1/ZPJZJC","bioaugmentation"
+"550","doi:10.7281/T1/HVRF8B","plasticity"
+"551","doi:10.7281/T1/HVRF8B","local yield stress"
+"552","doi:10.7281/T1/HVRF8B","shear transformation zone"
+"553","doi:10.7281/T1/HVRF8B","amorphous solids"
+"554","doi:10.7281/T1/HVRF8B","molecular dynamics simulations"
+"555","doi:10.7281/T1/VSW3JU","Tuberculosis"
+"556","doi:10.7281/T1/VSW3JU","risk factors"
+"557","doi:10.7281/T1/VSW3JU","mobility"
+"558","doi:10.7281/T1/VSW3JU","migration"
+"559","doi:10.7281/T1/VSW3JU","Uganda"
+"560","doi:10.7281/T1/QXKY4B","spatial analysis"
+"561","doi:10.7281/T1/QXKY4B","infertility"
+"562","doi:10.7281/T1/QXKY4B","access to care"
+"563","doi:10.7281/T1/QXKY4B","geography"
+"564","doi:10.7281/T1/QXKY4B","ART"
+"565","doi:10.7281/T1/QXKY4B","satellite clinics"
+"566","doi:10.7281/T1/6I0KPP","exoplanets"
+"567","doi:10.7281/T1/6I0KPP","exoplanet dynamics"
+"568","doi:10.7281/T1/6I0KPP","exoplanet evolution"
+"569","doi:10.7281/T1/6I0KPP","exoplanet systems"
+"570","doi:10.7281/T1/6I0KPP","exoplanet tides"
+"571","doi:10.7281/T1/6I0KPP","stellar ages"
+"572","doi:10.7281/T1/6I0KPP","stellar kinematics"
+"573","doi:10.7281/T1/6I0KPP","tidal interaction"
+"574","doi:10.7281/T1/RTSGO0","RNA chaperone"
+"575","doi:10.7281/T1/RTSGO0","small RNA"
+"576","doi:10.7281/T1/RTSGO0","intrinsically disordered protein"
+"577","doi:10.7281/T1/RTSGO0","ion mobility mass spectrometry"
+"578","doi:10.7281/T1/RTSGO0","surface-induced ion dissociation"
+"579","doi:10.7281/T1/AZ8G3G","medical licensing"
+"580","doi:10.7281/T1/AZ8G3G","Portuguese India"
+"581","doi:10.7281/T1/AZ8G3G","Estado da Índia"
+"582","doi:10.7281/T1/AZ8G3G","Indian medicine"
+"583","doi:10.7281/T1/AZ8G3G","ayurveda"
+"584","doi:10.7281/T1/AZ8G3G","colonial medicine"
+"585","doi:10.7281/T1/AZ8G3G","early modern medicine"
+"586","doi:10.7281/T1/AZ8G3G","Portuguese Goa"
+"587","doi:10.7281/T1/AZ8G3G","Portuguese empire"
+"588","doi:10.7281/T1/LJ9FLW","Saturn"
+"589","doi:10.7281/T1/LJ9FLW","rings"
+"590","doi:10.7281/T1/LJ9FLW","Cassini"
+"591","doi:10.7281/T1/LJ9FLW","mass spectrometry"
+"592","doi:10.7281/T1/LJ9FLW","atmosphere"
+"593","doi:10.7281/T1/EHSEV2","estuary"
+"594","doi:10.7281/T1/EHSEV2","pyrite"
+"595","doi:10.7281/T1/EHSEV2","Beggiatoa"
+"596","doi:10.7281/T1/EHSEV2","cable bacteria"
+"597","doi:10.7281/T1/EHSEV2","sulfur isotopes"
+"598","doi:10.7281/T1/EHSEV2","hypoxia"
+"599","doi:10.7281/T1/2DKJB2","biophysics"
+"600","doi:10.7281/T1/2DKJB2","computational biology"
+"601","doi:10.7281/T1/2DKJB2","sodium channel"
+"602","doi:10.7281/T1/2DKJB2","selectivity"
+"603","doi:10.7281/T1/2DKJB2","pKa values"
+"604","doi:10.7281/T1/2DKJB2","molecular dynamics"
+"605","doi:10.7281/T1/8BOXVM","Chagas disease"
+"606","doi:10.7281/T1/8BOXVM","cardiomyopathy"
+"607","doi:10.7281/T1/8BOXVM","cardiac"
+"608","doi:10.7281/T1/8BOXVM","chronic chagas"
+"609","doi:10.7281/T1/UJO8EZ","polyammonium salt"
+"610","doi:10.7281/T1/UJO8EZ","Seebeck coefficient"
+"611","doi:10.7281/T1/UJO8EZ","ionic conductivity"
+"612","doi:10.7281/T1/UJO8EZ","ionomer"
+"613","doi:10.7281/T1/UJO8EZ","thermoelectrics"
+"614","doi:10.7281/T1/HW66X3","DNA crosslinkers"
+"615","doi:10.7281/T1/HW66X3","platinum(II)"
+"616","doi:10.7281/T1/HW66X3","cisplatin"
+"617","doi:10.7281/T1/HW66X3","biosensors"
+"618","doi:10.7281/T1/HW66X3","electron transfer"
+"619","doi:10.7281/T1MW2F2Z","extracellular matrix"
+"620","doi:10.7281/T1MW2F2Z","endothelial progenitor cells"
+"621","doi:10.7281/T1MW2F2Z","angiogenesis"
+"622","doi:10.7281/T1MW2F2Z","vascular endothelial grwoth factor"
+"623","doi:10.7281/T1MW2F2Z","tubulogenesis"
+"624","doi:10.7281/T1CC0XMT","micropatterning"
+"625","doi:10.7281/T1CC0XMT","cell adhesion"
+"626","doi:10.7281/T1VD6WC7","Chesapeake Bay"
+"627","doi:10.7281/T1VD6WC7","long-term watershed monitoring"
+"628","doi:10.7281/T1VD6WC7","nutrient and sediment loadings"
+"629","doi:10.7281/T1VD6WC7","non-point-source pollution"
+"630","doi:10.7281/T1VD6WC7","WRTDS"
+"631","doi:10.7281/T1VD6WC7","seasonal trends"
+"632","doi:10.7281/T1QN64NW","WRTDS"
+"633","doi:10.7281/T1QN64NW","Susquehanna River Basin"
+"634","doi:10.7281/T1QN64NW","Chesapeake Bay"
+"635","doi:10.7281/T1QN64NW","nutrient and sediment loadings"
+"636","doi:10.7281/T1QN64NW","long-term trends"
+"637","doi:10.7281/T1QN64NW","mass balances"
+"638","doi:10.7281/T1QN64NW","Conowingo Dam"
+"639","doi:10.7281/T1/Y2PVKD","Earth system modeling"
+"640","doi:10.7281/T1/6JMKIG","Ethiopia"
+"641","doi:10.7281/T1/6JMKIG","meteorological station data"
+"642","doi:10.7281/T1/6JMKIG","solar radiation"
+"643","doi:10.7281/T1/6JMKIG","meteorology"
+"644","doi:10.7281/T1/UMDMQK","Nepal"
+"645","doi:10.7281/T1/UMDMQK","national surveys"
+"646","doi:10.7281/T1/UMDMQK","agro-ecological zones"
+"647","doi:10.7281/T1/UMDMQK","nutrition"
+"648","doi:10.7281/T1/UMDMQK","anthropometry"
+"649","doi:10.7281/T1/UMDMQK","diet"
+"650","doi:10.7281/T1/UMDMQK","observational study"
+"651","doi:10.7281/T1/EM61IB","Nepal"
+"652","doi:10.7281/T1/EM61IB","national surveys"
+"653","doi:10.7281/T1/EM61IB","agro-ecological zones"
+"654","doi:10.7281/T1/EM61IB","nutrition"
+"655","doi:10.7281/T1/EM61IB","agriculture"
+"656","doi:10.7281/T1/EM61IB","anthropometry"
+"657","doi:10.7281/T1/EM61IB","diet"
+"658","doi:10.7281/T1/EM61IB","global health"
+"659","doi:10.7281/T1/EM61IB","observational study"
+"660","doi:10.7281/T1/FWDYPW","motor learning"
+"661","doi:10.7281/T1/FWDYPW","habit"
+"662","doi:10.7281/T1/FWDYPW","skill"
+"663","doi:10.7281/T1/4ZCOC4","land surface model"
+"664","doi:10.7281/T1/4ZCOC4","data assimilation"
+"665","doi:10.7281/T1/4ZCOC4","irrigation"
+"666","doi:10.7281/T1/4ZCOC4","high plains aquifer"
+"667","doi:10.7281/T1/XNZRR8","conjugated polymers"
+"668","doi:10.7281/T1/XNZRR8","electrochemical transistors"
+"669","doi:10.7281/T1/XNZRR8","counterions"
+"670","doi:10.7281/T1/XNZRR8","transconductance"
+"671","doi:10.7281/T1/XNZRR8","polythiophenes"
+"672","doi:10.7281/T1/NEACHP","photochemical hazes"
+"673","doi:10.7281/T1/NEACHP","exoplanet atmospheres"
+"674","doi:10.7281/T1/NEACHP","JWST spectra"
+"675","doi:10.7281/T1/NEACHP","optical constants"
+"676","doi:10.7281/T1/EAC3HJ","racial integration"
+"677","doi:10.7281/T1/EAC3HJ","neighborhood satisfaction"
+"678","doi:10.7281/T1/EAC3HJ","neighborhood change"
+"679","doi:10.7281/T1/EAC3HJ","Washington, DC"
+"680","doi:10.7281/T1/EAC3HJ","multiracial neighborhood"
+"681","doi:10.7281/T1/B1QTXI","Mexico"
+"682","doi:10.7281/T1/B1QTXI","agriculture"
+"683","doi:10.7281/T1/B1QTXI","economic history"
+"684","doi:10.7281/T1/B1QTXI","labor history"
+"685","doi:10.7281/T1/B1QTXI","environmental history"
+"686","doi:10.7281/T1/B1QTXI","Porfiriato"
+"687","doi:10.7281/T1/EQKCFP","influenza B virus"
+"688","doi:10.7281/T1/EQKCFP","human nasal epithelial cells"
+"689","doi:10.7281/T1/EQKCFP","cell tropism"
+"690","doi:10.7281/T1/EQKCFP","viral transcriptomics"
+"691","doi:10.7281/T1/EQKCFP","protein immunoassay"
+"692","doi:10.7281/T1/8DBUAP","circular dichroism"
+"693","doi:10.7281/T1/8DBUAP","Hippo pathway"
+"694","doi:10.7281/T1/8DBUAP","MST kinase"
+"695","doi:10.7281/T1/8DBUAP","structure-function"
+"696","doi:10.7281/T1/8DBUAP","protein kinases"
+"697","doi:10.7281/T1/UP8RWD","glucagon suppression"
+"698","doi:10.7281/T1/UP8RWD","glucagon secretion"
+"699","doi:10.7281/T1/UP8RWD","incretin effect"
+"700","doi:10.7281/T1/UP8RWD","insulin sensitivity"
+"701","doi:10.7281/T1/UP8RWD","insulin secretion"
+"702","doi:10.7281/T1/SMICE5","auditory cortex"
+"703","doi:10.7281/T1/SMICE5","training"
+"704","doi:10.7281/T1/SMICE5","response"
+"705","doi:10.7281/T1/SMICE5","neuroplasticity"
+"706","doi:10.7281/T1/SMICE5","cortical plasticity"
+"707","doi:10.7281/T1KW5CX5","WRTDS"
+"708","doi:10.7281/T1KW5CX5","Susquehanna River Basin"
+"709","doi:10.7281/T1KW5CX5","Chesapeake Bay"
+"710","doi:10.7281/T1KW5CX5","nutrient and sediment loadings"
+"711","doi:10.7281/T1KW5CX5","long-term seasonal trends"
+"712","doi:10.7281/T1KW5CX5","Conowingo Dam"
+"713","doi:10.7281/T1/J8UWFU","automated training"
+"714","doi:10.7281/T1/J8UWFU","chronic widefield imaging"
+"715","doi:10.7281/T1/J8UWFU","higher-order auditory cortex"
+"716","doi:10.7281/T1/J8UWFU","learning"
+"717","doi:10.7281/T1/J8UWFU","neural representation"
+"718","doi:10.7281/T1/J8UWFU","functional connectivity"
+"719","doi:10.7281/T1/DG7RDP","Earth System Model"
+"720","doi:10.7281/T1/DG7RDP","ocean color"
+"721","doi:10.7281/T1/DG7RDP","climate"
+"722","doi:10.7281/T1/DG7RDP","sea surface temperature"
+"723","doi:10.7281/T1/DG7RDP","oceanography"
+"724","doi:10.7281/T1/DG7RDP","climate science"
+"725","doi:10.7281/T1/ZQZX80","atomic force microscopy"
+"726","doi:10.7281/T1/ZQZX80","column breakthrough curves"
+"727","doi:10.7281/T1/ZQZX80","microplastic remediation"
+"728","doi:10.7281/T1/ZQZX80","stormwater management"
+"729","doi:10.7281/T1/ZQZX80","colloidal filtration"
+"730","doi:10.7281/T1/4RZTRN","IL10 (interleukin 10)"
+"731","doi:10.7281/T1/4RZTRN","emphysema"
+"732","doi:10.7281/T1/4RZTRN","macrophages"
+"733","doi:10.7281/T1/4RZTRN","MMP12 (matrix metalloprotease 12)"
+"734","doi:10.7281/T1/4RZTRN","alveolar epithelial cells"
+"735","doi:10.7281/T1/4RZTRN","lymphoid aggregates"
+"736","doi:10.7281/T1/T81CEP","Tuberculosis"
+"737","doi:10.7281/T1/T81CEP","geographic information systems"
+"738","doi:10.7281/T1/T81CEP","routine data"
+"739","doi:10.7281/T1/T81CEP","health systems"
+"740","doi:10.7281/T1/T81CEP","active case finding"
+"741","doi:10.7281/T1/XZ0CGJ","spatial analysis"
+"742","doi:10.7281/T1/XZ0CGJ","ART"
+"743","doi:10.7281/T1/XZ0CGJ","IVF"
+"744","doi:10.7281/T1/XZ0CGJ","IUI"
+"745","doi:10.7281/T1/XZ0CGJ","infertility"
+"746","doi:10.7281/T1/XZ0CGJ","fertility"
+"747","doi:10.7281/T1/XZ0CGJ","clinic"
+"748","doi:10.7281/T1/RECXQW","irrigation"
+"749","doi:10.7281/T1/RECXQW","vegetation"
+"750","doi:10.7281/T1/RECXQW","land surface model"
+"751","doi:10.7281/T1/RECXQW","data assimilation"
+"752","doi:10.7281/T1/QUDBC6","Maryland"
+"753","doi:10.7281/T1/QUDBC6","food systems"
+"754","doi:10.7281/T1/QUDBC6","maps"
+"755","doi:10.7281/T1/QUDBC6","geographic information systems (GIS)"
+"756","doi:10.7281/T1/KGCGBM","organic transistors"
+"757","doi:10.7281/T1/KGCGBM","charge retention"
+"758","doi:10.7281/T1/KGCGBM","charge trapping"
+"759","doi:10.7281/T1/KGCGBM","dielectrics"
+"760","doi:10.7281/T1/AVOEQR","acetylcholine"
+"761","doi:10.7281/T1/AVOEQR","reinforcement signaling"
+"762","doi:10.7281/T1/AVOEQR","amyloidosis"
+"763","doi:10.7281/T1/AVOEQR","Alzheimer’s Disease"
+"764","doi:10.7281/T1/AVOEQR","imaging"
+"765","doi:10.7281/T1/AVOEQR","mouse model "
+"766","doi:10.7281/T1/C8BCOW","polymer dielectrics"
+"767","doi:10.7281/T1/C8BCOW","organic transistors"
+"768","doi:10.7281/T1/C8BCOW","charge storage"
+"769","doi:10.7281/T1/C8BCOW","threshold voltage"
+"770","doi:10.7281/T1/VNFY91","pyrite"
+"771","doi:10.7281/T1/VNFY91","sediment"
+"772","doi:10.7281/T1/VNFY91","early Paleozoic"
+"773","doi:10.7281/T1/VNFY91","oxygen"
+"774","doi:10.7281/T1/VNFY91","bioturbation"
+"775","doi:10.7281/T1/VNFY91","Chesapeake Bay"
+"776","doi:10.7281/T17P8W98","micropatterning"
+"777","doi:10.7281/T17P8W98","endothelial cells"
+"778","doi:10.7281/T1H41PBJ","hyaluronic acid"
+"779","doi:10.7281/T1H41PBJ","micropatterning"
+"780","doi:10.7281/T1H41PBJ","cell adhesion"
+"781","doi:10.7281/T1/C6MCOX","active sensing"
+"782","doi:10.7281/T1/C6MCOX","weakly electric fish"
+"783","doi:10.7281/T1/C6MCOX","electrosensation"
+"784","doi:10.7281/T1/C6MCOX","sensory cue"
+"785","doi:10.7281/T1/C6MCOX","sensorimotor system"
+"786","doi:10.7281/T1/C6MCOX","smooth pursuit"
+"787","doi:10.7281/T1/C6MCOX","behavioral neuroscience"
+"788","doi:10.7281/T1F769G3","international health"
+"789","doi:10.7281/T1F769G3","public health"
+"790","doi:10.7281/T1F769G3","maternal and child health"
+"791","doi:10.7281/T1F769G3","mortality monitoring"
+"792","doi:10.7281/T1F769G3","community health workers"
+"793","doi:10.7281/T1F769G3","under-five mortality rate"
+"794","doi:10.7281/T1/IFSXNV","Landmark Detection"
+"795","doi:10.7281/T1/IFSXNV","Semantic Segmentation"
+"796","doi:10.7281/T1/IFSXNV","2D/3D Registration"
+"797","doi:10.7281/T1/IFSXNV","X-ray Navigation"
+"798","doi:10.7281/T1/IFSXNV","Orthopaedics"
+"799","doi:10.7281/T1/IFSXNV","Hip Surgery"
+"800","doi:10.7281/T1/IFSXNV","Fluoroscopy"
+"801","doi:10.7281/T1/IFSXNV","Convolutional Neural Networks"
+"802","doi:10.7281/T1/0EYOMQ","irrigation"
+"803","doi:10.7281/T1/0EYOMQ","Noah-MP"
+"804","doi:10.7281/T1/0EYOMQ","data assimilation"
+"805","doi:10.7281/T1/0EYOMQ","vegetation"
+"806","doi:10.7281/T1/0EYOMQ","soil moisture"
+"807","doi:10.7281/T1/L4QB1Z","conjugated polymers"
+"808","doi:10.7281/T1/L4QB1Z","biosensors"
+"809","doi:10.7281/T1/L4QB1Z","human IgG"
+"810","doi:10.7281/T1/L4QB1Z","open circuit potential"
+"811","doi:10.7281/T1/L4QB1Z","electrochemical transistors"
+"812","doi:10.7281/T1/OOMZS7","value-driven attention capture"
+"813","doi:10.7281/T1/OOMZS7","working memory"
+"814","doi:10.7281/T1/OOMZS7","EEG"
+"815","doi:10.7281/T1/OOMZS7","reaction time"
+"816","doi:10.7281/T1/LQMJJM","cancer"
+"817","doi:10.7281/T1/LQMJJM","telomerase aging"
+"818","doi:10.7281/T1/LQMJJM","T cell aging"
+"819","doi:10.7281/T1/LQMJJM","genome instability"
+"820","doi:10.7281/T1/LQMJJM","head and neck cancer"
+"821","doi:10.7281/T1/LQMJJM","senescence"
+"822","doi:10.7281/T1/LQMJJM","immune aging"
+"823","doi:10.7281/T1/LQMJJM","pulmonary fibrosis"
+"824","doi:10.7281/T1/0L0OA0","mouse"
+"825","doi:10.7281/T1/0L0OA0","cerebral blood flow"
+"826","doi:10.7281/T1/0L0OA0","anesthesia"
+"827","doi:10.7281/T1/0L0OA0","isoflurane"
+"828","doi:10.7281/T1/0L0OA0","calibration"
+"829","doi:10.7281/T1/PIVKJ7","movement variability"
+"830","doi:10.7281/T1/PIVKJ7","human brain"
+"831","doi:10.7281/T1/PIVKJ7","SEEG"
+"832","doi:10.7281/T1/PIVKJ7","large-scale brain networks"
+"833","doi:10.7281/T1/PIVKJ7","encoding"
+"834","doi:10.7281/T1/PIVKJ7","connectivity"
+"835","doi:10.7281/T1/PIVKJ7","non-parametric cluster statistic"
+"836","doi:10.7281/T1/PIVKJ7","internal states"
+"837","doi:10.7281/T1/UIJLZO","particulate matter"
+"838","doi:10.7281/T1/UIJLZO","organic field effect transistor"
+"839","doi:10.7281/T1/UIJLZO","sensors"
+"840","doi:10.7281/T1057CVH","electric field mediated colloidal self-assembly"
+"841","doi:10.7281/T1057CVH","feedback control"
+"842","doi:10.7281/T1057CVH","microfabrication"
+"843","doi:10.7281/T1057CVH","electrokinetic transport"
+"844","doi:10.7281/T1057CVH","electrophoresis"
+"845","doi:10.7281/T1057CVH","electroosmosis"
+"846","doi:10.7281/T1057CVH","dielectrophoresis"
+"847","doi:10.7281/T1057CVH","dipole-field interactions"
+"848","doi:10.7281/T1057CVH","dipole-dipole interactions"
+"849","doi:10.7281/T1/DP2U9M","doubt"
+"850","doi:10.7281/T1/DP2U9M","decision-making"
+"851","doi:10.7281/T1/DP2U9M","obsessive-compulsive disorder (OCD)"
+"852","doi:10.7281/T1/DP2U9M","assessment"
+"853","doi:10.7281/T1/DP2U9M","neuropsychology"
+"854","doi:10.7281/T1/DP2U9M","psychometrics"
+"855","doi:10.7281/T1/DP2U9M","psychopathology"
+"856","doi:10.7281/T1/UXPNT5","COVID-19"
+"857","doi:10.7281/T1/UXPNT5","Côte d’Ivoire"
+"858","doi:10.7281/T1/UXPNT5","qualitative"
+"859","doi:10.7281/T1/UXPNT5","stigma"
+"860","doi:10.7281/T1/UXPNT5","barrier measures"
+"861","doi:10.7281/T1/UXPNT5","prevention"
+"862","doi:10.7281/T1/X4MXHC","Morocco"
+"863","doi:10.7281/T1/X4MXHC","drought"
+"864","doi:10.7281/T1/X4MXHC","vegetation"
+"865","doi:10.7281/T1/X4MXHC","land surface model"
+"866","doi:10.7281/T1/X4MXHC","data assimilation"
+"867","doi:10.7281/T1/QQ77OB","motor learning"
+"868","doi:10.7281/T1/QQ77OB","de novo learning"
+"869","doi:10.7281/T1/NU0VS7","anthropogenic impacts"
+"870","doi:10.7281/T1/NU0VS7","sulfur cycling"
+"871","doi:10.7281/T1/NU0VS7","transport processes"
+"872","doi:10.7281/T1/NU0VS7","suburban watershed"
+"873","doi:10.7281/T1/NU0VS7","forested watershed"
+"874","doi:10.7281/T1/NU0VS7","stream discharge"
+"875","doi:10.7281/T1/NU0VS7","water isotopes"
+"876","doi:10.7281/T1/NU0VS7","sulfates sulfur isotopes"
+"877","doi:10.7281/T1/NU0VS7","sulfate oxygen isotopes"
+"878","doi:10.7281/T1/NU0VS7","suburban land use"
+"879","doi:10.7281/T1/KTOG9W","breast cancer metastasis"
+"880","doi:10.7281/T1/KTOG9W","iron oxide nanoparticles"
+"881","doi:10.7281/T1/KTOG9W","T cell signaling"
+"882","doi:10.7281/T1/KTOG9W","Toll/interleukin-1 receptor-domain-containing adaptor-inducing interferon-β (TRIF)"
+"883","doi:10.7281/T1/KTOG9W","toll-like receptors"
+"884","doi:10.7281/T1/VXGDYH","auditory cortex"
+"885","doi:10.7281/T1/VXGDYH","signal-to-noise ratio"
+"886","doi:10.7281/T1/VXGDYH","behavior"
+"887","doi:10.7281/T1/VXGDYH","orbitofrontal cortex"
+"888","doi:10.7281/T1/VXGDYH","top-down"
+"889","doi:10.7281/T1154F09","hard sphere"
+"890","doi:10.7281/T1154F09","molecular dynamics"
+"891","doi:10.7281/T1154F09","perturbation theory"
+"892","doi:10.7281/T1154F09","phase behavior"
+"893","doi:10.7281/T1154F09","diffusion maps"
+"894","doi:10.7281/T1154F09","model system"
+"895","doi:10.7281/T1154F09","free energy"
+"896","doi:10.7281/T1154F09","cluster"
+"897","doi:10.7281/T1154F09","state"
+"898","doi:10.7281/T1154F09","crystallization"
+"899","doi:10.7281/T1/BCARLC","cerebellum"
+"900","doi:10.7281/T1/BCARLC","ataxia"
+"901","doi:10.7281/T1/BCARLC","control theory"
+"902","doi:10.7281/T1/BCARLC","motor control"
+"903","doi:10.7281/T1/BCARLC","reaching"
+"904","doi:10.7281/T1/XGVRX0","conjugated polymers"
+"905","doi:10.7281/T1/XGVRX0","biosensors"
+"906","doi:10.7281/T1/XGVRX0","myelin basic protein"
+"907","doi:10.7281/T1/XGVRX0","SARS-CoV-2"
+"908","doi:10.7281/T1/XGVRX0","OECT"
+"909","doi:10.7281/T1/XGVRX0","open circuit potential"
+"910","doi:10.7281/T1/XGVRX0","zeta potential"
+"911","doi:10.7281/T1/NLHSKE","thermodynamic modeling"
+"912","doi:10.7281/T1/NLHSKE","deep fluids"
+"913","doi:10.7281/T1/NLHSKE","DEW model"
+"914","doi:10.7281/T1/NLHSKE","abiotic hydrocarbons"
+"915","doi:10.7281/T1/NLHSKE","subduction zone"
+"916","doi:10.7281/T1/K08BJZ","metagenomics"
+"917","doi:10.7281/T1/K08BJZ","biogeochemical model"
+"918","doi:10.7281/T1/K08BJZ","Chesapeake Bay"
+"919","doi:10.7281/T1/K08BJZ","genes"
+"920","doi:10.7281/T1/SWU4P8","Renal physiology"
+"921","doi:10.7281/T1/SWU4P8","ADPKD"
+"922","doi:10.7281/T1/SWU4P8","Polycystin-2"
+"923","doi:10.7281/T1/SWU4P8","RNA sequencing"
+"924","doi:10.7281/T1/SWU4P8","Transcriptomics"
+"925","doi:10.7281/T1/SWU4P8","in vitro ADPKD model"
+"926","doi:10.7281/T1/860JVB","organic electrochemical transistors"
+"927","doi:10.7281/T1/860JVB","biosensors"
+"928","doi:10.7281/T1/860JVB","gate functionalization"
+"929","doi:10.7281/T1/860JVB","dual gate circuit"
+"930","doi:10.7281/T1/860JVB","drift compensation"
+"931","doi:10.7281/T1/WVDKQI","organic field-effect transistors"
+"932","doi:10.7281/T1/WVDKQI","charge storage"
+"933","doi:10.7281/T1/WVDKQI","capacitors"
+"934","doi:10.7281/T1/WVDKQI","static charging"
+"935","doi:10.7281/T1/WVDKQI","dielectrics"
+"936","doi:10.7281/T1/YPUEQT","smFRET"
+"937","doi:10.7281/T1/YPUEQT","sRNA regulation"
+"938","doi:10.7281/T1/YPUEQT","Hfq"
+"939","doi:10.7281/T1/YPUEQT","RNA chaperone"
+"940","doi:10.7281/T1/YPUEQT","facilitated diffusion"
+"941","doi:10.7281/T1/UDTJPD","Sensorimotor control"
+"942","doi:10.7281/T1/UDTJPD","weakly electric fish"
+"943","doi:10.7281/T1/UDTJPD","sensory feedback"
+"944","doi:10.7281/T1/UDTJPD","variability"
+"945","doi:10.7281/T1/UDTJPD","system identification"
+"946","doi:10.7281/T1/UDTJPD","neuroscience"
+"947","doi:10.7281/T1/5QMDY6","smFRET"
+"948","doi:10.7281/T1/5QMDY6","RNA folding"
+"949","doi:10.7281/T1/5QMDY6","transcription"
+"950","doi:10.7281/T1/5QMDY6","riboswitch"
+"951","doi:10.7281/T1/5QMDY6","ribozyme"
+"952","doi:10.7281/T1WD3XHM","smooth muscle cells"
+"953","doi:10.7281/T1WD3XHM","blood vessels"
+"954","doi:10.7281/T1WD3XHM","differentiation"
+"955","doi:10.7281/T1WD3XHM","human embryonic stem cells"
+"956","doi:10.7281/T1WD3XHM","tissue engineering"
+"957","doi:10.7281/T1W66HPZ","echolocation"
+"958","doi:10.7281/T1W66HPZ","active sensing"
+"959","doi:10.7281/T1W66HPZ","sonar adaptations"
+"960","doi:10.7281/T1W66HPZ","3D spatial orientation"
+"961","doi:10.7281/T1/NL3HTW","metagenomics"
+"962","doi:10.7281/T1/NL3HTW","16S rRNA gene sequences"
+"963","doi:10.7281/T1/NL3HTW","Chesapeake Bay"
+"964","doi:10.7281/T1/NL3HTW","hypoxia"
+"965","doi:10.7281/T1/FTCWPF","Hydrology"
+"966","doi:10.7281/T1/QVAHMD","natural language processing"
+"967","doi:10.7281/T1/QVAHMD","natural language processing and law"
+"968","doi:10.7281/T1/QVAHMD","artificial intelligence and law"
+"969","doi:10.7281/T1/QVAHMD","pointwise mutual information"
+"970","doi:10.7281/T1/QVAHMD","event semantics"
+"971","doi:10.7281/T1/UZIT7C","Titan"
+"972","doi:10.7281/T1/UZIT7C","planetary science"
+"973","doi:10.7281/T1/UZIT7C","planetary atmospheres"
+"974","doi:10.7281/T1/UZIT7C","clouds"
+"975","doi:10.7281/T1/2QCZXM","Mexico"
+"976","doi:10.7281/T1/2QCZXM","administrative geography"
+"977","doi:10.7281/T1/2QCZXM","municipality"
+"978","doi:10.7281/T1/2QCZXM","GIS"
+"979","doi:10.7281/T1/2QCZXM","1900"
+"980","doi:10.7281/T1/2QCZXM","nineteenth century"
+"981","doi:10.7281/T1/2QCZXM","historical GIS"
+"982","doi:10.7281/T1/2QCZXM","historical geography"
+"983","doi:10.7281/T1/AVEV7M","bacterial small RNA"
+"984","doi:10.7281/T1/AVEV7M","co-transcriptional RNA folding"
+"985","doi:10.7281/T1/AVEV7M","single-molecule fluorescence"
+"986","doi:10.7281/T1/AVEV7M","RNA chaperone"
+"987","doi:10.7281/T1/AVEV7M","Hfq"
+"988","doi:10.7281/T1/AVEV7M","protein induced fluorescence enhancement"
+"989","doi:10.7281/T1/BDLMJG","waste management"
+"990","doi:10.7281/T1/BDLMJG","urban India"
+"991","doi:10.7281/T1/BDLMJG","informal economy"
+"992","doi:10.7281/T1/BDLMJG","infrastructure privatization"
+"993","doi:10.7281/T1/H1ZPLI","influenza"
+"994","doi:10.7281/T1/H1ZPLI","H1N1"
+"995","doi:10.7281/T1/H1ZPLI","receptor binding"
+"996","doi:10.7281/T1/H1ZPLI","viral fitness"
+"997","doi:10.7281/T1/H1ZPLI","antigenic drift"
+"998","doi:10.7281/T1/H1ZPLI","nasal epithelial cells"
+"999","doi:10.7281/T1/I0H3GY","ITO"
+"1000","doi:10.7281/T1/I0H3GY","nucleic acids"
+"1001","doi:10.7281/T1/I0H3GY","electrochemical sensor"
+"1002","doi:10.7281/T1/I0H3GY","alkylphosphonic acids"
+"1003","doi:10.7281/T1/TLEBVW","wind energy"
+"1004","doi:10.7281/T1/TLEBVW","large eddy simulation"
+"1005","doi:10.7281/T1/TLEBVW","receding horizon control"
+"1006","doi:10.7281/T1/TLEBVW","frequency regulation"
+"1007","doi:10.7281/T1/AYTUVI","cerebellar ataxia"
+"1008","doi:10.7281/T1/AYTUVI","humans"
+"1009","doi:10.7281/T1/AYTUVI","physical therapy modalities"
+"1010","doi:10.7281/T1/AYTUVI","robotics"
+"1011","doi:10.7281/T1/IWOVKD","lateral mixing"
+"1012","doi:10.7281/T1/IWOVKD","Earth System Model"
+"1013","doi:10.7281/T1/IWOVKD","ocean deoxygenization"
+"1014","doi:10.7281/T1/IWOVKD","CM2Mc"
+"1015","doi:10.7281/T1/IWOVKD","ESM2Mc"
+"1016","doi:10.7281/T1/IWOVKD","oceanography"
+"1017","doi:10.7281/T1/IWOVKD","climate change"
+"1018","doi:10.7281/T1/VZYIRV","nerve stimulation"
+"1019","doi:10.7281/T1/VZYIRV","temporal interference"
+"1020","doi:10.7281/T1/VZYIRV","sciatic nerve stimulation"
+"1021","doi:10.7281/T1/VZYIRV","cuff electrode stimulation"
+"1022","doi:10.7281/T1/MYBQC7","Mars"
+"1023","doi:10.7281/T1/MYBQC7","polar"
+"1024","doi:10.7281/T1/MYBQC7","planetary"
+"1025","doi:10.7281/T1/XTSKOW","weakly electric fish"
+"1026","doi:10.7281/T1/XTSKOW","pose estimation"
+"1027","doi:10.7281/T1/XTSKOW","electrode tracking"
+"1028","doi:10.7281/T1/XTSKOW","behavioral monitoring"
+"1029","doi:10.7281/T1/XTSKOW","field data analysis"
+"1030","doi:10.7281/T1/FIS2QT","Ocean convection"
+"1031","doi:10.7281/T1/FIS2QT","coupled climate variability"
+"1032","doi:10.7281/T1/FIS2QT","Southern Ocean"
+"1033","doi:10.7281/T1/FIS2QT","Weddell Sea"
+"1034","doi:10.7281/T1/FIS2QT","modeling"
+"1035","doi:10.7281/T1PN93HH","migration"
+"1036","doi:10.7281/T1PN93HH","immigration"
+"1037","doi:10.7281/T1PN93HH","immigrant incorporation"
+"1038","doi:10.7281/T1PN93HH","citizenship"
+"1039","doi:10.7281/T1PN93HH","naturalization"
+"1040","doi:10.7281/T1PN93HH","multiculturalism"
+"1041","doi:10.7281/T1PN93HH","multicultural coexistence"
+"1042","doi:10.7281/T1PN93HH","multicultural families"
+"1043","doi:10.7281/T1PN93HH","discrimination"
+"1044","doi:10.7281/T1PN93HH","identity"
+"1045","doi:10.7281/T1PN93HH","political empowerment"
+"1046","doi:10.7281/T1PN93HH","migrant workers"
+"1047","doi:10.7281/T1PN93HH","foreign workers"
+"1048","doi:10.7281/T1PN93HH","marriage migration"
+"1049","doi:10.7281/T1PN93HH","marriage migrants"
+"1050","doi:10.7281/T1PN93HH","foreign residents"
+"1051","doi:10.7281/T1PN93HH","refugees"
+"1052","doi:10.7281/T1PN93HH","diversity"
+"1053","doi:10.7281/T1PN93HH","advocacy"
+"1054","doi:10.7281/T1PN93HH","Japan"
+"1055","doi:10.7281/T1PN93HH","Korea"
+"1056","doi:10.7281/T1PN93HH","East Asia"
+"1057","doi:10.7281/T1PN93HH","Filipinos in Japan"
+"1058","doi:10.7281/T1PN93HH","Zainichi Koreans"
+"1059","doi:10.7281/T1PN93HH","Nikkei Peruvians"
+"1060","doi:10.7281/T1PN93HH","Nikkei Brazilians"
+"1061","doi:10.7281/T1PN93HH","Chinese residents in Japan"
+"1062","doi:10.7281/T1PN93HH","foreign residents"
+"1063","doi:10.7281/T1PN93HH","Koreans in Japan"
+"1064","doi:10.7281/T1PN93HH","Ethiopians in Japan"
+"1065","doi:10.7281/T1PN93HH","Bangladesh residents in Japan"
+"1066","doi:10.7281/T1/VWR4GR","Mars"
+"1067","doi:10.7281/T1/VWR4GR","atmosphere"
+"1068","doi:10.7281/T1/VWR4GR","fluid dynamics"
+"1069","doi:10.7281/T1/8VU7A2","thermoelectrics"
+"1070","doi:10.7281/T1/8VU7A2","Seebeck coefficient"
+"1071","doi:10.7281/T1/8VU7A2","power factor"
+"1072","doi:10.7281/T1/8VU7A2","doping"
+"1073","doi:10.7281/T1/8VU7A2","electron transport"
+"1074","doi:10.7281/T1/WVEABK","marmoset"
+"1075","doi:10.7281/T1/WVEABK","primate"
+"1076","doi:10.7281/T1/WVEABK","hearing"
+"1077","doi:10.7281/T1/WVEABK","vocalization"
+"1078","doi:10.7281/T1/WVEABK","perception"
+"1079","doi:10.7281/T1/WVEABK","categorical"
+"1080","doi:10.7281/T1/WVEABK","perceptual magnet"
+"1081","doi:10.7281/T1/OM3OMQ","watershed modeling"
+"1082","doi:10.7281/T1/OM3OMQ","transit time distributions"
+"1083","doi:10.7281/T1/OM3OMQ","climate change"
+"1084","doi:10.7281/T1/NTWJAR","mosquito"
+"1085","doi:10.7281/T1/NTWJAR","olfaction"
+"1086","doi:10.7281/T1/NTWJAR","calcium-imaging"
+"1087","doi:10.7281/T1/NTWJAR","neuroanatomy"
+"1088","doi:10.7281/T1/NTWJAR","Anopheles"
+"1089","doi:10.7281/T1/ORP47N","neuroscience"
+"1090","doi:10.7281/T1/ORP47N","biomedical engineering"
+"1091","doi:10.7281/T1/HRK27V","mushroom body output neuron"
+"1092","doi:10.7281/T1/HRK27V","dendritic signal processing"
+"1093","doi:10.7281/T1/HRK27V","neuronal output tuning"
+"1094","doi:10.7281/T1/HRK27V","decision making"
+"1095","doi:10.7281/T1/HRK27V","long term memory formation"
+"1096","doi:10.7281/T1/HRK27V","Drosophila"
+"1097","doi:10.7281/T1/7ELIJW","imaging informatics"
+"1098","doi:10.7281/T1/7ELIJW","computer vision"
+"1099","doi:10.7281/T1/7ELIJW","radiology"
+"1100","doi:10.7281/T1/7ELIJW","human anatomy"
+"1101","doi:10.7281/T1/7ELIJW","annotation"
+"1102","doi:10.7281/T1/7ELIJW","computed tomography"
+"1103","doi:10.7281/T1/7ELIJW","organ segmentation"
+"1104","doi:10.7281/T1/7ELIJW","active learning"
+"1105","doi:10.7281/T1/7ELIJW","artificial intelligence"
+"1106","doi:10.7281/T1/P69KYX","Business"
+"1107","doi:10.7281/T1/AUBBJD","global warming"
+"1108","doi:10.7281/T1/AUBBJD","ocean biogeochemistry"
+"1109","doi:10.7281/T1/AUBBJD","lateral mixing"
+"1110","doi:10.7281/T1/AUBBJD","earth system model"
+"1111","doi:10.7281/T1/AUBBJD","CM2Mc"
+"1112","doi:10.7281/T1/AUBBJD","ESM2Mc"
+"1113","doi:10.7281/T1/AUBBJD","climate change"
+"1114","doi:10.7281/T1/C304HZ","2D/3D registration"
+"1115","doi:10.7281/T1/C304HZ","X-ray navigation"
+"1116","doi:10.7281/T1/C304HZ","image-guided surgery"
+"1117","doi:10.7281/T1/C304HZ","orthopaedics"
+"1118","doi:10.7281/T1/C304HZ","hip surgery"
+"1119","doi:10.7281/T1/C304HZ","periacetabular osteotomy"
+"1120","doi:10.7281/T1/C304HZ","fluoroscopy"
+"1121","doi:10.7281/T1/C304HZ","computed tomography"
+"1122","doi:10.7281/T1/C304HZ","computer integrated surgery"
+"1123","doi:10.7281/T1/C304HZ","medical image analysis"
+"1124","doi:10.7281/T1/U5GUV3","N-Heterocyclic carbenes"
+"1125","doi:10.7281/T1/U5GUV3","monolayer self-assembly"
+"1126","doi:10.7281/T1/U5GUV3","monolayer stability"
+"1127","doi:10.7281/T1/U5GUV3","thiols"
+"1128","doi:10.7281/T1/U5GUV3","voltammetry"
+"1129","doi:10.7281/T1/U5GUV3","electrochemical sensors"
+"1130","doi:10.7281/T1/U5GUV3","monolayer reorganization"
+"1131","doi:10.7281/T1/U5GUV3","carbene salts"
+"1132","doi:10.7281/T1/YQDI0F","South America"
+"1133","doi:10.7281/T1/YQDI0F","climate"
+"1134","doi:10.7281/T1/YQDI0F","hydrology"
+"1135","doi:10.7281/T1/YQDI0F","Amazon"
+"1136","doi:10.7281/T1/IHPXXR","aptamer"
+"1137","doi:10.7281/T1/IHPXXR","biosensor"
+"1138","doi:10.7281/T1/IHPXXR","electrochemistry"
+"1139","doi:10.7281/T1/IHPXXR","nucleic acid based sensor"
+"1140","doi:10.7281/T1/IHPXXR","biofluids"
+"1141","doi:10.7281/T1/KWDKME","conjugated polymer"
+"1142","doi:10.7281/T1/KWDKME","doping"
+"1143","doi:10.7281/T1/KWDKME","Seebeck coefficient"
+"1144","doi:10.7281/T1/KWDKME","hole conductivity"
+"1145","doi:10.7281/T1/KWDKME","thermoelectrics"
+"1146","doi:10.7281/T1/DX9DL8","active sensing"
+"1147","doi:10.7281/T1/DX9DL8","weakly electric fish"
+"1148","doi:10.7281/T1/DX9DL8","reafferent feedback"
+"1149","doi:10.7281/T1/DX9DL8","sensory slip"
+"1150","doi:10.7281/T1/DX9DL8","closed-loop control"
+"1151","doi:10.7281/T1/OY2X8T","neuropilins"
+"1152","doi:10.7281/T1/OY2X8T","neuropilin 2"
+"1153","doi:10.7281/T1/OY2X8T","palmitoylation"
+"1154","doi:10.7281/T1/OY2X8T","acyl-biotin exchange"
+"1155","doi:10.7281/T1/OY2X8T","palmitoyl acyltransferases"
+"1156","doi:10.7281/T1/OY2X8T","subcellular localization"
+"1157","doi:10.7281/T1/OY2X8T","cortical neurons"
+"1158","doi:10.7281/T1/VNEEJB","Mars"
+"1159","doi:10.7281/T1/VNEEJB","Curiosity"
+"1160","doi:10.7281/T1/CZDPSX","Head CT"
+"1161","doi:10.7281/T1/CZDPSX","Stroke"
+"1162","doi:10.7281/T1/CZDPSX","Intracerebral Hemorrhage"
+"1163","doi:10.7281/T1/CZDPSX","Brain Extraction"
+"1164","doi:10.7281/T1/CZDPSX","Neuroimaging"
+"1165","doi:10.7281/T1/CZDPSX","Brain"
+"1166","doi:10.7281/T1JW8BSS","migration"
+"1167","doi:10.7281/T1JW8BSS","immigration"
+"1168","doi:10.7281/T1JW8BSS","immigrant incorporation"
+"1169","doi:10.7281/T1JW8BSS","citizenship"
+"1170","doi:10.7281/T1JW8BSS","naturalization"
+"1171","doi:10.7281/T1JW8BSS","multiculturalism"
+"1172","doi:10.7281/T1JW8BSS","multicultural coexistence"
+"1173","doi:10.7281/T1JW8BSS","multicultural families"
+"1174","doi:10.7281/T1JW8BSS","discrimination"
+"1175","doi:10.7281/T1JW8BSS","identity"
+"1176","doi:10.7281/T1JW8BSS","political empowerment"
+"1177","doi:10.7281/T1JW8BSS","migrant workers"
+"1178","doi:10.7281/T1JW8BSS","foreign workers"
+"1179","doi:10.7281/T1JW8BSS","marriage migration"
+"1180","doi:10.7281/T1JW8BSS","marriage migrants"
+"1181","doi:10.7281/T1JW8BSS","foreign residents"
+"1182","doi:10.7281/T1JW8BSS","refugees"
+"1183","doi:10.7281/T1JW8BSS","diversity"
+"1184","doi:10.7281/T1JW8BSS","advocacy"
+"1185","doi:10.7281/T1JW8BSS","Korea"
+"1186","doi:10.7281/T1JW8BSS","East Asia"
+"1187","doi:10.7281/T1JW8BSS","Filipinos in Korea"
+"1188","doi:10.7281/T1JW8BSS","Zainichi Koreans"
+"1189","doi:10.7281/T1JW8BSS","Nikkei Peruvians"
+"1190","doi:10.7281/T1JW8BSS","Chinese workers in Korea"
+"1191","doi:10.7281/T1JW8BSS","Joseonjok"
+"1192","doi:10.7281/T1JW8BSS","ethnic Koreans from China"
+"1193","doi:10.7281/T1JW8BSS","Korean Chinese"
+"1194","doi:10.7281/T1JW8BSS","Vietnamese workers in Korea"
+"1195","doi:10.7281/T1JW8BSS","Hwagyo"
+"1196","doi:10.7281/T1JW8BSS","Mongolians in Korea"
+"1197","doi:10.7281/T1JW8BSS","Burmese in Korea"
+"1198","doi:10.7281/T1/QS3QFT","explore-exploit tradeoff"
+"1199","doi:10.7281/T1/QS3QFT","mode switching"
+"1200","doi:10.7281/T1/QS3QFT","broad-shouldered distribution"
+"1201","doi:10.7281/T1/QS3QFT","sensorimotor control"
+"1202","doi:10.7281/T1/QS3QFT","weakly electric fish"
+"1203","doi:10.7281/T1/QS3QFT","animal locomotion"
+"1204","doi:10.7281/T1/QS3QFT","active sensing"
+"1205","doi:10.7281/T1/C4RVLS","otolith-ocular reflex"
+"1206","doi:10.7281/T1/C4RVLS","saccule"
+"1207","doi:10.7281/T1/C4RVLS","utricle"
+"1208","doi:10.7281/T1/C4RVLS","vestibular implant"
+"1209","doi:10.7281/T1/C4RVLS","vestibular"
+"1210","doi:10.7281/T1/C4RVLS","chinchilla"
+"1211","doi:10.7281/T1/C4RVLS","ototoxic"
+"1212","doi:10.7281/T1/C4RVLS","gentamicin"
+"1213","doi:10.7281/T1/YZKNJ6","object parsing"
+"1214","doi:10.7281/T1/YZKNJ6","object part segmentation"
+"1215","doi:10.7281/T1/YZKNJ6","domain adaptation"
+"1216","doi:10.7281/T1/YZKNJ6","learning from synthetic"
+"1217","doi:10.7281/T1/IVVFCM","mosquito"
+"1218","doi:10.7281/T1/IVVFCM","olfaction"
+"1219","doi:10.7281/T1/IVVFCM","semi-field"
+"1220","doi:10.7281/T1/IVVFCM","behavioral preference"
+"1221","doi:10.7281/T1/IVVFCM","volatilomics"
+"1222","doi:10.7281/T1/XTJ1YP","hydrology"
+"1223","doi:10.7281/T1/XTJ1YP","climate"
+"1224","doi:10.7281/T1/XTJ1YP","land surface model"
+"1225","doi:10.7281/T1/XTJ1YP","Ethiopia"
+"1226","doi:10.7281/T1/1ECVB0","Sahel"
+"1227","doi:10.7281/T1/1ECVB0","North Africa"
+"1228","doi:10.7281/T1/1ECVB0","atmospheric modeling"
+"1229","doi:10.7281/T1/1ECVB0","dust"
+"1230","doi:10.7281/T1/1ECVB0","climate feedbacks"
+"1231","doi:10.7281/T1/BMATHH","spider"
+"1232","doi:10.7281/T1/BMATHH","web"
+"1233","doi:10.7281/T1/BMATHH","behavior"
+"1234","doi:10.7281/T1/D06YVM","natural language processing"
+"1235","doi:10.7281/T1/D06YVM","NLP"
+"1236","doi:10.7281/T1/D06YVM","annotated Wikipedia"
+"1237","doi:10.7281/T1/D06YVM","syntax"
+"1238","doi:10.7281/T1/D06YVM","semantics"
+"1239","doi:10.7281/T1/CUEL0W","Synthetic biology"
+"1240","doi:10.7281/T1/CUEL0W","Cell surface engineering"
+"1241","doi:10.7281/T1/CUEL0W","DNA nanotechnology"
+"1242","doi:10.7281/T1/CUEL0W","DNA nanotubes"
+"1243","doi:10.7281/T1/UBSZF1","DNA computing"
+"1244","doi:10.7281/T1/UBSZF1","in vitro transcription"
+"1245","doi:10.7281/T1/A9NKJ7","Chemical engineering"
+"1246","doi:10.7281/T1/A9NKJ7","DNA nanotechnology"
+"1247","doi:10.7281/T1/A9NKJ7","DNA computing"
+"1248","doi:10.7281/T1/A9NKJ7","crystal growth"
+"1249","doi:10.7281/T1/A9NKJ7","DNA nanotubes"
+"1250","doi:10.7281/T1/HWU9TZ","subduction zone fluid"
+"1251","doi:10.7281/T1/HWU9TZ","aqueous speciation"
+"1252","doi:10.7281/T1/HWU9TZ","sulfur"
+"1253","doi:10.7281/T1/HWU9TZ","oxidation state"
+"1254","doi:10.7281/T1/CGBG4F","solar neighborhood"
+"1255","doi:10.7281/T1/CGBG4F","stellar ages"
+"1256","doi:10.7281/T1/SQJ7G0","seasonal forecast"
+"1257","doi:10.7281/T1/SQJ7G0","South America"
+"1258","doi:10.7281/T1/SQJ7G0","hydrology"
+"1259","doi:10.7281/T1/SQJ7G0","land surface model"
+"1260","doi:10.7281/T1/F5PD42","sensorimotor adaptation"
+"1261","doi:10.7281/T1/F5PD42","motor learning"
+"1262","doi:10.7281/T1/F5PD42","control theory"
+"1263","doi:10.7281/T1/XFNORD","ophiolite"
+"1264","doi:10.7281/T1/XFNORD","subduction"
+"1265","doi:10.7281/T1/XFNORD","iapetus"
+"1266","doi:10.7281/T1/XFNORD","Caledonides"
+"1267","doi:10.7281/T1/XFNORD","Norway"
+"1268","doi:10.7281/T1/XFNORD","geochemistry"
+"1269","doi:10.7281/T1/XFNORD","geochronology"
+"1270","doi:10.7281/T1/XFNORD","tectonics"
+"1271","doi:10.7281/T1/AOTRD6","iron oxide nanoparticles"
+"1272","doi:10.7281/T1/AOTRD6","bionized nanoferrite nanoparticles"
+"1273","doi:10.7281/T1/AOTRD6","dendritic cell activation"
+"1274","doi:10.7281/T1/0HWVS1","magnetic nanoparticles"
+"1275","doi:10.7281/T1/0HWVS1","magnetic particle imaging"
+"1276","doi:10.7281/T1/0HWVS1","magnetic hyperthermia"
+"1277","doi:10.7281/T1/0HWVS1","image guidance"
+"1278","doi:10.7281/T1/0HWVS1","finite element analysis"
+"1279","doi:10.7281/T1/GTUUUG","Huntington’s Disease"
+"1280","doi:10.7281/T1/GTUUUG","repeat expansion disease"
+"1281","doi:10.7281/T1/GTUUUG","CAG repeats"
+"1282","doi:10.7281/T1/GTUUUG","optical trap force spectroscopy"
+"1283","doi:10.7281/T1/GTUUUG","single molecule RNA folding"
+"1284","doi:10.7281/T1/IRL0IE","DNA nanotechnology"
+"1285","doi:10.7281/T1/IRL0IE","RNA nanotechnology"
+"1286","doi:10.7281/T1/IRL0IE","biosensor"
+"1287","doi:10.7281/T1/IRL0IE","synthetic biology"
+"1288","doi:10.7281/T1/IRL0IE","systems chemistry"
+"1289","doi:10.7281/T1/JDHWJN","ribozyme"
+"1290","doi:10.7281/T1/JDHWJN","RNA fitness landscape"
+"1291","doi:10.7281/T1/JDHWJN","molecular dynamics simulations"
+"1292","doi:10.7281/T1/JDHWJN","RNA folding"
+"1293","doi:10.7281/T1/VEORXP","ribbon synapses"
+"1294","doi:10.7281/T1/VEORXP","regeneration"
+"1295","doi:10.7281/T1/VEORXP","synaptic currents"
+"1296","doi:10.7281/T1/VEORXP","optogenetics"
+"1297","doi:10.7281/T1/VEORXP","type-i spiral ganglion neurons"
+"1298","doi:10.7281/T1/VEORXP","hair cells"
+"1299","doi:10.7281/T1/IZMSNX","self-diffusion"
+"1300","doi:10.7281/T1/IZMSNX","colloids"
+"1301","doi:10.7281/T1/IZMSNX","Brownian dynamics"
+"1302","doi:10.7281/T1/IZMSNX","curvature"
+"1303","doi:10.7281/T1/IZMSNX","topological defects"
+"1304","doi:10.7281/T1/WYN7FI","bioinspired materials"
+"1305","doi:10.7281/T1/WYN7FI","digital materials"
+"1306","doi:10.7281/T1/WYN7FI","DNA nanotechnology"
+"1307","doi:10.7281/T1/WYN7FI","soft robotics"
+"1308","doi:10.7281/T1/V4BATB","synthetic cellular networks"
+"1309","doi:10.7281/T1/V4BATB","cellular broadcast range"
+"1310","doi:10.7281/T1/V4BATB","range-limited communication"
+"1311","doi:10.7281/T1/V4BATB","α-factor"
+"1312","doi:10.7281/T1/V4BATB","bar1"
+"1313","doi:10.7281/T1/V4BATB","multicellular circuits"
+"1314","doi:10.7281/T1/FPN6MI","H3N2 influenza"
+"1315","doi:10.7281/T1/FPN6MI","human surveillance"
+"1316","doi:10.7281/T1/FPN6MI","virus reassortment"
+"1317","doi:10.7281/T1/OTISGL","pollinators"
+"1318","doi:10.7281/T1/OTISGL","survival analysis"
+"1319","doi:10.7281/T1/OTISGL","time-to-event analysis"
+"1320","doi:10.7281/T1/OTISGL","pollinator monitoring"
+"1321","doi:10.7281/T1/OTISGL","insect camera trap"
+"1322","doi:10.7281/T1/THLC8N","place cells"
+"1323","doi:10.7281/T1/THLC8N","optic flow"
+"1324","doi:10.7281/T1/THLC8N","path integration"
+"1325","doi:10.7281/T1/THLC8N","hippocampus"
+"1326","doi:10.7281/T1/THLC8N","closed-loop neural control"
+"1327","doi:10.7281/T1/THLC8N","Long-Evans Rodent"
+"1328","doi:10.7281/T1/XOL4BR","chatbots"
+"1329","doi:10.7281/T1/XOL4BR","language learning"
+"1330","doi:10.7281/T1/XOL4BR","meta-analysis"
+"1331","doi:10.7281/T1/XOL4BR","artificial intelligence"
+"1332","doi:10.7281/T1/XOL4BR","ChatGPT"
+"1333","doi:10.7281/T1/KOTDPY","global water cycle"
+"1334","doi:10.7281/T1/KOTDPY","nonstationarity"
+"1335","doi:10.7281/T1/KOTDPY","anthropogenic impacts"
+"1336","doi:10.7281/T1/KOTDPY","Earth system model"
+"1337","doi:10.7281/T1/KOTDPY","data assimilation"
+"1338","doi:10.7281/T1/RE5GOK","monolayer"
+"1339","doi:10.7281/T1/RE5GOK","carbene"
+"1340","doi:10.7281/T1/RE5GOK","voltammetry"
+"1341","doi:10.7281/T1/RE5GOK","stability"
+"1342","doi:10.7281/T1/RDLYMJ","COVID-19"
+"1343","doi:10.7281/T1/RDLYMJ","SARS-CoV-2"
+"1344","doi:10.7281/T1/RDLYMJ","human nasal epithelial cells"
+"1345","doi:10.7281/T1/RDLYMJ","immunocompromised"
+"1346","doi:10.7281/T1/RDLYMJ","persistent infection"

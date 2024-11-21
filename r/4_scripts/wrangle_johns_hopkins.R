@@ -18,7 +18,7 @@ pacman::p_load(
   lubridate
 )
 
-dat <- readRDS('1_raw/jhu_metadata.RDS')
+dat <- readRDS('r/1_raw/jhu_metadata.RDS')
 source('r/3_functions/wrangling_utilities.R')
 source('r/3_functions/get_str.R')
 results <- list()
@@ -159,7 +159,7 @@ datasets_df_clean <- datasets_df %>%
     subjects,
     downloads
   ) %>%
-  mutate(pub_date = as_date(pub_date))
+  mutate(pub_date = as_datetime(pub_date))
 get_str(datasets_df_clean)
 
 
@@ -179,7 +179,7 @@ get_str(subjects)
 # That's it, just dataset IDs and the subject names
 results$subjects <- subjects
 
-# Now we can remove subjects from the datasetes
+# Now we can remove subjects from the datasets
 datasets_df_clean <- datasets_df_clean %>%
   select(-subjects)
 
@@ -309,10 +309,9 @@ get_str(big_author_df)
 
 ### First get pure author dataset
 get_str(big_author_df)
-just_authors <- big_author_df %>%
-  select(
+big_author_df <- big_author_df %>%
+  rename(
     name = authorName.value,
-    # institution_id = authorAffiliation.value,
     auth_id_type = authorIdentifierScheme.value,
     auth_id = authorIdentifier.value,
     ds_id = global_id
@@ -322,18 +321,23 @@ just_authors <- big_author_df %>%
   arrange(name)
 
 # How many NAs
-n_na <- sum(is.na(just_authors$auth_id))
+n_na <- sum(is.na(big_author_df$auth_id))
 
 # Assign the ones missing an ID a 1:n_na id
-just_authors$auth_id[is.na(just_authors$auth_id)] <- seq(1:n_na)
-just_authors$auth_id_type <- ifelse(is.na(just_authors$auth_id_type),
+big_author_df$auth_id[is.na(big_author_df$auth_id)] <- seq(1:n_na)
+big_author_df$auth_id_type <- ifelse(is.na(big_author_df$auth_id_type),
                                       'dataverse_id',
-                                      just_authors$auth_id_type)
-get_str(just_authors)
+                                      big_author_df$auth_id_type)
+get_str(big_author_df)
+# Leave this for later
 
-results$authors <- just_authors
-# Will add reg user ids below
-# Leaving in ds_id for now just in case?
+# Now just get columns for author table
+authors <- big_author_df %>%
+  select(auth_id, name)
+get_str(authors)
+
+# Save it
+results$authors <- authors
 
 
 
@@ -385,37 +389,22 @@ results$publications <- pubs_df
 
 
 # Relation entity between authors and publications
-get_str(just_authors)
-get_str(pubs_df)
-get_str(authors)
-
-# Need to pull from big author DF which has the linking info
+get_str(results$authors)
+get_str(results$datasets)
+get_str(results$publications)
 get_str(big_author_df)
 
-# Check to make sure they line up
-test <- big_author_df %>%
-  inner_join(
-    results$authors,
-    by = join_by(authorName.value == name),
-    relationship = 'many-to-many'
-  ) %>%
-  select(authorName.value, global_id, auth_id)
-test
-# Looks good
+# Datasets table connects both authors and pubs
+# All we need is auth id and pub id
+produce <- big_author_df %>%
+  select(auth_id, ds_id) %>%
+  right_join(results$publications) %>%
+  inner_join(results$authors, relationship = 'many-to-many') %>%
+  select(auth_id, pub_id)
+get_str(produce)
 
-produce_df <- big_author_df %>%
-  select(
-    name = authorName.value,
-    auth_id = authorIdentifier.value
-  )
-
-get_str(produce_df)
-results$produce <- produce_df
-
-# Check that it joins with authors
-inner_join(results$produce, results$authors, by = join_by(name == name))
-# Looks reasonable - not everyone links up, but that's okay. Not every dataset
-# would have citations associated with it.
+# Save it
+results$produce <- produce
 
 
 
@@ -423,22 +412,26 @@ inner_join(results$produce, results$authors, by = join_by(name == name))
 
 
 # This is linking authors to datasets. Many to many.
+# Datasets already has a pub_date
 get_str(big_author_df)
 get_str(results$authors)
+get_str(results$datasets)
 
 ds_up <- big_author_df %>%
   select(
-    name = authorName.value,
-    auth_id = authorIdentifier.value,
-    ds_id = global_id
+    name,
+    auth_id,
+    ds_id
   ) %>%
   group_by(ds_id) %>%
-  mutate(
-    timestamp = ymd('2014-01-01') + days(sample(0:(ymd('2014-01-01') - ymd('2024-01-01')), 1))
+  inner_join(results$datasets, by = 'ds_id') %>%
+  select(
+    ds_id,
+    auth_id,
+    timestamp = pub_date
   )
 get_str(ds_up)
 
-# Using random date for now, come back to this later []
 results$ds_uploads <- ds_up
 
 
@@ -449,21 +442,15 @@ results$ds_uploads <- ds_up
 get_str(dat$jhu_datasets)
 get_str(dat$jhu_datasets$keywords)
 
-keywords <- dat$jhu_datasets$keywords %>%
-  unlist() %>%
-  tolower() %>%
-  unique() %>%
-  sort()
-keywords
+keywords <- dat$jhu_datasets %>%
+  select(
+    ds_id = global_id,
+    keywords
+  ) %>%
+  unnest(keywords)
+get_str(keywords)
 
-keywords_df <- data.frame(
-  keyword = keywords,
-  keyword_id = 1:length(keywords)
-)
-keywords_df
-# Might need some string similarity cleaning here, but whatever
-
-results$keywords <- keywords_df
+results$keywords <- keywords
 
 
 
@@ -484,21 +471,34 @@ licenses_filter <- Filter(is_valid_df, licenses)
 
 licenses_df <- list_rbind(licenses_filter) %>%
   unique() %>%
-  mutate(license_id = 1:nrow(.)) %>%
-  select(license_id, name, url = uri)
+  mutate(lic_id = 1:nrow(.)) %>%
+  select(lic_id, name, url = uri)
 get_str(licenses_df)
 
+# Save it
 results$licenses <- licenses_df
 
 
+## Now we can recode the lic id in datasets table
+results$datasets <- licenses_df %>%
+  select(-url) %>%
+  right_join(results$datasets, by = join_by('name' == 'lic_id')) %>%
+  select(-name) %>%
+  relocate(lic_id, .after = last_col())
+get_str(results$datasets)
 
-# Grant -------------------------------------------------------------------
 
+
+# Grants et al. ------------------------------------------------------------
+
+
+# Three tables here: Grant, funds, funding_agency
 
 # Check grant numbers
 get_str(dat$jhu_datasets_native)
 get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields)
 get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value)
+get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields$value, 3)
 
 # Pull just grant number and grant agency for all datasets
 out <- imap(dat$jhu_datasets_native, \(dataset, index) {
@@ -535,13 +535,67 @@ grants_df <- Filter(Negate(is.logical), out) %>%
   list_rbind() %>%
   mutate(
     grant_id = 1:nrow(.),
-    dataset_id = str_split_i(dataset_url, '//', 2),
+    ds_id = str_split_i(dataset_url, '//', 2),
+    amount = sample(seq(10000, 500000, 10000), nrow(.), replace = TRUE),
     .keep = 'unused'
   ) %>%
-  select(grant_id, dataset_id, number = grant_number, agency = grant_agency)
+  select(
+    grant_id,
+    ds_id,
+    number = grant_number,
+    agency = grant_agency,
+    amount
+  )
 get_str(grants_df)
 
-results$grants <- grants_df
+# Clean up funding agency names
+grants_df <- grants_df %>%
+  mutate(agency = case_when(
+    str_detect(agency, 'National Science.*Foundation') ~ 'National Science Foundation',
+    str_detect(agency, 'Agency for.*Development') ~ 'U.S. Agency for International Development',
+    str_detect(agency, 'Institute.*of Health') ~ 'National Institutes of Health',
+    str_detect(agency, 'Institute on Aging') ~ 'National Institute on Aging',
+    str_detect(agency, 'health.*Management') ~ 'National Institute of Healthcare Management',
+    str_detect(agency, 'Heart Association') ~ 'National Heart Association',
+    .default = agency
+  ))
+
+# Pull out funding agency into its own table
+funding_agency <- grants_df %>%
+  select(agency, amount) %>%
+  group_by(agency) %>%
+  summarize(
+    total_amount = sum(amount)
+  ) %>%
+  mutate(
+    agency_id = 1:nrow(.),
+    location = ipsum_words(nrow(.), collapse = FALSE),
+  ) %>%
+  select(agency_id, name = agency, everything())
+get_str(funding_agency)
+
+# Save funding agency table
+results$funding_agency <- funding_agency
+
+# To get the FUNDS table, join grant table with funding agency table
+funds <- inner_join(
+  grants_df,
+  funding_agency,
+  by = join_by('agency' == 'name')
+) %>%
+  select(grant_id, ds_id, agency_id)
+get_str(funds)
+
+# Save it
+results$funds <- funds
+
+# now we can finally cut down grants table to what we need
+grants_df <- grants_df %>%
+  select(grant_id, number, amount)
+get_str(grants_df)
+
+# Save it
+results$grant <- grants_df
 
 
 
@@ -600,31 +654,6 @@ out <- imap(dat$jhu_datasets_native, \(dataset, index) {
       }) %>%
         c(dataset$persistentUrl)
 
-      # Deeper?
-      # dependency_index <- which(software_metadata$fields$typeName == 'swDependency')
-      # swDescription <- which(software_metadata$fields$typeName == 'swDescription')
-
-      # Pull the actual licenses and titles base don the indices
-      # if (length(license_index) > 0) {
-      #   sw_licenses <- software_metadata$fields$value[[license_index]]
-      # } else {
-      #   sw_licenses <- NA
-      # }
-      #
-      # if (length(title_index) > 0) {
-      #   sw_titles <- software_metadata$fields$value[[title_index]]
-      # } else {
-      #   sw_titles <- NA
-      # }
-
-      # Make DF with license, title, and dataset url.
-      # If no number or agency, just give NA
-      # grant_df <- data.frame(
-      #   title = ifelse(is.na(sw_titles), NA, sw_titles),
-      #   license = ifelse(is.na(sw_licenses), NA, sw_licenses),
-      #   dataset_id = dataset$persistentUrl
-      # )
-
       return(var_list)
 
     }
@@ -643,19 +672,17 @@ sw_df <- Filter(Negate(is.logical), out) %>%
           'description',
           'language',
           'repo_link',
-          'dataset_id'
+          'ds_id'
         ))) %>%
   list_rbind() %>%
-  mutate(dataset_id = str_split_i(dataset_id, '//', 2))
+  mutate(ds_id = str_split_i(ds_id, '//', 2))
 get_str(sw_df)
-
-# Should pull out license into its own table. Not sure what to do about language
-# Maybe multi value attribute?
 
 # Make sw license df
 sw_license_df <- sw_df %>%
-  select(name) %>%
-  unique() %>%
+  select(name, ds_id) %>%
+  filter(!is.na(name)) %>%
+  group_by(name) %>%
   mutate(
     license_url = case_when(
       str_detect(name, '^MIT') ~ 'https://spdx.org/licenses/X11.html',
@@ -664,41 +691,103 @@ sw_license_df <- sw_df %>%
       str_detect(name, '^BSD 3') ~ 'https://spdx.org/licenses/BSD-3-Clause.html',
       .default = NA_character_
     ),
+    name = case_when(
+      str_detect(name, '^MIT') ~ 'MIT',
+      str_detect(name, 'GPL-3') ~ 'GPL-3.0',
+      str_detect(name, '^BSD 2') ~ 'BSD 2',
+      str_detect(name, '^BSD 3') ~ 'BSD 3',
+      str_detect(name, '^Other') ~ 'Not Specified',
+      .default = NA_character_
+    ),
     gpl_compatible = case_when(
       str_detect(name, '^Other|Not Specified') | is.na(name) ~ FALSE,
-      str_detect(name, '^GNU|^MIT|^BSD') ~ TRUE,
+      str_detect(name, '^GNU|GPL|^MIT|^BSD') ~ TRUE,
       .default = NA
     ),
-    sw_license_id = 1:nrow(.)
-  )
-
+    sw_lic_id = case_when(
+      name == 'GPL-3.0' ~ 1,
+      name == 'MIT' ~ 2,
+      name == 'BSD 2' ~ 3,
+      name == 'BSD 3' ~ 4,
+      name == 'Not Specified' ~ 5
+    )
+  ) %>%
+  ungroup() %>%
+  filter(!is.na(name)) %>%
+  mutate(ds_id = str_replace_all(ds_id, '\\.org/', ':')) # fix ds_id format
 get_str(sw_license_df)
-# Looks good
+
+# Now add sw_lic_id to datasets
+results$datasets <- sw_license_df %>%
+  select(sw_lic_id, ds_id) %>%
+  right_join(results$datasets) %>%
+  relocate(sw_lic_id, .after = last_col()) %>%
+  unique()
+get_str(results$datasets)
+
+# Pull out sw license table, connects straight to dataset
+sw_license_table <- sw_license_df %>%
+  select(sw_lic_id, name, license_url, gpl_compatible) %>%
+  unique()
+get_str(sw_license_table)
 
 # Save it
-results$software_licenses <- sw_license_df
+results$sw_license <- sw_license_table
 
-# Now we can pull out those fields from software too
+
+# 2 more to make here
+# analyze: sw id, ds id, title, description
+# software: sq id, name, description
+# Start with analyze. Need to give each software package an ID
 get_str(sw_df)
 
-# Recode licenses in sw_df
-sw_df <- sw_df %>%
-  left_join(
-    select(sw_license_df, name, sw_license_id),
-    by = 'name') %>%
+# Get a table of unique softwares and give them IDs
+temp_sw <- sw_df %>%
+  select(language) %>%
+  unique() %>%
+  filter(!is.na(language)) %>%
+  arrange(language) %>%
+  mutate(sw_id = row_number())
+get_str(temp_sw)
+
+# Now join it with sw_df to give it IDs
+analyze <- sw_df %>%
+  left_join(temp_sw)
+get_str(analyze)
+
+# Now we can pull out the plain software table
+software <- analyze %>%
   select(
-    software_id = language,
-    dataset_id,
-    sw_license_id,
-    everything(),
-    -name)
-get_str(sw_df)
+    sw_id,
+    name = language
+  ) %>%
+  unique() %>%
+  filter(!is.na(sw_id)) %>%
+  mutate(description = ipsum_words(nrow(.), collapse = FALSE))
+get_str(software)
 
-results$software <- sw_df
+# Save it
+results$software <- software
+
+
+## Last thing is the analyze table
+get_str(analyze)
+analyze <- analyze %>%
+  select(
+    sw_id,
+    ds_id,
+    title,
+    description
+  )
+get_str(analyze)
+
+# Save it
+results$analyzes <- analyze
 
 
 
 # Create Groups -----------------------------------------------------------
+
 
 # Making made up data for Users, Registered Users, and Admins
 
@@ -735,7 +824,7 @@ get_str(users)
 links <- results$authors %>%
   slice(1:25) %>%
   bind_cols(reg[1:25, ]) %>%
-  select(author_id, reg_id)
+  select(auth_id, reg_id)
 get_str(links)
 
 ## Now use links to add author IDs to reg users and reg users to author IDs
@@ -763,7 +852,7 @@ get_str(reg)
 set.seed(42)
 admins <- reg %>%
   filter(!is.na(admin_id)) %>%
-  select(-user_id, -author_id) %>%
+  select(-user_id, -auth_id) %>%
   mutate(
     privilege = sample(c('superuser', 'edit', 'read'), nrow(.), replace = TRUE),
     collection_id = sample(results$collections$col_id, nrow(.), replace = FALSE),
@@ -779,7 +868,7 @@ users <- users %>%
     email = paste0(
       lorem::ipsum_words(250, collapse = FALSE),
       '@madeupemail.com')
-    ) %>%
+  ) %>%
   select(-reg_id)
 get_str(users)
 results$users <- users
@@ -792,7 +881,7 @@ set.seed(42)
 reg <- reg %>%
   left_join(users) %>%
   left_join(authors) %>%
-  select(-admin_id, -author_id_type) %>%
+  select(-admin_id) %>%
   mutate(
     name = ifelse(is.na(name), reg_names[row_number()], name),
     pw_hash = ipsum_words(nrow(.), collapse = FALSE),
@@ -802,6 +891,7 @@ get_str(reg)
 results$reg <- reg
 
 get_str(authors)
+
 
 
 # Save and Clear ----------------------------------------------------------

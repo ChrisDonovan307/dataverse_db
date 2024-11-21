@@ -1,8 +1,0 @@
-"","name","license_url","gpl_compatible","sw_license_id"
-"1","GNU General Public License version 3.0 (GPL-3.0)","https://www.gnu.org/licenses/gpl-3.0.html",TRUE,1
-"2","Not Specified",NA,FALSE,2
-"4","MIT license (MIT)","https://spdx.org/licenses/X11.html",TRUE,3
-"6","Other (see Description or LICENSE file)",NA,FALSE,4
-"26",NA,NA,FALSE,5
-"70","BSD 2-Clause ""Simplified"" or ""FreeBSD"" License (BSD-2-Clause)","https://www.freebsd.org/copyright/freebsd-license/",TRUE,6
-"75","BSD 3-Clause ""New"" or ""Revised"" License (BSD-3-Clause)","https://spdx.org/licenses/BSD-3-Clause.html",TRUE,7
