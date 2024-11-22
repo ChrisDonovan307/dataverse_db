@@ -8,9 +8,4 @@ Chris Donovan, Ben Sevey
 
 # 1 Introduction
 
-Dataverse scraping for CS5040 - Database Systems course. To navigate
-project, open `.Rproj` file, then head to `table_of_conents.R`. Scripts
-are listed in order. To navigate to a script, put cursor on file path
-and hit `F2`, or `ctrl + left click` on the file path. The `6_outputs`
-folder contains csv outputs to work with in RDBMS. They still need some
-work in terms of creating and linking keys across tables.
+Dataverse scraping and database programming for CS5040 - Database Systems project. Dataverse scraping is done in `r/`. Navigate to `r/table_of_contents.R` for a list of scripts in order of workflow. Tables are saved to the `csv/` folder. Database programming is in the `sql/` folder.
