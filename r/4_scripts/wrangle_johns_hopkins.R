@@ -15,12 +15,19 @@ pacman::p_load(
   httr,
   jsonlite,
   lorem,
-  lubridate
+  lubridate,
+  stringdist
 )
 
+# Load data from API
 dat <- readRDS('r/1_raw/jhu_metadata.RDS')
+
+# Source scripts,
 source('r/3_functions/wrangling_utilities.R')
 source('r/3_functions/get_str.R')
+source('r/4_scripts/housekeeping.R')
+
+# Initialize results list
 results <- list()
 
 
@@ -92,23 +99,29 @@ files_df <- files_df %>%
   )) %>%
   select(
     file_id = pid,
-    dataset_id = dataset_persistent_id,
+    ds_id = dataset_persistent_id,
+    filetype = file_type,
+    filesize = size_in_bytes,
+    title = name,
     everything(),
-    -type
-  )
+    -type,
+    -url,
+    -file_content_type
+  ) %>%
+  mutate(pub_date = as_date(published_at))
 get_str(files_df)
 
 # Fill in the file_id if one is ever missing.
 # Just adding row number to the dataset_id
 files_df <- files_df %>%
   mutate(file_id = case_when(
-    is.na(file_id) ~ paste0(dataset_id, '/', row_number()),
+    is.na(file_id) ~ paste0(ds_id, '/', row_number()),
     .default = file_id
   ))
 get_str(files_df)
 
 # Files are ready to go now
-results$files <- files_df
+results$file <- files_df
 
 
 
@@ -132,7 +145,7 @@ get_str(datasets_df)
 
 # Get download counts
 counts <- files_df %>%
-  group_by(dataset_id) %>%
+  group_by(ds_id) %>%
   summarize(downloads = sum(downloads)) %>%
   arrange(desc(downloads))
 counts
@@ -142,7 +155,7 @@ table(counts$downloads)
 # Join this into the datasets
 datasets_df <- left_join(datasets_df,
                          counts,
-                         join_by(global_id == dataset_id))
+                         join_by(global_id == ds_id))
 get_str(datasets_df)
 table(datasets_df$downloads)
 
@@ -173,11 +186,12 @@ get_str(datasets_df_clean)
 
 subjects <- datasets_df_clean %>%
   select(ds_id, subjects) %>%
-  unnest(cols = c(subjects))
+  unnest(cols = c(subjects)) %>%
+  rename(subject = subjects)
 get_str(subjects)
 
 # That's it, just dataset IDs and the subject names
-results$subjects <- subjects
+results$subject <- subjects
 
 # Now we can remove subjects from the datasets
 datasets_df_clean <- datasets_df_clean %>%
@@ -208,17 +222,15 @@ ids_licenses <- map(dat$jhu_datasets_native, ~ {
 }) %>%
   bind_rows()
 
-# Join to datasets
+# Join to datasets, rename col_id back to identifier cause I'm silly
 datasets_df_clean <- datasets_df_clean %>%
-  left_join(ids_licenses)
+  left_join(ids_licenses) %>%
+  rename(identifier = col_id)
 get_str(datasets_df_clean)
 
-
-
-## Save it -----------------------------------------------------------------
-
-
-results$datasets <- datasets_df_clean
+# Save it
+results$dataset <- datasets_df_clean
+# But we will have to save it again after collections - need numeric col_id
 
 
 
@@ -254,28 +266,50 @@ get_str(collections_df)
 
 ## Add n_files and downloads
 # Get DF of n_files and downloads from datasets
-get_str(results$datasets)
-ds_summary <- results$datasets %>%
+get_str(results$dataset)
+ds_summary <- results$dataset %>%
   group_by(ds_id) %>%
   summarize(
-    col_id = col_id,
+    identifier = identifier,
     n_files = sum(n_files, na.rm = TRUE),
     downloads = sum(downloads, na.rm = TRUE)
   )
 ds_summary
 
 # Join it to collections
-collections_df <- left_join(collections_df, ds_summary)
+collections_df <- left_join(
+  collections_df,
+  ds_summary,
+  by = join_by(col_id == identifier)
+) %>%
+  rename(identifier = col_id)
 get_str(collections_df)
 
-# Save it
-results$collections <- collections_df
+# Bring in a numeric col_id and remove old one
+collections_df <- collections_df %>%
+  mutate(col_id = 1:nrow(.)) %>%
+  select(col_id, everything())
+get_str(collections_df)
+
+# Now we can join it to datasets to fix the col_id and make it numeric
+crosswalk <- collections_df %>%
+  select(col_id, identifier)
+results$dataset <- results$dataset %>%
+  left_join(crosswalk) %>%
+  select(-identifier)
+get_str(results$dataset)
+
+
+# Save collections too, but remove identifier
+results$collection <- collections_df %>%
+  select(-identifier)
 
 
 
 # Authors -----------------------------------------------------------------
 
 
+# Explore data
 get_str(dat$jhu_datasets_native[[1]]$latestVersion)
 get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks)
 get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$citation$fields)
@@ -300,44 +334,159 @@ get_str(authors_dfs)
 
 # Remove logical NAs and bind
 big_author_df <- Filter(Negate(is.logical), authors_dfs) %>%
-  bind_rows()
-get_str(big_author_df)
-
-# This is basically the author/dataset relationship entity
-# we can pull that out, as well as a pure author dataset.
-# and also use this to get institutions
-
-### First get pure author dataset
-get_str(big_author_df)
-big_author_df <- big_author_df %>%
+  bind_rows() %>%
   rename(
     name = authorName.value,
-    auth_id_type = authorIdentifierScheme.value,
-    auth_id = authorIdentifier.value,
     ds_id = global_id
-  ) %>%
-  unique() %>%
-  mutate(auth_id = str_sub(auth_id, start = -19)) %>%
-  arrange(name)
-
-# How many NAs
-n_na <- sum(is.na(big_author_df$auth_id))
-
-# Assign the ones missing an ID a 1:n_na id
-big_author_df$auth_id[is.na(big_author_df$auth_id)] <- seq(1:n_na)
-big_author_df$auth_id_type <- ifelse(is.na(big_author_df$auth_id_type),
-                                      'dataverse_id',
-                                      big_author_df$auth_id_type)
+  )
 get_str(big_author_df)
-# Leave this for later
 
-# Now just get columns for author table
+
+
+## Consolidate Author Name -------------------------------------------------
+
+
+# String distance matrix for author names
+dist_matrix <- stringdistmatrix(
+  big_author_df$name,
+  big_author_df$name,
+  method = "jw"
+)
+
+# Cluster by distance
+hc <- hclust(as.dist(dist_matrix))
+
+# Set threshold for similar names
+clusters <- cutree(hc, h = 0.2)
+
+# Create a mapping of cluster IDs to representative names
+cluster_to_name <- tapply(
+  big_author_df$name,
+  clusters,
+  function(names) names[1]
+)
+
+# Map old names to consolidated names
+big_author_df$name <- as.vector(cluster_to_name[clusters])
+get_str(big_author_df)
+
+
+
+## Consolidate Institution -------------------------------------------------
+
+
+## Consolidate affiliations from author DF
+get_str(big_author_df)
+
+# Recode NA to None so string dist doesn't flip out
+big_author_df$authorAffiliation.value <- ifelse(
+  is.na(big_author_df$authorAffiliation.value),
+  'None',
+  big_author_df$authorAffiliation.value
+)
+
+dist_matrix <- stringdistmatrix(
+  big_author_df$authorAffiliation.value,
+  big_author_df$authorAffiliation.value,
+  method = "jw"
+)
+
+# Cluster by distance
+hc <- hclust(as.dist(dist_matrix))
+
+# Set threshold for similar names
+clusters <- cutree(hc, h = 0.2)
+
+# Create a mapping of cluster IDs to representative names
+cluster_to_name <- tapply(
+  big_author_df$authorAffiliation.value,
+  clusters,
+  function(names) names[1]
+)
+
+# Map old names to consolidated names
+big_author_df$clean_inst <- as.vector(cluster_to_name[clusters])
+get_str(big_author_df)
+
+
+
+## Finish Authors ----------------------------------------------------------
+
+
+# Get slimmer DF with just author names and IDs
+# We are dropping Orcid IDs - just using integers
+# Also adding registered user IDs
 authors <- big_author_df %>%
-  select(auth_id, name)
+  group_by(name) %>%
+  summarize(
+    count = n(),
+    ds_ids = list(ds_id),
+    institution = list(authorAffiliation.value)
+  ) %>%
+  mutate(
+    auth_id = 1:nrow(.),
+    ru_id = 1:nrow(.)
+  )
 get_str(authors)
+# Save this for instutions below
+
+# Save author table with just auth_id, ru_id, and name
+results$author <- authors %>%
+  select(auth_id, ru_id, name)
+get_str(results$author)
+
+
+
+# Institution, Affiliate --------------------------------------------------
+
+
+## Link registered users to institutions
+get_str(authors)
+get_str(big_author_df)
+
+# Needs int_id and ru_id
+# Join authors and big authors by name
+affiliate <- inner_join(authors, big_author_df) %>%
+  select(name = clean_inst, ru_id) %>%
+  unique()
+get_str(affiliate)
+# This is M-N with registered users and institutions
+
+
+## Now need a table of just unique institutions, name, id, maybe address
+set.seed(42)
+inst <- affiliate %>%
+  select(name) %>%
+  unique() %>%
+  mutate(
+    int_id = row_number(),
+    address = paste0(
+      sample(1:999, nrow(.), replace = TRUE),
+      ' ',
+      str_to_title(ipsum_words(nrow(.), collapse = FALSE)),
+      ' ',
+      sample(c('Road', 'Lane', 'Boulevard', 'Street'), nrow(.), replace = TRUE),
+      ', ',
+      sample(c('Lincoln', 'Burlington', 'Portland', 'Newton', 'Colchester'), nrow(.), replace = TRUE),
+      ', ',
+      sample(c('Maryland', 'California', 'Virginia', 'New York'))
+    )
+  )
+get_str(inst)
 
 # Save it
-results$authors <- authors
+results$institution <- inst
+
+
+## Now go back to affiliate, recode with int_id
+get_str(affiliate)
+affiliate <- affiliate %>%
+  inner_join(inst) %>%
+  select(int_id, ru_id)
+get_str(affiliate)
+
+# Save it
+results$affiliate <- affiliate
 
 
 
@@ -381,7 +530,7 @@ pubs_df <- pubs_df %>%
 get_str(pubs_df)
 
 # Save it to results list
-results$publications <- pubs_df
+results$publication <- pubs_df
 
 
 
@@ -389,17 +538,19 @@ results$publications <- pubs_df
 
 
 # Relation entity between authors and publications
-get_str(results$authors)
-get_str(results$datasets)
-get_str(results$publications)
+get_str(results$author)
+get_str(results$dataset)
+get_str(results$publication)
 get_str(big_author_df)
 
 # Datasets table connects both authors and pubs
 # All we need is auth id and pub id
-produce <- big_author_df %>%
-  select(auth_id, ds_id) %>%
-  right_join(results$publications) %>%
-  inner_join(results$authors, relationship = 'many-to-many') %>%
+produce <- authors %>%
+  select(auth_id, ds_ids) %>%
+  unnest(ds_ids) %>%
+  rename(ds_id = ds_ids) %>%
+  right_join(results$publication) %>%
+  inner_join(results$author, relationship = 'many-to-many') %>%
   select(auth_id, pub_id)
 get_str(produce)
 
@@ -414,17 +565,18 @@ results$produce <- produce
 # This is linking authors to datasets. Many to many.
 # Datasets already has a pub_date
 get_str(big_author_df)
-get_str(results$authors)
-get_str(results$datasets)
+get_str(results$author)
+get_str(results$dataset)
 
-ds_up <- big_author_df %>%
+ds_up <- authors %>%
+  unnest(ds_ids) %>%
   select(
     name,
     auth_id,
-    ds_id
+    ds_id = ds_ids
   ) %>%
   group_by(ds_id) %>%
-  inner_join(results$datasets, by = 'ds_id') %>%
+  inner_join(results$dataset, by = 'ds_id') %>%
   select(
     ds_id,
     auth_id,
@@ -432,7 +584,8 @@ ds_up <- big_author_df %>%
   )
 get_str(ds_up)
 
-results$ds_uploads <- ds_up
+# Save it
+results$dataset_upload <- ds_up
 
 
 
@@ -450,7 +603,7 @@ keywords <- dat$jhu_datasets %>%
   unnest(keywords)
 get_str(keywords)
 
-results$keywords <- keywords
+results$keyword <- keywords
 
 
 
@@ -476,16 +629,16 @@ licenses_df <- list_rbind(licenses_filter) %>%
 get_str(licenses_df)
 
 # Save it
-results$licenses <- licenses_df
+results$license <- licenses_df
 
 
 ## Now we can recode the lic id in datasets table
-results$datasets <- licenses_df %>%
+results$dataset <- licenses_df %>%
   select(-url) %>%
-  right_join(results$datasets, by = join_by('name' == 'lic_id')) %>%
+  right_join(results$dataset, by = join_by('name' == 'lic_id')) %>%
   select(-name) %>%
   relocate(lic_id, .after = last_col())
-get_str(results$datasets)
+get_str(results$dataset)
 
 
 
@@ -718,12 +871,12 @@ sw_license_df <- sw_df %>%
 get_str(sw_license_df)
 
 # Now add sw_lic_id to datasets
-results$datasets <- sw_license_df %>%
+results$dataset <- sw_license_df %>%
   select(sw_lic_id, ds_id) %>%
-  right_join(results$datasets) %>%
+  right_join(results$dataset) %>%
   relocate(sw_lic_id, .after = last_col()) %>%
   unique()
-get_str(results$datasets)
+get_str(results$dataset)
 
 # Pull out sw license table, connects straight to dataset
 sw_license_table <- sw_license_df %>%
@@ -732,7 +885,7 @@ sw_license_table <- sw_license_df %>%
 get_str(sw_license_table)
 
 # Save it
-results$sw_license <- sw_license_table
+results$software_license <- sw_license_table
 
 
 # 2 more to make here
@@ -786,123 +939,226 @@ results$analyzes <- analyze
 
 
 
-# Create Groups -----------------------------------------------------------
+# User Groups -----------------------------------------------------------
 
 
-# Making made up data for Users, Registered Users, and Admins
+# Let's make every author a registered user. And add some more registered users
+# How many authors do we have?
+get_str(results$author)
+nrow(results$author)
+# 806
 
-## Start with users.
-# Just do IDs for now, then add attributes later
-users <- data.frame(
-  user_id = 1:250
-  # email = paste0(
-  #   lorem::ipsum_words(100, collapse = FALSE),
-  #   '@madeupemail.com'
-  # )
+# Let's make it 1000 registered users, including authors.
+# So another 194 registered users who are not authors
+set.seed(42)
+reg_users <- data.frame(
+  ru_id = 1:1000,
+  auth_id = c(results$author$auth_id, rep(NA, 194)),
+  name = c(results$author$name, str_to_title(ipsum_words(194, collapse = FALSE))),
+  privilege = sample(c('read', 'write'), 1000, replace = TRUE),
+  pw_hash = paste0(
+    ipsum_words(1000, collapse = FALSE),
+    sample(1:9999, 1000, replace = TRUE)
+  )
 )
-get_str(users)
+get_str(reg_users)
+tail(reg_users, 25)
+
+# Save it
+results$registered_user <- reg_users
 
 
-## Registered Users
-# This will be a subset of users. Let's say half - 125
+## All 1000 registered users must be regular users. So add 500 more
+# and also add emails to all 1500
+# Start with user ref
 set.seed(42)
-reg <- users %>%
-  slice_sample(n = 125) %>%
-  mutate(
-    reg_id = row_number()
+user_ref <- data.frame(
+  ru_id = c(reg_users$ru_id, rep(NA, 500)),
+  u_id = 1:1500,
+  user_ref = 1:1500,
+  email = c(
+    reg_users$email,
+    paste0(
+      ipsum_words(500, collapse = FALSE),
+      '@email.com'
+    )
   )
-get_str(reg)
-
-# Add these reg ids back into users
-users <- users %>%
-  full_join(reg)
-get_str(users)
-
-# Let's make 25 of our authors into registered users.
-# Links will just connect the IDs
-# Just slice and bind
-links <- results$authors %>%
-  slice(1:25) %>%
-  bind_cols(reg[1:25, ]) %>%
-  select(auth_id, reg_id)
-get_str(links)
-
-## Now use links to add author IDs to reg users and reg users to author IDs
-# Reg
-reg <- reg %>%
-  left_join(links)
-get_str(reg)
-
-# Authors
-results$authors <- results$authors %>%
-  left_join(links)
-get_str(results$authors)
+)
+get_str(user_ref)
 
 
-## Admins
-# Of the 125 reg users, 25 are authors. Let's turn 25 of the last 100 into admins
-get_str(reg)
+## From this we can make our user table
+user <- user_ref %>%
+  select(u_id, email)
+get_str(user)
 
-# First add 25 more IDs to reg. Start at 26 to dodge authors
-reg <- reg %>%
-  mutate(admin_id = c(rep(NA, 25), 1:25, rep(NA, 75)))
-get_str(reg)
+# Save it
+results$user <- user
 
-# Now make admins table, as subset of registered users
+
+## Now go back and finish user ref table
+user_ref <- user_ref %>%
+  select(u_id, ru_id, user_ref)
+get_str(user_ref)
+
+# Save it
+results$user_reference <- user_ref
+
+
+## Admins. Make 25 of them. Just need ru_id and random start date
+# Let's use 25 reg users who are not authors
 set.seed(42)
-admins <- reg %>%
-  filter(!is.na(admin_id)) %>%
-  select(-user_id, -auth_id) %>%
-  mutate(
-    privilege = sample(c('superuser', 'edit', 'read'), nrow(.), replace = TRUE),
-    collection_id = sample(results$collections$col_id, nrow(.), replace = FALSE),
-    start_date = Sys.Date() - sort(sample(3000:7000, 25))
+admin <- results$registered_user %>%
+  filter(is.na(auth_id)) %>%
+  slice_sample(n = 25, replace = FALSE) %>%
+  select(ru_id) %>%
+  mutate(start_date = sample(
+    seq(ymd('2015-08-01'), ymd('2017-08-01'), 'days'),
+    25,
+    replace = TRUE
+  ))
+get_str(admin)
+
+# Save it
+results$admin <- admin
+
+
+
+# Manage DS, Collection ---------------------------------------------------
+
+
+## Manage Dataverse
+# Make 2 admins in charge of it
+get_str(results$admin)
+
+# Just make it straight up. Should be after 2016-12 though, thats when admins started
+# DV Admins
+dv_admins <- results$admin$ru_id[1:2]
+set.seed(42)
+manage_dv <- data.frame(
+  ru_id = sample(dv_admins, 15, replace = TRUE),
+  root_id = 1,
+  timestamp = sample(
+    seq(ymd('2017-01-01'), ymd('2024-01-01'), 'days'),
+    15,
+    replace = TRUE
+  ),
+  description = paste0(
+    'Updated col_id ',
+    sample(results$collection$col_id, 15, replace = TRUE)
   )
-get_str(admins)
-results$admins <- admins
+)
+get_str(manage_dv)
 
-# Add attributes to users and ditch reg id
-get_str(users)
-users <- users %>%
-  mutate(
-    email = paste0(
-      lorem::ipsum_words(250, collapse = FALSE),
-      '@madeupemail.com')
-  ) %>%
-  select(-reg_id)
-get_str(users)
-results$users <- users
+# Save it
+results$manage_dataverse <- manage_dv
 
-# Add attributes to registered users, pulling names from authors, making up rest
-get_str(reg)
+
+## Manage Collections
+# Make the other 23 admins manage collections. And get selections of collections
+# Making this table 50 deep
+col_admins <- results$admin$ru_id[3:25]
+collections <- results$collection$col_id
+
 set.seed(42)
-reg_names <- ipsum_words(200, collapse = FALSE)
-set.seed(42)
-reg <- reg %>%
-  left_join(users) %>%
-  left_join(authors) %>%
-  select(-admin_id) %>%
-  mutate(
-    name = ifelse(is.na(name), reg_names[row_number()], name),
-    pw_hash = ipsum_words(nrow(.), collapse = FALSE),
-    privilege = sample(c('read', 'view', 'download'), nrow(.), replace = TRUE)
+manage_col <- data.frame(
+  ru_id = sample(col_admins, 50, replace = TRUE),
+  col_id = sample(collections, 50, replace = TRUE),
+  timestamp = sample(
+    seq(ymd('2017-01-01'), ymd('2024-01-01'), 'days'),
+    50,
+    replace = TRUE
+  ),
+  description = paste0(
+    'Updated ds_id ',
+    sample(results$dataset$ds_id, 50, replace = TRUE)
   )
-get_str(reg)
-results$reg <- reg
+)
+get_str(manage_col)
 
-get_str(authors)
+# Save it
+results$manage_collection <- manage_col
+
+
+
+# Download DS, File -------------------------------------------------------
+
+
+## DS Download
+# random selection of non-reg users, dataset ID, and timestamp
+# Make it 25 deep
+
+# First get non-reg users
+non_reg_users <- results$user %>%
+  left_join(results$user_reference) %>%
+  anti_join(results$registered_user) %>%
+  pull(u_id)
+non_reg_users
+
+set.seed(42)
+ds_down <- data.frame(
+  ds_id = sample(results$dataset$ds_id, 25, replace = TRUE),
+  u_id = sample(non_reg_users, 25, replace = TRUE),
+  timestamp = sample(
+    seq(ymd('2018-01-01'), ymd('2024-09-09'), 'days'),
+    25,
+    replace = TRUE
+  )
+)
+get_str(ds_down)
+
+# Save it
+results$dataset_download <- ds_down
+
+
+## File Download
+# also 25 deep, same deal
+set.seed(42)
+file_down <- data.frame(
+  file_id = sample(results$file$file_id, 25, replace = TRUE),
+  u_id = sample(non_reg_users, 25, replace = TRUE),
+  timestamp = sample(
+    seq(ymd('2018-01-01'), ymd('2024-09-09'), 'days'),
+    25,
+    replace = TRUE
+  )
+)
+get_str(file_down)
+
+# Save it
+results$file_download <- file_down
+
+
+
+# Root Dataverse ----------------------------------------------------------
+
+
+# Just a table with a single record for JHU
+root <- data.frame(
+  root_id = 1,
+  title = 'Johns Hopkins Research Data Repository',
+  url = 'https://archive.data.jhu.edu/',
+  description = 'An open access repository for Johns Hopkins University researchers to share their research data.'
+)
+
+# Save it
+results$root_dataverse <- root
 
 
 
 # Save and Clear ----------------------------------------------------------
 
 
+# Check results
+names(results)
+map(results, get_str)
+
 # Save as list of DFs
 saveRDS(results, 'r/2_clean/jhu_dfs.Rds')
 
 # Also save as separate CSVs
 iwalk(results, \(df, name) {
-  write.csv(df, paste0('r/6_outputs/jhu_', name, '.csv'))
+  write.csv(df, paste0('csv/', name, '.csv'))
 })
 
 # Clear

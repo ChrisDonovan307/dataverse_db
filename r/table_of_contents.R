@@ -1,8 +1,17 @@
 # Table of Contents
-# 2024-09-08
+# 2024-11-20
 
 
 # Housekeeping ------------------------------------------------------------
+
+
+# Run this first
+source('r/4_scripts/housekeeping.R')
+
+# README
+knitr::knit('README.rmd')
+
+
 
 # Workflow ----------------------------------------------------------------
 
@@ -18,8 +27,4 @@ source('r/4_scripts/wrangle_johns_hopkins.R')
 
 # Explore clean tables
 'r/4_scripts/explore_clean_tables.R'
-
-
-# Miscellany --------------------------------------------------------------
-
 
