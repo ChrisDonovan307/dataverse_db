@@ -108,7 +108,7 @@ files_df <- files_df %>%
     -url,
     -file_content_type
   ) %>%
-  mutate(pub_date = as_date(published_at))
+  mutate(pub_date = as_datetime(published_at), .keep = 'unused')
 get_str(files_df)
 
 # Fill in the file_id if one is ever missing.
@@ -252,12 +252,12 @@ collections_df <- dat$jhu_dataverses %>%
   ) %>%
   mutate(
     root_id = 'jhu',
-    pub_date = as_date(pub_date)
+    pub_date = as_datetime(pub_date)
   ) %>%
   add_row( # Adding an entry for root
     col_id = 'jhu',
     title = 'JHU Root Dataverse',
-    pub_date = as_date('2013-12-17'),
+    pub_date = as_datetime('2013-12-17'),
     description = 'This is the root dataverse for the JHU Installation',
     root_id = 'jhu'
   )
@@ -417,27 +417,29 @@ get_str(big_author_df)
 # We are dropping Orcid IDs - just using integers
 # Also adding registered user IDs
 authors <- big_author_df %>%
+  mutate(orcid = str_remove_all(authorIdentifier.value, "https://orcid.org/")) %>%
   group_by(name) %>%
   summarize(
     count = n(),
     ds_ids = list(ds_id),
-    institution = list(authorAffiliation.value)
+    institution = list(authorAffiliation.value),
+    orcid = first(na.omit(orcid))
   ) %>%
   mutate(
     auth_id = 1:nrow(.),
     ru_id = 1:nrow(.)
   )
 get_str(authors)
-# Save this for instutions below
+# Save this for institutions below
 
 # Save author table with just auth_id, ru_id, and name
 results$author <- authors %>%
-  select(auth_id, ru_id, name)
+  select(auth_id, ru_id, name, orcid)
 get_str(results$author)
 
 
 
-# Institution, Affiliate --------------------------------------------------
+# Institution, affiliation --------------------------------------------------
 
 
 ## Link registered users to institutions
@@ -446,16 +448,16 @@ get_str(big_author_df)
 
 # Needs int_id and ru_id
 # Join authors and big authors by name
-affiliate <- inner_join(authors, big_author_df) %>%
+affiliation <- inner_join(authors, big_author_df) %>%
   select(name = clean_inst, ru_id) %>%
   unique()
-get_str(affiliate)
+get_str(affiliation)
 # This is M-N with registered users and institutions
 
 
 ## Now need a table of just unique institutions, name, id, maybe address
 set.seed(42)
-inst <- affiliate %>%
+inst <- affiliation %>%
   select(name) %>%
   unique() %>%
   mutate(
@@ -478,15 +480,15 @@ get_str(inst)
 results$institution <- inst
 
 
-## Now go back to affiliate, recode with int_id
-get_str(affiliate)
-affiliate <- affiliate %>%
+## Now go back to affiliation, recode with int_id
+get_str(affiliation)
+affiliation <- affiliation %>%
   inner_join(inst) %>%
   select(int_id, ru_id)
-get_str(affiliate)
+get_str(affiliation)
 
 # Save it
-results$affiliate <- affiliate
+results$affiliation <- affiliation
 
 
 
@@ -586,6 +588,29 @@ get_str(ds_up)
 
 # Save it
 results$dataset_upload <- ds_up
+
+
+
+# File Upload -------------------------------------------------------------
+
+
+# Linking authors to files
+get_str(results$dataset_upload)
+get_str(results$file)
+file_upload <- results$dataset_upload %>%
+  select(-timestamp) %>%
+  inner_join(results$file, relationship = 'many-to-many') %>%
+  ungroup() %>%
+  select(
+    auth_id,
+    file_id,
+    timestamp = pub_date
+  ) %>%
+  unique()
+get_str(file_upload)
+
+# Save this
+results$file_upload <- file_upload
 
 
 
@@ -752,7 +777,7 @@ results$grant <- grants_df
 
 
 
-# Software ----------------------------------------------------------------
+# Software, SW lic, Analyze -----------------------------------------------
 
 
 get_str(dat$jhu_datasets_native[[1]]$latestVersion$metadataBlocks$software$fields$value, 3)
@@ -867,7 +892,8 @@ sw_license_df <- sw_df %>%
   ) %>%
   ungroup() %>%
   filter(!is.na(name)) %>%
-  mutate(ds_id = str_replace_all(ds_id, '\\.org/', ':')) # fix ds_id format
+  mutate(ds_id = str_replace_all(ds_id, '\\.org/', ':')) %>% # fix ds_id format
+  rename(url = license_url)
 get_str(sw_license_df)
 
 # Now add sw_lic_id to datasets
@@ -880,7 +906,7 @@ get_str(results$dataset)
 
 # Pull out sw license table, connects straight to dataset
 sw_license_table <- sw_license_df %>%
-  select(sw_lic_id, name, license_url, gpl_compatible) %>%
+  select(sw_lic_id, name, url, gpl_compatible) %>%
   unique()
 get_str(sw_license_table)
 
@@ -930,7 +956,8 @@ analyze <- analyze %>%
     sw_id,
     ds_id,
     title,
-    description
+    description,
+    repo_url = repo_link
   )
 get_str(analyze)
 
@@ -964,9 +991,6 @@ reg_users <- data.frame(
 get_str(reg_users)
 tail(reg_users, 25)
 
-# Save it
-results$registered_user <- reg_users
-
 
 ## All 1000 registered users must be regular users. So add 500 more
 # and also add emails to all 1500
@@ -996,6 +1020,22 @@ get_str(user)
 results$user <- user
 
 
+## Add back to reg users to get reg user table
+get_str(user_ref)
+reg_users <- user_ref %>%
+  inner_join(reg_users) %>%
+  select(
+    ru_id,
+    u_id,
+    auth_id,
+    name:last_col()
+  )
+get_str(reg_users)
+# Note that we are leaving in u_id so that we don't need to have user_ref table
+# Although we are leaving user ref table in the code anyway.
+# Also keeping author ID so we can use it a bit later, but will remove it then
+
+
 ## Now go back and finish user ref table
 user_ref <- user_ref %>%
   select(u_id, ru_id, user_ref)
@@ -1008,7 +1048,7 @@ results$user_reference <- user_ref
 ## Admins. Make 25 of them. Just need ru_id and random start date
 # Let's use 25 reg users who are not authors
 set.seed(42)
-admin <- results$registered_user %>%
+admin <- reg_users %>%
   filter(is.na(auth_id)) %>%
   slice_sample(n = 25, replace = FALSE) %>%
   select(ru_id) %>%
@@ -1021,6 +1061,11 @@ get_str(admin)
 
 # Save it
 results$admin <- admin
+
+
+## Now we can remove author id from reg users and save it
+results$registered_user <- reg_users %>%
+  select(-auth_id)
 
 
 
@@ -1038,14 +1083,22 @@ set.seed(42)
 manage_dv <- data.frame(
   ru_id = sample(dv_admins, 15, replace = TRUE),
   root_id = 1,
-  timestamp = sample(
-    seq(ymd('2017-01-01'), ymd('2024-01-01'), 'days'),
-    15,
-    replace = TRUE
+  timestamp = as_datetime(
+    runif(
+      15,
+      as.numeric(as_datetime('2015-01-01')),
+      as.numeric(now())
+    )
   ),
-  description = paste0(
-    'Updated col_id ',
-    sample(results$collection$col_id, 15, replace = TRUE)
+  description = replicate(
+    15,
+    paste0(
+      'Regular maintenance, code ',
+      paste(
+        sample(c('A', 'B', 'C', 'X', 'Y', 'Z', 1:9), 6, replace = TRUE),
+        collapse = ''
+      )
+    )
   )
 )
 get_str(manage_dv)
@@ -1060,20 +1113,33 @@ results$manage_dataverse <- manage_dv
 col_admins <- results$admin$ru_id[3:25]
 collections <- results$collection$col_id
 
+# Start with collection IDs and pub_dates
 set.seed(42)
-manage_col <- data.frame(
-  ru_id = sample(col_admins, 50, replace = TRUE),
-  col_id = sample(collections, 50, replace = TRUE),
-  timestamp = sample(
-    seq(ymd('2017-01-01'), ymd('2024-01-01'), 'days'),
-    50,
-    replace = TRUE
-  ),
-  description = paste0(
-    'Updated ds_id ',
-    sample(results$dataset$ds_id, 50, replace = TRUE)
+cols <- results$collection %>%
+  select(col_id, pub_date) %>%
+  slice_sample(n = 50, replace = TRUE)
+get_str(cols)
+
+# Add other columns
+set.seed(42)
+manage_col <- cols %>%
+  mutate(
+    ru_id = sample(col_admins, 50, replace = TRUE),
+    col_id = sample(collections, 50, replace = TRUE),
+    timestamp = as_datetime(
+      runif(
+        n(),
+        as.numeric(pub_date),
+        as.numeric(now())
+      )
+    ),
+    description = paste0(
+      'Updated collection ',
+      col_id,
+      ' dataset ',
+      sample(results$dataset$ds_id, 50, replace = TRUE)
+    )
   )
-)
 get_str(manage_col)
 
 # Save it
@@ -1130,6 +1196,74 @@ results$file_download <- file_down
 
 
 
+# Contact -----------------------------------------------------------------
+
+
+# Just making up contacts between users and authors
+# Let's say that every author is contacted... because we do not specify a
+# contact author.
+
+# Need selection of users (not reg), selection of datasets to find authors
+# Let's do 15
+
+# Get some users
+get_str(results$user)
+set.seed(42)
+contact_users <- results$user %>%
+  anti_join(results$registered_user) %>%
+  slice_sample(n = 15, replace = FALSE)
+get_str(contact_users)
+
+# Get some datasets
+set.seed(42)
+contact_datasets <- results$dataset %>%
+  slice_sample(n = 15, replace = FALSE)
+get_str(contact_datasets)
+
+# Bind them together, then join with authors to get full contacts list
+contact <- bind_cols(contact_users, contact_datasets) %>%
+  select(u_id, ds_id) %>%
+  left_join(results$dataset_upload, relationship = 'many-to-many') %>%
+  select(-auth_id) %>%
+  unique()
+get_str(contact)
+
+# Now add a new timestamp that is later than the old timestamp
+# Also a message
+contact <- contact %>%
+  mutate(
+    timestamp = as_datetime(
+      runif(
+        n(),
+        as.numeric(timestamp),
+        as.numeric(now())
+      )
+    ),
+    message = c(
+      'This is a great dataset!',
+      'This is absolutely the worst dataset I have ever seen.',
+      'Hello, could you please send supplementary table 2A?',
+      'What exactly were you thinking when you did this?',
+      'I wrote my term paper using your data and I got a C+. Can you ask my professor to raise my grade?',
+      'Did you know that you published your home address and social security number in this dataset?',
+      'Great work.',
+      'We should work together on a paper.',
+      'This dataset was stolen from my cupboard last month.',
+      'Not your best work.',
+      'Thanks for sharing this.',
+      'You give me hope that anyone can become an academic, no matter how little skill they have.',
+      'Will you be my thesis advisor?',
+      'I\'m out of ideas of things to write.',
+      'This is the last one.'
+    )
+  )
+get_str(contact)
+
+# Save it
+results$contact <- contact
+
+
+
 # Root Dataverse ----------------------------------------------------------
 
 
@@ -1149,11 +1283,27 @@ results$root_dataverse <- root
 # Save and Clear ----------------------------------------------------------
 
 
-# Check results
+## Check results
 names(results)
 map(results, get_str)
 
-# Save as list of DFs
+
+## Last minute wrangling
+# Turn _id suffix into _ID to match diagrams
+results <- map(results, \(x) {
+  df <- x
+  names(df) <- str_replace_all(names(df), '_id', '_ID')
+  return(df)
+})
+map(results, get_str)
+
+# Remove tables I'm deciding not to use
+results <- results[names(results) != 'user_reference']
+names(results)
+
+
+## Saving
+# As list of DFs
 saveRDS(results, 'r/2_clean/jhu_dfs.Rds')
 
 # Also save as separate CSVs
@@ -1162,4 +1312,4 @@ iwalk(results, \(df, name) {
 })
 
 # Clear
-clear_data()
+# clear_data()

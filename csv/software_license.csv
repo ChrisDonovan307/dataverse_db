@@ -1,4 +1,4 @@
-"","sw_lic_id","name","license_url","gpl_compatible"
+"","sw_lic_ID","name","url","gpl_compatible"
 "1",1,"GPL-3.0","https://www.gnu.org/licenses/gpl-3.0.html",TRUE
 "2",2,"MIT","https://spdx.org/licenses/X11.html",TRUE
 "3",5,"Not Specified",NA,FALSE

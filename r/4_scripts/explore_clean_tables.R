@@ -14,32 +14,39 @@ pacman::p_load(
 )
 
 source('r/3_functions/get_str.R')
+source('r/4_scripts/housekeeping.R')
 
-# Load clean tables
-names <- list.files('6_outputs/') %>%
-  str_split_i('\\.', 1) %>%
-  str_split_i('_', 2)
-paths <- list.files('6_outputs/', full.names = TRUE)
-# dat <- map(paths, read.csv) %>%
-  # setNames(c(names))
+# Load all datasets
+dat <- readRDS('r/2_clean/jhu_dfs.Rds')
 
-walk2(paths, names, \(path, name) {
-  assign(name, read.csv(path), envir = .GlobalEnv)
-})
 
 
 # Explore -----------------------------------------------------------------
 
 
-names(dat)
+sort(names(dat))
+get_str(dat)
 
-str(dat$admins)
-map(dat, str)
 
-# Start with datasets
-get_str(datasets)
-get_str(collections)
-get_str(licenses)
-get_str(software)
-get_str(produce)
-get_str(publications)
+# Do user and reg user join properly
+test <- inner_join(dat$user, dat$registered_user)
+
+
+# Check pubdate for file and dataset
+get_str(dat$dataset)
+get_str(dat$file)
+get_str(dat$affiliation)
+
+# Check first dataset
+(id <- dat$dataset$ds_id[1])
+
+# Date of dataset
+dat$dataset %>%
+  filter(ds_id == id) %>%
+  pull(pub_date)
+
+# Get associated files
+dat$file %>%
+  filter(ds_id == id) %>%
+  pull(published_at)
+
