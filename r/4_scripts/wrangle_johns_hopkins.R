@@ -1,8 +1,7 @@
 #' Wrangle Johns Hopkins
 #' 2024-09-15
-#'
-#' Wrangling, cleaning, exploring Johns Hopkins data. Making csv datasets
 
+#' Wrangling, cleaning, exploring Johns Hopkins data. Making csv datasets
 
 
 # Housekeeping ------------------------------------------------------------
@@ -239,6 +238,8 @@ results$dataset <- datasets_df_clean
 
 get_str(dat$jhu_dataverses)
 head(dat$jhu_dataverses)
+# 62 dataverses (collections)
+
 # This is easy, just get rid of the type column and leave else as is
 # also add the root dataverse
 collections_df <- dat$jhu_dataverses %>%
@@ -251,26 +252,28 @@ collections_df <- dat$jhu_dataverses %>%
     -url
   ) %>%
   mutate(
-    root_id = 'jhu',
+    root_id = 1,
     pub_date = as_datetime(pub_date)
   ) %>%
-  add_row( # Adding an entry for root
+
+  # Adding an entry for root
+  add_row(
     col_id = 'jhu',
     title = 'JHU Root Dataverse',
     pub_date = as_datetime('2013-12-17'),
     description = 'This is the root dataverse for the JHU Installation',
-    root_id = 'jhu'
+    root_id = 1
   )
 get_str(collections_df)
 
 
 ## Add n_files and downloads
 # Get DF of n_files and downloads from datasets
+# Group by identifiers to add it to collections
 get_str(results$dataset)
 ds_summary <- results$dataset %>%
-  group_by(ds_id) %>%
+  group_by(identifier) %>%
   summarize(
-    identifier = identifier,
     n_files = sum(n_files, na.rm = TRUE),
     downloads = sum(downloads, na.rm = TRUE)
   )
@@ -291,18 +294,28 @@ collections_df <- collections_df %>%
   select(col_id, everything())
 get_str(collections_df)
 
-# Now we can join it to datasets to fix the col_id and make it numeric
-crosswalk <- collections_df %>%
-  select(col_id, identifier)
-results$dataset <- results$dataset %>%
-  left_join(crosswalk) %>%
+
+## Now we can join it to datasets to fix the col_id and make it numeric
+results$dataset <- collections_df %>%
+  select(col_id, identifier) %>%
+  right_join(results$dataset) %>%
   select(-identifier)
 get_str(results$dataset)
 
 
-# Save collections too, but remove identifier
+# Save collections too, but remove identifier and ds_id
+# Also put columns in intuitive order
 results$collection <- collections_df %>%
-  select(-identifier)
+  select(
+    col_id,
+    root_id,
+    title,
+    description,
+    pub_date,
+    n_files,
+    downloads
+  )
+get_str(results$collection)
 
 
 
@@ -473,7 +486,8 @@ inst <- affiliation %>%
       ', ',
       sample(c('Maryland', 'California', 'Virginia', 'New York'))
     )
-  )
+  ) %>%
+  select(int_id, name, address)
 get_str(inst)
 
 # Save it
@@ -519,7 +533,18 @@ pubs_df <- map(1:nrow(pubs), \(row) {
   )
 }) %>%
   list_rbind() %>%
-  mutate(pub_id = as.numeric(factor(citation)))
+  mutate(pub_id = as.numeric(factor(citation))) %>%
+  filter(!is.na(pub_id)) %>%
+
+  # This is a bit jenky, losing a couple of pubs, but don't want to deal with it.
+  # Some pubs are associated with more than one dataset. only 2 of them. Dont
+  # want to make a whole new table for the M-N, so just losing them here.
+  group_by(pub_id) %>%
+  summarize(
+    citation = first(citation),
+    url = first(url),
+    ds_id = first(ds_id)
+  )
 get_str(pubs_df)
 
 # Clean up names
@@ -713,7 +738,8 @@ grants_df <- Filter(Negate(is.logical), out) %>%
   list_rbind() %>%
   mutate(
     grant_id = 1:nrow(.),
-    ds_id = str_split_i(dataset_url, '//', 2),
+    ds_id = str_split_i(dataset_url, '//', 2) %>%
+      str_replace('.org/', ':'),
     amount = sample(seq(10000, 500000, 10000), nrow(.), replace = TRUE),
     .keep = 'unused'
   ) %>%
@@ -893,16 +919,31 @@ sw_license_df <- sw_df %>%
   ungroup() %>%
   filter(!is.na(name)) %>%
   mutate(ds_id = str_replace_all(ds_id, '\\.org/', ':')) %>% # fix ds_id format
-  rename(url = license_url)
+  rename(url = license_url) %>%
+  unique()
 get_str(sw_license_df)
 
 # Now add sw_lic_id to datasets
+# finishing dataset table here. making order of columns intuitive
 results$dataset <- sw_license_df %>%
   select(sw_lic_id, ds_id) %>%
   right_join(results$dataset) %>%
   relocate(sw_lic_id, .after = last_col()) %>%
-  unique()
+  unique() %>%
+  select(
+    ds_id,
+    col_id,
+    lic_id,
+    sw_lic_id,
+    title,
+    description,
+    pub_date,
+    downloads,
+    n_files,
+    url
+  )
 get_str(results$dataset)
+
 
 # Pull out sw license table, connects straight to dataset
 sw_license_table <- sw_license_df %>%
@@ -958,7 +999,8 @@ analyze <- analyze %>%
     title,
     description,
     repo_url = repo_link
-  )
+  ) %>%
+  mutate(ds_id = str_replace(ds_id, '.org/', ':'))
 get_str(analyze)
 
 # Save it
@@ -1001,9 +1043,10 @@ user_ref <- data.frame(
   u_id = 1:1500,
   user_ref = 1:1500,
   email = c(
-    reg_users$email,
+    # reg_users$email,
     paste0(
-      ipsum_words(500, collapse = FALSE),
+      ipsum_words(1500, collapse = FALSE),
+      sample(1:1500, replace = FALSE),
       '@email.com'
     )
   )
@@ -1066,6 +1109,13 @@ results$admin <- admin
 ## Now we can remove author id from reg users and save it
 results$registered_user <- reg_users %>%
   select(-auth_id)
+get_str(results$registered_user)
+
+
+## Now that registered users are linked to authors, we can remove author name
+results$author <- results$author %>%
+  select(-name)
+get_str(results$author)
 
 
 
@@ -1139,7 +1189,8 @@ manage_col <- cols %>%
       ' dataset ',
       sample(results$dataset$ds_id, 50, replace = TRUE)
     )
-  )
+  ) %>%
+  select(-pub_date)
 get_str(manage_col)
 
 # Save it
@@ -1164,13 +1215,17 @@ non_reg_users
 set.seed(42)
 ds_down <- data.frame(
   ds_id = sample(results$dataset$ds_id, 25, replace = TRUE),
-  u_id = sample(non_reg_users, 25, replace = TRUE),
-  timestamp = sample(
-    seq(ymd('2018-01-01'), ymd('2024-09-09'), 'days'),
-    25,
-    replace = TRUE
+  u_id = sample(non_reg_users, 25, replace = TRUE)
+) %>%
+  mutate(
+    timestamp = as_datetime(
+      runif(
+        n(),
+        as.numeric(as_datetime('2024-11-01')),
+        as.numeric(now())
+      )
+    )
   )
-)
 get_str(ds_down)
 
 # Save it
@@ -1182,13 +1237,17 @@ results$dataset_download <- ds_down
 set.seed(42)
 file_down <- data.frame(
   file_id = sample(results$file$file_id, 25, replace = TRUE),
-  u_id = sample(non_reg_users, 25, replace = TRUE),
-  timestamp = sample(
-    seq(ymd('2018-01-01'), ymd('2024-09-09'), 'days'),
-    25,
-    replace = TRUE
+  u_id = sample(non_reg_users, 25, replace = TRUE)
+) %>%
+  mutate(
+    timestamp = as_datetime(
+      runif(
+        n(),
+        as.numeric(as_datetime('2024-11-01')),
+        as.numeric(now())
+      )
+    )
   )
-)
 get_str(file_down)
 
 # Save it
@@ -1285,8 +1344,8 @@ results$root_dataverse <- root
 
 ## Check results
 names(results)
+get_str(results, 3)
 map(results, get_str)
-
 
 ## Last minute wrangling
 # Turn _id suffix into _ID to match diagrams
@@ -1312,4 +1371,4 @@ iwalk(results, \(df, name) {
 })
 
 # Clear
-# clear_data()
+clear_data()

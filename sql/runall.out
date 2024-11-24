@@ -1,0 +1,355 @@
+SQL> 
+SQL> 
+SQL> -- Execute scripts  --------------------------------------------------
+SQL> 
+SQL> @1_tables.sql
+SQL> -- Create Tables  --------------------------------------------------
+SQL> 
+SQL> -- First are the easy tables without any foreign keys
+SQL> create table institution (
+  2  	     int_ID int primary key,
+  3  	     name varchar(1000),
+  4  	     address varchar(500)
+  5  );
+
+Table created.
+
+SQL> 
+SQL> create table license (
+  2  	     lic_ID int primary key,
+  3  	     name varchar(15),
+  4  	     url varchar(250)
+  5  );
+
+Table created.
+
+SQL> 
+SQL> create table funding_agency (
+  2  	     agency_ID int primary key,
+  3  	     name varchar(250),
+  4  	     total_amount int,
+  5  	     location varchar(25)
+  6  );
+
+Table created.
+
+SQL> 
+SQL> create table grants (	     -- Oracle does not allow grant as a name
+  2  	     grant_ID int primary key,
+  3  	     grant_number varchar(250),
+  4  	     amount int
+  5  );
+
+Table created.
+
+SQL> 
+SQL> create table software_license (
+  2  	     sw_lic_ID int primary key,
+  3  	     name varchar(20),
+  4  	     url varchar(100),
+  5  	     gpl_compatible varchar(5) check (gpl_compatible in ('TRUE', 'FALSE'))
+  6  	     -- Note apparently Oracle does not have boolean column type?
+  7  	     -- I will go back and change this column to T/F so we can make it char(1)
+  8  	     -- for now just seeing if this will work as is
+  9  );
+
+Table created.
+
+SQL> 
+SQL> create table software (
+  2  	     sw_ID int primary key,
+  3  	     name varchar(25),
+  4  	     description varchar(25)
+  5  );
+
+Table created.
+
+SQL> 
+SQL> create table users (	     -- user is another oracle conflict
+  2  	     u_ID int primary key,
+  3  	     email varchar(25)
+  4  );
+
+Table created.
+
+SQL> 
+SQL> create table root_dataverse (
+  2  	     root_ID int primary key,
+  3  	     title varchar(50),
+  4  	     url varchar(50),
+  5  	     description varchar(500)
+  6  );
+
+Table created.
+
+SQL> 
+SQL> 
+SQL> -- Now tables with foreign keys. Work down from root
+SQL> 
+SQL> create table collection (
+  2  	     col_ID int primary key,
+  3  	     title varchar(500),
+  4  	     pub_date date,
+  5  	     description varchar(1000),
+  6  	     -- root_ID varchar(25) references root_dataverse (root_ID), -- have to fix this column in collection
+  7  	     n_files int,
+  8  	     downloads int
+  9  );
+
+Table created.
+
+SQL> 
+SQL> 
+SQL> create table dataset (
+  2  	     ds_ID varchar(50) primary key,
+  3  	     title varchar(500),
+  4  	     url varchar(250),
+  5  	     description varchar(1000),
+  6  	     pub_date date,
+  7  	     downloads int,
+  8  	     n_files int,
+  9  	     col_ID int references collection (col_ID),
+ 10  	     lic_ID int references license (lic_ID),
+ 11  	     sw_lic_ID int references software_license (sw_lic_ID)
+ 12  );
+
+Table created.
+
+SQL> 
+SQL> create table files (    -- cannot use 'file' as table name, making it files
+  2  	     file_ID varchar(50) primary key,
+  3  	     ds_ID varchar(50) references dataset (ds_ID),
+  4  	     filetype varchar(50),
+  5  	     filesize numeric,
+  6  	     title varchar(1000),
+  7  	     description varchar(1000),
+  8  	     downloads int,
+  9  	     pub_date date
+ 10  );
+
+Table created.
+
+SQL> 
+SQL> create table subject (
+  2  	     ds_ID varchar(50),
+  3  	     subject varchar(50),
+  4  	     primary key (ds_ID, subject)
+  5  );
+
+Table created.
+
+SQL> 
+SQL> -- Stopping here for now to see if the insert statements work
+SQL> 
+SQL> 
+SQL> SQL> @2_insert.sql
+SQL> insert into files values ('doi:10.7281/T10Z715B/HHGUOR', 'doi:10.7281/T10Z715B', 'ZIP Archive', '4603476', 'IntraUrbanTemperatureVariabilityBaltimore.zip', 'Data, metadata, Readme and sample code used in publication Scott et al 2016.', '30', '20-Jul-2016');
+insert into files values ('doi:10.7281/T10Z715B/HHGUOR', 'doi:10.7281/T10Z715B', 'ZIP Archive', '4603476', 'IntraUrbanTemperatureVariabilityBaltimore.zip', 'Data, metadata, Readme and sample code used in publication Scott et al 2016.', '30', '20-Jul-2016')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (CDONOV12.SYS_C0099931) violated - parent key 
+not found 
+Help: https://docs.oracle.com/error-help/db/ora-02291/ 
+
+
+SQL> insert into files values ('doi:10.7281/T15Q4T12/0BMVQF', 'doi:10.7281/T15Q4T12', 'ZIP Archive', '7582841', 'data_package_from_ankarali_2015.zip', 'This zip file contains MATLAB scripts (.m), data inputs (.mat), and data outputs (.mat) associated with the statistical methods and plots from the publication. The input data is also available in .csv format. See the read_me file within this .zip for detailed information on this data package and its contents.', '38', '18-Jun-2015');
+insert into files values ('doi:10.7281/T15Q4T12/0BMVQF', 'doi:10.7281/T15Q4T12', 'ZIP Archive', '7582841', 'data_package_from_ankarali_2015.zip', 'This zip file contains MATLAB scripts (.m), data inputs (.mat), and data outputs (.mat) associated with the statistical methods and plots from the publication. The input data is also available in .csv format. See the read_me file within this .zip for detailed information on this data package and its contents.', '38', '18-Jun-2015')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (CDONOV12.SYS_C0099931) violated - parent key 
+not found 
+Help: https://docs.oracle.com/error-help/db/ora-02291/ 
+
+
+SQL> insert into files values ('doi:10.7281/T1J10120/3UUMZV', 'doi:10.7281/T1J10120', 'ZIP Archive', '22659543', 'morgan-pally-bpd-data-distribution-2016-v1.zip', 'Zip file containing: (1) the report and its appendices, (2) raw data files from the Baltimore Police Department downloaded from the Open Baltimore portal on February 3, 2016, and (3) an R project with associated analysis code that reproduces the key results of the report.', '92', '15-Mar-2016');
+insert into files values ('doi:10.7281/T1J10120/3UUMZV', 'doi:10.7281/T1J10120', 'ZIP Archive', '22659543', 'morgan-pally-bpd-data-distribution-2016-v1.zip', 'Zip file containing: (1) the report and its appendices, (2) raw data files from the Baltimore Police Department downloaded from the Open Baltimore portal on February 3, 2016, and (3) an R project with associated analysis code that reproduces the key results of the report.', '92', '15-Mar-2016')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (CDONOV12.SYS_C0099931) violated - parent key 
+not found 
+Help: https://docs.oracle.com/error-help/db/ora-02291/ 
+
+
+SQL> insert into files values ('doi:10.7281/T19G5JRC/NR5JGV', 'doi:10.7281/T19G5JRC', 'ZIP Archive', '4108418', 'Ethiopia_Quality_of_Care_files.zip', 'Includes de-identified Stata database, codebook, published report, and questionnaire.', '29', '22-Oct-2015');
+insert into files values ('doi:10.7281/T19G5JRC/NR5JGV', 'doi:10.7281/T19G5JRC', 'ZIP Archive', '4108418', 'Ethiopia_Quality_of_Care_files.zip', 'Includes de-identified Stata database, codebook, published report, and questionnaire.', '29', '22-Oct-2015')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (CDONOV12.SYS_C0099931) violated - parent key 
+not found 
+Help: https://docs.oracle.com/error-help/db/ora-02291/ 
+
+
+SQL> insert into files values ('doi:10.7281/T1/WBR06U/AHDCE8', 'doi:10.7281/T1/WBR06U', 'ZIP Archive', '25155882', 'backup_data_for_NO2_sensor_Li_et_al_ACS_AMI_2017.zip', 'These data were used to derive Table 1 and Figures 4-6 in the manuscript.  The data also support the limit of detection calculation and present the lack of effect of NO2 on the absorbance spectra and an attempt to promote reversibility of the sensing by adding guanine to the polymers.', '9', '12-Jun-2017');
+insert into files values ('doi:10.7281/T1/WBR06U/AHDCE8', 'doi:10.7281/T1/WBR06U', 'ZIP Archive', '25155882', 'backup_data_for_NO2_sensor_Li_et_al_ACS_AMI_2017.zip', 'These data were used to derive Table 1 and Figures 4-6 in the manuscript.  The data also support the limit of detection calculation and present the lack of effect of NO2 on the absorbance spectra and an attempt to promote reversibility of the sensing by adding guanine to the polymers.', '9', '12-Jun-2017')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (CDONOV12.SYS_C0099931) violated - parent key 
+not found 
+Help: https://docs.oracle.com/error-help/db/ora-02291/ 
+
+
+SQL> insert into files values ('doi:10.7281/T1/SP6KO3/KDQZ92', 'doi:10.7281/T1/SP6KO3', 'ZIP Archive', '18205438', 'Viete et al. data.zip', 'Raw spectroscopic data associated with publication “Metamorphic records of multiple seismic cycles during subduction”', '28', '22-Nov-2017');
+insert into files values ('doi:10.7281/T1/SP6KO3/KDQZ92', 'doi:10.7281/T1/SP6KO3', 'ZIP Archive', '18205438', 'Viete et al. data.zip', 'Raw spectroscopic data associated with publication “Metamorphic records of multiple seismic cycles during subduction”', '28', '22-Nov-2017')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (CDONOV12.SYS_C0099931) violated - parent key 
+not found 
+Help: https://docs.oracle.com/error-help/db/ora-02291/ 
+
+
+SQL> insert into files values ('doi:10.7281/T1/CZZDLJ/XMVWG4', 'doi:10.7281/T1/CZZDLJ', 'ZIP Archive', '455141103', 'Rawdata_for_Zhao_et-al_N-doping_adv_mater_2017.zip', 'This zip file contains 4 total zip files. These data were used to derive Figure 3-5 in the manuscript and 3-7, 10-11 in the supporting information.', '6', '22-Jun-2017');
+insert into files values ('doi:10.7281/T1/CZZDLJ/XMVWG4', 'doi:10.7281/T1/CZZDLJ', 'ZIP Archive', '455141103', 'Rawdata_for_Zhao_et-al_N-doping_adv_mater_2017.zip', 'This zip file contains 4 total zip files. These data were used to derive Figure 3-5 in the manuscript and 3-7, 10-11 in the supporting information.', '6', '22-Jun-2017')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (CDONOV12.SYS_C0099931) violated - parent key 
+not found 
+Help: https://docs.oracle.com/error-help/db/ora-02291/ 
+
+
+SQL> insert into files values ('doi:10.7281/T1/YXVVML/H6S8TU', 'doi:10.7281/T1/YXVVML', 'ZIP Archive', '111627305', 'Raw data for thiophene and edot polymers Li et al. JACS 2017.zip', 'These data were used to derive the figures in the manuscript and the supporting information.', '6', '16-Aug-2017');
+insert into files values ('doi:10.7281/T1/YXVVML/H6S8TU', 'doi:10.7281/T1/YXVVML', 'ZIP Archive', '111627305', 'Raw data for thiophene and edot polymers Li et al. JACS 2017.zip', 'These data were used to derive the figures in the manuscript and the supporting information.', '6', '16-Aug-2017')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (CDONOV12.SYS_C0099931) violated - parent key 
+not found 
+Help: https://docs.oracle.com/error-help/db/ora-02291/ 
+
+
+SQL> insert into files values ('doi:10.7281/T1/YI383C/NHGUTF', 'doi:10.7281/T1/YI383C', 'ZIP Archive', '10008308', 'Raw data for pentacene guanine multilayers	Shi et al. APL 2017.zip', 'These data were used to derive the figures in the manuscript.', '3', '16-Aug-2017');
+insert into files values ('doi:10.7281/T1/YI383C/NHGUTF', 'doi:10.7281/T1/YI383C', 'ZIP Archive', '10008308', 'Raw data for pentacene guanine multilayers  Shi et al. APL 2017.zip', 'These data were used to derive the figures in the manuscript.', '3', '16-Aug-2017')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (CDONOV12.SYS_C0099931) violated - parent key 
+not found 
+Help: https://docs.oracle.com/error-help/db/ora-02291/ 
+
+
+SQL> insert into files values ('doi:10.7281/T1/7VKY8K/MCSMYU', 'doi:10.7281/T1/7VKY8K', 'ZIP Archive', '2078660', 'Data_for_Ireland_etal_2018_ChargedPolymersNOVEC.zip', 'Data tables and graphs in Igor Pro format & PDF supplementing Fig.5-6 (Demo version available to view at https://www.wavemetrics.com)', '6', '04-Jun-2018');
+Enter value for pdf: 
+SQL> @drop
+SQL> BEGIN
+  2  	-- Drop all triggers
+  3  	FOR rec IN (SELECT trigger_name, table_name FROM user_triggers) LOOP
+  4  	   EXECUTE IMMEDIATE 'DROP TRIGGER ' || rec.trigger_name;
+  5  	END LOOP;
+  6  
+  7  	-- Drop all views
+  8  	FOR rec IN (SELECT view_name FROM user_views) LOOP
+  9  	   EXECUTE IMMEDIATE 'DROP VIEW ' || rec.view_name;
+ 10  	END LOOP;
+ 11  
+ 12  	-- Drop all functions
+ 13  	FOR rec IN (SELECT object_name FROM user_objects WHERE object_type = 'FUNCTION') LOOP
+ 14  	   EXECUTE IMMEDIATE 'DROP FUNCTION ' || rec.object_name;
+ 15  	END LOOP;
+ 16  
+ 17  	-- Drop all procedures
+ 18  	FOR rec IN (SELECT object_name FROM user_objects WHERE object_type = 'PROCEDURE') LOOP
+ 19  	   EXECUTE IMMEDIATE 'DROP PROCEDURE ' || rec.object_name;
+ 20  	END LOOP;
+ 21  
+ 22  	-- Drop all packages
+ 23  	FOR rec IN (SELECT object_name FROM user_objects WHERE object_type = 'PACKAGE') LOOP
+ 24  	   EXECUTE IMMEDIATE 'DROP PACKAGE ' || rec.object_name;
+ 25  	END LOOP;
+ 26  
+ 27  	-- Drop all package bodies
+ 28  	FOR rec IN (SELECT object_name FROM user_objects WHERE object_type = 'PACKAGE BODY') LOOP
+ 29  	   EXECUTE IMMEDIATE 'DROP PACKAGE BODY ' || rec.object_name;
+ 30  	END LOOP;
+ 31  
+ 32  	-- Drop all tables
+ 33  	FOR rec IN (SELECT table_name FROM user_tables) LOOP
+ 34  	   EXECUTE IMMEDIATE 'DROP TABLE ' || rec.table_name || ' CASCADE CONSTRAINTS';
+ 35  	END LOOP;
+ 36  
+ 37  	-- Drop all indexes
+ 38  	FOR rec IN (SELECT index_name, table_name FROM user_indexes) LOOP
+ 39  	   EXECUTE IMMEDIATE 'DROP INDEX ' || rec.index_name;
+ 40  	END LOOP;
+ 41  
+ 42  END;
+ 43  /
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> SQL> @drop
+SQL> BEGIN
+  2  	-- Drop all triggers
+  3  	FOR rec IN (SELECT trigger_name, table_name FROM user_triggers) LOOP
+  4  	   EXECUTE IMMEDIATE 'DROP TRIGGER ' || rec.trigger_name;
+  5  	END LOOP;
+  6  
+  7  	-- Drop all views
+  8  	FOR rec IN (SELECT view_name FROM user_views) LOOP
+  9  	   EXECUTE IMMEDIATE 'DROP VIEW ' || rec.view_name;
+ 10  	END LOOP;
+ 11  
+ 12  	-- Drop all functions
+ 13  	FOR rec IN (SELECT object_name FROM user_objects WHERE object_type = 'FUNCTION') LOOP
+ 14  	   EXECUTE IMMEDIATE 'DROP FUNCTION ' || rec.object_name;
+ 15  	END LOOP;
+ 16  
+ 17  	-- Drop all procedures
+ 18  	FOR rec IN (SELECT object_name FROM user_objects WHERE object_type = 'PROCEDURE') LOOP
+ 19  	   EXECUTE IMMEDIATE 'DROP PROCEDURE ' || rec.object_name;
+ 20  	END LOOP;
+ 21  
+ 22  	-- Drop all packages
+ 23  	FOR rec IN (SELECT object_name FROM user_objects WHERE object_type = 'PACKAGE') LOOP
+ 24  	   EXECUTE IMMEDIATE 'DROP PACKAGE ' || rec.object_name;
+ 25  	END LOOP;
+ 26  
+ 27  	-- Drop all package bodies
+ 28  	FOR rec IN (SELECT object_name FROM user_objects WHERE object_type = 'PACKAGE BODY') LOOP
+ 29  	   EXECUTE IMMEDIATE 'DROP PACKAGE BODY ' || rec.object_name;
+ 30  	END LOOP;
+ 31  
+ 32  	-- Drop all tables
+ 33  	FOR rec IN (SELECT table_name FROM user_tables) LOOP
+ 34  	   EXECUTE IMMEDIATE 'DROP TABLE ' || rec.table_name || ' CASCADE CONSTRAINTS';
+ 35  	END LOOP;
+ 36  
+ 37  	-- Drop all indexes
+ 38  	FOR rec IN (SELECT index_name, table_name FROM user_indexes) LOOP
+ 39  	   EXECUTE IMMEDIATE 'DROP INDEX ' || rec.index_name;
+ 40  	END LOOP;
+ 41  
+ 42  END;
+ 43  /
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> SQL> @run drop
+SQL> -- A script file for executing an SQL script file.
+SQL> -- If the operating system is UNIX or Linux, the command dir must be set as an
+SQL> -- alias of ls.
+SQL> 
+SQL> -- Usage: 'runscript foo' to execute an input file foo.sql
+SQL> --       An output file foo.out will be created, which shows both
+SQL> --       the input statements and their outputs.
+SQL> 
+SQL> -- Check if the input script file exists.
+SQL> host dir &&1..sql
+
+SQL> 
+SQL> -- Override some of the default options of sqlplus. --
+SQL> 
+SQL>   -- Do not display the terminal output generated by commands in a
+SQL>   -- command file.
+SQL> set termout off
+SQL> 
+SQL>   -- Do not list the text of an SQL statement or PL/SQL command before
+SQL>   -- and after replacing sustitution variables with values.
+SQL> set verify off
+SQL> 
+SQL>   -- Echo the input statements in the output.
+SQL> set echo on
+SQL> 
+SQL>   -- Turn on serveroutput for using dbms_output.
+SQL> set serveroutput on
+SQL> 
+SQL>   -- Dump the output to the script file with an extension 'out'.
+SQL> spool &&1..out
