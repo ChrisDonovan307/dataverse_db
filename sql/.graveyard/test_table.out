@@ -1,0 +1,77 @@
+SQL> 
+SQL> -- Execute the script file. --
+SQL> start &&1
+SQL> -- Create file table
+SQL> 
+SQL> create table files (
+  2  	     file_ID varchar(50) primary key,
+  3  	     ds_ID varchar(50),
+  4  	     filetype varchar(50),
+  5  	     filesize numeric,
+  6  	     title varchar(250),
+  7  	     description varchar(1000),
+  8  	     downloads int,
+  9  	     pub_date timestamp
+ 10  );
+
+Table created.
+
+SQL> INSERT INTO files VALUES ('doi:10.7281/T10Z715B/HHGUOR', 'doi:10.7281/T10Z715B', 'ZIP Archive', ' 4603476', 'IntraUrbanTemperatureVariabilityBaltimore.zip', 'Data, metadata, Readme and sample code used in publication Scott et al 2016.', '30', '20-Jul-2016 12:00:00');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO files VALUES ('doi:10.7281/T15Q4T12/0BMVQF', 'doi:10.7281/T15Q4T12', 'ZIP Archive', ' 7582841', 'data_package_from_ankarali_2015.zip', 'This zip file contains MATLAB scripts (.m), data inputs (.mat), and data outputs (.mat) associated with the statistical methods and plots from the publication. The input data is also available in .csv format. See the read_me file within this .zip for detailed information on this data package and its contents.', '38', '18-Jun-2015 12:00:00');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO files VALUES ('doi:10.7281/T1J10120/3UUMZV', 'doi:10.7281/T1J10120', 'ZIP Archive', '22659543', 'morgan-pally-bpd-data-distribution-2016-v1.zip', 'Zip file containing: (1) the report and its appendices, (2) raw data files from the Baltimore Police Department downloaded from the Open Baltimore portal on February 3, 2016, and (3) an R project with associated analysis code that reproduces the key results of the report.', '92', '15-Mar-2016 12:00:00');
+
+1 row created.
+
+SQL> 
+SQL> select file_ID, downloads, pub_date
+  2  from files;
+
+FILE_ID                                             DOWNLOADS                   
+-------------------------------------------------- ----------                   
+PUB_DATE                                                                        
+---------------------------------------------------------------------------     
+doi:10.7281/T10Z715B/HHGUOR                                30                   
+20-JUL-16 12.00.00.000000 PM                                                    
+                                                                                
+doi:10.7281/T15Q4T12/0BMVQF                                38                   
+18-JUN-15 12.00.00.000000 PM                                                    
+                                                                                
+doi:10.7281/T1J10120/3UUMZV                                92                   
+15-MAR-16 12.00.00.000000 PM                                                    
+                                                                                
+
+SQL> 
+SQL> select filesize, downloads, pub_date
+  2  from files;
+
+  FILESIZE  DOWNLOADS                                                           
+---------- ----------                                                           
+PUB_DATE                                                                        
+---------------------------------------------------------------------------     
+   4603476         30                                                           
+20-JUL-16 12.00.00.000000 PM                                                    
+                                                                                
+   7582841         38                                                           
+18-JUN-15 12.00.00.000000 PM                                                    
+                                                                                
+  22659543         92                                                           
+15-MAR-16 12.00.00.000000 PM                                                    
+                                                                                
+
+SQL> 
+SQL> drop table files;
+
+Table dropped.
+
+SQL> 
+SQL> SQL> 
+SQL> -- Restore the options to their default values. --
+SQL> spool off
