@@ -27,13 +27,14 @@ set serveroutput on
 
   -- Dump the output to the script file runall.out.
   -- This will be a lot to read, but good to keep a log.
-spool runall.out
+spool run_all.out
 
 
 -- Execute scripts  -------------------------------------------------- 
 
 @1_tables.sql
 @2_insert.sql
+@3_triggers.sql
 
 
 -- Restore options --------------------------------------------------

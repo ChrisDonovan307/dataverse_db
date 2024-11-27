@@ -1,7 +1,26 @@
 -- Triggers --------------------------------------------------
 
 
--- 2. adjustColFilesCount
+-- 3. adjustDatasetFilesCount
+
+create or replace trigger adjustDatasetFilesCount
+after insert or delete on files
+for each row
+begin
+	if inserting then
+		update dataset
+		set n_files = n_files + 1
+		where ds_ID = :NEW.ds_ID;
+	elsif deleting then
+		update dataset
+		set n_files = n_files - 1
+		where ds_ID = :OLD.ds_ID;
+	end if;
+end;
+/
+
+
+-- 4. adjustColFilesCount
 
 create or replace trigger adjustColFilesCount
 after insert or delete on files
@@ -36,23 +55,5 @@ begin
 end;
 /
 
-
--- 3. adjustDatasetFilesCount
-
-create or replace trigger adjustDatasetFilesCount
-after insert or delete on files
-for each row
-begin
-	if inserting then
-		update dataset
-		set n_files = n_files + 1
-		where ds_ID = :NEW.ds_ID;
-	elsif deleting then
-		update dataset
-		set n_files = n_files - 1
-		where ds_ID = :OLD.ds_ID;
-	end if;
-end;
-/
 
 commit;
