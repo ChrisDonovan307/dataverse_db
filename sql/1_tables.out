@@ -189,8 +189,6 @@ SQL> create table produce (
 Table created.
 
 SQL> 
-SQL> -- Inserted this far
-SQL> 
 SQL> create table file_upload (
   2  	     auth_ID int references author (auth_ID),
   3  	     file_ID varchar(50) references files (file_ID),

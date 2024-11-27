@@ -133,8 +133,6 @@ create table produce (
 	pub_ID int references publication (pub_ID)
 );
 
--- Inserted this far 
-
 create table file_upload (
 	auth_ID int references author (auth_ID),
 	file_ID varchar(50) references files (file_ID),
