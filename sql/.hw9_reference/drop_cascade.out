@@ -1,0 +1,39 @@
+SQL> 
+SQL> -- Execute the script file. --
+SQL> start &&1
+SQL> -- Drop tables --------------------------------------------------
+SQL> 
+SQL> drop table DEPENDENT cascade constraints;
+
+Table dropped.
+
+SQL> drop table DEPT_LOCATIONS cascade constraints;
+
+Table dropped.
+
+SQL> drop table WORKS_ON cascade constraints;
+
+Table dropped.
+
+SQL> drop table PROJECT cascade constraints;
+
+Table dropped.
+
+SQL> 
+SQL> -- Remove FK from EMPLOYEE so we can drop DEPARTMENT
+SQL> --alter table EMPLOYEE
+SQL> --drop constraint EMP_FK2;
+SQL> 
+SQL> drop table DEPARTMENT cascade constraints;
+
+Table dropped.
+
+SQL> drop table EMPLOYEE cascade constraints;
+
+Table dropped.
+
+SQL> 
+SQL> 
+SQL> SQL> 
+SQL> -- Restore the options to their default values. --
+SQL> spool off

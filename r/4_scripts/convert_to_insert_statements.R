@@ -19,17 +19,19 @@ dat <- readRDS('r/2_clean/jhu_dfs.Rds')
 
 get_str(dat$dataset)
 get_str(dat$file)
+get_str(dat$collection)
 
+get_str(dat$funds)
+get_str(dat$funding_agency)
+
+# Check total size
+sum(dat$file$filesize)
 
 
 # Clean Data --------------------------------------------------------------
 
 
 ## Rename tables - some are not allowed in oracle
-# names(dat) <- names(dat) %>%
-#   str_replace('file', 'files') %>%
-#   str_replace('grant', 'grants') %>%
-#   str_replace('^user$', 'users')
 names(dat) <- case_when(
   names(dat) == 'file' ~ 'files',
   names(dat) == 'grant' ~ 'grants',
@@ -61,7 +63,7 @@ map(dat, \(x) map(x, \(y) max(str_length(y), na.rm = TRUE)))
 #   without quotes?
 # 8. Backslashes \ mess with SQL. Thinks it is end of command. There are lots
 #   of newlines in descriptions (\n). Remove those.
-
+# 9. Make file size in KB, no scientific notation
 get_str(dat)
 dat <- map(dat, \(df){
   df %>%
@@ -81,8 +83,8 @@ dat <- map(dat, \(df){
       )),
       across(everything(), str_trim),
       across(everything(), ~ str_replace_all(.x, '&', 'and')),
-      across(everything(), ~ str_remove_all(.x, '\n'))
-    )
+      across(everything(), ~ str_remove_all(.x, '\n')),
+      across(matches('filesize'), ~ format(round(as.numeric(.x) / 1000, 1), scientific = FALSE)))
 })
 
 

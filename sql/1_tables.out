@@ -3,7 +3,7 @@ SQL>
 SQL> -- Execute scripts  --------------------------------------------------
 SQL> 
 SQL> start &&1
-SQL> -- Create tables without foreign keys first --------------------------------------------------
+SQL> -- Create tables without foreign keys first ----------
 SQL> 
 SQL> create table institution (
   2  	     int_ID int primary key,
@@ -33,7 +33,7 @@ SQL> create table funding_agency (
 Table created.
 
 SQL> 
-SQL> create table grants (	     -- Oracle does not allow grant as a name
+SQL> create table grants ( -- Oracle does not allow grant as a name
   2  	     grant_ID int primary key,
   3  	     grant_number varchar(250),
   4  	     amount int
@@ -81,7 +81,7 @@ Table created.
 
 SQL> 
 SQL> 
-SQL> -- Now tables with foreign keys. Work down from root --------------------------------------------------
+SQL> -- Now tables with foreign keys. Work down from root ----------
 SQL> 
 SQL> create table collection (
   2  	     col_ID int primary key,
@@ -90,8 +90,9 @@ SQL> create table collection (
   5  	     description varchar(1000),
   6  	     pub_date date,
   7  	     n_files int,
-  8  	     downloads int
-  9  );
+  8  	     n_datasets int,
+  9  	     file_downloads int
+ 10  );
 
 Table created.
 
@@ -108,7 +109,7 @@ SQL> create table dataset (
  10  		     -- cut off descriptions at 900 chars in R
  11  		     -- maybe better off leaving it though?
  12  	     pub_date date,
- 13  	     downloads int,
+ 13  	     file_downloads int,
  14  	     n_files int,
  15  	     url varchar(50) -- max is 33
  16  );

@@ -1,0 +1,79 @@
+-- 3. Stored Procedures --------------------------------------------------
+
+-- a
+create or replace procedure ComplexProc as
+begin
+    declare -- Declare cursor
+    
+        -- Cursor for Ssn if salary > average and has > 2 dependents
+        cursor emp is
+            select e.Ssn, e.Fname, e.Minit, e.Lname, e.Salary, e.Dno
+            from EMPLOYEE e
+            join (
+                 select Dno, avg(Salary) as avg_salary
+                 from EMPLOYEE
+                 group by Dno
+                 ) salaries on e.Dno = salaries.Dno
+            where e.Salary > salaries.avg_salary
+            and (select count(*) from DEPENDENT d where d.Essn = e.Ssn) >= 2;
+
+        -- Define variables
+        emp_rec emp%rowtype;
+        home_dep_hours NUMBER;
+        other_dep_hours NUMBER;
+        num_dependents NUMBER;
+        
+    begin -- Begin operations with cursor
+        open emp;
+        fetch emp into emp_rec;
+        while emp%found loop
+
+            -- home_dep_hours
+            select sum(w.Hours) into home_dep_hours
+            from WORKS_ON w
+            where w.Essn = emp_rec.Ssn
+            and w.Pno in (
+                select p.Pnumber
+                from PROJECT p
+                where p.Dnum = emp_rec.Dno
+            );
+
+            -- other_dep_hours
+            select sum(w.Hours) into other_dep_hours
+            from WORKS_ON w
+            where w.Essn = emp_rec.Ssn
+            and w.Pno in (
+                select p.Pnumber
+                from PROJECT p
+                where p.Dnum != emp_rec.Dno
+            );
+
+            -- num_dependents
+            select count(*) into num_dependents
+            from DEPENDENT d
+            where d.Essn = emp_rec.Ssn;
+
+            -- Give results if other_dep_hours > 10
+            if other_dep_hours > 10 then
+               dbms_output.put_line(
+                   'Name: '||emp_rec.Fname||' '||emp_rec.Minit||'. '||emp_rec.Lname||
+                   '. Salary: $'||emp_rec.Salary||
+                   '. Dependents: '||num_dependents||
+                   '. Home hours: '||home_dep_hours||
+                   '. Other hours: '||other_dep_hours||'.'
+               );
+               
+            end if;
+
+            fetch emp into emp_rec;
+
+        end loop; -- End loop that prints outputs
+        close emp; -- Closing connection to cursor
+    end; -- Ending operations with cursor
+end; -- End whole procedure
+/
+
+show errors
+
+execute ComplexProc;
+drop procedure ComplexProc;

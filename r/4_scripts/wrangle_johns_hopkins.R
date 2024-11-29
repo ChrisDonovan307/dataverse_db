@@ -145,18 +145,18 @@ get_str(datasets_df)
 # Get download counts
 counts <- files_df %>%
   group_by(ds_id) %>%
-  summarize(downloads = sum(downloads)) %>%
-  arrange(desc(downloads))
+  summarize(file_downloads = sum(downloads)) %>%
+  arrange(desc(file_downloads))
 counts
 get_str(counts)
-table(counts$downloads)
+table(counts$file_downloads)
 
 # Join this into the datasets
 datasets_df <- left_join(datasets_df,
                          counts,
                          join_by(global_id == ds_id))
 get_str(datasets_df)
-table(datasets_df$downloads)
+table(datasets_df$file_downloads)
 
 # Harmonize names
 datasets_df_clean <- datasets_df %>%
@@ -169,7 +169,7 @@ datasets_df_clean <- datasets_df %>%
     description,
     pub_date = published_at,
     subjects,
-    downloads
+    file_downloads
   ) %>%
   mutate(pub_date = as_datetime(pub_date))
 get_str(datasets_df_clean)
@@ -275,7 +275,7 @@ ds_summary <- results$dataset %>%
   group_by(identifier) %>%
   summarize(
     n_files = sum(n_files, na.rm = TRUE),
-    downloads = sum(downloads, na.rm = TRUE)
+    file_downloads = sum(file_downloads, na.rm = TRUE)
   )
 ds_summary
 
@@ -305,7 +305,12 @@ get_str(results$dataset)
 
 # Save collections too, but remove identifier and ds_id
 # Also put columns in intuitive order
-results$collection <- collections_df %>%
+# Also add the dataset count
+results$collection <- results$dataset %>%
+  select(col_id) %>%
+  group_by(col_id) %>%
+  summarize(n_datasets = n()) %>%
+  right_join(collections_df) %>%
   select(
     col_id,
     root_id,
@@ -313,7 +318,8 @@ results$collection <- collections_df %>%
     description,
     pub_date,
     n_files,
-    downloads
+    n_datasets,
+    file_downloads
   )
 get_str(results$collection)
 
@@ -938,7 +944,7 @@ results$dataset <- sw_license_df %>%
     title,
     description,
     pub_date,
-    downloads,
+    file_downloads,
     n_files,
     url
   )
@@ -1366,9 +1372,9 @@ names(results)
 saveRDS(results, 'r/2_clean/jhu_dfs.Rds')
 
 # Also save as separate CSVs
-iwalk(results, \(df, name) {
-  write.csv(df, paste0('csv/', name, '.csv'))
-})
+# iwalk(results, \(df, name) {
+#   write.csv(df, paste0('csv/', name, '.csv'))
+# })
 
 # Clear
 clear_data()

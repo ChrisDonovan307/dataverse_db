@@ -1,0 +1,244 @@
+SQL> 
+SQL> -- Execute the script file. --
+SQL> start &&1
+SQL> -- 2. SQL: Nested Views --------------------------------------------------
+SQL> 
+SQL> -- a
+SQL> create view Proj_assignment as
+  2  select p.Pname, e.Fname, e.Lname, d.Dname, w.Hours
+  3  from EMPLOYEE e, DEPARTMENT d, PROJECT p, WORKS_ON w
+  4  where e.Dno = d.Dnumber
+  5  and p.Dnum = d.Dnumber
+  6  and e.Ssn = w.Essn
+  7  and w.Pno = p.Pnumber
+  8  order by p.Pname;
+
+View created.
+
+SQL> 
+SQL> select * from Proj_assignment;
+
+PNAME                     FNAME                                                 
+------------------------- --------------------------------------------------    
+LNAME                                              DNAME                        
+-------------------------------------------------- -------------------------    
+     HOURS                                                                      
+----------                                                                      
+Computerization           Ahmad                                                 
+Jabbar                                             Administration               
+        35                                                                      
+                                                                                
+Computerization           Alicia                                                
+Zelaya                                             Administration               
+        10                                                                      
+
+PNAME                     FNAME                                                 
+------------------------- --------------------------------------------------    
+LNAME                                              DNAME                        
+-------------------------------------------------- -------------------------    
+     HOURS                                                                      
+----------                                                                      
+                                                                                
+Newbenefits               Jennifer                                              
+Wallace                                            Administration               
+        20                                                                      
+                                                                                
+Newbenefits               Ahmad                                                 
+Jabbar                                             Administration               
+
+PNAME                     FNAME                                                 
+------------------------- --------------------------------------------------    
+LNAME                                              DNAME                        
+-------------------------------------------------- -------------------------    
+     HOURS                                                                      
+----------                                                                      
+         5                                                                      
+                                                                                
+Newbenefits               Alicia                                                
+Zelaya                                             Administration               
+        30                                                                      
+                                                                                
+ProductX                  Joyce                                                 
+
+PNAME                     FNAME                                                 
+------------------------- --------------------------------------------------    
+LNAME                                              DNAME                        
+-------------------------------------------------- -------------------------    
+     HOURS                                                                      
+----------                                                                      
+English                                            Research                     
+        20                                                                      
+                                                                                
+ProductX                  John                                                  
+Smith                                              Research                     
+      32.5                                                                      
+                                                                                
+
+PNAME                     FNAME                                                 
+------------------------- --------------------------------------------------    
+LNAME                                              DNAME                        
+-------------------------------------------------- -------------------------    
+     HOURS                                                                      
+----------                                                                      
+ProductY                  John                                                  
+Smith                                              Research                     
+       7.5                                                                      
+                                                                                
+ProductY                  Joyce                                                 
+English                                            Research                     
+        20                                                                      
+
+PNAME                     FNAME                                                 
+------------------------- --------------------------------------------------    
+LNAME                                              DNAME                        
+-------------------------------------------------- -------------------------    
+     HOURS                                                                      
+----------                                                                      
+                                                                                
+ProductY                  Franklin                                              
+Wong                                               Research                     
+        10                                                                      
+                                                                                
+ProductZ                  Ramesh                                                
+Narayan                                            Research                     
+
+PNAME                     FNAME                                                 
+------------------------- --------------------------------------------------    
+LNAME                                              DNAME                        
+-------------------------------------------------- -------------------------    
+     HOURS                                                                      
+----------                                                                      
+        40                                                                      
+                                                                                
+ProductZ                  Franklin                                              
+Wong                                               Research                     
+        10                                                                      
+                                                                                
+Reorganization            James                                                 
+
+PNAME                     FNAME                                                 
+------------------------- --------------------------------------------------    
+LNAME                                              DNAME                        
+-------------------------------------------------- -------------------------    
+     HOURS                                                                      
+----------                                                                      
+Borg                                               Headquarters                 
+                                                                                
+                                                                                
+
+13 rows selected.
+
+SQL> 
+SQL> 
+SQL> -- b
+SQL> create view ResProj_assignment as
+  2  select Pname, Fname, Lname, Hours
+  3  from Proj_assignment
+  4  where Dname = 'Research';
+
+View created.
+
+SQL> 
+SQL> select * from ResProj_assignment;
+
+PNAME                     FNAME                                                 
+------------------------- --------------------------------------------------    
+LNAME                                                   HOURS                   
+-------------------------------------------------- ----------                   
+ProductX                  John                                                  
+Smith                                                    32.5                   
+                                                                                
+ProductX                  Joyce                                                 
+English                                                    20                   
+                                                                                
+ProductY                  Joyce                                                 
+English                                                    20                   
+                                                                                
+
+PNAME                     FNAME                                                 
+------------------------- --------------------------------------------------    
+LNAME                                                   HOURS                   
+-------------------------------------------------- ----------                   
+ProductY                  Franklin                                              
+Wong                                                       10                   
+                                                                                
+ProductY                  John                                                  
+Smith                                                     7.5                   
+                                                                                
+ProductZ                  Ramesh                                                
+Narayan                                                    40                   
+                                                                                
+
+PNAME                     FNAME                                                 
+------------------------- --------------------------------------------------    
+LNAME                                                   HOURS                   
+-------------------------------------------------- ----------                   
+ProductZ                  Franklin                                              
+Wong                                                       10                   
+                                                                                
+
+7 rows selected.
+
+SQL> 
+SQL> -- c
+SQL> create view ResProj_assignment_summary as
+  2  select Pname, count(*) as num_employees, avg(Hours) as avg_hours
+  3  from ResProj_assignment
+  4  group by Pname;
+
+View created.
+
+SQL> 
+SQL> select * from ResProj_assignment_summary;
+
+PNAME                     NUM_EMPLOYEES  AVG_HOURS                              
+------------------------- ------------- ----------                              
+ProductX                              2      26.25                              
+ProductY                              3       12.5                              
+ProductZ                              2         25                              
+
+SQL> 
+SQL> -- d
+SQL> select Pname, num_employees, avg_hours
+  2  from ResProj_assignment_summary
+  3  where num_employees > 2;
+
+PNAME                     NUM_EMPLOYEES  AVG_HOURS                              
+------------------------- ------------- ----------                              
+ProductY                              3       12.5                              
+
+SQL> 
+SQL> 
+SQL> -- e
+SQL> select p.Pname, count(distinct e.Ssn) as num_employees, avg(e.Salary) as avg_salary
+  2  from EMPLOYEE e, DEPARTMENT d, PROJECT p, WORKS_ON w
+  3  where e.Dno = d.Dnumber
+  4  and p.Dnum = d.Dnumber
+  5  and e.Ssn = w.Essn
+  6  and w.Pno = p.Pnumber
+  7  and d.Dname = 'Research'
+  8  group by p.Pname
+  9  having count(distinct e.Ssn) > 2;
+
+PNAME                     NUM_EMPLOYEES AVG_SALARY                              
+------------------------- ------------- ----------                              
+ProductY                              3 31666.6667                              
+
+SQL> 
+SQL> 
+SQL> -- f
+SQL> drop view Proj_assignment;
+
+View dropped.
+
+SQL> drop view ResProj_assignment;
+
+View dropped.
+
+SQL> drop view ResProj_assignment_summary;
+
+View dropped.
+
+SQL> SQL> 
+SQL> -- Restore the options to their default values. --
+SQL> spool off

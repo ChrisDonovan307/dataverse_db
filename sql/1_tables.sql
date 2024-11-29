@@ -1,4 +1,4 @@
--- Create tables without foreign keys first --------------------------------------------------
+-- Create tables without foreign keys first ---------- 
 
 create table institution (
 	int_ID int primary key,	
@@ -19,7 +19,7 @@ create table funding_agency (
 	location varchar(25)
 );
 
-create table grants ( 		-- Oracle does not allow grant as a name
+create table grants ( -- Oracle does not allow grant as a name
 	grant_ID int primary key,
 	grant_number varchar(250),
 	amount int
@@ -52,7 +52,7 @@ create table root_dataverse (
 );
 
 
--- Now tables with foreign keys. Work down from root -------------------------------------------------- 
+-- Now tables with foreign keys. Work down from root ----------  
 
 create table collection (
 	col_ID int primary key,
@@ -61,7 +61,8 @@ create table collection (
 	description varchar(1000),
 	pub_date date,
 	n_files int,
-	downloads int
+	n_datasets int,
+	file_downloads int
 );
 
 create table dataset (
@@ -76,7 +77,7 @@ create table dataset (
 		-- cut off descriptions at 900 chars in R
 		-- maybe better off leaving it though?
 	pub_date date,
-	downloads int,
+	file_downloads int,
 	n_files int,
 	url varchar(50) -- max is 33
 );

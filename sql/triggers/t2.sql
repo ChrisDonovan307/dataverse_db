@@ -1,34 +1,18 @@
--- Trigger 2: adjustColFilesCount
+-- Trigger 2: adjustColDatasetCount
 
-create or replace trigger adjustColFilesCount
-after insert or delete on files
+create or replace trigger adjustColDatasetCount
+after insert or delete on dataset
 for each row
-declare
-	CID int; 
 begin
 	if inserting then
-		-- get col_ID of dataset affected, save as CID
-		select col_ID
-		into CID
-		from dataset
-		where ds_ID = :NEW.ds_ID;
-
-		-- add to n_files count of collection
 		update collection
-		set n_files = n_files + 1
-		where col_ID = CID; 
+		set n_datasets  = n_datasets + 1
+		where col_ID = :NEW.col_ID; 
 
 	elsif deleting then
-		-- get col_ID of dataset affected, save as CID
-		select col_ID
-		into CID
-		from dataset
-		where ds_ID = :OLD.ds_ID;
-		
-		-- subtract from n_files count of collection
 		update collection
-		set n_files = n_files - 1
-		where col_ID = CID;
+		set n_datasets  = n_datasets - 1
+		where col_ID = :OLD.col_ID;
 	end if;
 end;
 /
@@ -36,39 +20,41 @@ end;
 show errors
 
 
--- check number of files in a certain collection
-select n_files
+-- check number of datasets in a certain collection
+select n_datasets
 from collection
 where col_ID = 1;
 
 -- insert into files
-insert into files values (
+insert into dataset values (
 	'test',
-	(select ds_ID from dataset where col_ID = 1 fetch first 1 row only),
+	(select col_ID from dataset where col_ID = 1 fetch first 1 row only),
 	null, 
 	null, 
 	null, 
 	null, 
-	null, 
+	null,
+        null,	
+	null,
 	null
 );
 
 
 -- See if it worked
-select n_files
+select n_datasets
 from collection
 where col_ID = 1;
 
 -- delete from files
-delete from files
-where file_ID = 'test';
+delete from dataset
+where ds_ID = 'test';
 
 -- See if it worked
-select n_files
+select n_datasets
 from collection
 where col_ID = 1;
 
 -- Reset everything
 rollback;
-drop trigger adjustColFilesCount;
+drop trigger adjustColDatasetCount;
 
