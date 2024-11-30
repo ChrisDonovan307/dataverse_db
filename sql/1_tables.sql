@@ -15,14 +15,14 @@ create table license (
 create table funding_agency (
 	agency_ID int primary key,
 	name varchar(250),
-	total_amount int,
+	total_amount number,
 	location varchar(25)
 );
 
 create table grants ( -- Oracle does not allow grant as a name
 	grant_ID int primary key,
 	grant_number varchar(250),
-	amount int
+	amount number
 );
 
 create table software_license (
@@ -95,7 +95,7 @@ create table files (
 	pub_date date
 );
 
-create table subject (
+create table subjects (
 	ds_ID varchar(50) references dataset (ds_ID),
 	subject varchar(100),
 	primary key (ds_ID, subject)
@@ -158,7 +158,7 @@ create table dataset_download (
 	timestamp timestamp
 );
 
-create table keyword (
+create table keywords (
 	ds_ID varchar(50) references dataset (ds_ID),
 	keyword varchar(100)
 );

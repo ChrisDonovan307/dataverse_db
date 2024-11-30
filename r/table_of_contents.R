@@ -28,3 +28,6 @@ source('r/4_scripts/wrangle_johns_hopkins.R')
 # Explore clean tables
 'r/4_scripts/explore_clean_tables.R'
 
+# Convert to SQL insert statements
+source('r/4_scripts/convert_to_insert_statements.R')
+

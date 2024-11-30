@@ -1218,10 +1218,16 @@ non_reg_users <- results$user %>%
   pull(u_id)
 non_reg_users
 
+# Get a selection of 5 datasets to download more
+sets <- results$dataset$ds_id[1:5]
+
 set.seed(42)
 ds_down <- data.frame(
-  ds_id = sample(results$dataset$ds_id, 25, replace = TRUE),
-  u_id = sample(non_reg_users, 25, replace = TRUE)
+  ds_id = c(
+    sample(results$dataset$ds_id, 25, replace = TRUE),
+    sample(sets, 75, replace = TRUE)
+  ),
+  u_id = sample(non_reg_users, 100, replace = TRUE)
 ) %>%
   mutate(
     timestamp = as_datetime(
@@ -1237,9 +1243,13 @@ get_str(ds_down)
 # Save it
 results$dataset_download <- ds_down
 
+# Also save the sets here for reference
+results$sets <- sets
+
+
 
 ## File Download
-# also 25 deep, same deal
+# 25 deep
 set.seed(42)
 file_down <- data.frame(
   file_id = sample(results$file$file_id, 25, replace = TRUE),

@@ -16,16 +16,10 @@ pacman::p_load(
   stringr
 )
 dat <- readRDS('r/2_clean/jhu_dfs.Rds')
+sets <- dat$sets
+dat <- dat[names(dat) != 'sets']
+names(dat)
 
-get_str(dat$dataset)
-get_str(dat$file)
-get_str(dat$collection)
-
-get_str(dat$funds)
-get_str(dat$funding_agency)
-
-# Check total size
-sum(dat$file$filesize)
 
 
 # Clean Data --------------------------------------------------------------
@@ -36,6 +30,8 @@ names(dat) <- case_when(
   names(dat) == 'file' ~ 'files',
   names(dat) == 'grant' ~ 'grants',
   names(dat) == 'user' ~ 'users',
+  names(dat) == 'subject' ~ 'subjects',
+  names(dat) == 'keyword' ~ 'keywords',
   .default = names(dat)
 )
 
@@ -144,7 +140,7 @@ table_names <- c(
   'collection',
   'dataset',
   'files',
-  'subject',
+  'subjects',
   'registered_user',
   'author',
   'affiliation',
@@ -154,7 +150,7 @@ table_names <- c(
   'file_download',
   'dataset_upload',
   'dataset_download',
-  'keyword',
+  'keywords',
   'funds',
   'admin',
   'manage_dataverse',

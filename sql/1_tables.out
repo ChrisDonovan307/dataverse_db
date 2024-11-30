@@ -1,6 +1,6 @@
 SQL> 
 SQL> 
-SQL> -- Execute scripts  --------------------------------------------------
+SQL> -- Execute scripts  -------------------------------------------
 SQL> 
 SQL> start &&1
 SQL> -- Create tables without foreign keys first ----------
@@ -26,7 +26,7 @@ SQL>
 SQL> create table funding_agency (
   2  	     agency_ID int primary key,
   3  	     name varchar(250),
-  4  	     total_amount int,
+  4  	     total_amount number,
   5  	     location varchar(25)
   6  );
 
@@ -36,7 +36,7 @@ SQL>
 SQL> create table grants ( -- Oracle does not allow grant as a name
   2  	     grant_ID int primary key,
   3  	     grant_number varchar(250),
-  4  	     amount int
+  4  	     amount number
   5  );
 
 Table created.
@@ -133,7 +133,7 @@ SQL> create table files (
 Table created.
 
 SQL> 
-SQL> create table subject (
+SQL> create table subjects (
   2  	     ds_ID varchar(50) references dataset (ds_ID),
   3  	     subject varchar(100),
   4  	     primary key (ds_ID, subject)
@@ -226,7 +226,7 @@ SQL> create table dataset_download (
 Table created.
 
 SQL> 
-SQL> create table keyword (
+SQL> create table keywords (
   2  	     ds_ID varchar(50) references dataset (ds_ID),
   3  	     keyword varchar(100)
   4  );
@@ -298,6 +298,6 @@ SQL>
 SQL> 
 SQL> SQL> 
 SQL> 
-SQL> -- Restore options --------------------------------------------------
+SQL> -- Restore options --------------------------------------------
 SQL> 
 SQL> spool off

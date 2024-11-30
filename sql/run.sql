@@ -29,12 +29,12 @@ set serveroutput on
 spool &&1..out
 
 
--- Execute scripts  -------------------------------------------------- 
+-- Execute scripts  ------------------------------------------- 
 
 start &&1
 
 
--- Restore options --------------------------------------------------
+-- Restore options --------------------------------------------
  
 spool off
 set serveroutput off
