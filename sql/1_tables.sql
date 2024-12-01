@@ -104,7 +104,7 @@ create table subjects (
 create table registered_user (
 	ru_ID int primary key,
 	u_ID int references users (u_id),
-       	name varchar(50),
+    name varchar(50),
 	privilege varchar(5) check (privilege in ('read', 'write')),
 	pw_hash varchar(25)
 );

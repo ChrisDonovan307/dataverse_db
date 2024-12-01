@@ -156,7 +156,6 @@ begin
 	
 	-- If no input, get prop for whole database
     if subject_in is null then
-		dbms_output.put_line('SUBJECT IN IS NULL');
 		select sum(case when sw.name = 'GPL-3.0' then 1 else 0 end) / count(*)
 		into prop_gpl
 		from software_license sw, dataset d
@@ -169,16 +168,16 @@ begin
 		-- Check whether subject is in subjects table
 		begin
     		select count(*) 
-    		into DUMMY
+    		into dummy
 			from subjects
     		where subject = subject_in;
 		exception 
-			when NO_DATA_FOUND then
-				DUMMY := 0;
+			when no_data_found then
+				dummy := 0;
 		end;
 
-		-- If DUMMY is 1 (subject exists), run function and return
-		if DUMMY >= 1 then
+		-- If dummy is 1 (subject exists), run function and return
+		if dummy >= 1 then
 			select sum(case when sw.name = 'GPL-3.0' then 1 else 0 end) / count(*)
 			into prop_gpl
 			from software_license sw, dataset d, subjects s
@@ -187,8 +186,8 @@ begin
 				and subject_in = s.subject;
 			return prop_gpl;
 
-		-- If DUMMY is 0, (no subject), throw error
-		elsif DUMMY = 0 then	
+		-- If dummy is 0, (no subject), throw error
+		elsif dummy = 0 then	
 			raise_application_error(
 				-20001, 
 				'Subject not found in Dataverse.'
@@ -278,12 +277,8 @@ begin
 
     end if;
 
-    dbms_output.put_line('Query: ' || query);
-
     -- Execute query
     execute immediate query into result;
-
-    -- Test outputs
     return result;
 
 end;
