@@ -34,7 +34,9 @@ spool run_all.out
 
 @1_tables.sql
 @2_insert.sql
-@3_triggers.sql
+@3_procedures.sql
+@4_functions.sql
+@5_triggers.sql
 
 
 -- Restore options --------------------------------------------------
