@@ -1,0 +1,107 @@
+SQL> 
+SQL> 
+SQL> -- Execute scripts  -------------------------------------------
+SQL> 
+SQL> start &&1
+SQL> -- Package --------------------------------------------------------
+SQL> 
+SQL> create or replace package dataverse as
+  2  
+  3  	 procedure search_authors (search_term varchar);
+  4  
+  5  end dataverse;
+  6  /
+
+Package created.
+
+SQL> 
+SQL> 
+SQL> -- Body -----------------------------------------------------------
+SQL> 
+SQL> create or replace package body dataverse as
+  2  
+  3  	 -- Procedure: search_authors
+  4  	 procedure search_authors (search_term varchar) as
+  5  	     -- Define cursor
+  6  	     cursor author_matches is
+  7  		 select ru.name as name
+  8  		 from users u, registered_user ru, author a
+  9  		 where u.u_id = ru.u_id
+ 10  		     and ru.ru_id = a.ru_id
+ 11  		     and lower(ru.name) like '%' || lower(search_term) || '%';
+ 12  
+ 13  	     -- Define variables
+ 14  	     record author_matches%rowtype;
+ 15  
+ 16  	 begin
+ 17  	     -- Open cursor, fetch into record
+ 18  	     open author_matches;
+ 19  	     fetch author_matches into record;
+ 20  
+ 21  	     -- If no records returned, throw error
+ 22  	     if not author_matches%found then
+ 23  		 raise_application_error(-20001, 'No records found.');
+ 24  	     end if;
+ 25  
+ 26  	     -- If records found, loop and print
+ 27  	     while author_matches%found loop
+ 28  		 dbms_output.put_line(record.name);
+ 29  		 fetch author_matches into record;
+ 30  
+ 31  	     -- Close loop and cursor
+ 32  	     end loop;
+ 33  	     close author_matches;
+ 34  
+ 35  	 end;
+ 36  end dataverse;
+ 37  /
+
+Package body created.
+
+SQL> 
+SQL> show errors
+No errors.
+SQL> 
+SQL> 
+SQL> -- Check -----------------------------------------------------
+SQL> 
+SQL> select object_name, status
+  2  from user_objects
+  3  where object_type = 'package';
+
+no rows selected
+
+SQL> 
+SQL> -- Author search
+SQL> begin
+  2  	 dataverse.search_authors('david');
+  3  end;
+  4  /
+Sullivan, David J.                                                              
+Dowdy, David W.                                                                 
+Ginty, David D.                                                                 
+Gracias, David H.                                                               
+Isooba, David                                                                   
+Jenkins, David M.                                                               
+Kass, David A.                                                                  
+Kraemer, David                                                                  
+Lefer, David                                                                    
+Mocko, David M.                                                                 
+Nataf, David M.                                                                 
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> 
+SQL> -- Reset
+SQL> 
+SQL> drop package dataverse;
+
+Package dropped.
+
+SQL> 
+SQL> SQL> 
+SQL> 
+SQL> -- Restore options --------------------------------------------
+SQL> 
+SQL> spool off

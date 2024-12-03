@@ -2,7 +2,6 @@
 
 create or replace package dataverse as
 
-    -- Procedure: use a string to search for authors in dataverse
     procedure search_authors (search_term varchar);
 
 end dataverse;
