@@ -1,0 +1,17 @@
+-- 2. userLoginAttempt(user_ID, password)
+
+-- check if the hash of the provided password matches the
+-- hash stored in the registered_user table
+-- hashed using SHA-256
+CREATE OR REPLACE FUNCTION userLoginAttempt(
+    user_ID int DEFAULT -1,
+    password CHAR(64)
+) RETURN number(1)
+AS
+    new_hash CHAR(64);
+    success number;
+BEGIN
+    new_hash := SELECT STANDARD_HASH(RTRIM(password), 'SHA256')
+	INTO   :new.pw_
+END;
+/

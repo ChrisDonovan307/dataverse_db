@@ -1,0 +1,103 @@
+SQL> 
+SQL> 
+SQL> -- Execute scripts  -------------------------------------------
+SQL> 
+SQL> start &&1
+SQL> -- 2. userLoginAttempt(user_ID, password)
+SQL> 
+SQL> -- check if the hash of the provided password matches the
+SQL> -- hash stored in the registered_user table
+SQL> -- hashed using SHA-256
+SQL> CREATE OR REPLACE FUNCTION userLoginAttempt(
+  2  	 user_ID IN int DEFAULT -1,
+  3  	 password IN CHAR
+  4  ) RETURN number
+  5  AS
+  6  	 old_hash CHAR(64);
+  7  	 new_hash CHAR(64);
+  8  	 user_count number := 0;
+  9  BEGIN
+ 10  	 -- verify that requested user exists
+ 11  	 SELECT COUNT(*)
+ 12  	     INTO user_count
+ 13  	     FROM registered_user
+ 14  	     WHERE ru_ID=user_ID;
+ 15  	 IF user_count != 1 THEN
+ 16  	     RETURN 0; -- No such user exists
+ 17  	 END IF;
+ 18  
+ 19  	 -- hash the password provided to this function
+ 20  	 SELECT STANDARD_HASH(RTRIM(password), 'SHA256')
+ 21  	     INTO new_hash
+ 22  	     FROM dual;
+ 23  	 SELECT pw_hash
+ 24  	     INTO old_hash
+ 25  	     FROM registered_user
+ 26  	     WHERE ru_ID=user_ID;
+ 27  	 IF new_hash = old_hash THEN
+ 28  	     RETURN 1; -- passwords match, successful login
+ 29  	 ELSE
+ 30  	     RETURN 0; -- unsuccessful login
+ 31  	 END IF;
+ 32  END;
+ 33  /
+
+Function created.
+
+SQL> 
+SQL> 
+SQL> -- 3. generateNewPassword(user_ID)
+SQL> 
+SQL> -- If the given user exists within registered_user
+SQL> -- randomly generate a new password that is alphanumeric
+SQL> -- and 8 characters long. Verify that it does not match the hash
+SQL> -- of the previous password. Set this new hash within registered_user
+SQL> -- and return the new password value.
+SQL> CREATE OR REPLACE FUNCTION generateNewPassword(
+  2  	 user_ID IN int DEFAULT -1
+  3  ) RETURN CHAR
+  4  AS
+  5  	 user_count number := 0;
+  6  	 old_hash CHAR(64);
+  7  	 new_pw CHAR(8);
+  8  	 new_pw_hash CHAR(64);
+  9  BEGIN
+ 10  	 -- Check for existence of said user
+ 11  	 SELECT COUNT(*)
+ 12  	     INTO user_count
+ 13  	     FROM registered_user
+ 14  	     WHERE ru_ID=user_ID;
+ 15  	 IF user_count <> 1 THEN
+ 16  	     RAISE_APPLICATION_ERROR(-20500, 'User does not exist');
+ 17  	 END IF;
+ 18  
+ 19  	 -- Generate new random password and check against previous hash
+ 20  	 new_pw := DBMS_RANDOM.STRING('x', 8);
+ 21  	 SELECT STANDARD_HASH(RTRIM(new_pw), 'SHA256')
+ 22  	     INTO new_pw_hash
+ 23  	     FROM dual;
+ 24  	 SELECT pw_hash
+ 25  	     INTO old_hash
+ 26  	     FROM registered_user
+ 27  	     WHERE ru_ID=user_ID;
+ 28  	 WHILE old_hash = new_pw_hash
+ 29  	 LOOP
+ 30  	     new_pw := DBMS_RANDOM.STRING('x', 8);
+ 31  	     SELECT STANDARD_HASH(RTRIM(new_pw), 'SHA256')
+ 32  		 INTO new_pw_hash
+ 33  		 FROM dual;
+ 34  	 END LOOP;
+ 35  	 RETURN new_pw;
+ 36  END;
+ 37  /
+
+Function created.
+
+SQL> 
+SQL> SHOW ERRORS
+No errors.
+SQL> SQL> 
+SQL> 
+SQL> -- Restore options --------------------------------------------
+SQL> 
+SQL> spool off
