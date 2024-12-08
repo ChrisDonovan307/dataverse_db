@@ -83,4 +83,83 @@ BEGIN
 END;
 /
 
+
+-- 4 search(searchString)
+
+-- Split the searchString into tokens around whitespace.
+-- Check through all Collection, Dataset, File, Publication, and Author
+-- records to determine if a direct match is found. Return matching tuples
+
+-- Intermediate type to help with returning a list of strings
+CREATE OR REPLACE TYPE strings_t IS TABLE OF VARCHAR2 (100)
+/
+
+CREATE OR REPLACE FUNCTION search(
+    searchString IN VARCHAR
+) RETURN strings_t
+AS
+    match_count int;
+    start_index NUMBER := 1;
+    end_index NUMBER;
+    item VARCHAR2(255);
+    -- default value is empty collection???
+    items strings_t := strings_t();
+BEGIN
+    LOOP
+        end_index := INSTR(searchString, ',', start_index);
+        IF end_index = 0 THEN
+            item := SUBSTR(searchString, start_index);
+	    -- misses the last item for now. Copy over after testing
+	    FOR t IN (SELECT owner, table_name, column_name
+	        FROM all_tab_columns
+		WHERE owner <> 'SYS' AND data_type LIKE '%CHAR%')
+		LOOP
+
+		EXECUTE IMMEDIATE
+		'SELECT COUNT(*) FROM ' || t.owner || '.' || t.table_name ||
+		' WHERE ' || t.column_name || ' LIKE ''%' || item || '%'''
+		INTO match_count;
+
+		IF match_count > 0 THEN
+		   items.EXTEND;
+		   items(items.LAST) := '' || match_count || ' matches for ' || item ||
+		   ' found in ' || t.table_name || '.' || t.column_name || '';
+		   match_count := 0;
+		END IF;
+		END LOOP;
+            RETURN items;
+        END IF;
+        
+        item := SUBSTR(searchString, start_index, end_index - start_index);
+        -- Process item here
+	-- Find all non-system table.column with text datatype
+		FOR t IN (SELECT owner, table_name, column_name
+			FROM all_tab_columns
+			WHERE owner <> 'SYS' AND data_type LIKE '%CHAR%')
+			LOOP
+
+			-- Select tuples that contain the keyword within a text field
+			EXECUTE IMMEDIATE 
+			'SELECT COUNT(*) FROM ' || t.owner || '.' ||  t.table_name ||
+			' WHERE ' || t.column_name || ' LIKE ''%' || item || '%'''
+			INTO match_count;
+
+			-- When we find match tuples, append them to the items text table
+			IF match_count > 0 THEN
+				items.EXTEND;
+				items(items.LAST) := '' || match_count || ' matches for ' || item ||
+				' found in ' || t.table_name || '.' || t.column_name || '';
+				match_count := 0;
+			END IF;
+			END LOOP;
+
+	--items.EXTEND;
+	--items(items.LAST) := REPLACE(REGEXP_REPLACE(item, '\s'), CHR(0));
+        
+        start_index := end_index + 1;
+    END LOOP;
+    RETURN items;
+END;
+/
+
 SHOW ERRORS

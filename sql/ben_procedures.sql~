@@ -1,0 +1,18 @@
+-- 3.
+
+-- Need to create a secondary table to store the empty files
+-- before they are fully deleted.
+-- Included here for reference, but should not be executed along with procedures
+-- CREATE TABLE empty_files AS SELECT * FROM files;
+
+CREATE OR REPLACE PROCEDURE dumpEmptyFiles()
+AS
+    remove VARCHAR(50);
+BEGIN
+    FOR f IN SELECT * FROM files WHERE filesize <= 0
+    LOOP
+        INSERT INTO empty_files VALUES(f);
+	DELETE FROM files WHERE f.file_ID = file_ID;
+    END LOOP;
+END;
+/
