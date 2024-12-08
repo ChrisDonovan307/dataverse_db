@@ -1,0 +1,40 @@
+SQL> 
+SQL> 
+SQL> -- Execute scripts  -------------------------------------------
+SQL> 
+SQL> start &&1
+SQL> -- 3.
+SQL> 
+SQL> -- Need to create a secondary table to store the empty files
+SQL> -- before they are fully deleted.
+SQL> -- Included here for reference, but should not be executed along with procedures
+SQL> -- CREATE TABLE empty_files AS SELECT * FROM files;
+SQL> 
+SQL> CREATE OR REPLACE PROCEDURE dumpEmptyFiles
+  2  AS
+  3  	 cursor f IS
+  4  	     SELECT * FROM files WHERE filesize <= 0;
+  5  	 f_record f%ROWTYPE;
+  6  BEGIN
+  7  	 OPEN f;
+  8  	     FETCH f INTO f_record;
+  9  	     WHILE f%FOUND
+ 10  	     LOOP
+ 11  		 INSERT INTO empty_files VALUES(f_record.file_ID, f_record.ds_ID, f_record.filetype,
+ 12  		 f_record.filesize, f_record.title, f_record.description, f_record.downloads, f_record.pub_date);
+ 13  		 FETCH f INTO f_record;
+ 14  	     END LOOP;
+ 15  	 CLOSE f;
+ 16  END;
+ 17  /
+
+Procedure created.
+
+SQL> 
+SQL> SHOW ERRORS
+No errors.
+SQL> SQL> 
+SQL> 
+SQL> -- Restore options --------------------------------------------
+SQL> 
+SQL> spool off
