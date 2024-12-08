@@ -1,0 +1,562 @@
+SQL> 
+SQL> 
+SQL> -- Execute scripts  -------------------------------------------
+SQL> 
+SQL> start &&1
+SQL> -- Check that package exists
+SQL> select object_name, status
+  2  from user_objects
+  3  where object_type = 'PACKAGE';
+
+OBJECT_NAME                                                                     
+--------------------------------------------------------------------------------
+STATUS                                                                          
+-------                                                                         
+DATAVERSE                                                                       
+VALID                                                                           
+                                                                                
+
+SQL> 
+SQL> 
+SQL> -- f1. ---------------------------------------------------------
+SQL> 
+SQL> -- Each pair of 2 should give the same result
+SQL> select dataverse.fundingDistribution(null, 2, null, 60) from dual;
+
+DATAVERSE.FUNDINGDISTRIBUTION(NULL,2,NULL,60)                                   
+---------------------------------------------                                   
+                                          .67                                   
+
+SQL> select dataverse.fundingDistribution(
+  2  	 'American Chemical Society',
+  3  	 null,
+  4  	 'Sedimentary Geobiology Group',
+  5  	 null
+  6  ) from dual;
+
+DATAVERSE.FUNDINGDISTRIBUTION('AMERICANCHEMICALSOCIETY',NULL,'SEDIMENTARYGEOBIOL
+--------------------------------------------------------------------------------
+                                                                             .67
+
+SQL> 
+SQL> select dataverse.fundingDistribution(null, 9, null, 5) from dual;
+
+DATAVERSE.FUNDINGDISTRIBUTION(NULL,9,NULL,5)                                    
+--------------------------------------------                                    
+                                         .73                                    
+
+SQL> select dataverse.fundingDistribution(
+  2  	 'Department of Energy',
+  3  	 null,
+  4  	 'Dr. Howard Katz DOE-supported projects',
+  5  	 null
+  6  ) from dual;
+
+DATAVERSE.FUNDINGDISTRIBUTION('DEPARTMENTOFENERGY',NULL,'DR.HOWARDKATZDOE-SUPPOR
+--------------------------------------------------------------------------------
+                                                                             .73
+
+SQL> 
+SQL> -- Check what happens when two agency values are provided, or two collection values
+SQL> -- Should still work
+SQL> select dataverse.fundingDistribution(
+  2  	 'American Chemical Society',
+  3  	 2,
+  4  	 null,
+  5  	 60
+  6  ) from dual;
+
+DATAVERSE.FUNDINGDISTRIBUTION('AMERICANCHEMICALSOCIETY',2,NULL,60)              
+------------------------------------------------------------------              
+                                                               .67              
+
+SQL> 
+SQL> select dataverse.fundingDistribution(
+  2  	 null,
+  3  	 2,
+  4  	 'Sedimentary Geobiology Group',
+  5  	 60
+  6  ) from dual;
+
+DATAVERSE.FUNDINGDISTRIBUTION(NULL,2,'SEDIMENTARYGEOBIOLOGYGROUP',60)           
+---------------------------------------------------------------------           
+                                                                  .67           
+
+SQL> 
+SQL> -- Should throw error if there are no records
+SQL> select dataverse.fundingDistribution(null, 9, null, 60) from dual;
+select dataverse.fundingDistribution(null, 9, null, 60) from dual
+       *
+ERROR at line 1:
+ORA-20003: No matching records found. No agency funding within that collection. 
+ORA-06512: at "CDONOV12.DATAVERSE", line 338 
+ORA-06512: at line 1 
+
+
+SQL> 
+SQL> 
+SQL> -- f5. --------------------------------------------------------
+SQL> 
+SQL> -- Note that all downloads in log are after Nov 1st 2024.
+SQL> -- First one should throw error for no input
+SQL> select dataverse.datasetActivity() from dual;
+select dataverse.datasetActivity() from dual
+       *
+ERROR at line 1:
+ORA-20001: Please provide a dataset ID. 
+ORA-06512: at "CDONOV12.DATAVERSE", line 377 
+ORA-06512: at line 1 
+
+
+SQL> 
+SQL> -- Next four should work
+SQL> select dataverse.datasetActivity('doi:10.7281/T10Z715B') from dual;
+
+DATAVERSE.DATASETACTIVITY('DOI:10.7281/T10Z715B')                               
+-------------------------------------------------                               
+                                             .004                               
+
+SQL> select dataverse.datasetActivity('doi:10.7281/T1/6BHBC4') from dual;
+
+DATAVERSE.DATASETACTIVITY('DOI:10.7281/T1/6BHBC4')                              
+--------------------------------------------------                              
+                                              .011                              
+
+SQL> select dataverse.datasetActivity( 'doi:10.7281/T1/6BHBC4', '01-NOV-24', '15-NOV-24') from dual;
+
+DATAVERSE.DATASETACTIVITY('DOI:10.7281/T1/6BHBC4','01-NOV-24','15-NOV-24')      
+--------------------------------------------------------------------------      
+                                                                      .929      
+
+SQL> select dataverse.datasetActivity( 'doi:10.7281/T1/6BHBC4', '01-NOV-24') from dual;
+
+DATAVERSE.DATASETACTIVITY('DOI:10.7281/T1/6BHBC4','01-NOV-24')                  
+--------------------------------------------------------------                  
+                                                          .514                  
+
+SQL> 
+SQL> -- Last one should return 0 - no downloads before 01-NOV-24
+SQL> select dataverse.datasetActivity( 'doi:10.7281/T1/6BHBC4', null, '01-NOV-24') from dual;
+
+DATAVERSE.DATASETACTIVITY('DOI:10.7281/T1/6BHBC4',NULL,'01-NOV-24')             
+-------------------------------------------------------------------             
+                                                                  0             
+
+SQL> 
+SQL> 
+SQL> -- f6. -----------------------------------------------------------
+SQL> 
+SQL> -- First two should be 0.6
+SQL> select dataverse.proportionGPL(null) from dual;
+
+DATAVERSE.PROPORTIONGPL(NULL)                                                   
+-----------------------------                                                   
+                          .06                                                   
+
+SQL> select dataverse.proportionGPL() from dual;
+
+DATAVERSE.PROPORTIONGPL()                                                       
+-------------------------                                                       
+                      .06                                                       
+
+SQL> 
+SQL> -- Chemistry should be 0
+SQL> select dataverse.proportionGPL('Chemistry') from dual;
+
+DATAVERSE.PROPORTIONGPL('CHEMISTRY')                                            
+------------------------------------                                            
+                                   0                                            
+
+SQL> 
+SQL> -- This should throw error, not real subject
+SQL> select dataverse.proportionGPL('zzzzzzz') from dual;
+select dataverse.proportionGPL('zzzzzzz') from dual
+       *
+ERROR at line 1:
+ORA-20001: Subject not found in Dataverse. 
+ORA-06512: at "CDONOV12.DATAVERSE", line 461 
+ORA-06512: at line 1 
+
+
+SQL> 
+SQL> 
+SQL> -- f7. -------------------------------------------------------------
+SQL> 
+SQL> -- These should work
+SQL> select dataverse.fundingImpact(1, null, 'publications') from dual;
+
+DATAVERSE.FUNDINGIMPACT(1,NULL,'PUBLICATIONS')                                  
+--------------------------------------------------------------------------------
+1                                                                               
+
+SQL> select dataverse.fundingImpact(1, null, 'downloads') from dual;
+
+DATAVERSE.FUNDINGIMPACT(1,NULL,'DOWNLOADS')                                     
+--------------------------------------------------------------------------------
+30                                                                              
+
+SQL> 
+SQL> -- Explore NSF with different combinations of inputs. Should work
+SQL> select dataverse.fundingImpact(25, null, 'downloads') from dual;
+
+DATAVERSE.FUNDINGIMPACT(25,NULL,'DOWNLOADS')                                    
+--------------------------------------------------------------------------------
+5                                                                               
+
+SQL> select dataverse.fundingImpact(null, 'National Science Foundation', 'downloads') from dual;
+
+DATAVERSE.FUNDINGIMPACT(NULL,'NATIONALSCIENCEFOUNDATION','DOWNLOADS')           
+--------------------------------------------------------------------------------
+4792                                                                            
+
+SQL> select dataverse.fundingImpact(25, 'National Science Foundation', 'downloads') from dual;
+
+DATAVERSE.FUNDINGIMPACT(25,'NATIONALSCIENCEFOUNDATION','DOWNLOADS')             
+--------------------------------------------------------------------------------
+5                                                                               
+
+SQL> 
+SQL> -- Try NSF with a wrong grant ID number. Should throw error.
+SQL> select dataverse.fundingImpact(1, 'National Science Foundation', 'downloads') from dual;
+select dataverse.fundingImpact(1, 'National Science Foundation', 'downloads') from dual
+       *
+ERROR at line 1:
+ORA-20003: No records found. 
+ORA-06512: at "CDONOV12.DATAVERSE", line 511 
+ORA-06512: at line 1 
+
+
+SQL> 
+SQL> 
+SQL> -- f8. -------------------------------------------------------------
+SQL> 
+SQL> -- Null null should give size of whole dataverse
+SQL> select dataverse.totalSize(null, null) from dual;
+
+DATAVERSE.TOTALSIZE(NULL,NULL)                                                  
+------------------------------                                                  
+                    6522897228                                                  
+
+SQL> 
+SQL> -- Get size of first collection
+SQL> select dataverse.totalSize('collection', 1) from dual;
+
+DATAVERSE.TOTALSIZE('COLLECTION',1)                                             
+-----------------------------------                                             
+                          660105731                                             
+
+SQL> 
+SQL> -- This should not work - there is no dataset id 1
+SQL> select dataverse.totalSize('dataset', 1) from dual;
+select dataverse.totalSize('dataset', 1) from dual
+       *
+ERROR at line 1:
+ORA-20001: ds_ID is not found in dataset table. 
+ORA-06512: at "CDONOV12.DATAVERSE", line 623 
+ORA-06512: at line 1 
+
+
+SQL> 
+SQL> -- This should not work - not in allowed scope inputs
+SQL> select dataverse.totalSize('zzzzzz', 1) from dual;
+select dataverse.totalSize('zzzzzz', 1) from dual
+       *
+ERROR at line 1:
+ORA-20001: Input for scope must be dataset, collection, or dataverse 
+ORA-06512: at "CDONOV12.DATAVERSE", line 590 
+ORA-06512: at line 1 
+
+
+SQL> 
+SQL> 
+SQL> -- p6. --------------------------------------------------------------
+SQL> 
+SQL> -- Bad input errors
+SQL> exec dataverse.softwareUse('badbad', null);
+BEGIN dataverse.softwareUse('badbad', null); END;
+
+*
+ERROR at line 1:
+ORA-20003: No records found. 
+ORA-06512: at "CDONOV12.DATAVERSE", line 64 
+ORA-06512: at line 1 
+
+
+SQL> exec dataverse.softwareUse(null, 'badbad');
+BEGIN dataverse.softwareUse(null, 'badbad'); END;
+
+*
+ERROR at line 1:
+ORA-20003: No records found. 
+ORA-06512: at "CDONOV12.DATAVERSE", line 64 
+ORA-06512: at line 1 
+
+
+SQL> 
+SQL> -- Should work
+SQL> exec dataverse.softwareUse(null, null);
+MATLAB: 34                                                                      
+Python: 28                                                                      
+R: 15                                                                           
+Javascript: 3                                                                   
+Fortran: 3                                                                      
+Stata do-file: 2                                                                
+Java: 2                                                                         
+Other: 2                                                                        
+Mathematica: 2                                                                  
+Shell script: 1                                                                 
+
+PL/SQL procedure successfully completed.
+
+SQL> exec dataverse.softwareUse(null, 'Social Sciences');
+R: 3                                                                            
+Other: 2                                                                        
+Javascript: 1                                                                   
+Java: 1                                                                         
+
+PL/SQL procedure successfully completed.
+
+SQL> exec dataverse.softwareUse(null, 'Physics');
+Python: 1                                                                       
+Shell script: 1                                                                 
+
+PL/SQL procedure successfully completed.
+
+SQL> exec dataverse.softwareUse('COVID-19', null);
+Python: 1                                                                       
+R: 1                                                                            
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> -- Subject and keyword that don't match, should not work
+SQL> exec dataverse.softwareUse('COVID-19', 'Physics');
+BEGIN dataverse.softwareUse('COVID-19', 'Physics'); END;
+
+*
+ERROR at line 1:
+ORA-20003: No records found. 
+ORA-06512: at "CDONOV12.DATAVERSE", line 64 
+ORA-06512: at line 1 
+
+
+SQL> 
+SQL> 
+SQL> -- p7. --------------------------------------------------------------
+SQL> 
+SQL> -- First three should work, last one should not (no covid/physics datasets)
+SQL> exec dataverse.softwareLicenses(null, null);
+MIT: 57                                                                         
+GPL-3.0: 4                                                                      
+BSD 3: 1                                                                        
+BSD 2: 1                                                                        
+Not Specified: 1                                                                
+
+PL/SQL procedure successfully completed.
+
+SQL> exec dataverse.softwareLicenses('COVID-19', null);
+MIT: 1                                                                          
+
+PL/SQL procedure successfully completed.
+
+SQL> exec dataverse.softwareLicenses(null, 'Social Sciences');
+MIT: 3                                                                          
+Not Specified: 1                                                                
+
+PL/SQL procedure successfully completed.
+
+SQL> exec dataverse.softwareLicenses('COVID-19', 'Physics');
+BEGIN dataverse.softwareLicenses('COVID-19', 'Physics'); END;
+
+*
+ERROR at line 1:
+ORA-20003: No records found. 
+ORA-06512: at "CDONOV12.DATAVERSE", line 138 
+ORA-06512: at line 1 
+
+
+SQL> 
+SQL> 
+SQL> -- p8. --------------------------------------------------------------
+SQL> 
+SQL> -- First four should work, not the last one
+SQL> exec dataverse.funderSummary(null, null);
+21st Century Cities Initiative, Johns Hopkins University: Publications - 1.     
+Downloads - 184. Total Funded -  760000.                                        
+American Chemical Society: Publications - 2. Downloads - 45. Total Funded -     
+240000.                                                                         
+Australian???American Fulbright Postdoctoral Scholarship: Publications - 1.     
+Downloads - 28. Total Funded -  450000.                                         
+Baltimore City Department of Sustainability: Publications - 1. Downloads - 30.  
+Total Funded -  120000.                                                         
+Bill and Melinda Gates Foundation: Publications - 3. Downloads - 103. Total     
+Funded -  360000.                                                               
+CLEAR: Publications - 1. Downloads - 17372. Total Funded -  110000.             
+Department of Defense: Publications - 1. Downloads - 2203. Total Funded -       
+50000.                                                                          
+Department of Energy: Publications - 13. Downloads - 213. Total Funded -        
+6320000.                                                                        
+Endocrine Society Endocrine Scholars Award: Publications - 1. Downloads - 15.   
+Total Funded -  80000.                                                          
+Food and Drug Administration: Publications - 1. Downloads - 6. Total Funded -   
+190000.                                                                         
+Gordon and Betty Moore Foundation: Publications - 1. Downloads - 33. Total      
+Funded -  340000.                                                               
+Human Frontier Science Program: Publications - 1. Downloads - 167. Total Funded 
+-  80000.                                                                       
+Innovative Vector Control Consortium: Publications - 1. Downloads - 15. Total   
+Funded -  310000.                                                               
+James McDonnell Foundation: Publications - 2. Downloads - 517. Total Funded -   
+1050000.                                                                        
+Johns Hopkins Catalyst Award, 2023: Publications - 1. Downloads - 4520. Total   
+Funded -  1000000.                                                              
+Johns Hopkins Center for Global Health Established Field Placement: Publications
+- 1. Downloads - 61. Total Funded -  330000.                                    
+Johns Hopkins Graduate Fellowship: Publications - 1. Downloads - 184. Total     
+Funded -  160000.                                                               
+Johns Hopkins School of Medicine, Division of Pulmonary and Critical Care       
+Medicine: Publications - 2. Downloads - 88. Total Funded -  740000.             
+Johns Hopkins Science of Learning Research Grant: Publications - 2. Downloads - 
+65. Total Funded -  660000.                                                     
+Lustgarten Foundation for Pancreatic Cancer Research: Publications - 1.         
+Downloads - 288. Total Funded -  660000.                                        
+Maryland Sea Grant: Publications - 4. Downloads - 314. Total Funded -  1060000. 
+NIH-NIEHS: Publications - 1. Downloads - 28. Total Funded -  500000.            
+NSF: Publications - 1. Downloads - 319. Total Funded -  110000.                 
+Nancy Lurie Marks Foundation: Publications - 1. Downloads - 13. Total Funded -  
+100000.                                                                         
+National Aeronautics and Space Administration: Publications - 14. Downloads -   
+6045. Total Funded -  5270000.                                                  
+National Eye Institute: Publications - 1. Downloads - 30. Total Funded -        
+430000.                                                                         
+National Heart Association: Publications - 3. Downloads - 26. Total Funded -    
+780000.                                                                         
+National Heart, Lung, and Blood Institute: Publications - 1. Downloads - 12.    
+Total Funded -  140000.                                                         
+National Institute of Environmental Health Sciences: Publications - 1. Downloads
+- 26. Total Funded -  220000.                                                   
+National Institute on Aging: Publications - 1. Downloads - 38. Total Funded -   
+450000.                                                                         
+National Institutes of Health: Publications - 47. Downloads - 9702. Total Funded
+-  17450000.                                                                    
+National Oceanic and Atmospheric Administration: Publications - 4. Downloads -  
+209. Total Funded -  1290000.                                                   
+National Science Foundation: Publications - 60. Downloads - 8237. Total Funded -
+29060000.                                                                       
+Natural Sciences and Engineering Research Council (NSERC): Publications - 1.    
+Downloads - 97. Total Funded -  160000.                                         
+Office of Naval Research: Publications - 1. Downloads - 53. Total Funded -      
+340000.                                                                         
+Social Science Research Council International Dissertation Research Fellowship  
+(IDRF): Publications - 1. Downloads - 45. Total Funded -  310000.               
+This research was supported by the Johns Hopkins School of Medicine, Division of
+Pulmonary and Critical Care Medicine: Publications - 1. Downloads - 21. Total   
+Funded -  90000.                                                                
+Trade and Development Canada: Publications - 1. Downloads - 78. Total Funded -  
+10000.                                                                          
+U.S. Agency for International Development: Publications - 7. Downloads - 306.   
+Total Funded -  2780000.                                                        
+U.S. Department of Defense: Publications - 1. Downloads - 63. Total Funded -    
+420000.                                                                         
+U.S. Department of Energy: Publications - 2. Downloads - 26. Total Funded -     
+800000.                                                                         
+U.S. Public Health Service: Publications - 1. Downloads - 22. Total Funded -    
+980000.                                                                         
+United States Geological Survey: Publications - 1. Downloads - 16. Total Funded 
+-  370000.                                                                      
+United States President's Emergency Plan for AIDS Relief (PEPFAR), USAID:       
+Publications - 1. Downloads - 15. Total Funded -  140000.                       
+World Professional Association for Transgender Health: Publications - 1.        
+Downloads - 32. Total Funded -  100000.                                         
+: Publications - 2. Downloads - 268. Total Funded -  1340000.                   
+
+PL/SQL procedure successfully completed.
+
+SQL> exec dataverse.funderSummary('National Science Foundation', null);
+National Science Foundation: Publications - 60. Downloads - 8237. Total Funded -
+29060000.                                                                       
+
+PL/SQL procedure successfully completed.
+
+SQL> exec dataverse.funderSummary(null, 'Physics');
+Department of Energy: Publications - 3. Downloads - 18. Total Funded -  540000. 
+National Institutes of Health: Publications - 2. Downloads - 17. Total Funded - 
+200000.                                                                         
+National Science Foundation: Publications - 5. Downloads - 67. Total Funded -   
+1620000.                                                                        
+U.S. Department of Energy: Publications - 1. Downloads - 5. Total Funded -      
+200000.                                                                         
+
+PL/SQL procedure successfully completed.
+
+SQL> exec dataverse.funderSummary('National Eye Institute', null);
+National Eye Institute: Publications - 1. Downloads - 30. Total Funded -        
+430000.                                                                         
+
+PL/SQL procedure successfully completed.
+
+SQL> exec dataverse.funderSummary('National Eye Institute', 'Physics');
+BEGIN dataverse.funderSummary('National Eye Institute', 'Physics'); END;
+
+*
+ERROR at line 1:
+ORA-20003: No records found. 
+ORA-06512: at "CDONOV12.DATAVERSE", line 225 
+ORA-06512: at line 1 
+
+
+SQL> 
+SQL> 
+SQL> -- p9. --------------------------------------------------------------
+SQL> 
+SQL> -- First two should show results, not third
+SQL> begin
+  2  	 dataverse.searchAuthors('david');
+  3  end;
+  4  /
+Jenkins, David M.                                                               
+Kass, David A.                                                                  
+Kraemer, David                                                                  
+Lefer, David                                                                    
+Mocko, David M.                                                                 
+Nataf, David M.                                                                 
+Sullivan, David J.                                                              
+Dowdy, David W.                                                                 
+Ginty, David D.                                                                 
+Gracias, David H.                                                               
+Isooba, David                                                                   
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> begin
+  2  	 dataverse.searchAuthors('emily');
+  3  end;
+  4  /
+Kendall, Emily A.                                                               
+Ricotta, Emily                                                                  
+Smith, Emily F.                                                                 
+Wilson, Emily                                                                   
+Coderre, Emily L.                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> 
+SQL> begin
+  2  	 dataverse.searchAuthors('zzzzzzzz');
+  3  end;
+  4  /
+begin
+*
+ERROR at line 1:
+ORA-20001: No records found. 
+ORA-06512: at "CDONOV12.DATAVERSE", line 267 
+ORA-06512: at line 2 
+
+
+SQL> 
+SQL> SQL> 
+SQL> 
+SQL> -- Restore options --------------------------------------------
+SQL> 
+SQL> spool off

@@ -1,0 +1,33 @@
+SQL> 
+SQL> 
+SQL> -- Execute scripts  -------------------------------------------
+SQL> 
+SQL> start &&1
+SQL> -- Indexes ---------------------------------------------------
+SQL> 
+SQL> -- 1. Keywords
+SQL> create index keyword_index on keywords (keyword);
+
+Index created.
+
+SQL> 
+SQL> 
+SQL> -- 2. Author names
+SQL> create index ru_name_index on registered_user (name);
+
+Index created.
+
+SQL> 
+SQL> 
+SQL> -- 3. Funding agency names
+SQL> create index agency_index on funding_agency (name);
+
+Index created.
+
+SQL> 
+SQL> 
+SQL> SQL> 
+SQL> 
+SQL> -- Restore options --------------------------------------------
+SQL> 
+SQL> spool off

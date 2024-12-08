@@ -909,9 +909,13 @@ sw_license_df <- sw_df %>%
       str_detect(name, '^Other') ~ 'Not Specified',
       .default = NA_character_
     ),
+
+    # Creating attribute for gpl compatibility. Note that this is bad R
+    # practice to use T and F like this, but it will work in SQL because there's
+    # no real boolean class
     gpl_compatible = case_when(
-      str_detect(name, '^Other|Not Specified') | is.na(name) ~ FALSE,
-      str_detect(name, '^GNU|GPL|^MIT|^BSD') ~ TRUE,
+      str_detect(name, '^Other|Not Specified') | is.na(name) ~ 'F',
+      str_detect(name, '^GNU|GPL|^MIT|^BSD') ~ 'T',
       .default = NA
     ),
     sw_lic_id = case_when(
@@ -1172,16 +1176,16 @@ collections <- results$collection$col_id
 # Start with collection IDs and pub_dates
 set.seed(42)
 cols <- results$collection %>%
-  select(col_id, pub_date) %>%
-  slice_sample(n = 50, replace = TRUE)
+  select(col_id, pub_date)
+  # slice_sample(n = 50, replace = TRUE)
 get_str(cols)
 
-# Add other columns
+# Add other columns. Have every collection represented once.
 set.seed(42)
 manage_col <- cols %>%
   mutate(
-    ru_id = sample(col_admins, 50, replace = TRUE),
-    col_id = sample(collections, 50, replace = TRUE),
+    ru_id = sample(col_admins, length(collections), replace = TRUE),
+    col_id = sample(collections, length(collections), replace = FALSE),
     timestamp = as_datetime(
       runif(
         n(),
@@ -1192,12 +1196,19 @@ manage_col <- cols %>%
     description = paste0(
       'Updated collection ',
       col_id,
-      ' dataset ',
-      sample(results$dataset$ds_id, 50, replace = TRUE)
+      ', maintenance code ',
+      paste0(
+        sapply(1:63, function(x) paste(sample(c('a', 'b', 'c'), size = 4, replace = TRUE), collapse = '')),
+        sample(1:1000, 63, replace = TRUE)
+      )
     )
   ) %>%
   select(-pub_date)
 get_str(manage_col)
+manage_col$description
+
+
+
 
 # Save it
 results$manage_collection <- manage_col

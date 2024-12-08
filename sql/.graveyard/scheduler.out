@@ -1,0 +1,101 @@
+SQL> 
+SQL> 
+SQL> -- Execute scripts  -------------------------------------------
+SQL> 
+SQL> start &&1
+SQL> -- Scheduled job to use funderSummary procedure on a recurring basis
+SQL> 
+SQL> -- Create job
+SQL> begin
+  2  	 dbms_scheduler.create_job(
+  3  	     job_name	     => 'minutelyFunderSummary',
+  4  	     job_type	     => 'stored_procedure',
+  5  	     job_action      => 'BEGIN funderSummary(null, null); END;',
+  6  	     start_date      => systimestamp,
+  7  	     repeat_interval => 'freq=minutely; interval=1',
+  8  	     enabled	     => true
+  9  	 );
+ 10  end;
+ 11  /
+begin
+*
+ERROR at line 1:
+ORA-27486: insufficient privileges 
+ORA-06512: at "SYS.DBMS_ISCHED", line 175 
+ORA-06512: at "SYS.DBMS_SCHEDULER", line 286 
+ORA-06512: at line 2 
+Help: https://docs.oracle.com/error-help/db/ora-27486/ 
+
+
+SQL> 
+SQL> -- Create a schedule
+SQL> --begin
+SQL> --    dbms_scheduler.create_schedule(
+SQL> --        schedule_name   => 'minutely_schedule',
+SQL> --        start_date      => systimestamp,
+SQL> --        repeat_interval
+SQL> 
+SQL> -- Create a table to log results into
+SQL> create table job_log (
+  2  	 job_log_id int primary key,
+  3  	 timestamp TIMESTAMP,
+  4  	 message varchar(5000)
+  5  );
+    message varchar(5000)
+                    *
+ERROR at line 4:
+ORA-00910: specified length too long for its datatype 
+Help: https://docs.oracle.com/error-help/db/ora-00910/ 
+
+
+SQL> /
+    message varchar(5000)
+                    *
+ERROR at line 4:
+ORA-00910: specified length too long for its datatype 
+Help: https://docs.oracle.com/error-help/db/ora-00910/ 
+
+
+SQL> 
+SQL> -- Run it manually
+SQL> begin
+  2  	 dbms_scheduler.run_job('minutelyFunderSummary')
+  3  -- Reset
+  4  begin
+  5  	 dbms_scheduler.drop_job('minutelyFunderSummary');
+  6  end;
+  7  /
+begin
+*
+ERROR at line 4:
+ORA-06550: line 4, column 1: 
+PLS-00103: Encountered the symbol "BEGIN" when expecting one of the following: 
+:= . ( % ; 
+The symbol ";" was substituted for "BEGIN" to continue. 
+ORA-06550: line 6, column 4: 
+PLS-00103: Encountered the symbol "end-of-file" when expecting one of the 
+following: 
+( begin case declare end exception exit for goto if loop mod 
+null pragma raise return select update while with 
+<an identifier> <a double-quoted delimited-identifier> 
+<a bind variable> << continue close current delete fetch lock 
+insert open rollback savepoint set sql execute commit forall 
+merge pipe purge json_exists json_value json_query 
+json_object json_array 
+Help: https://docs.oracle.com/error-help/db/ora-06550/ 
+
+
+SQL> 
+SQL> drop table job_log;
+drop table job_log
+           *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+Help: https://docs.oracle.com/error-help/db/ora-00942/ 
+
+
+SQL> SQL> 
+SQL> 
+SQL> -- Restore options --------------------------------------------
+SQL> 
+SQL> spool off

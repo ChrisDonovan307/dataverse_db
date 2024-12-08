@@ -1,0 +1,128 @@
+SQL> 
+SQL> 
+SQL> -- Execute scripts  -------------------------------------------
+SQL> 
+SQL> start &&1
+SQL> -- Triggers ------------------------------------
+SQL> 
+SQL> 
+SQL> -- 2. adjustColDatasetCount
+SQL> 
+SQL> create or replace trigger adjustColDatasetCount
+  2  after insert or delete on dataset
+  3  for each row
+  4  begin
+  5  	     if inserting then
+  6  		     update collection
+  7  		     set n_datasets  = n_datasets + 1
+  8  		     where col_ID = :NEW.col_ID;
+  9  
+ 10  	     elsif deleting then
+ 11  		     update collection
+ 12  		     set n_datasets  = n_datasets - 1
+ 13  		     where col_ID = :OLD.col_ID;
+ 14  	     end if;
+ 15  end;
+ 16  /
+
+Trigger created.
+
+SQL> 
+SQL> 
+SQL> -- 3. adjustDatasetFilesCount
+SQL> 
+SQL> create or replace trigger adjustDatasetFilesCount
+  2  after insert or delete on files
+  3  for each row
+  4  begin
+  5  	     if inserting then
+  6  		     update dataset
+  7  		     set n_files = n_files + 1
+  8  		     where ds_ID = :NEW.ds_ID;
+  9  	     elsif deleting then
+ 10  		     update dataset
+ 11  		     set n_files = n_files - 1
+ 12  		     where ds_ID = :OLD.ds_ID;
+ 13  	     end if;
+ 14  end;
+ 15  /
+
+Trigger created.
+
+SQL> 
+SQL> 
+SQL> -- 4. adjustColFilesCount
+SQL> 
+SQL> create or replace trigger adjustColFilesCount
+  2  after insert or delete on files
+  3  for each row
+  4  declare
+  5  	     CID int;
+  6  begin
+  7  	     if inserting then
+  8  		     -- get col_ID of dataset affected, save as CID
+  9  		     select col_ID
+ 10  		     into CID
+ 11  		     from dataset
+ 12  		     where ds_ID = :NEW.ds_ID;
+ 13  
+ 14  		     -- add to n_files count of collection
+ 15  		     update collection
+ 16  		     set n_files = n_files + 1
+ 17  		     where col_ID = CID;
+ 18  
+ 19  	     elsif deleting then
+ 20  		     -- get col_ID of dataset affected, save as CID
+ 21  		     select col_ID
+ 22  		     into CID
+ 23  		     from dataset
+ 24  		     where ds_ID = :OLD.ds_ID;
+ 25  
+ 26  		     -- subtract from n_files count of collection
+ 27  		     update collection
+ 28  		     set n_files = n_files - 1
+ 29  		     where col_ID = CID;
+ 30  	     end if;
+ 31  end;
+ 32  /
+
+Trigger created.
+
+SQL> 
+SQL> 
+SQL> -- Trigger 5: addFunds
+SQL> -- NOTE: Funding amounts are not included in Dataverse.
+SQL> -- The values here are fabricated.
+SQL> 
+SQL> create or replace trigger addFunds
+  2  after insert on funds
+  3  for each row
+  4  declare
+  5  	     NEWAMOUNT int;
+  6  begin
+  7  	     -- Save the new amount of grant into NEWAMOUNT variable
+  8  	     select amount
+  9  	     into NEWAMOUNT
+ 10  	     from grants
+ 11  	     where grant_ID = :NEW.grant_ID;
+ 12  
+ 13  	     -- Add the new grant amount to the total_amount of funding_agency
+ 14  	     update funding_agency
+ 15  	     set total_amount = total_amount + NEWAMOUNT
+ 16  	     where agency_ID = :NEW.agency_ID;
+ 17  end;
+ 18  /
+
+Trigger created.
+
+SQL> 
+SQL> 
+SQL> commit;
+
+Commit complete.
+
+SQL> SQL> 
+SQL> 
+SQL> -- Restore options --------------------------------------------
+SQL> 
+SQL> spool off

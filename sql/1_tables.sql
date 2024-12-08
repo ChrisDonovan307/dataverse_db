@@ -29,8 +29,9 @@ create table software_license (
 	sw_lic_ID int primary key,
 	name varchar(20),
 	url varchar(100),
-	gpl_compatible varchar(5) check (gpl_compatible in ('TRUE', 'FALSE'))
-	-- Note does Oracle not have a boolean data type?
+	gpl_compatible char(1) check (gpl_compatible in ('T', 'F'))
+	-- NOTE: does Oracle not have a boolean data type?
+    -- Looks like using T/F or 1/0 are the only options. Weird.
 );
 
 create table software (
@@ -87,7 +88,35 @@ create table files (
 	file_ID varchar(50) primary key,
 		-- this is a DOI
 	ds_ID varchar(50) references dataset (ds_ID),
-       	filetype varchar(100),
+    filetype varchar(100) check (filetype in (
+        'Adobe PDF',
+        'AVI Video',
+        'Comma Separated Values',
+        'Fixed Field Text Data',
+        'Gzip Archive',
+        'JSON',
+        'Markdown Text',
+        'Mathematica', 
+        'MATLAB Data',
+        'MATLAB Source Code',
+        'MS Excel Spreadsheet',
+        'MS Word',
+        'Network Common Data Form', 
+        'Plain Text',
+        'PNG Image',
+        'Python Source Code', 
+        'Quicktime Video', 
+        'R Syntax',
+        'Rich Text Format',
+        'Shapefile as ZIP Archive',
+        'Stata Syntax',
+        'Tab-Delimited',
+        'TAR Archive',
+        'TIFF Image',
+        'Unknown',
+        'XZ Archive',
+        'ZIP Archive'
+    )),
 	filesize numeric,
 	title varchar(1000),
 	description varchar(1000),
@@ -97,7 +126,21 @@ create table files (
 
 create table subjects (
 	ds_ID varchar(50) references dataset (ds_ID),
-	subject varchar(100),
+	subject varchar(100) check (subject in (
+        'Arts and Humanities',
+        'Astronomy and Astrophysics',
+        'Business and Management',
+        'Chemistry',
+        'Computer and Information Science',
+        'Earth and Environmental Sciences',
+        'Engineering',
+        'Law',
+        'Mathematical Sciences',
+        'Medicine, Health and Life Sciences',
+        'Other', 
+        'Physics',
+        'Social Sciences'
+    )),
 	primary key (ds_ID, subject)
 );
 
