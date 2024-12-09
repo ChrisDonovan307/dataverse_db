@@ -1,3 +1,13 @@
+-- Create clustered index ----------------------------
+
+-- Clustering on any tables with a ds_id field
+-- Note that more indexes are included in 3_indexes.sql
+
+create cluster ds_cluster (ds_ID varchar(50));
+create index ds_cluster_idx
+on cluster ds_cluster;
+
+
 -- Create tables without foreign keys first ---------- 
 
 create table institution (
@@ -19,7 +29,7 @@ create table funding_agency (
 	location varchar(25)
 );
 
-create table grants ( -- Oracle does not allow grant as a name
+create table grants (
 	grant_ID int primary key,
 	grant_number varchar(250),
 	amount number
@@ -30,8 +40,6 @@ create table software_license (
 	name varchar(20),
 	url varchar(100),
 	gpl_compatible char(1) check (gpl_compatible in ('T', 'F'))
-	-- NOTE: does Oracle not have a boolean data type?
-    -- Looks like using T/F or 1/0 are the only options. Weird.
 );
 
 create table software (
@@ -40,7 +48,7 @@ create table software (
 	description varchar(25)
 );
 
-create table users ( -- user is another oracle conflict. change to users
+create table users ( 
 	u_ID int primary key,
 	email varchar(30) -- max 26
 );
@@ -73,18 +81,15 @@ create table dataset (
 	lic_ID int references license (lic_ID),
 	sw_lic_ID int references software_license (sw_lic_ID),
 	title varchar(300), 
-		-- max is 260
 	description varchar(1000), 
-		-- cut off descriptions at 900 chars in R
-		-- maybe better off leaving it though?
 	pub_date date,
 	file_downloads int,
 	n_files int,
-	url varchar(50) -- max is 33
-);
+	url varchar(50)
+)
+cluster ds_cluster(ds_ID);
 
 create table files (
-		-- cannot use 'file' as table name, making it files
 	file_ID varchar(50) primary key,
 		-- this is a DOI
 	ds_ID varchar(50) references dataset (ds_ID),
@@ -122,7 +127,8 @@ create table files (
 	description varchar(1000),
 	downloads int,
 	pub_date date
-);
+)
+cluster ds_cluster(ds_ID);
 
 create table subjects (
 	ds_ID varchar(50) references dataset (ds_ID),
@@ -142,13 +148,13 @@ create table subjects (
         'Social Sciences'
     )),
 	primary key (ds_ID, subject)
-);
+)
+cluster ds_cluster(ds_ID);
 
 create table registered_user (
 	ru_ID int primary key,
 	u_ID int references users (u_id),
     name varchar(50),
-	privilege varchar(5) check (privilege in ('read', 'write')),
 	pw_hash varchar(25)
 );
 
@@ -156,8 +162,6 @@ create table author (
 	auth_ID int primary key,
 	ru_ID int references registered_user (ru_ID),
 	orcid varchar(20)
-		-- orcid should technically be a static 19 chars
-		-- but I might have added weird numbers to these if missing
 );
 
 create table affiliation (
@@ -170,7 +174,8 @@ create table publication (
 	ds_ID varchar(50) references dataset (ds_ID),
 	citation varchar(750),
 	url varchar(250)
-);
+)
+cluster ds_cluster(ds_ID);
 
 create table produce (
 	auth_ID int references author (auth_ID),
@@ -193,25 +198,29 @@ create table dataset_upload (
 	ds_ID varchar(50) references dataset (ds_ID),
 	auth_ID int references author (auth_ID),
 	timestamp timestamp
-);
+)
+cluster ds_cluster(ds_ID);
 
 create table dataset_download (
 	ds_ID varchar(50) references dataset (ds_ID),
 	u_ID int references users (u_ID),
 	timestamp timestamp
-);
+)
+cluster ds_cluster(ds_ID);
 
 create table keywords (
 	ds_ID varchar(50) references dataset (ds_ID),
 	keyword varchar(100)
-);
+)
+cluster ds_cluster(ds_ID);
 
 create table funds (
 	grant_ID int references grants (grant_ID),
 	ds_ID varchar(50) references dataset (ds_ID),
 	agency_ID int,
 	primary key (grant_ID, ds_ID, agency_ID)
-);
+)
+cluster ds_cluster(ds_ID);
 
 create table admin (
 	ru_ID int references registered_user (ru_ID),
@@ -232,13 +241,13 @@ create table manage_collection (
 	description varchar(500)
 );
 
-
 create table contact (
 	u_ID int references users (u_ID),
 	ds_ID varchar(50) references dataset (ds_ID),
 	timestamp timestamp,
 	message varchar(500)
-);
+)
+cluster ds_cluster(ds_ID);
 
 create table analyzes (
 	sw_ID int references software (sw_ID),
@@ -246,7 +255,8 @@ create table analyzes (
 	title varchar(500),
 	description varchar(1000),
 	repo_url varchar(250)
-);
+)
+cluster ds_cluster(ds_ID);
 		
 
 

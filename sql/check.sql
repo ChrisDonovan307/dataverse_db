@@ -1,7 +1,12 @@
--- Check that package exists
+-- Check that package exists -----------------------------------
 select object_name, status 
 from user_objects 
 where object_type = 'PACKAGE';
+
+
+-- Check indexes -----------------------------------------------
+
+select index_name from user_indexes;
 
 
 -- f1. ---------------------------------------------------------

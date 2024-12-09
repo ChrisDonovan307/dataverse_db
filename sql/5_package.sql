@@ -542,7 +542,7 @@ create or replace package body dataverse as
         if grant_id_in is null and agency_name_in is null then
             raise_application_error(
                 -20001, 
-                'Please provide either a grant ID or a funging agency name.'
+                'Please provide either a grant ID or a funding agency name.'
             );
         end if;
 
