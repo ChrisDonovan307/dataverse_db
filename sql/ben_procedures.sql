@@ -55,7 +55,7 @@ BEGIN
 	        INTO kw_rec_count
 	        FROM keyword_count
 	        WHERE keyword=kw_record.keyword;
-            IF kw_rec_count > 0 THEN
+            IF kw_rec_count = 0 THEN
 		INSERT INTO keyword_count VALUES(kw_record.keyword, kw_count);
 	    -- Is the current count consistent with records?
 	    ELSE
