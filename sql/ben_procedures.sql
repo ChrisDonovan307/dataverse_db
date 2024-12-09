@@ -1,3 +1,60 @@
+-- p1
+
+-- find all publications that list a given author
+-- can be accomplished in a single SELECT statement but is included
+-- here as a procedure to ensure continuity with design doc
+CREATE OR REPLACE PROCEDURE findPubsByAuthor(
+    authorName IN VARCHAR
+)
+AS
+    CURSOR pub IS
+        SELECT pub_ID, citation, url
+	FROM publication
+	WHERE citation LIKE '%' || authorName || '%''';
+    pub_record pub%ROWTYPE;
+BEGIN
+    OPEN pub;
+    FETCH pub INTO pub_record;
+    WHILE pub%FOUND
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(authorName || ' contributed to, ' || pub_record.pub_ID || ', '
+	|| pub_record.url || ', ' || pub_record.citation);
+    END LOOP;
+    CLOSE pub;
+END;
+/
+
+SHOW ERRORS
+
+-- p2
+
+-- Find all datasets that list a specified author and display information
+-- on those datasets in the form ds_ID, title, and url
+CREATE OR REPLACE PROCEDURE findDataSetsByAuthor(
+    authorName IN VARCHAR
+)
+AS
+    CURSOR ds IS
+        SELECT d.ds_ID, d.title, d.url 
+	FROM publication p, dataset d
+	WHERE citation LIKE '%' || authorName || '%'''
+	    AND p.ds_ID = d.ds_ID;
+    ds_record ds%ROWTYPE;
+BEGIN
+    OPEN ds;
+    FETCH ds INTO ds_record;
+    WHILE ds%FOUND
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(authorName || ' contributed to, ' || ds_record.ds_ID || ', '
+	|| ds_record.title || ', ' || ds_record.url);
+	FETCH ds INTO ds_record;
+    END LOOP;
+    CLOSE ds;
+END;
+/
+
+SHOW ERRORS
+
 -- p3.
 
 -- Need to create a secondary table to store the empty files
@@ -23,6 +80,7 @@ BEGIN
 END;
 /
 
+SHOW ERRORS
 
 -- p4
 
@@ -71,6 +129,53 @@ BEGIN
 	    FETCH kw INTO kw_record;
 	END LOOP;
     CLOSE kw;
+END;
+/
+
+SHOW ERRORS
+
+-- p5
+-- Accepts a single keyword string and a list of alias strings
+-- Consolidate all instances of aliases within the keywords table
+-- to exactly match the provided keyword
+CREATE OR REPLACE PROCEDURE cleanKeywords(
+    kw IN VARCHAR,
+    aliases IN strings_t
+)
+AS
+    CURSOR ds IS
+        SELECT ds_ID FROM keywords;
+    ds_record ds%ROWTYPE;
+    match_count number;
+    a_record VARCHAR(100);
+BEGIN
+    -- check all alias strings
+    FOR i IN aliases.FIRST..aliases.LAST
+    LOOP
+        a_record := aliases(i);
+	-- check for each dataset to prevent duplicate primary keys
+        OPEN ds;
+	FETCH ds INTO ds_record;
+	WHILE ds%FOUND
+	LOOP
+	    SELECT COUNT(*)
+	        INTO match_count
+		FROM keywords
+		WHERE keyword = kw AND ds_ID = ds_record.ds_ID;
+            -- If this dataset already contains a reference to the desired keyword
+	    -- then simply delete the record containing this alias
+	    IF match_count > 0 THEN
+                DELETE FROM keywords WHERE keyword = a_record;
+	    -- otherwise update the record so that alias becomes kw
+	    ELSE
+	        UPDATE keywords
+		SET keyword = kw
+		WHERE keyword = a_record;
+	    END IF;
+	    FETCH ds INTO ds_record;
+	END LOOP;
+	CLOSE ds;
+    END LOOP;
 END;
 /
 
