@@ -7,25 +7,41 @@ SQL> -- Indexes ---------------------------------------------------
 SQL> 
 SQL> -- 1. Keywords
 SQL> create index keyword_index on keywords (keyword);
+create index keyword_index on keywords (keyword)
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+Help: https://docs.oracle.com/error-help/db/ora-00955/ 
 
-Index created.
 
 SQL> 
 SQL> 
 SQL> -- 2. Author names
 SQL> create index ru_name_index on registered_user (name);
+create index ru_name_index on registered_user (name)
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+Help: https://docs.oracle.com/error-help/db/ora-00955/ 
 
-Index created.
 
 SQL> 
 SQL> 
 SQL> -- 3. Funding agency names
 SQL> create index agency_index on funding_agency (name);
+create index agency_index on funding_agency (name)
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+Help: https://docs.oracle.com/error-help/db/ora-00955/ 
 
-Index created.
 
 SQL> 
-SQL> 
+SQL> CREATE OR REPLACE TYPE strings_t IS TABLE OF VARCHAR2 (100);
+  2  /
+
+Type created.
+
 SQL> SQL> 
 SQL> 
 SQL> -- Restore options --------------------------------------------

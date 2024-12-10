@@ -11,4 +11,3 @@ create index ru_name_index on registered_user (name);
 -- 3. Funding agency names
 create index agency_index on funding_agency (name);
 
-

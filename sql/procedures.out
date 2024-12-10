@@ -1,0 +1,12 @@
+SQL> 
+SQL> 
+SQL> -- Execute scripts  -------------------------------------------
+SQL> 
+SQL> start &&1
+SP2-0310: unable to open file "procedures.sql"
+Help: https://docs.oracle.com/error-help/db/sp2-0310/
+SQL> 
+SQL> 
+SQL> -- Restore options --------------------------------------------
+SQL> 
+SQL> spool off

@@ -5,6 +5,21 @@ SQL>
 SQL> start &&1
 SQL> -- Triggers ------------------------------------
 SQL> 
+SQL> -- 1 hashUserPassword
+SQL> -- Grab the entered password, hash using SHA-256, and store the hash value
+SQL> 
+SQL> CREATE OR REPLACE TRIGGER hashUserPassword
+  2  	     BEFORE INSERT ON registered_user
+  3  	     FOR EACH ROW
+  4  BEGIN
+  5  	     SELECT STANDARD_HASH(RTRIM(:new.pw_hash), 'SHA256')
+  6  	     INTO   :new.pw_hash
+  7  	     FROM   dual;
+  8  END;
+  9  /
+
+Trigger created.
+
 SQL> 
 SQL> -- 2. adjustColDatasetCount
 SQL> 
@@ -116,8 +131,126 @@ SQL> create or replace trigger addFunds
 Trigger created.
 
 SQL> 
+SQL> -- 6a. fileDownloadTimestamp
+SQL> -- On INSERT of a new tuple, capture and store current datetime
 SQL> 
-SQL> commit;
+SQL> CREATE OR REPLACE TRIGGER fileDownloadTimestamp
+  2  	 BEFORE INSERT ON file_download
+  3  	 FOR EACH ROW
+  4  DECLARE
+  5  	 n_timestamp timestamp;
+  6  BEGIN
+  7  	 SELECT localtimestamp INTO n_timestamp FROM dual;
+  8  	 :new.timestamp := n_timestamp;
+  9  END;
+ 10  /
+
+Trigger created.
+
+SQL> 
+SQL> -- 6b. datasetDownloadTimestamp
+SQL> -- On INSERT of a new tuple, capture and store current datetime
+SQL> 
+SQL> CREATE OR REPLACE TRIGGER datasetDownloadTimestamp
+  2  	 BEFORE INSERT ON dataset_download
+  3  	 FOR EACH ROW
+  4  DECLARE
+  5  	 n_timestamp timestamp;
+  6  BEGIN
+  7  	 SELECT localtimestamp INTO n_timestamp FROM dual;
+  8  	 :new.timestamp := n_timestamp;
+  9  END;
+ 10  /
+
+Trigger created.
+
+SQL> 
+SQL> -- 7a. fileUploadTimestamp
+SQL> -- On INSERT of a new tuple, capture and store current datetime
+SQL> 
+SQL> CREATE OR REPLACE TRIGGER fileUploadTimestamp
+  2  	 BEFORE INSERT ON file_upload
+  3  	 FOR EACH ROW
+  4  DECLARE
+  5  	 n_timestamp timestamp;
+  6  BEGIN
+  7  	 SELECT localtimestamp INTO n_timestamp FROM dual;
+  8  	 :new.timestamp := n_timestamp;
+  9  END;
+ 10  /
+
+Trigger created.
+
+SQL> 
+SQL> -- 7b. datasetUploadTimestamp
+SQL> -- On INSERT of a new tuple, capture and store current datetime
+SQL> 
+SQL> CREATE OR REPLACE TRIGGER datasetUploadTimestamp
+  2  	 BEFORE INSERT ON dataset_upload
+  3  	 FOR EACH ROW
+  4  DECLARE
+  5  	 n_timestamp timestamp;
+  6  BEGIN
+  7  	 SELECT localtimestamp INTO n_timestamp FROM dual;
+  8  	 :new.timestamp := n_timestamp;
+  9  END;
+ 10  /
+
+Trigger created.
+
+SQL> 
+SQL> -- 8a. manageCollectionTimestamp
+SQL> -- On INSERT of a new tuple, capture and store current datetime
+SQL> 
+SQL> CREATE OR REPLACE TRIGGER manageCollectionTimestamp
+  2  	 BEFORE INSERT ON manage_collection
+  3  	 FOR EACH ROW
+  4  DECLARE
+  5  	 n_timestamp timestamp;
+  6  BEGIN
+  7  	 SELECT localtimestamp INTO n_timestamp FROM dual;
+  8  	 :new.timestamp := n_timestamp;
+  9  END;
+ 10  /
+
+Trigger created.
+
+SQL> 
+SQL> -- 8b. manageDataverseTimestamp
+SQL> -- On INSERT of a new tuple, capture and store current datetime
+SQL> 
+SQL> CREATE OR REPLACE TRIGGER manageDataverseTimestamp
+  2  	 BEFORE INSERT ON manage_dataverse
+  3  	 FOR EACH ROW
+  4  DECLARE
+  5  	 n_timestamp timestamp;
+  6  BEGIN
+  7  	 SELECT localtimestamp INTO n_timestamp FROM dual;
+  8  	 :new.timestamp := n_timestamp;
+  9  END;
+ 10  /
+
+Trigger created.
+
+SQL> 
+SQL> -- 9. contactTimestamp
+SQL> -- On INSERT of a new tuple, capture and store current datetime
+SQL> 
+SQL> CREATE OR REPLACE TRIGGER contactTimestamp
+  2  	 BEFORE INSERT ON contact
+  3  	 FOR EACH ROW
+  4  DECLARE
+  5  	 n_timestamp timestamp;
+  6  BEGIN
+  7  	 SELECT localtimestamp INTO n_timestamp FROM dual;
+  8  	 :new.timestamp := n_timestamp;
+  9  END;
+ 10  /
+
+Trigger created.
+
+SQL> 
+SQL> COMMIT;
 
 Commit complete.
 

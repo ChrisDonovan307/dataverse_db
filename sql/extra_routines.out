@@ -1,0 +1,62 @@
+SQL> 
+SQL> 
+SQL> -- Execute scripts  -------------------------------------------
+SQL> 
+SQL> start &&1
+SQL> CREATE OR REPLACE TYPE strings_t IS TABLE OF VARCHAR2 (100)
+  2  /
+
+Type created.
+
+SQL> 
+SQL> CREATE OR REPLACE PROCEDURE cleanKeywords(
+  2  	 kw IN VARCHAR,
+  3  	 aliases IN strings_t
+  4  )
+  5  AS
+  6  	 CURSOR ds IS
+  7  	     SELECT ds_ID FROM keywords;
+  8  	 ds_record ds%ROWTYPE;
+  9  	 match_count number;
+ 10  	 a_record VARCHAR(100);
+ 11  BEGIN
+ 12  	 -- check all alias strings
+ 13  	 FOR i IN aliases.FIRST..aliases.LAST
+ 14  	 LOOP
+ 15  	     a_record := aliases(i);
+ 16  	     -- check for each dataset to prevent duplicate primary keys
+ 17  	     OPEN ds;
+ 18  	     FETCH ds INTO ds_record;
+ 19  	     WHILE ds%FOUND
+ 20  	     LOOP
+ 21  		 SELECT COUNT(*)
+ 22  		     INTO match_count
+ 23  		     FROM keywords
+ 24  		     WHERE keyword = kw AND ds_ID = ds_record.ds_ID;
+ 25  		 -- If this dataset already contains a reference to the desired keyword
+ 26  		 -- then simply delete the record containing this alias
+ 27  		 IF match_count > 0 THEN
+ 28  		     DELETE FROM keywords WHERE keyword = a_record;
+ 29  		 -- otherwise update the record so that alias becomes kw
+ 30  		 ELSE
+ 31  		     UPDATE keywords
+ 32  		     SET keyword = kw
+ 33  		     WHERE keyword = a_record;
+ 34  		 END IF;
+ 35  		 FETCH ds INTO ds_record;
+ 36  	     END LOOP;
+ 37  	     CLOSE ds;
+ 38  	 END LOOP;
+ 39  END;
+ 40  /
+
+Procedure created.
+
+SQL> 
+SQL> SHOW ERRORS
+No errors.
+SQL> SQL> 
+SQL> 
+SQL> -- Restore options --------------------------------------------
+SQL> 
+SQL> spool off

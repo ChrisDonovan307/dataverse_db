@@ -613,375 +613,500 @@ SQL> create or replace package body dataverse as
 516  
 517  	 end;
 518  
-519  
-520  	 -- f5. datasetActivity ---------------------------------------
-521  
-522  	 function datasetActivity(
-523  		 id in varchar default null,
-524  		 start_date in date default null,
-525  		 end_date in date default null
-526  	 ) return number
-527  	 as
-528  	     start_timestamp timestamp;
-529  	     end_timestamp timestamp;
-530  	     diff_days number;
-531  	     downloads_in_window int;
-532  	     activity number(6, 3);
-533  	 begin
-534  
-535  	     -- Make sure id is provided
-536  	     if id is null then
-537  		 raise_application_error(-20001, 'Please provide a dataset ID.');
-538  	     end if;
-539  
-540  	     -- If no start date, use pub_date from dataset, else just convert to timestamp
-541  	     if start_date is null then
-542  		 select cast(pub_date as timestamp)
-543  		 into start_timestamp
-544  		 from dataset
-545  		 where ds_ID = id;
-546  	     else
-547  		 start_timestamp := cast(start_date as timestamp);
-548  	     end if;
-549  
-550  	     -- If no end date, use current timestamp
-551  	     if end_date is null then
-552  		 select current_timestamp
-553  		 into end_timestamp
-554  		 from dual;
-555  	     else
-556  		 end_timestamp := cast(end_date as timestamp);
-557  	     end if;
-558  
-559  	     -- Calculate how many days are between start and end
-560  	     diff_days := extract(day from (end_timestamp - start_timestamp));
-561  
-562  	     -- Get downloads in that time
-563  	     select count(*)
-564  	     into downloads_in_window
-565  	     from dataset_download
-566  	     where ds_ID = id
-567  		 and timestamp > start_timestamp
-568  		 and timestamp <= end_timestamp;
-569  
-570  	     -- Calculate downloads per day in that window
-571  	     activity := downloads_in_window / diff_days;
-572  	     return activity;
-573  
-574  	 end;
-575  
-576  
-577  	 -- f6. proportionGPL -----------------------------------
-578  
-579  	 function proportionGPL(
-580  	     subject_in in varchar default null
-581  	 ) return number
-582  	 as
-583  	     dummy int := 0;
-584  	     prop_gpl number(4, 2);
-585  	 begin
-586  
-587  	     -- If no input, get prop for whole database
-588  	     if subject_in is null then
-589  		 select sum(case when sw.name = 'GPL-3.0' then 1 else 0 end) / count(*)
-590  		 into prop_gpl
-591  		 from software_license sw, dataset d
-592  		 where sw.sw_lic_ID = d.sw_lic_ID;
-593  		 return prop_gpl;
-594  
-595  	     -- Prop by subject
-596  	     elsif subject_in is not null then
-597  
-598  		 -- Check whether subject is in subjects table
-599  		 begin
-600  		     select count(*)
-601  		     into dummy
-602  		     from subjects
-603  		     where subject = subject_in;
-604  		 exception
-605  		     when no_data_found then
-606  			 dummy := 0;
-607  		 end;
-608  
-609  		 -- If dummy is 1 (subject exists), run function and return
-610  		 if dummy >= 1 then
-611  		     select sum(case when sw.name = 'GPL-3.0' then 1 else 0 end) / count(*)
-612  		     into prop_gpl
-613  		     from software_license sw, dataset d, subjects s
-614  		     where s.ds_ID = d.ds_ID
-615  			 and sw.sw_lic_ID = d.sw_lic_ID
-616  			 and subject_in = s.subject;
-617  		     return prop_gpl;
-618  
-619  		 -- If dummy is 0, (no subject), throw error
-620  		 elsif dummy = 0 then
-621  		     raise_application_error(
-622  			 -20001,
-623  			 'Subject not found in Dataverse.'
-624  		     );
-625  		 end if;
-626  
-627  	     end if;
-628  	 end;
-629  
-630  
-631  	 -- f7. fundingImpact --------------------------------------
-632  
-633  	 function fundingImpact(
-634  	     grant_id_in in int default null,
-635  	     agency_name_in in varchar default null,
-636  	     metric in varchar default null
-637  	 ) return varchar
-638  	 as
-639  	     row_check int;
-640  	     conditions varchar(1000);
-641  	     query varchar(1000);
-642  	     result int;
-643  	 begin
-644  
-645  	     -- Make sure is either a grant id or name input
-646  	     if grant_id_in is null and agency_name_in is null then
-647  		 raise_application_error(
-648  		     -20001,
-649  		     'Please provide either a grant ID or a funding agency name.'
-650  		 );
-651  	     end if;
+519  	     -- f2. --------------------------------------------------------
+520  	     -- check if the hash of the provided password matches the
+521  	     -- hash stored in the registered_user table
+522  	     -- hashed using SHA-256
+523  	     FUNCTION userLoginAttempt(
+524  		     user_ID IN int DEFAULT -1,
+525  		     password IN CHAR
+526  	     ) RETURN number
+527  	     AS
+528  		     old_hash CHAR(64);
+529  		     new_hash CHAR(64);
+530  		     user_count number := 0;
+531  	     BEGIN
+532  		     -- verify that requested user exists
+533  		     SELECT COUNT(*)
+534  			     INTO user_count
+535  		     FROM registered_user
+536  		     WHERE ru_ID=user_ID;
+537  		     IF user_count != 1 THEN
+538  			     RETURN 0; -- No such user exists
+539  		     END IF;
+540  
+541  		     -- hash the password provided to this function
+542  		     SELECT STANDARD_HASH(RTRIM(password), 'SHA256')
+543  			     INTO new_hash
+544  			     FROM dual;
+545  		     SELECT pw_hash
+546  			     INTO old_hash
+547  			     FROM registered_user
+548  		     WHERE ru_ID=user_ID;
+549  		     IF new_hash = old_hash THEN
+550  			     RETURN 1; -- passwords match, successful login
+551  		     ELSE
+552  			     RETURN 0; -- unsuccessful login
+553  		     END IF;
+554  	     END;
+555  
+556  	     -- f3. -------------------------------------------------------
+557  	     -- If the given user exists within registered_user
+558  	     -- randomly generate a new password that is alphanumeric
+559  	     -- and 8 characters long. Verify that it does not match the hash
+560  	     -- of the previous password. Set this new hash within registered_user
+561  	     -- and return the new password value.
+562  	     FUNCTION generateNewPassword(
+563  		     user_ID IN int DEFAULT -1
+564  	     ) RETURN CHAR
+565  	     AS
+566  		     user_count number := 0;
+567  		     old_hash CHAR(64);
+568  		     new_pw CHAR(8);
+569  		     new_pw_hash CHAR(64);
+570  	     BEGIN
+571  		     -- Check for existence of said user
+572  		     SELECT COUNT(*)
+573  			     INTO user_count
+574  		     FROM registered_user
+575  		     WHERE ru_ID=user_ID;
+576  		     IF user_count <> 1 THEN
+577  			     RAISE_APPLICATION_ERROR(-20500, 'User does not exist');
+578  		     END IF;
+579  
+580  		     -- Generate new random password and check against previous hash
+581  		     new_pw := DBMS_RANDOM.STRING('x', 8);
+582  		     SELECT STANDARD_HASH(RTRIM(new_pw), 'SHA256')
+583  			     INTO new_pw_hash
+584  			     FROM dual;
+585  		     SELECT pw_hash
+586  			     INTO old_hash
+587  			     FROM registered_user
+588  			     WHERE ru_ID=user_ID;
+589  		     WHILE old_hash = new_pw_hash
+590  		     LOOP
+591  			     new_pw := DBMS_RANDOM.STRING('x', 8);
+592  		     SELECT STANDARD_HASH(RTRIM(new_pw), 'SHA256')
+593  			     INTO new_pw_hash
+594  			     FROM dual;
+595  		     END LOOP;
+596  		     RETURN new_pw;
+597  	     END;
+598  
+599  	     -- f4. -------------------------------------------------------
+600  	     -- Split the searchString into tokens around whitespace.
+601  	     -- Check through all Collection, Dataset, File, Publication, and Author
+602  	     -- records to determine if a direct match is found. Return matching tuples
+603  	     FUNCTION search(
+604  		     searchString IN VARCHAR
+605  	     ) RETURN strings_t
+606  	     AS
+607  		     match_count int;
+608  		     start_index NUMBER := 1;
+609  		     end_index NUMBER;
+610  		     item VARCHAR2(255);
+611  		     -- default value is empty collection???
+612  		     items strings_t := strings_t();
+613  	     BEGIN
+614  		     LOOP
+615  			     end_index := INSTR(searchString, ',', start_index);
+616  			     IF end_index = 0 THEN
+617  				     item := SUBSTR(searchString, start_index);
+618  			     -- misses the last item for now. Copy over after testing
+619  			     FOR t IN (SELECT owner, table_name, column_name
+620  				     FROM all_tab_columns
+621  			     WHERE owner <> 'SYS' AND data_type LIKE '%CHAR%')
+622  			     LOOP
+623  
+624  			     EXECUTE IMMEDIATE
+625  			     'SELECT COUNT(*) FROM ' || t.owner || '.' || t.table_name ||
+626  			     ' WHERE ' || t.column_name || ' LIKE ''%' || item || '%'''
+627  			     INTO match_count;
+628  
+629  			     IF match_count > 0 THEN
+630  				items.EXTEND;
+631  				items(items.LAST) := '' || match_count || ' matches for ' || item ||
+632  				' found in ' || t.table_name || '.' || t.column_name || '';
+633  				match_count := 0;
+634  			     END IF;
+635  			     END LOOP;
+636  				     RETURN items;
+637  			     END IF;
+638  
+639  			     item := SUBSTR(searchString, start_index, end_index - start_index);
+640  			     -- Process item here
+641  		     -- Find all non-system table.column with text datatype
+642  			     FOR t IN (SELECT owner, table_name, column_name
+643  				     FROM all_tab_columns
+644  				     WHERE owner <> 'SYS' AND data_type LIKE '%CHAR%')
+645  				     LOOP
+646  
+647  				     -- Select tuples that contain the keyword within a text field
+648  				     EXECUTE IMMEDIATE
+649  				     'SELECT COUNT(*) FROM ' || t.owner || '.' ||  t.table_name ||
+650  				     ' WHERE ' || t.column_name || ' LIKE ''%' || item || '%'''
+651  				     INTO match_count;
 652  
-653  	     -- Metric input can either be publications or downloads
-654  	     if metric not in ('publications', 'downloads') then
-655  		 raise_application_error(
-656  		     -20002,
-657  		     'Please provide a metric as either "publications" or "downloads".'
-658  		 );
-659  	     end if;
-660  
-661  	     -- If both agency id and grant number are used, make sure they coincide
-662  	     if grant_id_in is not null and agency_name_in is not null then
-663  		 select count(*)
-664  		 into row_check
-665  		 from dataset d, funds f, funding_agency fa
-666  		 where d.ds_id = f.ds_ID
-667  		     and f.agency_ID = fa.agency_ID
-668  		     and f.grant_ID = grant_id_in
-669  		     and fa.name = agency_name_in;
-670  		 if row_check = 0 then
-671  		     raise_application_error(-20003, 'No records found.');
-672  		 end if;
-673  	     end if;
-674  
-675  	     -- Conditions based on inputs to use in query
-676  	     conditions := '';
-677  
-678  	     if grant_id_in is not null then
-679  		 conditions := conditions || ' and f.grant_ID = ''' || grant_id_in || '''';
-680  	     end if;
-681  
-682  	     if agency_name_in is not null then
-683  		 conditions := conditions || ' and fa.name = ''' || agency_name_in || '''';
-684  	     end if;
+653  				     -- When we find match tuples, append them to the items text table
+654  				     IF match_count > 0 THEN
+655  					     items.EXTEND;
+656  					     items(items.LAST) := '' || match_count || ' matches for ' || item ||
+657  					     ' found in ' || t.table_name || '.' || t.column_name || '';
+658  					     match_count := 0;
+659  				     END IF;
+660  				     END LOOP;
+661  
+662  		     --items.EXTEND;
+663  		     --items(items.LAST) := REPLACE(REGEXP_REPLACE(item, '\s'), CHR(0));
+664  
+665  			     start_index := end_index + 1;
+666  		     END LOOP;
+667  		     RETURN items;
+668  	     END;
+669  
+670  
+671  	 -- f5. datasetActivity ---------------------------------------
+672  
+673  	 function datasetActivity(
+674  		 id in varchar default null,
+675  		 start_date in date default null,
+676  		 end_date in date default null
+677  	 ) return number
+678  	 as
+679  	     start_timestamp timestamp;
+680  	     end_timestamp timestamp;
+681  	     diff_days number;
+682  	     downloads_in_window int;
+683  	     activity number(6, 3);
+684  	 begin
 685  
-686  	     -- If metric is publications, create query
-687  	     if metric = 'publications' then
-688  
-689  		 query :=
-690  		     'select count(*)
-691  		     from dataset d, publication p, funds f, funding_agency fa
-692  		     where d.ds_ID = p.ds_ID
-693  			 and d.ds_ID = f.ds_ID
-694  			 and fa.agency_ID = f.agency_ID
-695  			 ' || conditions;
-696  
-697  	     -- If metric is downloads, create query
-698  	     elsif metric = 'downloads' then
-699  
-700  		 query :=
-701  		     'select sum(d.file_downloads)
-702  		     from dataset d, funds f, funding_agency fa
-703  		     where d.ds_ID = f.ds_ID
-704  			 and f.agency_ID = fa.agency_ID
-705  			 ' || conditions;
-706  
-707  	     end if;
-708  
-709  	     -- Execute query
-710  	     execute immediate query into result;
-711  	     return result;
+686  	     -- Make sure id is provided
+687  	     if id is null then
+688  		 raise_application_error(-20001, 'Please provide a dataset ID.');
+689  	     end if;
+690  
+691  	     -- If no start date, use pub_date from dataset, else just convert to timestamp
+692  	     if start_date is null then
+693  		 select cast(pub_date as timestamp)
+694  		 into start_timestamp
+695  		 from dataset
+696  		 where ds_ID = id;
+697  	     else
+698  		 start_timestamp := cast(start_date as timestamp);
+699  	     end if;
+700  
+701  	     -- If no end date, use current timestamp
+702  	     if end_date is null then
+703  		 select current_timestamp
+704  		 into end_timestamp
+705  		 from dual;
+706  	     else
+707  		 end_timestamp := cast(end_date as timestamp);
+708  	     end if;
+709  
+710  	     -- Calculate how many days are between start and end
+711  	     diff_days := extract(day from (end_timestamp - start_timestamp));
 712  
-713  	 end;
-714  
-715  
-716  	 -- f8. totalSize -------------------------------------------------
-717  
-718  	 function totalSize(
-719  	     scope in varchar default null,
-720  	     id in varchar default null
-721  	 ) return number
-722  	 as
-723  	     TOTALSIZE number;
-724  	     IDCHECK int := 0;
-725  	 begin
-726  	     -- Checking bad inputs --------
-727  	     -- if user gives id but not scope, throw error
-728  	     if scope is null and id is not null then
-729  		 raise_application_error(
-730  		     -20001,
-731  		     'If scope is specified, id must be provided.'
-732  		 );
-733  
-734  	     -- if scope but no id, also error
-735  	     elsif scope is not null and id is null then
-736  		 raise_application_error(
-737  		     -20001,
-738  		     'If id is specified, scope must be provided.'
-739  		 );
-740  
-741  	     -- if no inputs, get filesize of whole dataverse
-742  	     elsif scope is null and id is null then
-743  		 select sum(filesize)
-744  		 into TOTALSIZE
-745  		 from files;
-746  		 return TOTALSIZE;
-747  
-748  	     -- Check that scope input is one of three available options
-749  	     elsif scope not in ('dataset', 'collection', 'dataverse') then
-750  		 raise_application_error(
-751  		     -20001,
-752  		     'Input for scope must be dataset, collection, or dataverse'
-753  		 );
-754  	     end if;
-755  
-756  
-757  	     -- Start calculations based on scope now --------
-758  	     -- dataset
-759  	     if scope = 'dataset' then
-760  
-761  		 -- Save a 1/0 value for whether the id exists
-762  		 begin
-763  		     select 1
-764  		     into IDCHECK
-765  		     from dataset
-766  		     where ds_ID = id;
-767  
-768  		 -- include exception to set IDCHECK to 0 if nothing found
-769  		 exception
-770  		     when NO_DATA_FOUND then
-771  			 IDCHECK := 0;
-772  		 end;
-773  
-774  		 -- if id exists, calculate total size
-775  		 if IDCHECK = 1 then
-776  		     select sum(filesize)
-777  		     into TOTALSIZE
-778  		     from files
-779  		     where ds_ID = id;
+713  	     -- Get downloads in that time
+714  	     select count(*)
+715  	     into downloads_in_window
+716  	     from dataset_download
+717  	     where ds_ID = id
+718  		 and timestamp > start_timestamp
+719  		 and timestamp <= end_timestamp;
+720  
+721  	     -- Calculate downloads per day in that window
+722  	     activity := downloads_in_window / diff_days;
+723  	     return activity;
+724  
+725  	 end;
+726  
+727  
+728  	 -- f6. proportionGPL -----------------------------------
+729  
+730  	 function proportionGPL(
+731  	     subject_in in varchar default null
+732  	 ) return number
+733  	 as
+734  	     dummy int := 0;
+735  	     prop_gpl number(4, 2);
+736  	 begin
+737  
+738  	     -- If no input, get prop for whole database
+739  	     if subject_in is null then
+740  		 select sum(case when sw.name = 'GPL-3.0' then 1 else 0 end) / count(*)
+741  		 into prop_gpl
+742  		 from software_license sw, dataset d
+743  		 where sw.sw_lic_ID = d.sw_lic_ID;
+744  		 return prop_gpl;
+745  
+746  	     -- Prop by subject
+747  	     elsif subject_in is not null then
+748  
+749  		 -- Check whether subject is in subjects table
+750  		 begin
+751  		     select count(*)
+752  		     into dummy
+753  		     from subjects
+754  		     where subject = subject_in;
+755  		 exception
+756  		     when no_data_found then
+757  			 dummy := 0;
+758  		 end;
+759  
+760  		 -- If dummy is 1 (subject exists), run function and return
+761  		 if dummy >= 1 then
+762  		     select sum(case when sw.name = 'GPL-3.0' then 1 else 0 end) / count(*)
+763  		     into prop_gpl
+764  		     from software_license sw, dataset d, subjects s
+765  		     where s.ds_ID = d.ds_ID
+766  			 and sw.sw_lic_ID = d.sw_lic_ID
+767  			 and subject_in = s.subject;
+768  		     return prop_gpl;
+769  
+770  		 -- If dummy is 0, (no subject), throw error
+771  		 elsif dummy = 0 then
+772  		     raise_application_error(
+773  			 -20001,
+774  			 'Subject not found in Dataverse.'
+775  		     );
+776  		 end if;
+777  
+778  	     end if;
+779  	 end;
 780  
-781  		 -- if id does not exist, throw error
-782  		 elsif IDCHECK = 0 then
-783  		     raise_application_error(
-784  			 -20001,
-785  			 'ds_ID is not found in dataset table.'
-786  		     );
-787  
-788  		 end if;
-789  	     end if;
-790  
-791  	     -- collection
-792  	     if scope = 'collection' then
-793  		 begin
-794  		     select 1
-795  		     into IDCHECK
-796  		     from collection
-797  		     where col_ID = id;
-798  		 exception
-799  		     when NO_DATA_FOUND then
-800  			 IDCHECK := 0;
-801  		 end;
-802  
-803  		 if IDCHECK = 1 then
-804  		     select sum(f.filesize)
-805  		     into TOTALSIZE
-806  		     from files f, dataset d, collection c
-807  		     where c.col_ID = d.col_ID
-808  			 and d.ds_ID = f.ds_ID
-809  			 and c.col_ID = id;
-810  
-811  		 elsif IDCHECK = 0 then
-812  		     raise_application_error(
-813  			 -20001,
-814  			 'col_ID is not found in collection table.'
-815  		     );
-816  
-817  		 end if;
-818  	     end if;
-819  
-820  	     -- dataverse
-821  	     if scope = 'dataverse' then
-822  		 begin
-823  		     select 1
-824  		     into IDCHECK
-825  		     from root_dataverse
-826  		     where root_ID = id;
-827  		 exception
-828  		     when NO_DATA_FOUND then
-829  			 IDCHECK := 0;
-830  		 end;
-831  
-832  		 if IDCHECK = 1 then
-833  		     select sum(f.filesize)
-834  		     into TOTALSIZE
-835  		     from files f, dataset d, collection c, root_dataverse r
-836  		     where f.ds_ID = d.ds_ID
-837  			 and d.col_ID = c.col_ID
-838  			 and c.root_ID = r.root_ID
-839  			 and r.root_ID = id;
-840  
-841  		 elsif IDCHECK = 0 then
-842  		     raise_application_error(
-843  			 -20001,
-844  			 'root_ID is not found in root_dataverse table.'
-845  		     );
-846  
-847  		 end if;
-848  	     end if;
-849  
-850  	     return TOTALSIZE;
-851  	 end;
-852  
-853  
-854  end dataverse;
-855  /
+781  
+782  	 -- f7. fundingImpact --------------------------------------
+783  
+784  	 function fundingImpact(
+785  	     grant_id_in in int default null,
+786  	     agency_name_in in varchar default null,
+787  	     metric in varchar default null
+788  	 ) return varchar
+789  	 as
+790  	     row_check int;
+791  	     conditions varchar(1000);
+792  	     query varchar(1000);
+793  	     result int;
+794  	 begin
+795  
+796  	     -- Make sure is either a grant id or name input
+797  	     if grant_id_in is null and agency_name_in is null then
+798  		 raise_application_error(
+799  		     -20001,
+800  		     'Please provide either a grant ID or a funding agency name.'
+801  		 );
+802  	     end if;
+803  
+804  	     -- Metric input can either be publications or downloads
+805  	     if metric not in ('publications', 'downloads') then
+806  		 raise_application_error(
+807  		     -20002,
+808  		     'Please provide a metric as either "publications" or "downloads".'
+809  		 );
+810  	     end if;
+811  
+812  	     -- If both agency id and grant number are used, make sure they coincide
+813  	     if grant_id_in is not null and agency_name_in is not null then
+814  		 select count(*)
+815  		 into row_check
+816  		 from dataset d, funds f, funding_agency fa
+817  		 where d.ds_id = f.ds_ID
+818  		     and f.agency_ID = fa.agency_ID
+819  		     and f.grant_ID = grant_id_in
+820  		     and fa.name = agency_name_in;
+821  		 if row_check = 0 then
+822  		     raise_application_error(-20003, 'No records found.');
+823  		 end if;
+824  	     end if;
+825  
+826  	     -- Conditions based on inputs to use in query
+827  	     conditions := '';
+828  
+829  	     if grant_id_in is not null then
+830  		 conditions := conditions || ' and f.grant_ID = ''' || grant_id_in || '''';
+831  	     end if;
+832  
+833  	     if agency_name_in is not null then
+834  		 conditions := conditions || ' and fa.name = ''' || agency_name_in || '''';
+835  	     end if;
+836  
+837  	     -- If metric is publications, create query
+838  	     if metric = 'publications' then
+839  
+840  		 query :=
+841  		     'select count(*)
+842  		     from dataset d, publication p, funds f, funding_agency fa
+843  		     where d.ds_ID = p.ds_ID
+844  			 and d.ds_ID = f.ds_ID
+845  			 and fa.agency_ID = f.agency_ID
+846  			 ' || conditions;
+847  
+848  	     -- If metric is downloads, create query
+849  	     elsif metric = 'downloads' then
+850  
+851  		 query :=
+852  		     'select sum(d.file_downloads)
+853  		     from dataset d, funds f, funding_agency fa
+854  		     where d.ds_ID = f.ds_ID
+855  			 and f.agency_ID = fa.agency_ID
+856  			 ' || conditions;
+857  
+858  	     end if;
+859  
+860  	     -- Execute query
+861  	     execute immediate query into result;
+862  	     return result;
+863  
+864  	 end;
+865  
+866  
+867  	 -- f8. totalSize -------------------------------------------------
+868  
+869  	 function totalSize(
+870  	     scope in varchar default null,
+871  	     id in varchar default null
+872  	 ) return number
+873  	 as
+874  	     TOTALSIZE number;
+875  	     IDCHECK int := 0;
+876  	 begin
+877  	     -- Checking bad inputs --------
+878  	     -- if user gives id but not scope, throw error
+879  	     if scope is null and id is not null then
+880  		 raise_application_error(
+881  		     -20001,
+882  		     'If scope is specified, id must be provided.'
+883  		 );
+884  
+885  	     -- if scope but no id, also error
+886  	     elsif scope is not null and id is null then
+887  		 raise_application_error(
+888  		     -20001,
+889  		     'If id is specified, scope must be provided.'
+890  		 );
+891  
+892  	     -- if no inputs, get filesize of whole dataverse
+893  	     elsif scope is null and id is null then
+894  		 select sum(filesize)
+895  		 into TOTALSIZE
+896  		 from files;
+897  		 return TOTALSIZE;
+898  
+899  	     -- Check that scope input is one of three available options
+900  	     elsif scope not in ('dataset', 'collection', 'dataverse') then
+901  		 raise_application_error(
+902  		     -20001,
+903  		     'Input for scope must be dataset, collection, or dataverse'
+904  		 );
+905  	     end if;
+906  
+907  
+908  	     -- Start calculations based on scope now --------
+909  	     -- dataset
+910  	     if scope = 'dataset' then
+911  
+912  		 -- Save a 1/0 value for whether the id exists
+913  		 begin
+914  		     select 1
+915  		     into IDCHECK
+916  		     from dataset
+917  		     where ds_ID = id;
+918  
+919  		 -- include exception to set IDCHECK to 0 if nothing found
+920  		 exception
+921  		     when NO_DATA_FOUND then
+922  			 IDCHECK := 0;
+923  		 end;
+924  
+925  		 -- if id exists, calculate total size
+926  		 if IDCHECK = 1 then
+927  		     select sum(filesize)
+928  		     into TOTALSIZE
+929  		     from files
+930  		     where ds_ID = id;
+931  
+932  		 -- if id does not exist, throw error
+933  		 elsif IDCHECK = 0 then
+934  		     raise_application_error(
+935  			 -20001,
+936  			 'ds_ID is not found in dataset table.'
+937  		     );
+938  
+939  		 end if;
+940  	     end if;
+941  
+942  	     -- collection
+943  	     if scope = 'collection' then
+944  		 begin
+945  		     select 1
+946  		     into IDCHECK
+947  		     from collection
+948  		     where col_ID = id;
+949  		 exception
+950  		     when NO_DATA_FOUND then
+951  			 IDCHECK := 0;
+952  		 end;
+953  
+954  		 if IDCHECK = 1 then
+955  		     select sum(f.filesize)
+956  		     into TOTALSIZE
+957  		     from files f, dataset d, collection c
+958  		     where c.col_ID = d.col_ID
+959  			 and d.ds_ID = f.ds_ID
+960  			 and c.col_ID = id;
+961  
+962  		 elsif IDCHECK = 0 then
+963  		     raise_application_error(
+964  			 -20001,
+965  			 'col_ID is not found in collection table.'
+966  		     );
+967  
+968  		 end if;
+969  	     end if;
+970  
+971  	     -- dataverse
+972  	     if scope = 'dataverse' then
+973  		 begin
+974  		     select 1
+975  		     into IDCHECK
+976  		     from root_dataverse
+977  		     where root_ID = id;
+978  		 exception
+979  		     when NO_DATA_FOUND then
+980  			 IDCHECK := 0;
+981  		 end;
+982  
+983  		 if IDCHECK = 1 then
+984  		     select sum(f.filesize)
+985  		     into TOTALSIZE
+986  		     from files f, dataset d, collection c, root_dataverse r
+987  		     where f.ds_ID = d.ds_ID
+988  			 and d.col_ID = c.col_ID
+989  			 and c.root_ID = r.root_ID
+990  			 and r.root_ID = id;
+991  
+992  		 elsif IDCHECK = 0 then
+993  		     raise_application_error(
+994  			 -20001,
+995  			 'root_ID is not found in root_dataverse table.'
+996  		     );
+997  
+998  		 end if;
+999  	     end if;
+1000  
+1001  	      return TOTALSIZE;
+1002  	  end;
+1003  
+1004  
+1005  end dataverse;
+1006  /
 
-Warning: Package Body created with compilation errors.
+Package body created.
 
 SQL> 
 SQL> show errors
-Errors for PACKAGE BODY DATAVERSE:
-
-LINE/COL ERROR                                                                  
--------- -----------------------------------------------------------------      
-41/11    PLS-00323: subprogram or cursor 'USERLOGINATTEMPT' is declared in      
-         a package specification and must be defined in the package body        
-                                                                                
-46/11    PLS-00323: subprogram or cursor 'GENERATENEWPASSWORD' is declared      
-         in a package specification and must be defined in the package          
-         body                                                                   
-                                                                                
-50/11    PLS-00323: subprogram or cursor 'SEARCH' is declared in a package      
-         specification and must be defined in the package body                  
-                                                                                
-67/4     PL/SQL: SQL Statement ignored                                          
-
-LINE/COL ERROR                                                                  
--------- -----------------------------------------------------------------      
-67/16    PL/SQL: ORA-00942: table or view does not exist                        
-98/5     PL/SQL: SQL Statement ignored                                          
-100/10   PL/SQL: ORA-00942: table or view does not exist                        
-103/4    PL/SQL: SQL Statement ignored                                          
-103/16   PL/SQL: ORA-00942: table or view does not exist                        
-106/5    PL/SQL: SQL Statement ignored                                          
-108/10   PL/SQL: ORA-00942: table or view does not exist                        
-111/5    PL/SQL: SQL Statement ignored                                          
-111/12   PL/SQL: ORA-00942: table or view does not exist                        
+No errors.
 SQL> 
 SQL> commit;
 
