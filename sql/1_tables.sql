@@ -166,86 +166,98 @@ create table author (
 
 create table affiliation (
 	int_ID int references institution (int_ID),
-	ru_ID int references registered_user (ru_ID)
+	ru_ID int references registered_user (ru_ID),
+	primary key (int_ID, ru_ID)
 );
 
 create table publication (
-	pub_ID int primary key,
+	pub_ID int,
 	ds_ID varchar(50) references dataset (ds_ID),
 	citation varchar(750),
-	url varchar(250)
+	url varchar(250),
+	primary key (pub_ID, ds_ID)
 )
 cluster ds_cluster(ds_ID);
 
 create table produce (
 	auth_ID int references author (auth_ID),
-	pub_ID int references publication (pub_ID)
+	pub_ID int references publication (pub_ID),
+	primary key (auth_ID, pub_ID)
 );
 
 create table file_upload (
 	auth_ID int references author (auth_ID),
 	file_ID varchar(50) references files (file_ID),
-	timestamp timestamp
+	timestamp timestamp,
+	primary key (file_ID, auth_ID, timestamp)
 );
 
 create table file_download (
 	file_ID varchar(50) references files (file_ID),
 	u_ID int references users (u_ID),
-	timestamp timestamp
+	timestamp timestamp,
+	primary key (file_ID, ud_ID, timestamp)
 );
 
 create table dataset_upload (
 	ds_ID varchar(50) references dataset (ds_ID),
 	auth_ID int references author (auth_ID),
-	timestamp timestamp
+	timestamp timestamp,
+	primary key (ds_ID, auth_ID, timestamp)
 )
 cluster ds_cluster(ds_ID);
 
 create table dataset_download (
 	ds_ID varchar(50) references dataset (ds_ID),
 	u_ID int references users (u_ID),
-	timestamp timestamp
+	timestamp timestamp,
+	primary key (ds_ID, ud_ID, timestamp)
 )
 cluster ds_cluster(ds_ID);
 
 create table keywords (
 	ds_ID varchar(50) references dataset (ds_ID),
-	keyword varchar(100)
+	keyword varchar(100),
+	primary key (ds_ID, keyword)
 )
 cluster ds_cluster(ds_ID);
 
 create table funds (
 	grant_ID int references grants (grant_ID),
 	ds_ID varchar(50) references dataset (ds_ID),
-	agency_ID int,
+	agency_ID int references funding_agency(agency_ID),
 	primary key (grant_ID, ds_ID, agency_ID)
 )
 cluster ds_cluster(ds_ID);
 
 create table admin (
 	ru_ID int references registered_user (ru_ID),
-	start_date date
+	start_date date,
+	primary key (ru_ID, start_date)
 );
 
 create table manage_dataverse (
 	ru_ID int references registered_user (ru_ID),
 	root_ID int references root_dataverse (root_ID),
 	timestamp timestamp,
-	description varchar(1000)
+	description varchar(1000),
+	primary key (ru_ID, timestamp)
 );
 
 create table manage_collection (
 	col_ID int references collection (col_ID),
 	ru_ID int references registered_user (ru_ID),
 	timestamp timestamp,
-	description varchar(500)
+	description varchar(500),
+	primary key (ru_ID, col_ID, timestamp)
 );
 
 create table contact (
 	u_ID int references users (u_ID),
 	ds_ID varchar(50) references dataset (ds_ID),
 	timestamp timestamp,
-	message varchar(500)
+	message varchar(500),
+	primary key (u_ID, ds_ID, timestamp)
 )
 cluster ds_cluster(ds_ID);
 
@@ -254,9 +266,14 @@ create table analyzes (
 	ds_ID varchar(50) references dataset (ds_ID),
 	title varchar(500),
 	description varchar(1000),
-	repo_url varchar(250)
+	repo_url varchar(250),
+	primary key (sw_ID, ds_ID)
 )
 cluster ds_cluster(ds_ID);
+
+create table keyword_count (keyword VARCHAR(100), count_of number); -- used in keywordSummary PROCEDURE
+
+create table empty_files AS SELECT * FROM files; -- used in dumpEmptyFiles PROCEDURE
 		
 
 

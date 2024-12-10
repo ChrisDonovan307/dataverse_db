@@ -53,6 +53,15 @@ select dataverse.fundingDistribution(null, 9, null, 60) from dual;
  SELECT userLoginAttempt(777, 'PASSWORD') FROM dual; -- should return 1
  SELECT userLoginAttempt(777, 'p@ssword') FROM dual; -- should return 0 -- password do not match
  SELECT userLoginAttempt(666, 'password') FROM dual; -- should return 0 -- no such user exists
+ 
+-- f3. -------------------------------------------------------------
+ SELECT generateNewPassword(579) FROM dual; -- expect a random alphanumeric string
+ 
+-- f4. -------------------------------------------------------------
+-- random keywords and author name from somewhere within this dataverse
+-- expect to receive a list of locations with counted REFERENCES
+-- for each item
+SELECT search('brain, BLAM, Katz') FROM dual; 
 
 -- f5. --------------------------------------------------------
 
@@ -113,6 +122,42 @@ select dataverse.totalSize('dataset', 1) from dual;
 select dataverse.totalSize('zzzzzz', 1) from dual;
 
 
+-- p1. --------------------------------------------------------------
+
+-- p2. --------------------------------------------------------------
+
+-- p3. --------------------------------------------------------------
+ -- dumpEmptyFiles
+ DELETE FROM empty_files; -- purge any previous records
+ EXEC dumpEmptyFiles;
+ SELECT COUNT(*) FROM empty_files; -- 12 seems to be the correct NUMBER
+ SELECT COUNT(*) FROM files WHERE filesize=0; -- agrees with 12
+ 
+-- p4. --------------------------------------------------------------
+ -- keywordSummary
+ SELECT * FROM keywords WHERE ds_ID='doi:10.7281/T1/0EYOMQ'; -- irrigation, Noah-MP, data assimilation, vegetation, soil moisture
+ EXEC keywordSummary('doi:10.7281/T1/0EYOMQ');
+ SELECT COUNT(*) FROM keyword_count; -- returns 5 if only the previous dataset has been summarized
+ SELECT count_of FROM keyword_count WHERE keyword='irrigation'; -- returns 3
+
+-- p5. --------------------------------------------------------------
+ -- cleanKeywords
+SELECT * FROM keywords FETCH FIRST 3 ROWS ONLY; -- View the previous state
+DECLARE
+	temp strings_t := strings_t();
+BEGIN
+	temp.extend;
+	temp(1) := 'Seebeck coefficient';
+	temp.extend;
+	temp(2) := 'all-polymer thermoelectric';
+	temp.extend;
+	temp(3) := 'electron mobility';
+	
+	cleanKeywords('SUCCESSFUL OVERWRITE', temp);
+END;
+/
+ SELECT * FROM keywords FETCH FIRST 3 ROWS ONLY; -- Note that two of the three previous rows are deleted to prevent duplicate primary keys
+
 -- p6. --------------------------------------------------------------
 
 -- Bad input errors
@@ -166,3 +211,17 @@ begin
 end;
 /
 
+-- t1. ---------------------------------------------------------------
+ -- hashing test
+ -- create a fake user with corresponding entry in registered user
+ -- select pw_hash for that user to ensure that hashing has occured
+ INSERT INTO users(u_ID, email) VALUES(99999, 'ann@nom.com');
+ INSERT INTO registered_user(ru_ID, u_ID, name, privilege, pw_hash) VALUES (99999, 99999, 'Ann Nominous', 'write', '123fakestreet');
+ SELECT * FROM registered_user WHERE ru_ID = 99999;
+
+-- t6-9. -------------------------------------------------------------
+-- timestamp test
+-- create a fake download entry. file_ID and u_ID must be valid entries in files and users respectively
+ INSERT INTO file_download(file_ID, u_ID) VALUES('doi:10.7281/T1/L4QB1Z/1LIJI8', 580);
+ -- select all columns of files downloaded by user 580
+ SELECT * FROM file_download WHERE u_ID = 580;
