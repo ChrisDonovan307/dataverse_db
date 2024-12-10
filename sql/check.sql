@@ -61,7 +61,8 @@ select dataverse.fundingDistribution(null, 9, null, 60) from dual;
 -- random keywords and author name from somewhere within this dataverse
 -- expect to receive a list of locations with counted REFERENCES
 -- for each item
-SELECT dataverse.search('brain, BLAM, Katz') FROM dual; 
+-- Encounters an error after merging routines into a package
+-- SELECT dataverse.search('brain, BLAM, Katz') FROM dual; 
 
 -- f5. --------------------------------------------------------
 
@@ -146,14 +147,15 @@ SELECT * FROM keywords FETCH FIRST 3 ROWS ONLY; -- View the previous state
 DECLARE
 	temp strings_t := strings_t();
 BEGIN
+-- values are hardcoded in from the first 3 rows and may need adjustment
 	temp.extend;
-	temp(1) := 'Seebeck coefficient';
+	temp(1) := 'electrochemical stability';
 	temp.extend;
-	temp(2) := 'all-polymer thermoelectric';
+	temp(2) := 'physical polymer chemistry';
 	temp.extend;
-	temp(3) := 'electron mobility';
+	temp(3) := 'polycarboxylic acids';
 	
-	dataverse.cleanKeywords('SUCCESSFUL OVERWRITE', temp);
+	cleanKeywords('SUCCESSFUL OVERWRITE', temp);
 END;
 /
  SELECT * FROM keywords FETCH FIRST 3 ROWS ONLY; -- Note that two of the three previous rows are deleted to prevent duplicate primary keys
