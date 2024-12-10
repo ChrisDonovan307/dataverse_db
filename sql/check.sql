@@ -218,7 +218,7 @@ end;
  -- create a fake user with corresponding entry in registered user
  -- select pw_hash for that user to ensure that hashing has occured
  INSERT INTO users(u_ID, email) VALUES(99999, 'ann@nom.com');
- INSERT INTO registered_user(ru_ID, u_ID, name, privilege, pw_hash) VALUES (99999, 99999, 'Ann Nominous', 'write', '123fakestreet');
+ INSERT INTO registered_user(ru_ID, u_ID, name, pw_hash) VALUES (99999, 99999, 'Ann Nominous', '123fakestreet');
  SELECT * FROM registered_user WHERE ru_ID = 99999;
 
 -- t6-9. -------------------------------------------------------------
