@@ -155,7 +155,7 @@ create table registered_user (
 	ru_ID int primary key,
 	u_ID int references users (u_id),
     name varchar(50),
-	pw_hash varchar(25)
+	pw_hash varchar2(64)
 );
 
 create table author (
