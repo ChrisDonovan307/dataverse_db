@@ -48,20 +48,20 @@ select dataverse.fundingDistribution(
 select dataverse.fundingDistribution(null, 9, null, 60) from dual;
 
 -- f2. -------------------------------------------------------------
- INSERT INTO users(u_ID, email) VALUES(777, 'no@bo.dy');
- INSERT INTO registered_user(ru_ID, u_ID, name, privilege, pw_hash) VALUES (777, 888, 'Norman nobody', 'write', 'PASSWORD');
- SELECT userLoginAttempt(777, 'PASSWORD') FROM dual; -- should return 1
- SELECT userLoginAttempt(777, 'p@ssword') FROM dual; -- should return 0 -- password do not match
- SELECT userLoginAttempt(666, 'password') FROM dual; -- should return 0 -- no such user exists
+ INSERT INTO users(u_ID, email) VALUES(7777, 'no@bo.dy');
+ INSERT INTO registered_user(ru_ID, u_ID, name, pw_hash) VALUES (8888, 7777, 'Norman nobody', 'PASSWORD');
+ SELECT dataverse.userLoginAttempt(8888, 'PASSWORD') FROM dual; -- should return 1
+ SELECT dataverse.userLoginAttempt(8888, 'p@ssword') FROM dual; -- should return 0 -- password do not match
+ SELECT dataverse.userLoginAttempt(6666, 'password') FROM dual; -- should return 0 -- no such user exists
  
 -- f3. -------------------------------------------------------------
- SELECT generateNewPassword(579) FROM dual; -- expect a random alphanumeric string
+ SELECT dataverse.generateNewPassword(579) FROM dual; -- expect a random alphanumeric string
  
 -- f4. -------------------------------------------------------------
 -- random keywords and author name from somewhere within this dataverse
 -- expect to receive a list of locations with counted REFERENCES
 -- for each item
-SELECT search('brain, BLAM, Katz') FROM dual; 
+SELECT dataverse.search('brain, BLAM, Katz') FROM dual; 
 
 -- f5. --------------------------------------------------------
 
@@ -129,14 +129,14 @@ select dataverse.totalSize('zzzzzz', 1) from dual;
 -- p3. --------------------------------------------------------------
  -- dumpEmptyFiles
  DELETE FROM empty_files; -- purge any previous records
- EXEC dumpEmptyFiles;
+ EXEC dataverse.dumpEmptyFiles;
  SELECT COUNT(*) FROM empty_files; -- 12 seems to be the correct NUMBER
  SELECT COUNT(*) FROM files WHERE filesize=0; -- agrees with 12
  
 -- p4. --------------------------------------------------------------
  -- keywordSummary
  SELECT * FROM keywords WHERE ds_ID='doi:10.7281/T1/0EYOMQ'; -- irrigation, Noah-MP, data assimilation, vegetation, soil moisture
- EXEC keywordSummary('doi:10.7281/T1/0EYOMQ');
+ EXEC dataverse.keywordSummary('doi:10.7281/T1/0EYOMQ');
  SELECT COUNT(*) FROM keyword_count; -- returns 5 if only the previous dataset has been summarized
  SELECT count_of FROM keyword_count WHERE keyword='irrigation'; -- returns 3
 
@@ -153,7 +153,7 @@ BEGIN
 	temp.extend;
 	temp(3) := 'electron mobility';
 	
-	cleanKeywords('SUCCESSFUL OVERWRITE', temp);
+	dataverse.cleanKeywords('SUCCESSFUL OVERWRITE', temp);
 END;
 /
  SELECT * FROM keywords FETCH FIRST 3 ROWS ONLY; -- Note that two of the three previous rows are deleted to prevent duplicate primary keys
