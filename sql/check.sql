@@ -225,3 +225,150 @@ end;
  INSERT INTO file_download(file_ID, u_ID) VALUES('doi:10.7281/T1/L4QB1Z/1LIJI8', 580);
  -- select all columns of files downloaded by user 580
  SELECT * FROM file_download WHERE u_ID = 580;
+
+
+-- t2. -------------------------------------------------------------
+
+-- check number of datasets in a certain collection
+select n_datasets
+from collection
+where col_ID = 1;
+
+-- Rollback point to return to
+savepoint t2;
+
+-- insert into files
+insert into dataset values (
+	'test',
+	(select col_ID from dataset where col_ID = 1 fetch first 1 row only),
+	null, 
+	null, 
+	null, 
+	null, 
+	null,
+    null,	
+	null,
+	null
+);
+
+
+-- See if it worked
+select n_datasets
+from collection
+where col_ID = 1;
+
+-- delete from files
+delete from dataset
+where ds_ID = 'test';
+
+-- See if it worked
+select n_datasets
+from collection
+where col_ID = 1;
+
+-- Rollback to before changes
+rollback to savepoint t2;
+
+
+-- t3. --------------------------------------------------------------
+
+-- check number of files in a certain dataset
+select n_files
+from dataset
+where ds_ID = 'doi:10.7281/T1/6Y08LS';
+
+-- save point
+savepoint t3;
+
+-- insert into files
+insert into files values ('test', 'doi:10.7281/T1/6Y08LS', null, null, null, null, null, null);
+
+-- See if it worked
+select n_files
+from dataset
+where ds_ID = 'doi:10.7281/T1/6Y08LS';
+
+-- delete from files
+delete from files
+where file_ID = 'test';
+
+-- See if it worked
+select n_files
+from dataset
+where ds_ID = 'doi:10.7281/T1/6Y08LS';
+
+-- Rollback
+rollback to savepoint t3;
+
+
+-- t4. --------------------------------------------------------------
+
+-- check number of files in a certain collection
+select n_files
+from collection
+where col_ID = 1;
+
+-- savepoint
+savepoint t4;
+
+-- insert into files
+insert into files values (
+	'test',
+	(select ds_ID from dataset where col_ID = 1 fetch first 1 row only),
+	null, 
+	null, 
+	null, 
+	null, 
+	null, 
+	null
+);
+
+
+-- See if it worked
+select n_files
+from collection
+where col_ID = 1;
+
+-- delete from files
+delete from files
+where file_ID = 'test';
+
+-- See if it worked
+select n_files
+from collection
+where col_ID = 1;
+
+-- Rollback
+rollback to savepoint t4;
+
+
+-- t5. ---------------------------------------------------------------
+
+-- check total_amount from a certain agency_id in funding_agency table
+select total_amount
+from funding_agency
+where agency_ID = 4;
+
+-- savepoint
+savepoint t5;
+
+-- add a record to grant table, then another to funds table
+insert into grants values (
+	999,
+	'test',
+	42
+);
+
+insert into funds values (
+	999,
+	'doi:10.7281/T10Z715B',
+	4
+);
+
+-- check total_amount for agency_ID 1 again
+select total_amount
+from funding_agency
+where agency_ID = 4;
+
+-- Rollback
+rollback to savepoint t5;

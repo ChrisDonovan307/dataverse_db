@@ -167,15 +167,14 @@ create table author (
 create table affiliation (
 	int_ID int references institution (int_ID),
 	ru_ID int references registered_user (ru_ID),
-	primary key (int_ID, ru_ID)
+    primary key (int_ID, ru_ID)
 );
 
 create table publication (
-	pub_ID int,
+	pub_ID int primary key,
 	ds_ID varchar(50) references dataset (ds_ID),
 	citation varchar(750),
-	url varchar(250),
-	primary key (pub_ID, ds_ID)
+	url varchar(250)
 )
 cluster ds_cluster(ds_ID);
 
@@ -190,7 +189,7 @@ create table file_upload (
 	auth_ID int references author (auth_ID),
 	file_ID varchar(50) references files (file_ID),
 	timestamp timestamp,
-	primary key (file_ID, auth_ID, timestamp)
+    primary key (auth_ID, file_ID, timestamp)
 );
 
 create table file_download (
@@ -204,7 +203,7 @@ create table dataset_upload (
 	ds_ID varchar(50) references dataset (ds_ID),
 	auth_ID int references author (auth_ID),
 	timestamp timestamp,
-	primary key (ds_ID, auth_ID, timestamp)
+    primary key (ds_ID, auth_ID, timestamp)
 )
 cluster ds_cluster(ds_ID);
 
@@ -212,14 +211,14 @@ create table dataset_download (
 	ds_ID varchar(50) references dataset (ds_ID),
 	u_ID int references users (u_ID),
 	timestamp timestamp,
-	primary key (ds_ID, u_ID, timestamp)
+    primary key (ds_ID, u_ID, timestamp)
 )
 cluster ds_cluster(ds_ID);
 
 create table keywords (
 	ds_ID varchar(50) references dataset (ds_ID),
 	keyword varchar(100),
-	primary key (ds_ID, keyword)
+    primary key (ds_ID, keyword)
 )
 cluster ds_cluster(ds_ID);
 
@@ -234,7 +233,7 @@ cluster ds_cluster(ds_ID);
 create table admin (
 	ru_ID int references registered_user (ru_ID),
 	start_date date,
-	primary key (ru_ID, start_date)
+    primary key (ru_ID, start_date)
 );
 
 create table manage_dataverse (
@@ -242,7 +241,7 @@ create table manage_dataverse (
 	root_ID int references root_dataverse (root_ID),
 	timestamp timestamp,
 	description varchar(1000),
-	primary key (ru_ID, timestamp)
+    primary key (ru_ID, timestamp)
 );
 
 create table manage_collection (
@@ -258,7 +257,7 @@ create table contact (
 	ds_ID varchar(50) references dataset (ds_ID),
 	timestamp timestamp,
 	message varchar(500),
-	primary key (u_ID, ds_ID, timestamp)
+    primary key (u_ID, ds_ID, timestamp)
 )
 cluster ds_cluster(ds_ID);
 
@@ -268,7 +267,7 @@ create table analyzes (
 	title varchar(500),
 	description varchar(1000),
 	repo_url varchar(250),
-	primary key (sw_ID, ds_ID)
+    primary key (sw_ID, ds_ID)
 )
 cluster ds_cluster(ds_ID);
 

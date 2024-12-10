@@ -1034,7 +1034,6 @@ reg_users <- data.frame(
   ru_id = 1:1000,
   auth_id = c(results$author$auth_id, rep(NA, 194)),
   name = c(results$author$name, str_to_title(ipsum_words(194, collapse = FALSE))),
-  privilege = sample(c('read', 'write'), 1000, replace = TRUE),
   pw_hash = paste0(
     ipsum_words(1000, collapse = FALSE),
     sample(1:9999, 1000, replace = TRUE)

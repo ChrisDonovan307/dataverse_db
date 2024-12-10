@@ -3,7 +3,7 @@ SQL>
 SQL> -- Execute scripts  -------------------------------------------
 SQL> 
 SQL> start &&1
-SQL> -- Check that package exists
+SQL> -- Check that package exists -----------------------------------
 SQL> select object_name, status
   2  from user_objects
   3  where object_type = 'PACKAGE';
@@ -15,6 +15,40 @@ STATUS
 DATAVERSE                                                                       
 VALID                                                                           
                                                                                 
+
+SQL> 
+SQL> 
+SQL> -- Check indexes -----------------------------------------------
+SQL> 
+SQL> select index_name from user_indexes;
+
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+DS_CLUSTER_IDX                                                                  
+SYS_C00132967                                                                   
+SYS_C00132968                                                                   
+SYS_C00132969                                                                   
+SYS_C00132970                                                                   
+SYS_C00132972                                                                   
+SYS_C00132973                                                                   
+SYS_C00132974                                                                   
+SYS_C00132975                                                                   
+SYS_C00132976                                                                   
+SYS_C00132978                                                                   
+
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+SYS_C00132983                                                                   
+SYS_C00132986                                                                   
+SYS_C00132988                                                                   
+SYS_C00132990                                                                   
+SYS_C00132994                                                                   
+SYS_C00133007                                                                   
+KEYWORD_INDEX                                                                   
+RU_NAME_INDEX                                                                   
+AGENCY_INDEX                                                                    
+
+20 rows selected.
 
 SQL> 
 SQL> 
@@ -94,7 +128,27 @@ ORA-06512: at line 1
 
 
 SQL> 
-SQL> 
+SQL> -- f2. -------------------------------------------------------------
+SQL>  INSERT INTO users(u_ID, email) VALUES(777, 'no@bo.dy');
+ INSERT INTO users(u_ID, email) VALUES(777, 'no@bo.dy')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (CDONOV12.SYS_C00132974) violated 
+Help: https://docs.oracle.com/error-help/db/ora-00001/ 
+
+
+SQL>  INSERT INTO registered_user(ru_ID, u_ID, name, privilege, pw_hash) VALUES (777, 888, 'Norman nobody', 'write', 'PASSWORD');
+ INSERT INTO registered_user(ru_ID, u_ID, name, privilege, pw_hash) VALUES (777, 888, 'Norman nobody', 'write', 'PASSWORD')
+                                                *
+ERROR at line 1:
+ORA-00904: "PRIVILEGE": invalid identifier 
+Help: https://docs.oracle.com/error-help/db/ora-00904/ 
+
+
+SQL>  SELECT userLoginAttempt(777, 'PASSWORD') FROM dual; -- should return 1
+  2   SELECT userLoginAttempt(777, 'p@ssword') FROM dual; -- should return 0 -- password do not match
+  3   SELECT userLoginAttempt(666, 'password') FROM dual; -- should return 0 -- no such user exists
+  4  
 SQL> -- f5. --------------------------------------------------------
 SQL> 
 SQL> -- Note that all downloads in log are after Nov 1st 2024.
@@ -132,7 +186,7 @@ SQL> select dataverse.datasetActivity( 'doi:10.7281/T1/6BHBC4', '01-NOV-24') fro
 
 DATAVERSE.DATASETACTIVITY('DOI:10.7281/T1/6BHBC4','01-NOV-24')                  
 --------------------------------------------------------------                  
-                                                          .514                  
+                                                            .5                  
 
 SQL> 
 SQL> -- Last one should return 0 - no downloads before 01-NOV-24
@@ -553,6 +607,257 @@ ORA-20001: No records found.
 ORA-06512: at "CDONOV12.DATAVERSE", line 267 
 ORA-06512: at line 2 
 
+
+SQL> 
+SQL> 
+SQL> -- Triggers --------------------------------------------------------
+SQL> -- t2. -------------------------------------------------------------
+SQL> 
+SQL> -- check number of datasets in a certain collection
+SQL> select n_datasets
+  2  from collection
+  3  where col_ID = 1;
+
+N_DATASETS                                                                      
+----------                                                                      
+        12                                                                      
+
+SQL> 
+SQL> -- Rollback point to return to
+SQL> savepoint t2;
+
+Savepoint created.
+
+SQL> 
+SQL> -- insert into files
+SQL> insert into dataset values (
+  2  	     'test',
+  3  	     (select col_ID from dataset where col_ID = 1 fetch first 1 row only),
+  4  	     null,
+  5  	     null,
+  6  	     null,
+  7  	     null,
+  8  	     null,
+  9  	 null,
+ 10  	     null,
+ 11  	     null
+ 12  );
+
+1 row created.
+
+SQL> 
+SQL> 
+SQL> -- See if it worked
+SQL> select n_datasets
+  2  from collection
+  3  where col_ID = 1;
+
+N_DATASETS                                                                      
+----------                                                                      
+        13                                                                      
+
+SQL> 
+SQL> -- delete from files
+SQL> delete from dataset
+  2  where ds_ID = 'test';
+
+1 row deleted.
+
+SQL> 
+SQL> -- See if it worked
+SQL> select n_datasets
+  2  from collection
+  3  where col_ID = 1;
+
+N_DATASETS                                                                      
+----------                                                                      
+        12                                                                      
+
+SQL> 
+SQL> -- Rollback to before changes
+SQL> rollback to savepoint t2;
+
+Rollback complete.
+
+SQL> 
+SQL> 
+SQL> -- t3. --------------------------------------------------------------
+SQL> 
+SQL> -- check number of files in a certain dataset
+SQL> select n_files
+  2  from dataset
+  3  where ds_ID = 'doi:10.7281/T1/6Y08LS';
+
+   N_FILES                                                                      
+----------                                                                      
+         1                                                                      
+
+SQL> 
+SQL> -- save point
+SQL> savepoint t3;
+
+Savepoint created.
+
+SQL> 
+SQL> -- insert into files
+SQL> insert into files values ('test', 'doi:10.7281/T1/6Y08LS', null, null, null, null, null, null);
+
+1 row created.
+
+SQL> 
+SQL> -- See if it worked
+SQL> select n_files
+  2  from dataset
+  3  where ds_ID = 'doi:10.7281/T1/6Y08LS';
+
+   N_FILES                                                                      
+----------                                                                      
+         2                                                                      
+
+SQL> 
+SQL> -- delete from files
+SQL> delete from files
+  2  where file_ID = 'test';
+
+1 row deleted.
+
+SQL> 
+SQL> -- See if it worked
+SQL> select n_files
+  2  from dataset
+  3  where ds_ID = 'doi:10.7281/T1/6Y08LS';
+
+   N_FILES                                                                      
+----------                                                                      
+         1                                                                      
+
+SQL> 
+SQL> -- Rollback
+SQL> rollback to savepoint t3;
+
+Rollback complete.
+
+SQL> 
+SQL> 
+SQL> -- t4. --------------------------------------------------------------
+SQL> 
+SQL> -- check number of files in a certain collection
+SQL> select n_files
+  2  from collection
+  3  where col_ID = 1;
+
+   N_FILES                                                                      
+----------                                                                      
+       200                                                                      
+
+SQL> 
+SQL> -- savepoint
+SQL> savepoint t4;
+
+Savepoint created.
+
+SQL> 
+SQL> -- insert into files
+SQL> insert into files values (
+  2  	     'test',
+  3  	     (select ds_ID from dataset where col_ID = 1 fetch first 1 row only),
+  4  	     null,
+  5  	     null,
+  6  	     null,
+  7  	     null,
+  8  	     null,
+  9  	     null
+ 10  );
+
+1 row created.
+
+SQL> 
+SQL> 
+SQL> -- See if it worked
+SQL> select n_files
+  2  from collection
+  3  where col_ID = 1;
+
+   N_FILES                                                                      
+----------                                                                      
+       201                                                                      
+
+SQL> 
+SQL> -- delete from files
+SQL> delete from files
+  2  where file_ID = 'test';
+
+1 row deleted.
+
+SQL> 
+SQL> -- See if it worked
+SQL> select n_files
+  2  from collection
+  3  where col_ID = 1;
+
+   N_FILES                                                                      
+----------                                                                      
+       200                                                                      
+
+SQL> 
+SQL> -- Rollback
+SQL> rollback to savepoint t4;
+
+Rollback complete.
+
+SQL> 
+SQL> 
+SQL> -- t5. ---------------------------------------------------------------
+SQL> 
+SQL> -- check total_amount from a certain agency_id in funding_agency table
+SQL> select total_amount
+  2  from funding_agency
+  3  where agency_ID = 4;
+
+TOTAL_AMOUNT                                                                    
+------------                                                                    
+      120000                                                                    
+
+SQL> 
+SQL> -- savepoint
+SQL> savepoint t5;
+
+Savepoint created.
+
+SQL> 
+SQL> -- add a record to grant table, then another to funds table
+SQL> insert into grants values (
+  2  	     999,
+  3  	     'test',
+  4  	     42
+  5  );
+
+1 row created.
+
+SQL> 
+SQL> insert into funds values (
+  2  	     999,
+  3  	     'doi:10.7281/T10Z715B',
+  4  	     4
+  5  );
+
+1 row created.
+
+SQL> 
+SQL> -- check total_amount for agency_ID 1 again
+SQL> select total_amount
+  2  from funding_agency
+  3  where agency_ID = 4;
+
+TOTAL_AMOUNT                                                                    
+------------                                                                    
+      120042                                                                    
+
+SQL> 
+SQL> -- Rollback
+SQL> rollback to savepoint t5;
+
+Rollback complete.
 
 SQL> 
 SQL> SQL> 

@@ -39,6 +39,11 @@ BEGIN
       EXECUTE IMMEDIATE 'DROP INDEX ' || rec.index_name;
    END LOOP;
 
+   -- Drop all clusters
+   FOR cluster_rec IN (SELECT cluster_name FROM user_clusters) LOOP
+      EXECUTE IMMEDIATE 'DROP CLUSTER ' || cluster_rec.cluster_name;
+   END LOOP;
+
 END;
 /
 

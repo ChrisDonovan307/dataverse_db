@@ -70,6 +70,7 @@ map(dat, \(x) map(x, \(y) max(str_length(y), na.rm = TRUE)))
 get_str(dat)
 dat <- map(dat, \(df){
   df %>%
+    unique() %>%
     mutate(
       across(
         .cols = matches('pub_date|start_date'),
@@ -89,6 +90,19 @@ dat <- map(dat, \(df){
       across(everything(), ~ str_remove_all(.x, '\n')),
       across(matches('filesize'), ~ format(round(as.numeric(.x) / 1000, 1), scientific = FALSE)))
 })
+
+
+## Fix analyze table so that it has no nulls in primary key
+dat$analyzes <- dat$analyzes %>%
+  filter(!is.na(sw_ID), !is.na(ds_ID))
+
+## Fix a problem with produce table
+# Get rid of pub id 52 and 95
+dat$produce <- dat$produce %>%
+  filter(!pub_ID %in% c('52', '95'))
+
+dat$publication <- dat$publication %>%
+  filter(!pub_ID %in% c('52', '95'))
 
 
 
