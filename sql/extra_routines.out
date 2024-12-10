@@ -55,6 +55,84 @@ Procedure created.
 SQL> 
 SQL> SHOW ERRORS
 No errors.
+SQL> 
+SQL> -- In the final hour something related to the merging of all project files
+SQL> -- has bumped this function the wrong way.
+SQL> -- The function itself will compile without error, but will crash when attempting
+SQL> -- to run. Error is believed to be related to strings_t table type.
+SQL> CREATE OR REPLACE FUNCTION search(
+  2  	 searchString IN VARCHAR
+  3  ) RETURN strings_t
+  4  AS
+  5  	 match_count int;
+  6  	 start_index NUMBER := 1;
+  7  	 end_index NUMBER;
+  8  	 item VARCHAR2(255);
+  9  	 -- default value is empty collection
+ 10  	 items strings_t := strings_t();
+ 11  BEGIN
+ 12  	 LOOP
+ 13  	     end_index := INSTR(searchString, ',', start_index);
+ 14  	     IF end_index = 0 THEN
+ 15  		 item := SUBSTR(searchString, start_index);
+ 16  		 -- repeated code to grab the last item
+ 17  		 FOR t IN (SELECT owner, table_name, column_name
+ 18  		     FROM all_tab_columns
+ 19  		     WHERE owner <> 'SYS' AND data_type LIKE '%CHAR%')
+ 20  		     LOOP
+ 21  
+ 22  		     EXECUTE IMMEDIATE
+ 23  		     'SELECT COUNT(*) FROM ' || t.owner || '.' || t.table_name ||
+ 24  		     ' WHERE ' || t.column_name || ' LIKE ''%' || item || '%'''
+ 25  		     INTO match_count;
+ 26  
+ 27  		     IF match_count > 0 THEN
+ 28  			items.EXTEND;
+ 29  			items(items.LAST) := '' || match_count || ' matches for ' || item ||
+ 30  			' found in ' || t.table_name || '.' || t.column_name || '';
+ 31  			match_count := 0;
+ 32  		     END IF;
+ 33  		     END LOOP;
+ 34  		 RETURN items;
+ 35  	     END IF;
+ 36  
+ 37  	     item := SUBSTR(searchString, start_index, end_index - start_index);
+ 38  	     -- Process item here
+ 39  	     -- Find all non-system table.column with text datatype
+ 40  		     FOR t IN (SELECT owner, table_name, column_name
+ 41  			     FROM all_tab_columns
+ 42  			     WHERE owner <> 'SYS' AND data_type LIKE '%CHAR%')
+ 43  			     LOOP
+ 44  
+ 45  			     -- Select tuples that contain the keyword within a text field
+ 46  			     EXECUTE IMMEDIATE
+ 47  			     'SELECT COUNT(*) FROM ' || t.owner || '.' ||  t.table_name ||
+ 48  			     ' WHERE ' || t.column_name || ' LIKE ''%' || item || '%'''
+ 49  			     INTO match_count;
+ 50  
+ 51  			     -- When we find match tuples, append them to the items text table
+ 52  			     IF match_count > 0 THEN
+ 53  				     items.EXTEND;
+ 54  				     items(items.LAST) := '' || match_count || ' matches for ' || item ||
+ 55  				     ' found in ' || t.table_name || '.' || t.column_name || '';
+ 56  				     match_count := 0;
+ 57  			     END IF;
+ 58  			     END LOOP;
+ 59  
+ 60  	     --items.EXTEND;
+ 61  	     --items(items.LAST) := REPLACE(REGEXP_REPLACE(item, '\s'), CHR(0));
+ 62  
+ 63  	     start_index := end_index + 1;
+ 64  	 END LOOP;
+ 65  	 RETURN items;
+ 66  END;
+ 67  /
+
+Function created.
+
+SQL> 
+SQL> SHOW ERRORS
+No errors.
 SQL> SQL> 
 SQL> 
 SQL> -- Restore options --------------------------------------------

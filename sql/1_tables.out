@@ -9,12 +9,8 @@ SQL> -- Clustering on any tables with a ds_id field
 SQL> -- Note that more indexes are included in 3_indexes.sql
 SQL> 
 SQL> create cluster ds_cluster (ds_ID varchar(50));
-create cluster ds_cluster (ds_ID varchar(50))
-               *
-ERROR at line 1:
-ORA-00955: name is already used by an existing object 
-Help: https://docs.oracle.com/error-help/db/ora-00955/ 
 
+Cluster created.
 
 SQL> create index ds_cluster_idx
   2  on cluster ds_cluster;
@@ -206,7 +202,7 @@ SQL> create table registered_user (
   2  	     ru_ID int primary key,
   3  	     u_ID int references users (u_id),
   4  	 name varchar(50),
-  5  	     pw_hash varchar(25)
+  5  	     pw_hash varchar2(64)
   6  );
 
 Table created.
@@ -224,20 +220,19 @@ SQL>
 SQL> create table affiliation (
   2  	     int_ID int references institution (int_ID),
   3  	     ru_ID int references registered_user (ru_ID),
-  4  	     primary key (int_ID, ru_ID)
+  4  	 primary key (int_ID, ru_ID)
   5  );
 
 Table created.
 
 SQL> 
 SQL> create table publication (
-  2  	     pub_ID int,
+  2  	     pub_ID int primary key,
   3  	     ds_ID varchar(50) references dataset (ds_ID),
   4  	     citation varchar(750),
-  5  	     url varchar(250),
-  6  	     primary key (pub_ID, ds_ID)
-  7  )
-  8  cluster ds_cluster(ds_ID);
+  5  	     url varchar(250)
+  6  )
+  7  cluster ds_cluster(ds_ID);
 
 Table created.
 
@@ -248,19 +243,15 @@ SQL> create table produce (
   4  	     primary key (auth_ID, pub_ID),
   5  	     constraint RFK_produce foreign key (pub_ID) references publication (pub_ID)
   6  );
-	constraint RFK_produce foreign key (pub_ID) references publication (pub_ID)
-	                                                                    *
-ERROR at line 5:
-ORA-02270: no matching unique or primary key for this column-list 
-Help: https://docs.oracle.com/error-help/db/ora-02270/ 
 
+Table created.
 
 SQL> 
 SQL> create table file_upload (
   2  	     auth_ID int references author (auth_ID),
   3  	     file_ID varchar(50) references files (file_ID),
   4  	     timestamp timestamp,
-  5  	     primary key (file_ID, auth_ID, timestamp)
+  5  	 primary key (auth_ID, file_ID, timestamp)
   6  );
 
 Table created.
@@ -280,7 +271,7 @@ SQL> create table dataset_upload (
   2  	     ds_ID varchar(50) references dataset (ds_ID),
   3  	     auth_ID int references author (auth_ID),
   4  	     timestamp timestamp,
-  5  	     primary key (ds_ID, auth_ID, timestamp)
+  5  	 primary key (ds_ID, auth_ID, timestamp)
   6  )
   7  cluster ds_cluster(ds_ID);
 
@@ -291,7 +282,7 @@ SQL> create table dataset_download (
   2  	     ds_ID varchar(50) references dataset (ds_ID),
   3  	     u_ID int references users (u_ID),
   4  	     timestamp timestamp,
-  5  	     primary key (ds_ID, u_ID, timestamp)
+  5  	 primary key (ds_ID, u_ID, timestamp)
   6  )
   7  cluster ds_cluster(ds_ID);
 
@@ -301,7 +292,7 @@ SQL>
 SQL> create table keywords (
   2  	     ds_ID varchar(50) references dataset (ds_ID),
   3  	     keyword varchar(100),
-  4  	     primary key (ds_ID, keyword)
+  4  	 primary key (ds_ID, keyword)
   5  )
   6  cluster ds_cluster(ds_ID);
 
@@ -322,7 +313,7 @@ SQL>
 SQL> create table admin (
   2  	     ru_ID int references registered_user (ru_ID),
   3  	     start_date date,
-  4  	     primary key (ru_ID, start_date)
+  4  	 primary key (ru_ID, start_date)
   5  );
 
 Table created.
@@ -333,7 +324,7 @@ SQL> create table manage_dataverse (
   3  	     root_ID int references root_dataverse (root_ID),
   4  	     timestamp timestamp,
   5  	     description varchar(1000),
-  6  	     primary key (ru_ID, timestamp)
+  6  	 primary key (ru_ID, timestamp)
   7  );
 
 Table created.
@@ -355,7 +346,7 @@ SQL> create table contact (
   3  	     ds_ID varchar(50) references dataset (ds_ID),
   4  	     timestamp timestamp,
   5  	     message varchar(500),
-  6  	     primary key (u_ID, ds_ID, timestamp)
+  6  	 primary key (u_ID, ds_ID, timestamp)
   7  )
   8  cluster ds_cluster(ds_ID);
 
@@ -368,7 +359,7 @@ SQL> create table analyzes (
   4  	     title varchar(500),
   5  	     description varchar(1000),
   6  	     repo_url varchar(250),
-  7  	     primary key (sw_ID, ds_ID)
+  7  	 primary key (sw_ID, ds_ID)
   8  )
   9  cluster ds_cluster(ds_ID);
 

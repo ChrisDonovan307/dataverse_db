@@ -25,30 +25,45 @@ SQL> select index_name from user_indexes;
 INDEX_NAME                                                                      
 --------------------------------------------------------------------------------
 DS_CLUSTER_IDX                                                                  
-SYS_C00132967                                                                   
-SYS_C00132968                                                                   
-SYS_C00132969                                                                   
-SYS_C00132970                                                                   
-SYS_C00132972                                                                   
-SYS_C00132973                                                                   
-SYS_C00132974                                                                   
-SYS_C00132975                                                                   
-SYS_C00132976                                                                   
-SYS_C00132978                                                                   
+SYS_C00139490                                                                   
+SYS_C00139491                                                                   
+AGENCY_INDEX                                                                    
+SYS_C00139492                                                                   
+SYS_C00139493                                                                   
+SYS_C00139495                                                                   
+SYS_C00139496                                                                   
+SYS_C00139497                                                                   
+SYS_C00139498                                                                   
+SYS_C00139499                                                                   
 
 INDEX_NAME                                                                      
 --------------------------------------------------------------------------------
-SYS_C00132983                                                                   
-SYS_C00132986                                                                   
-SYS_C00132988                                                                   
-SYS_C00132990                                                                   
-SYS_C00132994                                                                   
-SYS_C00133007                                                                   
-KEYWORD_INDEX                                                                   
+SYS_C00139501                                                                   
+SYS_C00139506                                                                   
+SYS_C00139509                                                                   
 RU_NAME_INDEX                                                                   
-AGENCY_INDEX                                                                    
+SYS_C00139511                                                                   
+SYS_C00139513                                                                   
+SYS_C00139515                                                                   
+SYS_C00139518                                                                   
+SYS_C00139520                                                                   
+SYS_C00139523                                                                   
+SYS_C00139526                                                                   
 
-20 rows selected.
+INDEX_NAME                                                                      
+--------------------------------------------------------------------------------
+SYS_C00139529                                                                   
+SYS_C00139532                                                                   
+KEYWORD_INDEX                                                                   
+SYS_C00139535                                                                   
+SYS_C00139537                                                                   
+SYS_C00139541                                                                   
+SYS_C00139543                                                                   
+SYS_C00139546                                                                   
+SYS_C00139549                                                                   
+SYS_C00139552                                                                   
+
+32 rows selected.
 
 SQL> 
 SQL> 
@@ -123,32 +138,34 @@ select dataverse.fundingDistribution(null, 9, null, 60) from dual
        *
 ERROR at line 1:
 ORA-20003: No matching records found. No agency funding within that collection. 
-ORA-06512: at "CDONOV12.DATAVERSE", line 338 
+ORA-06512: at "CDONOV12.DATAVERSE", line 458 
 ORA-06512: at line 1 
 
 
 SQL> 
 SQL> -- f2. -------------------------------------------------------------
-SQL>  INSERT INTO users(u_ID, email) VALUES(777, 'no@bo.dy');
- INSERT INTO users(u_ID, email) VALUES(777, 'no@bo.dy')
-*
-ERROR at line 1:
-ORA-00001: unique constraint (CDONOV12.SYS_C00132974) violated 
-Help: https://docs.oracle.com/error-help/db/ora-00001/ 
+SQL>  INSERT INTO users(u_ID, email) VALUES(7777, 'no@bo.dy');
 
+1 row created.
 
-SQL>  INSERT INTO registered_user(ru_ID, u_ID, name, privilege, pw_hash) VALUES (777, 888, 'Norman nobody', 'write', 'PASSWORD');
- INSERT INTO registered_user(ru_ID, u_ID, name, privilege, pw_hash) VALUES (777, 888, 'Norman nobody', 'write', 'PASSWORD')
-                                                *
-ERROR at line 1:
-ORA-00904: "PRIVILEGE": invalid identifier 
-Help: https://docs.oracle.com/error-help/db/ora-00904/ 
+SQL>  INSERT INTO registered_user(ru_ID, u_ID, name, pw_hash) VALUES (8888, 7777, 'Norman nobody', 'PASSWORD');
 
+1 row created.
 
-SQL>  SELECT userLoginAttempt(777, 'PASSWORD') FROM dual; -- should return 1
-  2   SELECT userLoginAttempt(777, 'p@ssword') FROM dual; -- should return 0 -- password do not match
-  3   SELECT userLoginAttempt(666, 'password') FROM dual; -- should return 0 -- no such user exists
+SQL>  SELECT dataverse.userLoginAttempt(8888, 'PASSWORD') FROM dual; -- should return 1
+  2   SELECT dataverse.userLoginAttempt(8888, 'p@ssword') FROM dual; -- should return 0 -- password do not match
+  3   SELECT dataverse.userLoginAttempt(6666, 'password') FROM dual; -- should return 0 -- no such user exists
   4  
+SQL> -- f3. -------------------------------------------------------------
+SQL>  SELECT dataverse.generateNewPassword(579) FROM dual; -- expect a random alphanumeric string
+  2  
+SQL> -- f4. -------------------------------------------------------------
+SQL> -- random keywords and author name from somewhere within this dataverse
+SQL> -- expect to receive a list of locations with counted REFERENCES
+SQL> -- for each item
+SQL> -- Encounters an error after merging routines into a package
+SQL> -- SELECT dataverse.search('brain, BLAM, Katz') FROM dual;
+SQL> 
 SQL> -- f5. --------------------------------------------------------
 SQL> 
 SQL> -- Note that all downloads in log are after Nov 1st 2024.
@@ -158,7 +175,7 @@ select dataverse.datasetActivity() from dual
        *
 ERROR at line 1:
 ORA-20001: Please provide a dataset ID. 
-ORA-06512: at "CDONOV12.DATAVERSE", line 377 
+ORA-06512: at "CDONOV12.DATAVERSE", line 581 
 ORA-06512: at line 1 
 
 
@@ -228,7 +245,7 @@ select dataverse.proportionGPL('zzzzzzz') from dual
        *
 ERROR at line 1:
 ORA-20001: Subject not found in Dataverse. 
-ORA-06512: at "CDONOV12.DATAVERSE", line 461 
+ORA-06512: at "CDONOV12.DATAVERSE", line 665 
 ORA-06512: at line 1 
 
 
@@ -276,7 +293,7 @@ select dataverse.fundingImpact(1, 'National Science Foundation', 'downloads') fr
        *
 ERROR at line 1:
 ORA-20003: No records found. 
-ORA-06512: at "CDONOV12.DATAVERSE", line 511 
+ORA-06512: at "CDONOV12.DATAVERSE", line 715 
 ORA-06512: at line 1 
 
 
@@ -306,7 +323,7 @@ select dataverse.totalSize('dataset', 1) from dual
        *
 ERROR at line 1:
 ORA-20001: ds_ID is not found in dataset table. 
-ORA-06512: at "CDONOV12.DATAVERSE", line 623 
+ORA-06512: at "CDONOV12.DATAVERSE", line 827 
 ORA-06512: at line 1 
 
 
@@ -317,12 +334,104 @@ select dataverse.totalSize('zzzzzz', 1) from dual
        *
 ERROR at line 1:
 ORA-20001: Input for scope must be dataset, collection, or dataverse 
-ORA-06512: at "CDONOV12.DATAVERSE", line 590 
+ORA-06512: at "CDONOV12.DATAVERSE", line 794 
 ORA-06512: at line 1 
 
 
 SQL> 
 SQL> 
+SQL> -- p1. --------------------------------------------------------------
+SQL> 
+SQL> -- p2. --------------------------------------------------------------
+SQL> 
+SQL> -- p3. --------------------------------------------------------------
+SQL>  -- dumpEmptyFiles
+SQL>  DELETE FROM empty_files; -- purge any previous records
+  2   EXEC dataverse.dumpEmptyFiles;
+ DELETE FROM empty_files; -- purge any previous records
+                        *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+Help: https://docs.oracle.com/error-help/db/ora-00933/ 
+
+
+SQL>  SELECT COUNT(*) FROM empty_files; -- 12 seems to be the correct NUMBER
+  2   SELECT COUNT(*) FROM files WHERE filesize=0; -- agrees with 12
+  3  
+SQL> -- p4. --------------------------------------------------------------
+SQL>  -- keywordSummary
+SQL>  SELECT * FROM keywords WHERE ds_ID='doi:10.7281/T1/0EYOMQ'; -- irrigation, Noah-MP, data assimilation, vegetation, soil moisture
+  2   EXEC dataverse.keywordSummary('doi:10.7281/T1/0EYOMQ');
+ SELECT * FROM keywords WHERE ds_ID='doi:10.7281/T1/0EYOMQ'; -- irrigation, Noah-MP, data assimilation, vegetation, soil moisture
+                                                           *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+Help: https://docs.oracle.com/error-help/db/ora-00933/ 
+
+
+SQL>  SELECT COUNT(*) FROM keyword_count; -- returns 5 if only the previous dataset has been summarized
+  2   SELECT count_of FROM keyword_count WHERE keyword='irrigation'; -- returns 3
+  3  
+SQL> -- p5. --------------------------------------------------------------
+SQL>  -- cleanKeywords
+SQL> SELECT * FROM keywords FETCH FIRST 3 ROWS ONLY; -- View the previous state
+  2  DECLARE
+  3  	     temp strings_t := strings_t();
+SELECT * FROM keywords FETCH FIRST 3 ROWS ONLY; -- View the previous state
+                                              *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+Help: https://docs.oracle.com/error-help/db/ora-00933/ 
+
+
+SQL> BEGIN
+  2  -- values are hardcoded in from the first 3 rows and may need adjustment
+  3  	     temp.extend;
+  4  	     temp(1) := 'electrochemical stability';
+  5  	     temp.extend;
+  6  	     temp(2) := 'physical polymer chemistry';
+  7  	     temp.extend;
+  8  	     temp(3) := 'polycarboxylic acids';
+  9  
+ 10  	     cleanKeywords('SUCCESSFUL OVERWRITE', temp);
+ 11  END;
+ 12  /
+	temp.extend;
+	*
+ERROR at line 3:
+ORA-06550: line 3, column 2: 
+PLS-00201: identifier 'TEMP.EXTEND' must be declared 
+ORA-06550: line 3, column 2: 
+PL/SQL: Statement ignored 
+ORA-06550: line 4, column 2: 
+PLS-00201: identifier 'TEMP' must be declared 
+ORA-06550: line 4, column 2: 
+PL/SQL: Statement ignored 
+ORA-06550: line 5, column 2: 
+PLS-00201: identifier 'TEMP.EXTEND' must be declared 
+ORA-06550: line 5, column 2: 
+PL/SQL: Statement ignored 
+ORA-06550: line 6, column 2: 
+PLS-00201: identifier 'TEMP' must be declared 
+ORA-06550: line 6, column 2: 
+PL/SQL: Statement ignored 
+ORA-06550: line 7, column 2: 
+PLS-00201: identifier 'TEMP.EXTEND' must be declared 
+ORA-06550: line 7, column 2: 
+PL/SQL: Statement ignored 
+ORA-06550: line 8, column 2: 
+PLS-00201: identifier 'TEMP' must be declared 
+ORA-06550: line 8, column 2: 
+PL/SQL: Statement ignored 
+ORA-06550: line 10, column 40: 
+PLS-00201: identifier 'TEMP' must be declared 
+ORA-06550: line 10, column 2: 
+PL/SQL: Statement ignored 
+Help: https://docs.oracle.com/error-help/db/ora-06550/ 
+
+
+SQL>  SELECT * FROM keywords FETCH FIRST 3 ROWS ONLY; -- Note that two of the three previous rows are deleted to prevent duplicate primary keys
+  2  
 SQL> -- p6. --------------------------------------------------------------
 SQL> 
 SQL> -- Bad input errors
@@ -332,7 +441,7 @@ BEGIN dataverse.softwareUse('badbad', null); END;
 *
 ERROR at line 1:
 ORA-20003: No records found. 
-ORA-06512: at "CDONOV12.DATAVERSE", line 64 
+ORA-06512: at "CDONOV12.DATAVERSE", line 184 
 ORA-06512: at line 1 
 
 
@@ -342,7 +451,7 @@ BEGIN dataverse.softwareUse(null, 'badbad'); END;
 *
 ERROR at line 1:
 ORA-20003: No records found. 
-ORA-06512: at "CDONOV12.DATAVERSE", line 64 
+ORA-06512: at "CDONOV12.DATAVERSE", line 184 
 ORA-06512: at line 1 
 
 
@@ -390,7 +499,7 @@ BEGIN dataverse.softwareUse('COVID-19', 'Physics'); END;
 *
 ERROR at line 1:
 ORA-20003: No records found. 
-ORA-06512: at "CDONOV12.DATAVERSE", line 64 
+ORA-06512: at "CDONOV12.DATAVERSE", line 184 
 ORA-06512: at line 1 
 
 
@@ -425,7 +534,7 @@ BEGIN dataverse.softwareLicenses('COVID-19', 'Physics'); END;
 *
 ERROR at line 1:
 ORA-20003: No records found. 
-ORA-06512: at "CDONOV12.DATAVERSE", line 138 
+ORA-06512: at "CDONOV12.DATAVERSE", line 258 
 ORA-06512: at line 1 
 
 
@@ -443,8 +552,8 @@ Australian???American Fulbright Postdoctoral Scholarship: Publications - 1.
 Downloads - 28. Total Funded -  450000.                                         
 Baltimore City Department of Sustainability: Publications - 1. Downloads - 30.  
 Total Funded -  120000.                                                         
-Bill and Melinda Gates Foundation: Publications - 3. Downloads - 103. Total     
-Funded -  360000.                                                               
+Bill and Melinda Gates Foundation: Publications - 2. Downloads - 21. Total      
+Funded -  310000.                                                               
 CLEAR: Publications - 1. Downloads - 17372. Total Funded -  110000.             
 Department of Defense: Publications - 1. Downloads - 2203. Total Funded -       
 50000.                                                                          
@@ -479,8 +588,8 @@ NIH-NIEHS: Publications - 1. Downloads - 28. Total Funded -  500000.
 NSF: Publications - 1. Downloads - 319. Total Funded -  110000.                 
 Nancy Lurie Marks Foundation: Publications - 1. Downloads - 13. Total Funded -  
 100000.                                                                         
-National Aeronautics and Space Administration: Publications - 14. Downloads -   
-6045. Total Funded -  5270000.                                                  
+National Aeronautics and Space Administration: Publications - 13. Downloads -   
+6030. Total Funded -  5110000.                                                  
 National Eye Institute: Publications - 1. Downloads - 30. Total Funded -        
 430000.                                                                         
 National Heart Association: Publications - 3. Downloads - 26. Total Funded -    
@@ -555,7 +664,7 @@ BEGIN dataverse.funderSummary('National Eye Institute', 'Physics'); END;
 *
 ERROR at line 1:
 ORA-20003: No records found. 
-ORA-06512: at "CDONOV12.DATAVERSE", line 225 
+ORA-06512: at "CDONOV12.DATAVERSE", line 345 
 ORA-06512: at line 1 
 
 
@@ -568,6 +677,10 @@ SQL> begin
   2  	 dataverse.searchAuthors('david');
   3  end;
   4  /
+Dowdy, David W.                                                                 
+Ginty, David D.                                                                 
+Gracias, David H.                                                               
+Isooba, David                                                                   
 Jenkins, David M.                                                               
 Kass, David A.                                                                  
 Kraemer, David                                                                  
@@ -575,10 +688,6 @@ Lefer, David
 Mocko, David M.                                                                 
 Nataf, David M.                                                                 
 Sullivan, David J.                                                              
-Dowdy, David W.                                                                 
-Ginty, David D.                                                                 
-Gracias, David H.                                                               
-Isooba, David                                                                   
 
 PL/SQL procedure successfully completed.
 
@@ -587,11 +696,11 @@ SQL> begin
   2  	 dataverse.searchAuthors('emily');
   3  end;
   4  /
+Coderre, Emily L.                                                               
 Kendall, Emily A.                                                               
 Ricotta, Emily                                                                  
 Smith, Emily F.                                                                 
 Wilson, Emily                                                                   
-Coderre, Emily L.                                                               
 
 PL/SQL procedure successfully completed.
 
@@ -604,13 +713,54 @@ begin
 *
 ERROR at line 1:
 ORA-20001: No records found. 
-ORA-06512: at "CDONOV12.DATAVERSE", line 267 
+ORA-06512: at "CDONOV12.DATAVERSE", line 387 
 ORA-06512: at line 2 
 
 
 SQL> 
+SQL> -- t1. ---------------------------------------------------------------
+SQL>  -- hashing test
+SQL>  -- create a fake user with corresponding entry in registered user
+SQL>  -- select pw_hash for that user to ensure that hashing has occured
+SQL>  INSERT INTO users(u_ID, email) VALUES(99999, 'ann@nom.com');
+
+1 row created.
+
+SQL>  INSERT INTO registered_user(ru_ID, u_ID, name, pw_hash) VALUES (99999, 99999, 'Ann Nominous', '123fakestreet');
+
+1 row created.
+
+SQL>  SELECT * FROM registered_user WHERE ru_ID = 99999;
+
+     RU_ID       U_ID NAME                                                      
+---------- ---------- --------------------------------------------------        
+PW_HASH                                                                         
+----------------------------------------------------------------                
+     99999      99999 Ann Nominous                                              
+84AF879CDC4A298DE84C0351774472D5CB13E04191C892A9A0CB6B85476EEB52                
+                                                                                
+
 SQL> 
-SQL> -- Triggers --------------------------------------------------------
+SQL> -- t6-9. -------------------------------------------------------------
+SQL> -- timestamp test
+SQL> -- create a fake download entry. file_ID and u_ID must be valid entries in files and users respectively
+SQL>  INSERT INTO file_download(file_ID, u_ID) VALUES('doi:10.7281/T1/L4QB1Z/1LIJI8', 580);
+
+1 row created.
+
+SQL>  -- select all columns of files downloaded by user 580
+SQL>  SELECT * FROM file_download WHERE u_ID = 580;
+
+FILE_ID                                                  U_ID                   
+-------------------------------------------------- ----------                   
+TIMESTAMP                                                                       
+---------------------------------------------------------------------------     
+doi:10.7281/T1/L4QB1Z/1LIJI8                              580                   
+09-DEC-24 11.47.30.637712 PM                                                    
+                                                                                
+
+SQL> 
+SQL> 
 SQL> -- t2. -------------------------------------------------------------
 SQL> 
 SQL> -- check number of datasets in a certain collection
@@ -859,7 +1009,6 @@ SQL> rollback to savepoint t5;
 
 Rollback complete.
 
-SQL> 
 SQL> SQL> 
 SQL> 
 SQL> -- Restore options --------------------------------------------
