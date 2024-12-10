@@ -47,6 +47,12 @@ select dataverse.fundingDistribution(
 -- Should throw error if there are no records
 select dataverse.fundingDistribution(null, 9, null, 60) from dual;
 
+-- f2. -------------------------------------------------------------
+ INSERT INTO users(u_ID, email) VALUES(777, 'no@bo.dy');
+ INSERT INTO registered_user(ru_ID, u_ID, name, privilege, pw_hash) VALUES (777, 888, 'Norman nobody', 'write', 'PASSWORD');
+ SELECT userLoginAttempt(777, 'PASSWORD') FROM dual; -- should return 1
+ SELECT userLoginAttempt(777, 'p@ssword') FROM dual; -- should return 0 -- password do not match
+ SELECT userLoginAttempt(666, 'password') FROM dual; -- should return 0 -- no such user exists
 
 -- f5. --------------------------------------------------------
 
