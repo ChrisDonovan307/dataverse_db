@@ -181,8 +181,9 @@ cluster ds_cluster(ds_ID);
 
 create table produce (
 	auth_ID int references author (auth_ID),
-	pub_ID int references publication (pub_ID),
-	primary key (auth_ID, pub_ID)
+	pub_ID int,
+	primary key (auth_ID, pub_ID),
+	constraint RFK_produce foreign key (pub_ID) references publication (pub_ID)
 );
 
 create table file_upload (
@@ -196,7 +197,7 @@ create table file_download (
 	file_ID varchar(50) references files (file_ID),
 	u_ID int references users (u_ID),
 	timestamp timestamp,
-	primary key (file_ID, ud_ID, timestamp)
+	primary key (file_ID, u_ID, timestamp)
 );
 
 create table dataset_upload (
@@ -211,7 +212,7 @@ create table dataset_download (
 	ds_ID varchar(50) references dataset (ds_ID),
 	u_ID int references users (u_ID),
 	timestamp timestamp,
-	primary key (ds_ID, ud_ID, timestamp)
+	primary key (ds_ID, u_ID, timestamp)
 )
 cluster ds_cluster(ds_ID);
 
@@ -271,9 +272,12 @@ create table analyzes (
 )
 cluster ds_cluster(ds_ID);
 
-create table keyword_count (keyword VARCHAR(100), count_of number); -- used in keywordSummary PROCEDURE
+create table keyword_count (
+	keyword VARCHAR(100), 
+	count_of number
+);
 
-create table empty_files AS SELECT * FROM files; -- used in dumpEmptyFiles PROCEDURE
+create table empty_files AS SELECT * FROM files;
 		
 
 
