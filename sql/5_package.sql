@@ -597,6 +597,49 @@ create or replace package body dataverse as
 	END;
 	
 	-- f3. -------------------------------------------------------
+	-- If the given user exists within registered_user
+	-- randomly generate a new password that is alphanumeric
+	-- and 8 characters long. Verify that it does not match the hash
+	-- of the previous password. Set this new hash within registered_user
+	-- and return the new password value.
+	FUNCTION generateNewPassword(
+		user_ID IN int DEFAULT -1
+	) RETURN CHAR
+	AS
+		user_count number := 0;
+		old_hash CHAR(64);
+		new_pw CHAR(8);
+		new_pw_hash CHAR(64);
+	BEGIN
+		-- Check for existence of said user
+		SELECT COUNT(*)
+			INTO user_count
+		FROM registered_user
+		WHERE ru_ID=user_ID;
+		IF user_count <> 1 THEN
+			RAISE_APPLICATION_ERROR(-20500, 'User does not exist');
+		END IF;
+
+		-- Generate new random password and check against previous hash
+		new_pw := DBMS_RANDOM.STRING('x', 8);
+		SELECT STANDARD_HASH(RTRIM(new_pw), 'SHA256')
+			INTO new_pw_hash
+			FROM dual;
+		SELECT pw_hash
+			INTO old_hash
+			FROM registered_user
+			WHERE ru_ID=user_ID;
+		WHILE old_hash = new_pw_hash
+		LOOP
+			new_pw := DBMS_RANDOM.STRING('x', 8);
+		SELECT STANDARD_HASH(RTRIM(new_pw), 'SHA256')
+			INTO new_pw_hash
+			FROM dual;
+		END LOOP;
+		RETURN new_pw;
+	END;
+	
+	-- f4. -------------------------------------------------------
 	-- search has been moved to extra_routines.sql to resolve
 	-- an issue with a custom table type that it depends on
 
